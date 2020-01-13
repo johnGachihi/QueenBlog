@@ -14022,3 +14022,17 @@ body {
   letter-spacing: 1px;
 }
 
+#blog-title-textfield {
+  font-size: 31px;
+}
+
+#blog-content-textarea {
+  min-height: 5em;
+  max-height: 50vh;
+  width: 100%;
+  padding: 15px 0;
+  border: none;
+  font-size: 20px;
+  resize: none;
+}
+

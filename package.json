@@ -23,6 +23,7 @@
         "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-build-balloon-block": "^16.0.0",
         "@material/button": "^4.0.0",
         "@material/elevation": "^4.0.0",
         "@material/textfield": "^4.0.0"
