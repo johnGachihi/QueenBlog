@@ -1,0 +1,25 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+//Material Design Components
+@import "~@material/button/mdc-button";
+@import "~@material/textfield/mdc-text-field";
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.publish-btn {
+    @include mdc-button-density(-2);
+    @include mdc-button-filled-accessible(#FFAD4D)
+}
+
+#draft {
+    letter-spacing: 1px;
+}
