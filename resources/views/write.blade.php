@@ -16,7 +16,7 @@
     <!-- Writing Area -->
     <div class="row justify-content-center">
         <div class="col-8">
-            <!-- Blog title text-area -->
+            <!-- Blog title text-field -->
             <div class="mdc-text-field mdc-text-field--fullwidth">
                 <input id="blog-title-textfield" class="mdc-text-field__input"
                        type="text"
@@ -24,6 +24,7 @@
                        aria-label="Full-Width Text Field">
             </div>
 
+            <!-- Blog content WYSIWIG editor -->
             <div class="mt-2">
                 <div id="blog-content-textarea">
                     <p>Write</p>
