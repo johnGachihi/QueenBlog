@@ -14,6 +14,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Maven+Pro&display=swap" rel="stylesheet">
 </head>
 <body style="background-color: white">
 
@@ -22,7 +26,7 @@
     <nav class="navbar navbar-light bg-white border-bottom">
         <a class="navbar-brand" href="#">
             <img src="{{ asset("storage/logo.png") }}" height="50" alt="">
-            <span class="align-bottom ml-3 text-secondary">Spread the word ...</span>
+            <span class="align-bottom ml-2 text-dark text-on-navbar">Spread the word</span>
         </a>
     </nav>
 

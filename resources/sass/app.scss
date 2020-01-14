@@ -10,10 +10,16 @@
 //Material Design Components
 @import "~@material/button/mdc-button";
 @import "~@material/textfield/mdc-text-field";
+@import "~@material/elevation/mdc-elevation";
+
 
 //Styling for write.blade.php
 @import "write";
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Maven Pro', "Nunito", sans-serif;
+}
+
+.text-on-navbar {
+    font-size: 14px;
 }
