@@ -26,9 +26,7 @@
 
             <!-- Blog content WYSIWIG editor -->
             <div class="mt-2">
-                <div id="blog-content-textarea">
-                    <p>Write</p>
-                </div>
+                <div id="blog-content-textarea"></div>
             </div>
         </div>
 
