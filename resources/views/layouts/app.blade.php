@@ -11,9 +11,11 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    @yield('scripts')
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('styles')
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
@@ -23,7 +25,7 @@
 
 <div class="container">
     <!--NavBar-->
-    <nav class="navbar navbar-light bg-white border-bottom">
+    <nav class="navbar navbar-light bg-white border-bottom justify-content-center">
         <a class="navbar-brand" href="#">
             <img src="{{ asset("storage/logo.png") }}" height="50" alt="">
             <span class="align-bottom ml-2 text-dark text-on-navbar">Spread the word</span>

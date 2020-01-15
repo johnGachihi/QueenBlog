@@ -20,3 +20,22 @@
     background-color: white;
     box-shadow: 0 1px #f7f4f4;
 }
+
+#blog-image-input {
+    height: 40vh;
+    background-color: #f2f2f2;
+    border: #ffad4d;
+}
+
+.elements-atop {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#preview-img-input-btn {
+    @include mdc-button-outline-color(#FFAD4D);
+    @include mdc-button-ink-color(#FFAD4D)
+}

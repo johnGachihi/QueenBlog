@@ -26,6 +26,10 @@
         "@ckeditor/ckeditor5-build-balloon-block": "^16.0.0",
         "@material/button": "^4.0.0",
         "@material/elevation": "^4.0.0",
-        "@material/textfield": "^4.0.0"
+        "@material/linear-progress": "^4.0.0",
+        "@material/textfield": "^4.0.0",
+        "@uppy/core": "^1.7.0",
+        "@uppy/dashboard": "^1.5.1",
+        "@uppy/thumbnail-generator": "^1.5.1"
     }
 }
