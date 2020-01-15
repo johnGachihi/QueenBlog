@@ -15,7 +15,7 @@
             <span class="ml-3">Saved</span>
         </div>
         <div class="col d-flex justify-content-end">
-            <button id="publish-btn" class="publish-btn mdc-button mdc-button--raised">
+            <button id="publish-btn" class="publish-btn mdc-button mdc-button--raised" disabled>
                 <div class="mdc-button__ripple"></div>
                 <span class="mdc-button__label">Publish</span>
             </button>

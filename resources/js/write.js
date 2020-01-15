@@ -14,11 +14,11 @@ const blogContentTextArea = document.getElementById("blog-content-textarea");
 // Init WYSIWIG editor
 BalloonBlockEditor.create(blogContentTextArea, {
     placeholder: 'Write the word...',
-    toolbar: ['heading', '|', 'bold', 'italic', 'link', 'blockQuote']
+    toolbar: ['heading', '|', 'bold', 'italic', 'link', 'blockQuote'],
+    ignoreEmptyParagraph: true
 })
     .then(editor => {
-        // console.log(editor);
-        // console.log(Array.from( ckEditor.ui.componentFactory.names() ));
+        enableNavbarPublishButtonOnInputToEditor(editor)
     })
     .catch(error => {
         console.error(error);
@@ -30,6 +30,17 @@ const publishBtn = document.getElementById("publish-btn");
 publishBtn.addEventListener('click', e => {
     $('#publish-modal').modal('toggle');
 });
+
+function enableNavbarPublishButtonOnInputToEditor(editor) {
+    editor.model.document.on('change:data', () => {
+        if(editor.getData() === ''){
+            publishBtn.setAttribute('disabled', 'true')
+        } else {
+            publishBtn.removeAttribute('disabled')
+        }
+    })
+}
+
 
 /** Uppy */
 const uppy = Uppy({
