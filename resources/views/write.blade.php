@@ -46,13 +46,22 @@
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="container-fluid">
-                    <div class="row justify-content-center mt-3" style="font-weight: bold">
+                    <div class="row justify-content-end mx-1 my-2">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="row justify-content-center modal-input-labels">
                         <div>Add blog image</div>
                     </div>
                     <div class="row justify-content-center">
-                        <div id="blog-image-input" class="mb-4 d-flex justify-content-center align-content-center position-relative" style="width: 200px; height: 200px">
-                            <img id="blog-preview-img-thumbnail" class="d-none elements-atop" height="300" width="300" alt="">
-                            <div role="progressbar" id="preview-img-progress-bar" class="mdc-linear-progress mdc-linear-progress--indeterminate elements-atop d-none">
+                        <div id="blog-image-input"
+                             class="mb-4 d-flex justify-content-center align-content-center position-relative"
+                             style="width: 200px; height: 200px">
+                            <img id="blog-preview-img-thumbnail" class="d-none elements-atop" height="300" width="300"
+                                 alt="" style="object-fit: contain">
+                            <div role="progressbar" id="preview-img-progress-bar"
+                                 class="mdc-linear-progress mdc-linear-progress--indeterminate elements-atop d-none">
                                 <div class="mdc-linear-progress__buffering-dots"></div>
                                 <div class="mdc-linear-progress__buffer"></div>
                                 <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
@@ -68,13 +77,25 @@
                             </button>
                         </div>
                     </div>
-                    <div class="row">
-                        <input type="text" placeholder="Tag">
+                    <div class="row justify-content-center mt-3 modal-input-labels">Add blog tag</div>
+                    <div class="row justify-content-center mb-3">
+                        <div id="blog-tag-input-container" class="mdc-text-field">
+                            <input type="text" class="mdc-text-field__input" id="blog-tag-input">
+                            <div class="mdc-line-ripple"></div>
+                            <label for="blog-tag-input" class="mdc-floating-label">Blog tag</label>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center my-5">
+                        <button class="publish-btn mdc-button mdc-button--raised">
+                            <div class="mdc-button__ripple"></div>
+                            <span class="mdc-button__label">Publish</span>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 
     <input style="display: none" type="file" id="blog-image-hidden-input"/>
 @endsection

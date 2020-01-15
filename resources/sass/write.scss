@@ -39,3 +39,12 @@
     @include mdc-button-outline-color(#FFAD4D);
     @include mdc-button-ink-color(#FFAD4D)
 }
+
+.modal-input-labels {
+    font-weight: bold;
+}
+
+#blog-tag-input-container {
+    @include mdc-text-field-bottom-line-color(#FFAD4D);
+    @include mdc-text-field-label-color(#9e9e9e);
+}

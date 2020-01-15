@@ -5,6 +5,9 @@ const Dashboard = require('@uppy/dashboard');
 const ThumbnailGenerator = require('@uppy/thumbnail-generator');
 import '@uppy/core/dist/style.css'
 import '@uppy/dashboard/dist/style.css'
+import {MDCTextField} from '@material/textfield';
+
+const blogTagInput = new MDCTextField(document.querySelector('#blog-tag-input-container'));
 
 const blogContentTextArea = document.getElementById("blog-content-textarea");
 
