@@ -9,17 +9,10 @@ import {MDCTextField} from '@material/textfield';
 
 const blogTagInput = new MDCTextField(document.querySelector('#blog-tag-input-container'));
 
-const blogContentTextArea = document.getElementById("blog-content-textarea");
-
 // Init WYSIWIG editor
+const blogContentTextArea = document.getElementById("blog-content-textarea");
 initCkEditor(blogContentTextArea)
     .then(editor => {enableNavbarPublishButtonOnInputToEditor(editor)});
-
-
-const publishBtn = document.getElementById("publish-btn");
-publishBtn.addEventListener('click', e => {
-    $('#publish-modal').modal('toggle');
-});
 
 function enableNavbarPublishButtonOnInputToEditor(editor) {
     handlePublishButtonEnabledState(editor);
@@ -35,6 +28,11 @@ function handlePublishButtonEnabledState(editor) {
         publishBtn.removeAttribute('disabled')
     }
 }
+
+const publishBtn = document.getElementById("publish-btn");
+publishBtn.addEventListener('click', e => {
+    $('#publish-modal').modal('toggle');
+});
 
 new BlogMainImageInput({
     imagePreviewElement: document.getElementById('blog-preview-img-thumbnail'),

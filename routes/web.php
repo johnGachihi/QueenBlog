@@ -20,3 +20,9 @@ Route::prefix('write')->group(function () {
         return view('write');
     });
 });
+
+/**
+ * Routes for blogs
+ */
+Route::post('blog', 'BlogsController@store');
+Route::put('blog/{blog}', 'BlogsController@update');
