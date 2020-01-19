@@ -1,7 +1,7 @@
 
 .publish-btn {
     @include mdc-button-density(-3);
-    @include mdc-button-filled-accessible(#FFAD4D)
+    //@include mdc-button-filled-accessible(#FFAD4D)
 }
 
 #draft {

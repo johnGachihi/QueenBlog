@@ -4,18 +4,28 @@ import SavedStatusIndicator from "./savedStatusIndicator/SavedStatusIndicator";
 import BlogsService from "../network/BlogsService";
 import Blog from "../models/Blog";
 
+export var curBlog: Blog;
+
 export default class PeriodicBlogContentSaver {
     private editorChangeHandler: () => void;
     private savingHandler: () => void;
-    private onSavedHandler: () => void;
+    private onSavedHandler: (b: Blog) => void;
 
+    private blogTitleEl: HTMLInputElement;
     private editor: BalloonBlockEditor;
     private savedStatusIndicator: SavedStatusIndicator;
     private blogService: BlogsService;
     private blog: Blog;
 
-    constructor(editor: BalloonBlockEditor, savedStatusIndicator: SavedStatusIndicator, blogsService: BlogsService, blog?: Blog) {
+    constructor(
+        editor: BalloonBlockEditor,
+        blogTitleEl: HTMLInputElement,
+        savedStatusIndicator: SavedStatusIndicator,
+        blogsService: BlogsService,
+        blog?: Blog
+    ) {
         this.editor = editor;
+        this.blogTitleEl = blogTitleEl;
         this.savedStatusIndicator = savedStatusIndicator;
         this.blogService = blogsService;
         this.blog = blog;
@@ -29,7 +39,7 @@ export default class PeriodicBlogContentSaver {
         const timeout = new Timeout();
 
         this.editor.model.document.on('change:data', () => {
-            if(!timeout.isSet()) {
+            if (!timeout.isSet()) {
                 timeout.setTimeOut(3000, () => this.saveBlogContent());
             }
             this.savedStatusIndicator.clearSavedStatus();
@@ -42,17 +52,9 @@ export default class PeriodicBlogContentSaver {
         this.beforeSave();
 
         if (!this.blog) {
-            this.blog = {blog_content: this.editor.getData()};
-            this.blogService.save(this.blog).then(response => {
-                this.afterSave();
-                this.blog.id = response.blog_id;
-                console.log(this.blog);
-            })
+            this.saveNew().then(blog => this.blog = blog)
         } else {
-            this.blog.blog_content = this.editor.getData();
-            this.blogService.update(this.blog).then(response => {
-                this.afterSave();
-            });
+            this.updateExisting()
         }
     }
 
@@ -61,9 +63,25 @@ export default class PeriodicBlogContentSaver {
         PeriodicBlogContentSaver.callCallbackIfPresent(this.savingHandler);
     }
 
-    private afterSave() {
+    private async saveNew() {
+        let blog: Blog = {blog_title: this.blogTitleEl.value, blog_content: this.editor.getData()};
+        const response = await this.blogService.save(blog);
+        blog.id = response.blog_id;
+        this.afterSave(blog);
+        return blog;
+    }
+
+    private updateExisting() {
+        this.blog.blog_content = this.editor.getData();
+        this.blog.blog_title = this.blogTitleEl.value;
+        this.blogService.update(this.blog).then(response => {
+            this.afterSave(this.blog);
+        });
+    }
+
+    private afterSave(blog: Blog) {
         this.savedStatusIndicator.indicateSaved();
-        PeriodicBlogContentSaver.callCallbackIfPresent(this.onSavedHandler);
+        if (this.onSavedHandler) this.onSavedHandler(blog);
     }
 
     onEditorChange(changeHandler: () => void): PeriodicBlogContentSaver {
@@ -76,7 +94,7 @@ export default class PeriodicBlogContentSaver {
         return this;
     }
 
-    onSaved(onSavedHandler: () => void): PeriodicBlogContentSaver {
+    onSaved(onSavedHandler: (b: Blog) => void): PeriodicBlogContentSaver {
         this.onSavedHandler = onSavedHandler;
         return this
     }

@@ -20,6 +20,7 @@
             <!-- Blog title text-field -->
             <div id="blog-title-textfield" class="mdc-text-field mdc-text-field--fullwidth">
                 <input class="mdc-text-field__input"
+                       id="blog-title-input"
                        type="text"
                        placeholder="Title"
                        aria-label="Full-Width Text Field"
@@ -78,7 +79,11 @@
                         </div>
                     </div>
                     <div class="row justify-content-center my-5">
-                        <button class="publish-btn mdc-button mdc-button--raised">
+                        <button id="modal-save-draft-btn" class="publish-btn mdc-button mdc-button--outlined mx-2">
+                            <div class="mdc-button__ripple"></div>
+                            <span class="mdc-button__label">Save as draft</span>
+                        </button>
+                        <button id="modal-publish-btn" class="publish-btn mdc-button mdc-button--raised mx-2">
                             <div class="mdc-button__ripple"></div>
                             <span class="mdc-button__label">Publish</span>
                         </button>

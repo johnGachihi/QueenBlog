@@ -42,6 +42,8 @@ var BlogMainImageInput = /** @class */ (function () {
         });
     };
     BlogMainImageInput.prototype.handleImageInputted = function (file) {
+        if (this.onImageInputtedHandler)
+            this.onImageInputtedHandler(file);
         this.uppy.reset();
         this.uppy.addFile({
             name: file.name,
@@ -70,6 +72,9 @@ var BlogMainImageInput = /** @class */ (function () {
     };
     BlogMainImageInput.prototype.changeButtonToOutlined = function () {
         this.configOptions.imageInputButton.classList.add('mdc-button--outlined');
+    };
+    BlogMainImageInput.prototype.onImageInputted = function (onImageInputtedHandler) {
+        this.onImageInputtedHandler = onImageInputtedHandler;
     };
     return BlogMainImageInput;
 }());

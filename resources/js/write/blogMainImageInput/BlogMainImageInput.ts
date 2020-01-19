@@ -3,8 +3,10 @@ import Uppy from "@uppy/core";
 import ThumbnailGenerator from "@uppy/thumbnail-generator";
 
 export default class BlogMainImageInput {
-    uppy: any;
-    configOptions: BlogImageInputConfigOptions;
+    private uppy: any;
+    private configOptions: BlogImageInputConfigOptions;
+
+    private onImageInputtedHandler: (image: File) => void;
 
     constructor(configOptions: BlogImageInputConfigOptions) {
         this.configOptions = configOptions;
@@ -45,6 +47,8 @@ export default class BlogMainImageInput {
     }
 
     private handleImageInputted(file: File) {
+        if (this.onImageInputtedHandler) this.onImageInputtedHandler(file);
+
         this.uppy.reset();
         this.uppy.addFile({
             name: file.name,
@@ -67,7 +71,7 @@ export default class BlogMainImageInput {
         this.configOptions.imagePreviewElement.src = preview;
         this.configOptions.imagePreviewElement.classList.remove('d-none');
 
-        if(this.uppy.getFiles().length > 0) {
+        if (this.uppy.getFiles().length > 0) {
             this.configOptions.imageInputButton.innerText = "Change"
         }
 
@@ -81,5 +85,9 @@ export default class BlogMainImageInput {
 
     private changeButtonToOutlined() {
         this.configOptions.imageInputButton.classList.add('mdc-button--outlined')
+    }
+
+    onImageInputted(onImageInputtedHandler: (image: File) => void) {
+        this.onImageInputtedHandler = onImageInputtedHandler
     }
 }
