@@ -8,7 +8,6 @@ export default class BlogMainImageInput {
 
     constructor(configOptions: BlogImageInputConfigOptions) {
         this.configOptions = configOptions;
-        console.log(this.configOptions);
         this.initUppy();
         this.setupImageInputButton();
         this.listenForImageInput((file: File) => this.handleImageInputted(file));
@@ -32,7 +31,6 @@ export default class BlogMainImageInput {
     }
 
     private setupImageInputButton() {
-        console.log('setUpImageButton', this.configOptions);
         this.configOptions.imageInputButton.addEventListener('click', () => this.openFileExplorer())
     }
 

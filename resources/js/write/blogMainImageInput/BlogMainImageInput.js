@@ -9,7 +9,6 @@ var BlogMainImageInput = /** @class */ (function () {
     function BlogMainImageInput(configOptions) {
         var _this = this;
         this.configOptions = configOptions;
-        console.log(this.configOptions);
         this.initUppy();
         this.setupImageInputButton();
         this.listenForImageInput(function (file) { return _this.handleImageInputted(file); });
@@ -31,7 +30,6 @@ var BlogMainImageInput = /** @class */ (function () {
     };
     BlogMainImageInput.prototype.setupImageInputButton = function () {
         var _this = this;
-        console.log('setUpImageButton', this.configOptions);
         this.configOptions.imageInputButton.addEventListener('click', function () { return _this.openFileExplorer(); });
     };
     BlogMainImageInput.prototype.openFileExplorer = function () {

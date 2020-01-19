@@ -1,18 +1,10 @@
 @extends('layouts.app')
 
-@section('scripts')
-    {{--    <script src="{{ asset('js/dropzone.js') }}"></script>--}}
-@endsection
-
-@section('styles')
-    {{--    <link href="{{ asset('css/dropzone.min.css') }}" rel="stylesheet"/>--}}
-@endsection
-
 @section('content')
     <div id="top-bar" class="row py-3 justify-content-between sticky-top">
         <div class="col ">
             <span id="draft">Draft</span>
-            <span class="ml-3">Saved</span>
+            <span id="save-status" class="ml-3"></span>
         </div>
         <div class="col d-flex justify-content-end">
             <button id="publish-btn" class="publish-btn mdc-button mdc-button--raised" disabled>
