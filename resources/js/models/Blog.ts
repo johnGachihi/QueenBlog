@@ -4,7 +4,8 @@ export default interface Blog extends Model{
     id?: number,
     blog_title?: string,
     blog_content: string,
-    main_image?: File,
+    blog_main_image?: File,
+    blog_tag?: string,
     status?: string,
     views?: number,
     likes?: number

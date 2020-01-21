@@ -8,6 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <meta name="base-url" content="{{ env('APP_URL') }}">
+    <meta name="asset-url" content="{{ asset('/') }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -22,15 +23,19 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Maven+Pro&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body style="background-color: white">
 
 <div class="container">
     <!--NavBar-->
     <nav class="navbar navbar-light bg-white border-bottom justify-content-center">
+        <div></div>
         <a class="navbar-brand" href="#">
             <img src="{{ asset("storage/logo.png") }}" height="50" alt="">
-            <span class="align-bottom ml-2 text-dark text-on-navbar">Spread the word</span>
+            <span class="align-bottom ml-2 text-dark text-on-navbar d-md-inline d-none">@yield('logo-text')</span>
         </a>
     </nav>
 

@@ -3,8 +3,8 @@ import {HttpMethod} from "./HttpMethod";
 import Model from "../models/Model";
 
 export default class Service<T extends Model> {
-    private readonly requestOptions: RequestOptions;
-    private readonly relativeUrl: string;
+    protected readonly requestOptions: RequestOptions;
+    protected readonly relativeUrl: string;
 
     constructor(requestOptions: RequestOptions, relativeUrl: string) {
         this.requestOptions = requestOptions;
@@ -36,7 +36,7 @@ export default class Service<T extends Model> {
         return await response.json();
     }
 
-    private static makeUrl(baseUrl: string, relativeUrl: string, urlSuffix?: string) {
+    protected static makeUrl(baseUrl: string, relativeUrl: string, urlSuffix?: string) {
         if(urlSuffix != undefined) {
             return baseUrl + relativeUrl + urlSuffix;
         } else {

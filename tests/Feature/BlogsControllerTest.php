@@ -36,7 +36,7 @@ class BlogsControllerTest extends TestCase
 
     public function testUpdate_onNonExistentBlog()
     {
-        $response = $this->json('PUT', '/blog/1');
+        $response = $this->json('POST', '/blog/1');
 
         $response->assertStatus(404);
     }
@@ -45,7 +45,7 @@ class BlogsControllerTest extends TestCase
     {
         $blog = factory(Blog::class)->create();
 
-        $response = $this->json('PUT', '/blog/' . $blog->id);
+        $response = $this->json('POST', '/blog/' . $blog->id);
 
         $response->assertStatus(422);
     }
@@ -54,7 +54,7 @@ class BlogsControllerTest extends TestCase
     {
         $blog = factory(Blog::class)->create();
 
-        $response = $this->json('PUT', '/blog/' . $blog->id, [
+        $response = $this->json('POST', '/blog/' . $blog->id, [
             'blog_title' => 123,
             'blog_content' => $blog_content = $this->faker->paragraphs(10, true),
             'blog_main_image' => UploadedFile::fake()->create('file.pdf', 0, 'application/pdf'),
@@ -71,7 +71,7 @@ class BlogsControllerTest extends TestCase
     {
         $blog = factory(Blog::class)->create();
 
-        $response = $this->json('PUT', '/blog/'.$blog->id, [
+        $response = $this->json('POST', '/blog/'.$blog->id, [
             'blog_title' => $blog_title = $this->faker->sentence,
             'blog_content' => $blog_content = $this->faker->paragraphs(10, true)
         ]);
@@ -89,7 +89,7 @@ class BlogsControllerTest extends TestCase
         Storage::fake('public');
         $blog = factory(Blog::class)->create();
 
-        $response = $this->json('PUT', '/blog/'.$blog->id, [
+        $response = $this->json('POST', '/blog/'.$blog->id, [
             'blog_title' => $blog_title = $this->faker->sentence,
             'blog_content' => $blog_content = $this->faker->paragraphs(10, true),
             'blog_main_image' => $blog_main_image = UploadedFile::fake()->image('filename.jpg'),

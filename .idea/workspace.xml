@@ -2,16 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ba4312e-56ad-419e-b4b7-cc2a10cfd510" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/john_gachihi.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/john_gachihi.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BlogsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BlogsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/models/Blog.ts" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/models/Blog.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/network/BlogsService.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/network/BlogsService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/network/BlogsService.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/network/BlogsService.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/network/BlogsService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/network/BlogsService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/network/Service.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/network/Service.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/network/Service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/network/Service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/write.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/write.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/write/blogMainImageInput/BlogMainImageInput.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/write/blogMainImageInput/BlogMainImageInput.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/write/blogMainImageInput/BlogMainImageInput.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/write/blogMainImageInput/BlogMainImageInput.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/write/blogMainImageInput/BlogMainImageInput.ts" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/write/blogMainImageInput/BlogMainImageInput.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/write/editor.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/write/editor.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/write.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/write.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/write.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/write.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/BlogsControllerTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/BlogsControllerTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,10 +40,19 @@
       <executable />
     </execution>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="tsconfig.json" />
+        <option value="JavaScript File" />
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration">
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.2">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/scrivo/highlight.php" />
       <path value="$PROJECT_DIR$/vendor/paragonie/random_compat" />
@@ -132,17 +157,39 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/storage/app/public" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="settings.typescriptcompiler" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/js/write/savedStatusIndicator" />
+      <recent name="$PROJECT_DIR$/resources/js/write/blogMainImageInput" />
+      <recent name="$PROJECT_DIR$/public/js" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/storage/app/public" />
+      <recent name="$PROJECT_DIR$/public/css" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="PHPUnit.BlogsControllerTest">
+    <configuration name="BlogsControllerTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\BlogsControllerTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/BlogsControllerTest.php" scope="Class" />
+      <method v="2" />
+    </configuration>
+    <configuration name="BlogsControllerTest.testStore_withoutBlogContent" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\BlogsControllerTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/BlogsControllerTest.php" method="testStore_withoutBlogContent" scope="Method" />
+      <method v="2" />
+    </configuration>
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="PHPUnit.BlogsControllerTest" />
+        <item itemvalue="PHPUnit.BlogsControllerTest.testStore_withoutBlogContent" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -167,37 +214,121 @@
       <option name="presentableId" value="Default" />
       <updated>1578914745877</updated>
       <workItem from="1578914751784" duration="4546000" />
-      <workItem from="1578919332454" duration="12036000" />
+      <workItem from="1578919332454" duration="12810000" />
+      <workItem from="1578979001826" duration="27086000" />
+      <workItem from="1579066410460" duration="30217000" />
+      <workItem from="1579156722146" duration="26976000" />
+      <workItem from="1579242158089" duration="32434000" />
+      <workItem from="1579411657341" duration="24836000" />
+      <workItem from="1579501949881" duration="48866000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/resources/js/write/blogMainImageInput/BlogImageInputConfigOptions.js" />
+        <option value="$PROJECT_DIR$/resources/js/write/blogMainImageInput/BlogMainImageInput.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/write/blogMainImageInput/BlogMainImageInput.js" />
+        <option value="$PROJECT_DIR$/resources/js/write/blogMainImageInput/BlogImageInputConfigOptions.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/write/Timeout.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/write/Timeout.js" />
+        <option value="$PROJECT_DIR$/resources/js/write/PeriodicBlogContentSaver.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/write/PeriodicBlogContentSaver.js" />
+        <option value="$PROJECT_DIR$/resources/js/write/savedStatusIndicator/SavedStatusIndicator.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/write/savedStatusIndicator/SavedStatusIndicator.js" />
+        <option value="$PROJECT_DIR$/resources/js/write/savedStatusIndicator/SavedStatusIndicatorImpl.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/write/savedStatusIndicator/SavedStatusIndicatorImpl.js" />
+        <option value="$PROJECT_DIR$/resources/js/models/Blog.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/models/Blog.js" />
+        <option value="$PROJECT_DIR$/resources/js/network/HttpMethod.js" />
+        <option value="$PROJECT_DIR$/resources/js/network/BlogsService.js" />
+        <option value="$PROJECT_DIR$/resources/js/network/BlogsService.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/network/Service.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/network/RequestOptions.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/network/RequestOptions.js" />
+        <option value="$PROJECT_DIR$/resources/js/network/HttpMethod.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/network/Service.js" />
+        <option value="$PROJECT_DIR$/resources/js/models/Model.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/models/Model.js" />
+        <option value="$PROJECT_DIR$/resources/js/write/MyUploadAdapter.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/write/MyUploadAdapter.js" />
+      </list>
+    </option>
   </component>
   <component name="WindowStateProjectService">
+    <state x="343" y="27" width="751" height="741" key="#BlogsControllerTest.testStore_withoutBlogContent" timestamp="1579178550452">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="343" y="27" width="751" height="741" key="#BlogsControllerTest.testStore_withoutBlogContent/67.27.1299.741@67.27.1299.741" timestamp="1579178550452" />
+    <state x="363" y="27" width="700" height="741" key="#PHP" timestamp="1579178548766">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="363" y="27" width="700" height="741" key="#PHP/67.27.1299.741@67.27.1299.741" timestamp="1579178548766" />
+    <state x="174" y="54" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579247079425">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="174" y="54" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1299.741@67.27.1299.741" timestamp="1579247079425" />
+    <state x="416" y="201" width="591" height="390" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1579161602888">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="416" y="201" width="591" height="390" key="#com.intellij.fileTypes.FileTypeChooser/67.27.1299.741@67.27.1299.741" timestamp="1579161602888" />
+    <state x="524" y="115" width="374" height="562" key="#com.intellij.ide.util.MemberChooser" timestamp="1579608945631">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="524" y="115" width="374" height="562" key="#com.intellij.ide.util.MemberChooser/67.27.1299.741@67.27.1299.741" timestamp="1579608945631" />
     <state x="399" y="124" width="624" height="544" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1578919415507">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="399" y="124" width="624" height="544" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/67.27.1299.741@67.27.1299.741" timestamp="1578919415507" />
-    <state width="1253" height="240" key="GridCell.Tab.0.bottom" timestamp="1578919298499">
+    <state x="449" y="145" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1579610050054">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="240" key="GridCell.Tab.0.bottom/67.27.1299.741@67.27.1299.741" timestamp="1578919298499" />
-    <state width="1253" height="240" key="GridCell.Tab.0.center" timestamp="1578919298497">
+    <state x="449" y="145" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/67.27.1299.741@67.27.1299.741" timestamp="1579610050054" />
+    <state x="167" y="125" width="1099" height="543" key="DiffContextDialog" timestamp="1579607529209">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="240" key="GridCell.Tab.0.center/67.27.1299.741@67.27.1299.741" timestamp="1578919298497" />
-    <state width="1253" height="240" key="GridCell.Tab.0.left" timestamp="1578919298495">
+    <state x="167" y="125" width="1099" height="543" key="DiffContextDialog/67.27.1299.741@67.27.1299.741" timestamp="1579607529209" />
+    <state width="1253" height="240" key="GridCell.Tab.0.bottom" timestamp="1579191417960">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="240" key="GridCell.Tab.0.left/67.27.1299.741@67.27.1299.741" timestamp="1578919298495" />
-    <state width="1253" height="240" key="GridCell.Tab.0.right" timestamp="1578919298498">
+    <state width="1253" height="240" key="GridCell.Tab.0.bottom/67.27.1299.741@67.27.1299.741" timestamp="1579191417960" />
+    <state width="1253" height="240" key="GridCell.Tab.0.center" timestamp="1579191417960">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="240" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1578919298498" />
-    <state x="372" y="224" key="com.intellij.ide.util.TipDialog" timestamp="1578919333071">
+    <state width="1253" height="240" key="GridCell.Tab.0.center/67.27.1299.741@67.27.1299.741" timestamp="1579191417960" />
+    <state width="1253" height="240" key="GridCell.Tab.0.left" timestamp="1579191417959">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="372" y="224" key="com.intellij.ide.util.TipDialog/67.27.1299.741@67.27.1299.741" timestamp="1578919333071" />
+    <state width="1253" height="240" key="GridCell.Tab.0.left/67.27.1299.741@67.27.1299.741" timestamp="1579191417959" />
+    <state width="1253" height="240" key="GridCell.Tab.0.right" timestamp="1579191417960">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state width="1253" height="240" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1579191417960" />
+    <state x="512" y="322" width="399" height="149" key="NewPhpFileDialog" timestamp="1579518069455">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="512" y="322" width="399" height="149" key="NewPhpFileDialog/67.27.1299.741@67.27.1299.741" timestamp="1579518069455" />
+    <state x="205" y="31" key="SettingsEditor" timestamp="1579446222862">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="205" y="31" key="SettingsEditor/67.27.1299.741@67.27.1299.741" timestamp="1579446222862" />
+    <state x="372" y="224" key="com.intellij.ide.util.TipDialog" timestamp="1579501954783">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="372" y="224" key="com.intellij.ide.util.TipDialog/67.27.1299.741@67.27.1299.741" timestamp="1579501954783" />
+    <state x="380" y="175" key="run.anything.popup" timestamp="1578995080600">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="380" y="175" key="run.anything.popup/67.27.1299.741@67.27.1299.741" timestamp="1578995080600" />
+    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1579515451820">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup/67.27.1299.741@67.27.1299.741" timestamp="1579515451820" />
+    <state x="436" y="310" width="540" height="172" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1579069266441">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="436" y="310" width="540" height="172" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/67.27.1299.741@67.27.1299.741" timestamp="1579069266441" />
   </component>
 </project>

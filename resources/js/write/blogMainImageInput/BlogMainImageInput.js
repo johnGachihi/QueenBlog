@@ -8,6 +8,7 @@ var thumbnail_generator_1 = __importDefault(require("@uppy/thumbnail-generator")
 var BlogMainImageInput = /** @class */ (function () {
     function BlogMainImageInput(configOptions) {
         var _this = this;
+        this.updated = false;
         this.configOptions = configOptions;
         this.initUppy();
         this.setupImageInputButton();
@@ -42,15 +43,19 @@ var BlogMainImageInput = /** @class */ (function () {
         });
     };
     BlogMainImageInput.prototype.handleImageInputted = function (file) {
+        this.updated = true;
         if (this.onImageInputtedHandler)
-            this.onImageInputtedHandler(file);
+            this.onImageInputtedHandler(file, this.updated);
+        this.addImageToUppy(file);
+        this.showProgressBar();
+    };
+    BlogMainImageInput.prototype.addImageToUppy = function (file) {
         this.uppy.reset();
         this.uppy.addFile({
             name: file.name,
             type: file.type,
             data: file
         });
-        this.showProgressBar();
     };
     BlogMainImageInput.prototype.showProgressBar = function () {
         this.configOptions.progressBar.classList.remove('d-none');
@@ -59,6 +64,7 @@ var BlogMainImageInput = /** @class */ (function () {
         this.uppy.on('thumbnail:generated', handleThumbnailGenerated);
     };
     BlogMainImageInput.prototype.handleThumbnailGenerated = function (file, preview) {
+        console.log('handleThumbnailGenerated');
         this.configOptions.imagePreviewElement.src = preview;
         this.configOptions.imagePreviewElement.classList.remove('d-none');
         if (this.uppy.getFiles().length > 0) {
@@ -75,6 +81,17 @@ var BlogMainImageInput = /** @class */ (function () {
     };
     BlogMainImageInput.prototype.onImageInputted = function (onImageInputtedHandler) {
         this.onImageInputtedHandler = onImageInputtedHandler;
+    };
+    BlogMainImageInput.prototype.addImage = function (url, filename) {
+        var _this = this;
+        this.showProgressBar();
+        fetch(url + "/" + filename)
+            .then(function (response) { return response.blob(); }) // returns a Blob
+            .then(function (blob) {
+            _this.uppy.addFile({ name: filename, type: blob.type, data: blob });
+            _this.hideProgressBar();
+        })
+            .catch(function (err) { return console.log(err); });
     };
     return BlogMainImageInput;
 }());

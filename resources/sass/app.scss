@@ -17,6 +17,7 @@ $mdc-theme-primary: #FFAD4D;
 
 //Styling for write.blade.php
 @import "write";
+@import "blogs";
 
 body {
     font-family: 'Maven Pro', "Nunito", sans-serif;
@@ -24,4 +25,9 @@ body {
 
 .text-on-navbar {
     font-size: 14px;
+}
+
+.top-bar {
+    background-color: white;
+    box-shadow: 0 1px #f7f4f4;
 }

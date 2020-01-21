@@ -1,4 +1,5 @@
 import BalloonBlockEditor from '@ckeditor/ckeditor5-build-balloon-block'
+// import BalloonBlockEditor from './ckeditor';
 
 export async function initCkEditor(targetEl) {
     let ckEditor;
@@ -11,6 +12,5 @@ export async function initCkEditor(targetEl) {
     }).catch(error => {
         throw error
     });
-
     return ckEditor
 }

@@ -1,0 +1,28 @@
+.tab-header {
+    font-size: 15px;
+    color: #2a2b2b;
+    text-decoration: none;
+}
+
+.tab-header.active {
+    border-bottom: #FFAD4D solid;
+}
+
+.tab-header:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+.tab-header:hover:not(.active) {
+    border-bottom: #ececec solid;
+}
+
+.blog-entry {
+    border-bottom: 1px #ebe2da solid;
+    padding: 10px;
+}
+
+.blog-entry-img {
+    //width: 100%;
+    //height: 100%;
+}

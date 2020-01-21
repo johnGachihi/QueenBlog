@@ -1,7 +1,13 @@
 @extends('layouts.app')
 
+@section('logo-text')
+    Spread the word
+@endsection
+
 @section('content')
-    <div id="top-bar" class="row py-3 justify-content-between sticky-top">
+    <!-- MUST be here to indicate page -> (`write-page`) -->
+    <div id="write-page" class="d-none"></div>
+    <div class="top-bar row py-3 justify-content-between sticky-top">
         <div class="col ">
             <span id="draft">Draft</span>
             <span id="save-status" class="ml-3"></span>
@@ -11,6 +17,14 @@
                 <div class="mdc-button__ripple"></div>
                 <span class="mdc-button__label">Publish</span>
             </button>
+
+            <a href="#" role="button" id="dropdownMenuLink" class="ml-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="material-icons" style="color: #2b2a2a">more_vert</i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="{{ url('/only/juli/blogs') }}">Your blogs</a>
+                <a class="dropdown-item active" href="{{ url('/only/juli/write') }}">New Blog</a>
+            </div>
         </div>
     </div>
 
@@ -95,4 +109,12 @@
 
 
     <input style="display: none" type="file" id="blog-image-hidden-input"/>
+
 @endsection
+
+<script type="application/javascript">
+    @isset($blog)
+        const blog = @json($blog);
+        // console.log(blog);
+    @endisset
+</script>

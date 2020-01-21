@@ -14569,55 +14569,6 @@ svg.mdc-button__icon {
   display: none;
 }
 
-.publish-btn:not(:disabled) {
-  background-color: #FFAD4D;
-}
-
-.publish-btn:not(:disabled) {
-  color: rgba(0, 0, 0, 0.87);
-  /* @alternate */
-  color: var(--mdc-theme-text-primary-on-light, rgba(0, 0, 0, 0.87));
-}
-
-.publish-btn .mdc-button__ripple::before,
-.publish-btn .mdc-button__ripple::after {
-  background-color: rgba(0, 0, 0, 0.87);
-}
-
-@supports not (-ms-ime-align: auto) {
-  .publish-btn .mdc-button__ripple::before,
-  .publish-btn .mdc-button__ripple::after {
-    /* @alternate */
-    background-color: var(--mdc-theme-text-primary-on-light, rgba(0, 0, 0, 0.87));
-  }
-}
-
-.publish-btn:hover .mdc-button__ripple::before {
-  opacity: 0.04;
-}
-
-.publish-btn.mdc-ripple-upgraded--background-focused .mdc-button__ripple::before,
-.publish-btn:not(.mdc-ripple-upgraded):focus .mdc-button__ripple::before {
-  -webkit-transition-duration: 75ms;
-          transition-duration: 75ms;
-  opacity: 0.12;
-}
-
-.publish-btn:not(.mdc-ripple-upgraded) .mdc-button__ripple::after {
-  -webkit-transition: opacity 150ms linear;
-  transition: opacity 150ms linear;
-}
-
-.publish-btn:not(.mdc-ripple-upgraded):active .mdc-button__ripple::after {
-  -webkit-transition-duration: 75ms;
-          transition-duration: 75ms;
-  opacity: 0.12;
-}
-
-.publish-btn.mdc-ripple-upgraded {
-  --mdc-ripple-fg-opacity: 0.12;
-}
-
 #draft {
   letter-spacing: 1px;
 }
@@ -14628,11 +14579,6 @@ svg.mdc-button__icon {
 
 #blog-content-textarea {
   font-size: 19px;
-}
-
-#top-bar {
-  background-color: white;
-  box-shadow: 0 1px #f7f4f4;
 }
 
 #blog-image-input {
@@ -14669,11 +14615,40 @@ svg.mdc-button__icon {
   color: #9e9e9e;
 }
 
+.tab-header {
+  font-size: 15px;
+  color: #2a2b2b;
+  text-decoration: none;
+}
+
+.tab-header.active {
+  border-bottom: #FFAD4D solid;
+}
+
+.tab-header:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+.tab-header:hover:not(.active) {
+  border-bottom: #ececec solid;
+}
+
+.blog-entry {
+  border-bottom: 1px #ebe2da solid;
+  padding: 10px;
+}
+
 body {
   font-family: "Maven Pro", "Nunito", sans-serif;
 }
 
 .text-on-navbar {
   font-size: 14px;
+}
+
+.top-bar {
+  background-color: white;
+  box-shadow: 0 1px #f7f4f4;
 }
 

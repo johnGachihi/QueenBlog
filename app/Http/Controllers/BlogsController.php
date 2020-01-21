@@ -111,11 +111,11 @@ class BlogsController extends Controller
      * Display the specified resource.
      *
      * @param \App\Blog $blog
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function show(Blog $blog)
     {
-        //
+        return view('write', ['blog' => $blog]);
     }
 
     /**

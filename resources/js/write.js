@@ -9,11 +9,22 @@ import BlogsService from "./network/BlogsService";
 
 const blogTagInput = new MDCTextField(document.querySelector('#blog-tag-input-container'));
 let currentBlog;
+if(blog !== undefined) {
+    currentBlog = blog;
+}
+
+//Blog title
+if(currentBlog !== undefined && currentBlog.title !== undefined) {
+    document.getElementById('blog-title-input').value = currentBlog.title;
+}
 
 // Init WYSIWIG editor
 const blogContentTextArea = document.getElementById("blog-content-textarea");
 initCkEditor(blogContentTextArea)
     .then(editor => {
+        if (currentBlog !== undefined) {
+            editor.setData(currentBlog.content);
+        }
         enableNavbarPublishButtonOnInputToEditor(editor);
         activatePeriodicBlogContentSaver(editor);
     });
@@ -42,7 +53,7 @@ function activatePeriodicBlogContentSaver(editor) {
         editor, blogTitleEl, savedStatusIndicator, blogsService);
     periodicBlogContentSaver.onSaved(blog => {
         console.log('saved blog', blog);
-        if (currentBlog === undefined) {
+        if (currentBlog === undefined) {    ///////// LOOK INTO THIS!!!!!!
             currentBlog = blog;
         }
     });
@@ -60,9 +71,14 @@ const blogPreviewImage = new BlogMainImageInput({
     hiddenImageInputElement: document.getElementById('blog-image-hidden-input'),
     progressBar: document.getElementById('preview-img-progress-bar')
 });
-blogPreviewImage.onImageInputted(image => {
-    currentBlog.main_image = image;
-    console.log('main image', image);
+if (currentBlog !== undefined && currentBlog.main_image !== undefined) {
+    const assetUrl = document.querySelector('meta[name="asset-url"]').getAttribute('content');
+    blogPreviewImage.addImage(`${assetUrl}storage/blog-main-images/${currentBlog.main_image}`, currentBlog.main_image);
+}
+blogPreviewImage.onImageInputted((image, updated) => {
+    if(updated) {
+        currentBlog.main_image = image;
+    }
     console.log(currentBlog);
 });
 
@@ -81,5 +97,18 @@ const modalSaveAsDraftBtn = document.getElementById("modal-save-draft-btn");
 modalSaveAsDraftBtn.addEventListener('click', e => {
     currentBlog.tag = document.getElementById('blog-tag-input').value;
     const blogsService = new BlogsService(requestOptions);
-    blogsService.update(currentBlog).then(blog => console.log('saved blog (whole)', blog))
+    // blogsService.update(currentBlog).then(blog => console.log('saved blog (whole)', blog))
+    blogsService.updateWithImage(getFormFromBlog(currentBlog)).then(blog => console.log('saved blog (whole)', blog))
 });
+
+function getFormFromBlog(blog) {
+    const form = new FormData();
+    form.append('blog_content', blog.blog_content);
+    form.append('blog_title', blog.blog_title);
+    form.append('id', blog.id);
+    form.append('blog_main_image', blog.main_image, blog.main_image.name);
+    console.log(form.get('blog_main_image'));
+    form.append('blog_tag', blog.tag);
+
+    return form;
+}
