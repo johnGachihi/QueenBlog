@@ -40,5 +40,6 @@
 <script type="application/javascript">
     const draftBlogs = @json($draftBlogs);
     const publishedBlogs = @json($publishedBlogs);
-    console.log(draftBlogs);
+    console.log('draftBlogs', draftBlogs);
+    console.log('publishedBlogs', publishedBlogs);
 </script>

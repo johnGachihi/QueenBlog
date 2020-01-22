@@ -7,7 +7,12 @@ export default interface Blog extends Model{
     main_image?: File,
     main_image_filename?: string
     tag?: string,
-    status?: string,
+    status?: BlogStatus,
     views?: number,
     likes?: number
+}
+
+export enum BlogStatus {
+    DRAFT = "draft",
+    PUBLISHED = "published"
 }

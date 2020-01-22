@@ -8,8 +8,10 @@ var editor_1 = require("./editor");
 var BlogsService_1 = __importDefault(require("../network/BlogsService"));
 var PeriodicBlogContentSaver_1 = __importDefault(require("./PeriodicBlogContentSaver"));
 var SavedStatusIndicatorImpl_1 = __importDefault(require("./savedStatusIndicator/SavedStatusIndicatorImpl"));
+var Blog_1 = require("../models/Blog");
 var BlogMainImageInput_1 = __importDefault(require("./blogMainImageInput/BlogMainImageInput"));
 require("bootstrap");
+var constants_1 = require("../utils/constants");
 var Write = /** @class */ (function () {
     function Write(blog) {
         this.blog = blog;
@@ -40,6 +42,8 @@ var Write = /** @class */ (function () {
             document.getElementById("modal-publish-btn");
         this.modalSaveAsDraftBtn =
             document.getElementById("modal-save-draft-btn");
+        this.publishModalProgessbar =
+            document.getElementById('publish-modal-progressbar');
     };
     Write.prototype.initializeRequestOptions = function () {
         this.requestOptions = {
@@ -133,23 +137,37 @@ var Write = /** @class */ (function () {
         }
     };
     Write.prototype.setupModalPublishButton = function () {
+        var _this = this;
         var modalPublishButton = document.getElementById("modal-publish-btn");
         modalPublishButton.addEventListener('click', function (e) {
-            //
+            _this.saveBlog(Blog_1.BlogStatus.PUBLISHED);
         });
     };
     Write.prototype.setupSaveAsDraftButton = function () {
         var _this = this;
         var modalSaveAsDraftBtn = document.getElementById("modal-save-draft-btn");
         modalSaveAsDraftBtn.addEventListener('click', function (e) {
-            _this.blog.tag = _this.blogTagInput.value;
-            // const blogsService = new BlogsService(this.requestOptions);
-            // blogsService.update(currentBlog).then(blog => console.log('saved blog (whole)', blog))
-            _this.blogsService.updateWithImage(_this.getFormFromBlog(_this.blog)).then(function (blog) { return console.log('saved blog (whole)', blog); });
+            _this.saveBlog(Blog_1.BlogStatus.DRAFT);
         });
     };
+    Write.prototype.saveBlog = function (status) {
+        var _this = this;
+        this.showPublishModalProgressbar();
+        this.blogsService.updateWithImage(this.getFormFromBlog(this.blog, status))
+            .then(function (blog) {
+            console.log('saved blog (whole)', blog);
+            _this.hidePublishModalProgressbar();
+            window.location.replace(_this.requestOptions.baseUrl + "/" + constants_1.blogsPageRelativeURL);
+        });
+    };
+    Write.prototype.showPublishModalProgressbar = function () {
+        this.publishModalProgessbar.classList.remove('d-none');
+    };
+    Write.prototype.hidePublishModalProgressbar = function () {
+        this.publishModalProgessbar.classList.add('d-none');
+    };
     // TODO Refactor code and remove this method
-    Write.prototype.getFormFromBlog = function (blog) {
+    Write.prototype.getFormFromBlog = function (blog, blogStatus) {
         var form = new FormData();
         form.append('id', blog.id);
         form.append('title', this.blogTitleInput.value);
@@ -157,8 +175,8 @@ var Write = /** @class */ (function () {
         if (blog.main_image !== undefined) {
             form.append('main_image', blog.main_image, blog.main_image.name);
         }
-        console.log(form.get('main_image'));
-        form.append('tag', blog.tag);
+        form.append('tag', this.blogTagInput.value);
+        form.append('status', blogStatus);
         return form;
     };
     return Write;

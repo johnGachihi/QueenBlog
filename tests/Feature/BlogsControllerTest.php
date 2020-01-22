@@ -67,11 +67,58 @@ class BlogsControllerTest extends TestCase
             ->assertJsonFragment(['tag' => ['The tag must be a string.']]);
     }
 
+    public function testUpdate_OnExistingBlog_WithInvalidStatus()
+    {
+        $blog = factory(Blog::class)->create();
+
+        $response = $this->json('POST', '/blog/' . $blog->id, [
+            'content' => $blog_content = $this->faker->paragraphs(10, true),
+            'status' => 123
+        ]);
+
+        $response->assertStatus(422)
+            ->assertJsonFragment(['status' => ['The selected status is invalid.']]);
+    }
+
+    public function testUpdate_onExistingDraftBlog_WithPublishedStatus()
+    {
+        $blog = factory(Blog::class)->create([
+            'status' => 'draft'
+        ]);
+
+        $response = $this->json('POST', '/blog/' . $blog->id, [
+            'content' => $blog_content = $this->faker->paragraphs(10, true),
+            'status' => 'published'
+        ]);
+
+        $response->assertStatus(200)
+            ->assertJson(['status' => 'ok']);
+        $this->assertDatabaseHas('blogs', ['status' => 'published'])
+            ->assertDatabaseMissing('blogs', ['status' => 'draft']);
+    }
+
+    public function testUpdate_onExistingPublishedBlog_WithDraftStatus()
+    {
+        $blog = factory(Blog::class)->create([
+            'status' => 'published'
+        ]);
+
+        $response = $this->json('POST', '/blog/' . $blog->id, [
+            'content' => $blog_content = $this->faker->paragraphs(10, true),
+            'status' => 'draft'
+        ]);
+
+        $response->assertStatus(200)
+            ->assertJson(['status' => 'ok']);
+        $this->assertDatabaseHas('blogs', ['status' => 'draft'])
+            ->assertDatabaseMissing('blogs', ['status' => 'published']);
+    }
+
     public function testUpdate_onExistingBlog_WithBlogContentAndTitle()
     {
         $blog = factory(Blog::class)->create();
 
-        $response = $this->json('POST', '/blog/'.$blog->id, [
+        $response = $this->json('POST', '/blog/' . $blog->id, [
             'title' => $blog_title = $this->faker->sentence,
             'content' => $blog_content = $this->faker->paragraphs(10, true)
         ]);
@@ -89,7 +136,7 @@ class BlogsControllerTest extends TestCase
         Storage::fake('public');
         $blog = factory(Blog::class)->create();
 
-        $response = $this->json('POST', '/blog/'.$blog->id, [
+        $response = $this->json('POST', '/blog/' . $blog->id, [
             'title' => $blog_title = $this->faker->sentence,
             'content' => $blog_content = $this->faker->paragraphs(10, true),
             'main_image' => $blog_main_image = UploadedFile::fake()->image('filename.jpg'),
@@ -103,7 +150,7 @@ class BlogsControllerTest extends TestCase
             'tag' => $blog_tag
         ]);
         Storage::disk('public')->assertExists(
-            BlogsController::BLOG_MAIN_IMAGES_FOLDER. '/' .$blog_main_image->hashName());
+            BlogsController::BLOG_MAIN_IMAGES_FOLDER . '/' . $blog_main_image->hashName());
         $response->assertStatus(200)
             ->assertJson(['status' => 'ok']);
     }

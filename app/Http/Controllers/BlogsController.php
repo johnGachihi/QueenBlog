@@ -6,6 +6,7 @@ use App\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class BlogsController extends Controller
 {
@@ -80,7 +81,8 @@ class BlogsController extends Controller
             'title' => 'nullable|string',
             'content' => 'required|string',
             'main_image' => 'nullable|image',
-            'tag' => 'nullable|string|max:50'
+            'tag' => 'nullable|string|max:50',
+            'status' => Rule::in(['draft', 'published'])
         ]);
     }
 
@@ -101,6 +103,10 @@ class BlogsController extends Controller
 
         if ($request->has('tag')) {
             $blog->tag = $request->input('tag');
+        }
+
+        if ($request->has('status')) {
+            $blog->status = $request->input('status');
         }
 
         $blog->save();

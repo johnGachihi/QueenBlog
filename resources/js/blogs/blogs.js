@@ -31,7 +31,7 @@ function showDraftBlogs() {
     if (draftBlogs.length < 1) {
         blogsContainer.innerText = "No draft blogs."
     }
-
+    
     for (let blog of draftBlogs) {
         blogsContainer.appendChild(blogHtml(blog));
     }
@@ -51,7 +51,7 @@ function showPublishedBlogs() {
 
 
 function emptyBlogsContainer() {
-    blogsContainer.innerText = ''
+    blogsContainer.innerHTML = ''
 }
 
 function blogHtml(blog) {

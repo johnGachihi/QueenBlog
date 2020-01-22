@@ -23,8 +23,8 @@ Route::prefix('only/juli')->group(function () {
     })->name('write');
     Route::get('blogs', function () {
         return view('blogs', [
-            'draftBlogs' => Blog::all()->where('status', 'draft'),
-            'publishedBlogs' => Blog::all()->where('status', 'published')
+            'draftBlogs' => Blog::where('status', 'draft')->get(),
+            'publishedBlogs' => Blog::where('status', 'published')->get()
         ]);
     });
     Route::get('blog/{blog}', 'BlogsController@show');

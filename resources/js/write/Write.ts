@@ -5,9 +5,10 @@ import {initCkEditor} from "./editor"
 import BlogsService from "../network/BlogsService";
 import PeriodicBlogContentSaver from "./PeriodicBlogContentSaver";
 import SavedStatusIndicatorImpl from "./savedStatusIndicator/SavedStatusIndicatorImpl";
-import Blog from "../models/Blog";
+import Blog, {BlogStatus} from "../models/Blog";
 import BlogMainImageInput from "./blogMainImageInput/BlogMainImageInput";
 import 'bootstrap'
+import {blogsPageRelativeURL} from "../utils/constants";
 
 export default class Write {
     private blog: Blog | undefined;
@@ -20,6 +21,7 @@ export default class Write {
     private modalSaveAsDraftBtn: HTMLButtonElement;
     private requestOptions: RequestOptions;
     private blogsService: BlogsService;
+    private publishModalProgessbar: HTMLDivElement;
 
     constructor(blog?: Blog) {
         this.blog = blog;
@@ -52,6 +54,8 @@ export default class Write {
             (document.getElementById("modal-publish-btn") as HTMLButtonElement);
         this.modalSaveAsDraftBtn =
             (document.getElementById("modal-save-draft-btn") as HTMLButtonElement);
+        this.publishModalProgessbar =
+            document.getElementById('publish-modal-progressbar') as HTMLDivElement;
     }
 
     private initializeRequestOptions() {
@@ -155,26 +159,37 @@ export default class Write {
     private setupModalPublishButton() {
         const modalPublishButton = document.getElementById("modal-publish-btn");
         modalPublishButton.addEventListener('click', e => {
-            //
+            this.saveBlog(BlogStatus.PUBLISHED);
         });
     }
 
     private setupSaveAsDraftButton() {
         const modalSaveAsDraftBtn = document.getElementById("modal-save-draft-btn");
         modalSaveAsDraftBtn.addEventListener('click', e => {
-            this.blog.tag = this.blogTagInput.value;
-            // const blogsService = new BlogsService(this.requestOptions);
-            // blogsService.update(currentBlog).then(blog => console.log('saved blog (whole)', blog))
-            this.blogsService.updateWithImage(this.getFormFromBlog(this.blog))
-                .then(blog => {
-                    console.log('saved blog (whole)', blog)
-                    
-                })
+            this.saveBlog(BlogStatus.DRAFT);
         });
     }
 
+    private saveBlog(status: BlogStatus) {
+        this.showPublishModalProgressbar();
+        this.blogsService.updateWithImage(this.getFormFromBlog(this.blog, status))
+            .then(blog => {
+                console.log('saved blog (whole)', blog);
+                this.hidePublishModalProgressbar();
+                window.location.replace(`${this.requestOptions.baseUrl}/${blogsPageRelativeURL}`);
+            })
+    }
+
+    private showPublishModalProgressbar() {
+        this.publishModalProgessbar.classList.remove('d-none');
+    }
+
+    private hidePublishModalProgressbar() {
+        this.publishModalProgessbar.classList.add('d-none');
+    }
+
     // TODO Refactor code and remove this method
-    private getFormFromBlog(blog) {
+    private getFormFromBlog(blog, blogStatus: BlogStatus) {
         const form = new FormData();
         form.append('id', blog.id);
         form.append('title', this.blogTitleInput.value);
@@ -182,8 +197,8 @@ export default class Write {
         if (blog.main_image !== undefined) {
             form.append('main_image', blog.main_image, blog.main_image.name);
         }
-        console.log(form.get('main_image'));
-        form.append('tag', blog.tag);
+        form.append('tag', this.blogTagInput.value);
+        form.append('status', blogStatus);
 
         return form;
     }
