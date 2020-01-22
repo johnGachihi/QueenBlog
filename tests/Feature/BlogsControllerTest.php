@@ -25,7 +25,7 @@ class BlogsControllerTest extends TestCase
 
     public function testStore_withBlogContent()
     {
-        $response = $this->json('POST', '/blog', ['blog_content' => 'abc']);
+        $response = $this->json('POST', '/blog', ['content' => 'abc']);
 
         $response->assertStatus(200)
             ->assertJsonFragment(['status' => 'ok'])
@@ -55,16 +55,16 @@ class BlogsControllerTest extends TestCase
         $blog = factory(Blog::class)->create();
 
         $response = $this->json('POST', '/blog/' . $blog->id, [
-            'blog_title' => 123,
-            'blog_content' => $blog_content = $this->faker->paragraphs(10, true),
-            'blog_main_image' => UploadedFile::fake()->create('file.pdf', 0, 'application/pdf'),
-            'blog_tag' => 123
+            'title' => 123,
+            'content' => $blog_content = $this->faker->paragraphs(10, true),
+            'main_image' => UploadedFile::fake()->create('file.pdf', 0, 'application/pdf'),
+            'tag' => 123
         ]);
 
         $response->assertStatus(422)
-            ->assertJsonFragment(['blog_title' => ['The blog title must be a string.']])
-            ->assertJsonFragment(['blog_main_image' => ['The blog main image must be an image.']])
-            ->assertJsonFragment(['blog_tag' => ['The blog tag must be a string.']]);
+            ->assertJsonFragment(['title' => ['The title must be a string.']])
+            ->assertJsonFragment(['main_image' => ['The main image must be an image.']])
+            ->assertJsonFragment(['tag' => ['The tag must be a string.']]);
     }
 
     public function testUpdate_onExistingBlog_WithBlogContentAndTitle()
@@ -72,8 +72,8 @@ class BlogsControllerTest extends TestCase
         $blog = factory(Blog::class)->create();
 
         $response = $this->json('POST', '/blog/'.$blog->id, [
-            'blog_title' => $blog_title = $this->faker->sentence,
-            'blog_content' => $blog_content = $this->faker->paragraphs(10, true)
+            'title' => $blog_title = $this->faker->sentence,
+            'content' => $blog_content = $this->faker->paragraphs(10, true)
         ]);
 
         $this->assertDatabaseHas('blogs', [
@@ -90,10 +90,10 @@ class BlogsControllerTest extends TestCase
         $blog = factory(Blog::class)->create();
 
         $response = $this->json('POST', '/blog/'.$blog->id, [
-            'blog_title' => $blog_title = $this->faker->sentence,
-            'blog_content' => $blog_content = $this->faker->paragraphs(10, true),
-            'blog_main_image' => $blog_main_image = UploadedFile::fake()->image('filename.jpg'),
-            'blog_tag' => $blog_tag = $this->faker->word
+            'title' => $blog_title = $this->faker->sentence,
+            'content' => $blog_content = $this->faker->paragraphs(10, true),
+            'main_image' => $blog_main_image = UploadedFile::fake()->image('filename.jpg'),
+            'tag' => $blog_tag = $this->faker->word
         ]);
 
         $this->assertDatabaseHas('blogs', [

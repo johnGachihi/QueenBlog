@@ -8,13 +8,14 @@ import SavedStatusIndicatorImpl from "./write/savedStatusIndicator/SavedStatusIn
 import BlogsService from "./network/BlogsService";
 
 const blogTagInput = new MDCTextField(document.querySelector('#blog-tag-input-container'));
+
 let currentBlog;
-if(blog !== undefined) {
+if (blog !== undefined) {
     currentBlog = blog;
 }
 
 //Blog title
-if(currentBlog !== undefined && currentBlog.title !== undefined) {
+if (currentBlog !== undefined && currentBlog.title !== undefined) {
     document.getElementById('blog-title-input').value = currentBlog.title;
 }
 
@@ -53,7 +54,7 @@ function activatePeriodicBlogContentSaver(editor) {
         editor, blogTitleEl, savedStatusIndicator, blogsService);
     periodicBlogContentSaver.onSaved(blog => {
         console.log('saved blog', blog);
-        if (currentBlog === undefined) {    ///////// LOOK INTO THIS!!!!!!
+        if (currentBlog === undefined) {
             currentBlog = blog;
         }
     });
@@ -65,22 +66,29 @@ publishBtn.addEventListener('click', e => {
     $('#publish-modal').modal('toggle');
 });
 
+// Blog image
 const blogPreviewImage = new BlogMainImageInput({
     imagePreviewElement: document.getElementById('blog-preview-img-thumbnail'),
     imageInputButton: document.getElementById('preview-img-input-btn'),
     hiddenImageInputElement: document.getElementById('blog-image-hidden-input'),
     progressBar: document.getElementById('preview-img-progress-bar')
 });
-if (currentBlog !== undefined && currentBlog.main_image !== undefined) {
+if (currentBlog !== undefined && currentBlog.main_image_filename !== undefined) {
     const assetUrl = document.querySelector('meta[name="asset-url"]').getAttribute('content');
-    blogPreviewImage.addImage(`${assetUrl}storage/blog-main-images/${currentBlog.main_image}`, currentBlog.main_image);
+    blogPreviewImage.addImage(`${assetUrl}storage/blog-main-images/${currentBlog.main_image_filename}`, currentBlog.main_image_filename);
+    console.log('Uppy', blogPreviewImage.uppy)
 }
 blogPreviewImage.onImageInputted((image, updated) => {
-    if(updated) {
+    if (updated) {
         currentBlog.main_image = image;
     }
     console.log(currentBlog);
 });
+
+//Blog tag
+if (currentBlog !== undefined && currentBlog.tag !== undefined) {
+    blogTagInput.value = currentBlog.tag
+}
 
 const requestOptions = {
     csrfToken: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
@@ -106,7 +114,9 @@ function getFormFromBlog(blog) {
     form.append('blog_content', blog.blog_content);
     form.append('blog_title', blog.blog_title);
     form.append('id', blog.id);
-    form.append('blog_main_image', blog.main_image, blog.main_image.name);
+    if (blog.main_image !== undefined) {
+        form.append('blog_main_image', blog.main_image, blog.main_image.name);
+    }
     console.log(form.get('blog_main_image'));
     form.append('blog_tag', blog.tag);
 

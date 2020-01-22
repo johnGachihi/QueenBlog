@@ -48,14 +48,14 @@ class BlogsController extends Controller
     private function validateRequestHasBlogContent(Request $request)
     {
         $request->validate([
-            'blog_content' => 'required'
+            'content' => 'required'
         ]);
     }
 
     private function persistBlog(Array $blogData)
     {
         $blog = new Blog();
-        $blog->content = $blogData['blog_content'];
+        $blog->content = $blogData['content'];
 
         $blog->save();
     }
@@ -77,10 +77,10 @@ class BlogsController extends Controller
     private function validateUpdateRequest(Request $request)
     {
         $request->validate([
-            'blog_title' => 'nullable|string',
-            'blog_content' => 'required|string',
-            'blog_main_image' => 'nullable|image',
-            'blog_tag' => 'nullable|string|max:50'
+            'title' => 'nullable|string',
+            'content' => 'required|string',
+            'main_image' => 'nullable|image',
+            'tag' => 'nullable|string|max:50'
         ]);
     }
 
@@ -88,19 +88,19 @@ class BlogsController extends Controller
     {
         if($blog == null) $blog = new Blog();
 
-        if ($request->has('blog_title')) {
-            $blog->title = $request->input('blog_title');
+        if ($request->has('title')) {
+            $blog->title = $request->input('title');
         }
 
-        $blog->content = $request->input('blog_content');
+        $blog->content = $request->input('content');
 
-        if ($request->has('blog_main_image')) {
-            $blog->main_image_filename = $request->file('blog_main_image')->hashName();
-            $request->file('blog_main_image')->store(self::BLOG_MAIN_IMAGES_FOLDER, 'public');
+        if ($request->has('main_image')) {
+            $blog->main_image_filename = $request->file('main_image')->hashName();
+            $request->file('main_image')->store(self::BLOG_MAIN_IMAGES_FOLDER, 'public');
         }
 
-        if ($request->has('blog_tag')) {
-            $blog->tag = $request->input('blog_tag');
+        if ($request->has('tag')) {
+            $blog->tag = $request->input('tag');
         }
 
         $blog->save();

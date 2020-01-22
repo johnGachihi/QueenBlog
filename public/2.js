@@ -101,7 +101,7 @@ function blogHtml(blog) {
   var div = document.createElement('div');
   var blogContentToDisplay = getBlogContentToDisplay(blog['content']);
   var blogImageToShow = getBlogImageToShow(blog['main_image_filename']);
-  div.innerHTML = "\n        <a href=\"".concat(appUrl, "/only/juli/blog/").concat(blog.id, "\" style=\"text-decoration: none; color: inherit\">\n            <div class=\"d-flex blog-entry\">\n                <div>\n                    <img class=\"blog-entry-img\" src=\"").concat(blogImageToShow, "\" width=\"100px\"/>\n                </div>\n                <div class=\"flex-grow-1 d-flex flex-column ml-4\">\n                    <span class=\"h3 blog-entry-title\" style=\"display: block; text-overflow: ellipsis; word-wrap: break-word; overflow: hidden; max-height: 60px; line-height: 30px;\">").concat(blog['title'], "</span>\n                    <span style=\"text-overflow: ellipsis; overflow: hidden; white-space: nowrap\">").concat(blogContentToDisplay, "</span>\n                </div>\n            </div>\n        </a>\n\n    ").trim();
+  div.innerHTML = "\n        <a href=\"".concat(appUrl, "/only/juli/blog/").concat(blog.id, "\" style=\"text-decoration: none; color: inherit\">\n            <div class=\"d-flex blog-entry\">\n                <div>\n                    <img class=\"blog-entry-img\" src=\"").concat(blogImageToShow, "\" width=\"100px\"/>\n                </div>\n                <div class=\"flex-grow-1 d-flex flex-column ml-4\">\n                    <span class=\"h3 blog-entry-title\" style=\"display: block; text-overflow: ellipsis; word-wrap: break-word; overflow: hidden; max-height: 60px; line-height: 30px;\">").concat(getBlogTitleToShow(blog['title']), "</span>\n                    <span style=\"text-overflow: ellipsis; overflow: hidden; white-space: nowrap\">").concat(blogContentToDisplay, "</span>\n                </div>\n            </div>\n        </a>\n\n    ").trim();
   return div.firstChild;
 }
 
@@ -109,7 +109,12 @@ function getBlogContentToDisplay(blogContent) {
   var div = document.createElement('div');
   div.innerHTML = blogContent.trim();
   var firstParagraphEl = getFirstParagraphElement(div.childNodes);
-  return getFittingBlogContentSize(firstParagraphEl.innerText);
+
+  if (firstParagraphEl !== undefined) {
+    return getFittingBlogContentSize(firstParagraphEl.innerText);
+  } else {
+    return 'No content';
+  }
 }
 
 function getFirstParagraphElement() {
@@ -150,6 +155,14 @@ function getBlogImageToShow(blogImageName) {
     return "".concat(assetUrl, "/storage/blog-image-placeholder.png");
   } else {
     return "".concat(assetUrl, "storage/blog-main-images/").concat(blogImageName);
+  }
+}
+
+function getBlogTitleToShow(blogTitle) {
+  if (blogTitle != null) {
+    return blogTitle;
+  } else {
+    return '';
   }
 }
 

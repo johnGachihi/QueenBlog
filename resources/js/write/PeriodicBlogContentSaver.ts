@@ -64,7 +64,7 @@ export default class PeriodicBlogContentSaver {
     }
 
     private async saveNew() {
-        let blog: Blog = {blog_title: this.blogTitleEl.value, blog_content: this.editor.getData()};
+        let blog: Blog = {title: this.blogTitleEl.value, content: this.editor.getData()};
         const response = await this.blogService.save(blog);
         blog.id = response.blog_id;
         this.afterSave(blog);
@@ -72,8 +72,8 @@ export default class PeriodicBlogContentSaver {
     }
 
     private updateExisting() {
-        this.blog.blog_content = this.editor.getData();
-        this.blog.blog_title = this.blogTitleEl.value;
+        this.blog.content = this.editor.getData();
+        this.blog.title = this.blogTitleEl.value;
         this.blogService.update(this.blog).then(response => {
             this.afterSave(this.blog);
         });

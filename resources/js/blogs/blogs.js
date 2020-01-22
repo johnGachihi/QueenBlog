@@ -65,7 +65,7 @@ function blogHtml(blog) {
                     <img class="blog-entry-img" src="${blogImageToShow}" width="100px"/>
                 </div>
                 <div class="flex-grow-1 d-flex flex-column ml-4">
-                    <span class="h3 blog-entry-title" style="display: block; text-overflow: ellipsis; word-wrap: break-word; overflow: hidden; max-height: 60px; line-height: 30px;">${blog['title']}</span>
+                    <span class="h3 blog-entry-title" style="display: block; text-overflow: ellipsis; word-wrap: break-word; overflow: hidden; max-height: 60px; line-height: 30px;">${getBlogTitleToShow(blog['title'])}</span>
                     <span style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap">${blogContentToDisplay}</span>
                 </div>
             </div>
@@ -80,7 +80,11 @@ function getBlogContentToDisplay(blogContent) {
     const div = document.createElement('div');
     div.innerHTML = blogContent.trim();
     const firstParagraphEl = getFirstParagraphElement(div.childNodes);
-    return getFittingBlogContentSize(firstParagraphEl.innerText);
+    if(firstParagraphEl !== undefined) {
+        return getFittingBlogContentSize(firstParagraphEl.innerText);
+    } else {
+        return 'No content';
+    }
 }
 
 function getFirstParagraphElement(elements = NodeList) {
@@ -113,6 +117,14 @@ function getBlogImageToShow(blogImageName) {
         return `${assetUrl}/storage/blog-image-placeholder.png`
     } else {
         return `${assetUrl}storage/blog-main-images/${blogImageName}`
+    }
+}
+
+function getBlogTitleToShow(blogTitle) {
+    if (blogTitle != null) {
+        return blogTitle;
+    } else {
+        return '';
     }
 }
 

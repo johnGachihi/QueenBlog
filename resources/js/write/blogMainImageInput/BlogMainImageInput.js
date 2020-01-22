@@ -85,9 +85,10 @@ var BlogMainImageInput = /** @class */ (function () {
     BlogMainImageInput.prototype.addImage = function (url, filename) {
         var _this = this;
         this.showProgressBar();
-        fetch(url + "/" + filename)
+        fetch(url)
             .then(function (response) { return response.blob(); }) // returns a Blob
             .then(function (blob) {
+            _this.uppy.reset();
             _this.uppy.addFile({ name: filename, type: blob.type, data: blob });
             _this.hideProgressBar();
         })

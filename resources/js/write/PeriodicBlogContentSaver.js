@@ -84,7 +84,7 @@ var PeriodicBlogContentSaver = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        blog = { blog_title: this.blogTitleEl.value, blog_content: this.editor.getData() };
+                        blog = { title: this.blogTitleEl.value, content: this.editor.getData() };
                         return [4 /*yield*/, this.blogService.save(blog)];
                     case 1:
                         response = _a.sent();
@@ -97,8 +97,8 @@ var PeriodicBlogContentSaver = /** @class */ (function () {
     };
     PeriodicBlogContentSaver.prototype.updateExisting = function () {
         var _this = this;
-        this.blog.blog_content = this.editor.getData();
-        this.blog.blog_title = this.blogTitleEl.value;
+        this.blog.content = this.editor.getData();
+        this.blog.title = this.blogTitleEl.value;
         this.blogService.update(this.blog).then(function (response) {
             _this.afterSave(_this.blog);
         });

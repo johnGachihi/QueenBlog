@@ -3,7 +3,7 @@ import Uppy from "@uppy/core";
 import ThumbnailGenerator from "@uppy/thumbnail-generator";
 
 export default class BlogMainImageInput {
-    private uppy: any;
+    uppy: any;
     private configOptions: BlogImageInputConfigOptions;
     private updated: boolean = false;
 
@@ -99,9 +99,10 @@ export default class BlogMainImageInput {
     addImage(url: string, filename: string) {
         this.showProgressBar();
 
-        fetch(`${url}/${filename}`)
+        fetch(url)
             .then((response) => response.blob()) // returns a Blob
             .then((blob) => {
+                this.uppy.reset();
                 this.uppy.addFile({ name: filename, type: blob.type, data: blob });
                 this.hideProgressBar();
             })

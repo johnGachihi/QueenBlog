@@ -440,7 +440,7 @@ function () {
   };
 
   Service.prototype.update = function (t, urlSuffix) {
-    return this._fetch(HttpMethod_1.HttpMethod.PUT, t, "/" + t.id);
+    return this._fetch(HttpMethod_1.HttpMethod.POST, t, "/" + t.id);
   };
 
   Service.prototype._fetch = function (method, data, urlSuffix) {
@@ -491,146 +491,6 @@ function () {
 }();
 
 exports["default"] = Service;
-
-/***/ }),
-
-/***/ "./resources/js/write.js":
-/*!*******************************!*\
-  !*** ./resources/js/write.js ***!
-  \*******************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _write_editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./write/editor */ "./resources/js/write/editor.js");
-/* harmony import */ var _write_blogMainImageInput_BlogMainImageInput__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./write/blogMainImageInput/BlogMainImageInput */ "./resources/js/write/blogMainImageInput/BlogMainImageInput.js");
-/* harmony import */ var _write_blogMainImageInput_BlogMainImageInput__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_write_blogMainImageInput_BlogMainImageInput__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _uppy_core_dist_style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @uppy/core/dist/style.css */ "./node_modules/@uppy/core/dist/style.css");
-/* harmony import */ var _uppy_core_dist_style_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_uppy_core_dist_style_css__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _uppy_dashboard_dist_style_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @uppy/dashboard/dist/style.css */ "./node_modules/@uppy/dashboard/dist/style.css");
-/* harmony import */ var _uppy_dashboard_dist_style_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_uppy_dashboard_dist_style_css__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _material_textfield__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material/textfield */ "./node_modules/@material/textfield/index.js");
-/* harmony import */ var _write_PeriodicBlogContentSaver__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./write/PeriodicBlogContentSaver */ "./resources/js/write/PeriodicBlogContentSaver.js");
-/* harmony import */ var _write_PeriodicBlogContentSaver__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_write_PeriodicBlogContentSaver__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _write_savedStatusIndicator_SavedStatusIndicatorImpl__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./write/savedStatusIndicator/SavedStatusIndicatorImpl */ "./resources/js/write/savedStatusIndicator/SavedStatusIndicatorImpl.js");
-/* harmony import */ var _write_savedStatusIndicator_SavedStatusIndicatorImpl__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_write_savedStatusIndicator_SavedStatusIndicatorImpl__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _network_BlogsService__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./network/BlogsService */ "./resources/js/network/BlogsService.js");
-/* harmony import */ var _network_BlogsService__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_network_BlogsService__WEBPACK_IMPORTED_MODULE_7__);
-
-
-
-
-
-
-
-
-var blogTagInput = new _material_textfield__WEBPACK_IMPORTED_MODULE_4__["MDCTextField"](document.querySelector('#blog-tag-input-container'));
-var currentBlog;
-
-if (blog !== undefined) {
-  currentBlog = blog;
-} //Blog title
-
-
-if (currentBlog !== undefined && currentBlog.title !== undefined) {
-  document.getElementById('blog-title-input').value = currentBlog.title;
-} // Init WYSIWIG editor
-
-
-var blogContentTextArea = document.getElementById("blog-content-textarea");
-Object(_write_editor__WEBPACK_IMPORTED_MODULE_0__["initCkEditor"])(blogContentTextArea).then(function (editor) {
-  if (currentBlog !== undefined) {
-    editor.setData(currentBlog.content);
-  }
-
-  enableNavbarPublishButtonOnInputToEditor(editor);
-  activatePeriodicBlogContentSaver(editor);
-});
-
-function enableNavbarPublishButtonOnInputToEditor(editor) {
-  handlePublishButtonEnabledState(editor);
-  editor.model.document.on('change:data', function () {
-    handlePublishButtonEnabledState(editor);
-  });
-}
-
-function handlePublishButtonEnabledState(editor) {
-  if (editor.getData() === '') {
-    publishBtn.setAttribute('disabled', 'true');
-  } else {
-    publishBtn.removeAttribute('disabled');
-  }
-}
-
-var savedStatusIndicator = new _write_savedStatusIndicator_SavedStatusIndicatorImpl__WEBPACK_IMPORTED_MODULE_6___default.a(document.getElementById('save-status'));
-
-function activatePeriodicBlogContentSaver(editor) {
-  var blogTitleEl = document.getElementById("blog-title-input");
-  var blogsService = new _network_BlogsService__WEBPACK_IMPORTED_MODULE_7___default.a(requestOptions);
-  var periodicBlogContentSaver = new _write_PeriodicBlogContentSaver__WEBPACK_IMPORTED_MODULE_5___default.a(editor, blogTitleEl, savedStatusIndicator, blogsService);
-  periodicBlogContentSaver.onSaved(function (blog) {
-    console.log('saved blog', blog);
-
-    if (currentBlog === undefined) {
-      ///////// LOOK INTO THIS!!!!!!
-      currentBlog = blog;
-    }
-  });
-  periodicBlogContentSaver.activate();
-}
-
-var publishBtn = document.getElementById("publish-btn");
-publishBtn.addEventListener('click', function (e) {
-  $('#publish-modal').modal('toggle');
-});
-var blogPreviewImage = new _write_blogMainImageInput_BlogMainImageInput__WEBPACK_IMPORTED_MODULE_1___default.a({
-  imagePreviewElement: document.getElementById('blog-preview-img-thumbnail'),
-  imageInputButton: document.getElementById('preview-img-input-btn'),
-  hiddenImageInputElement: document.getElementById('blog-image-hidden-input'),
-  progressBar: document.getElementById('preview-img-progress-bar')
-});
-
-if (currentBlog !== undefined && currentBlog.main_image !== undefined) {
-  var assetUrl = document.querySelector('meta[name="asset-url"]').getAttribute('content');
-  blogPreviewImage.addImage("".concat(assetUrl, "storage/blog-main-images/").concat(currentBlog.main_image), currentBlog.main_image);
-}
-
-blogPreviewImage.onImageInputted(function (image, updated) {
-  if (updated) {
-    currentBlog.main_image = image;
-  }
-
-  console.log(currentBlog);
-});
-var requestOptions = {
-  csrfToken: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-  baseUrl: document.querySelector('meta[name="base-url"]').getAttribute('content')
-};
-var modalPublishBtn = document.getElementById("modal-publish-btn");
-modalPublishBtn.addEventListener('click', function (e) {
-  currentBlog.tag = document.getElementById('blog-tag-input').value;
-});
-var modalSaveAsDraftBtn = document.getElementById("modal-save-draft-btn");
-modalSaveAsDraftBtn.addEventListener('click', function (e) {
-  currentBlog.tag = document.getElementById('blog-tag-input').value;
-  var blogsService = new _network_BlogsService__WEBPACK_IMPORTED_MODULE_7___default.a(requestOptions); // blogsService.update(currentBlog).then(blog => console.log('saved blog (whole)', blog))
-
-  blogsService.updateWithImage(getFormFromBlog(currentBlog)).then(function (blog) {
-    return console.log('saved blog (whole)', blog);
-  });
-});
-
-function getFormFromBlog(blog) {
-  var form = new FormData();
-  form.append('blog_content', blog.blog_content);
-  form.append('blog_title', blog.blog_title);
-  form.append('id', blog.id);
-  form.append('blog_main_image', blog.main_image, blog.main_image.name);
-  console.log(form.get('blog_main_image'));
-  form.append('blog_tag', blog.tag);
-  return form;
-}
 
 /***/ }),
 
@@ -858,8 +718,8 @@ function () {
         switch (_a.label) {
           case 0:
             blog = {
-              blog_title: this.blogTitleEl.value,
-              blog_content: this.editor.getData()
+              title: this.blogTitleEl.value,
+              content: this.editor.getData()
             };
             return [4
             /*yield*/
@@ -880,8 +740,8 @@ function () {
   PeriodicBlogContentSaver.prototype.updateExisting = function () {
     var _this = this;
 
-    this.blog.blog_content = this.editor.getData();
-    this.blog.blog_title = this.blogTitleEl.value;
+    this.blog.content = this.editor.getData();
+    this.blog.title = this.blogTitleEl.value;
     this.blogService.update(this.blog).then(function (response) {
       _this.afterSave(_this.blog);
     });
@@ -962,6 +822,225 @@ function () {
 }();
 
 exports["default"] = Timeout;
+
+/***/ }),
+
+/***/ "./resources/js/write/Write.js":
+/*!*************************************!*\
+  !*** ./resources/js/write/Write.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var component_1 = __webpack_require__(/*! @material/textfield/component */ "./node_modules/@material/textfield/component.js");
+
+var editor_1 = __webpack_require__(/*! ./editor */ "./resources/js/write/editor.js");
+
+var BlogsService_1 = __importDefault(__webpack_require__(/*! ../network/BlogsService */ "./resources/js/network/BlogsService.js"));
+
+var PeriodicBlogContentSaver_1 = __importDefault(__webpack_require__(/*! ./PeriodicBlogContentSaver */ "./resources/js/write/PeriodicBlogContentSaver.js"));
+
+var SavedStatusIndicatorImpl_1 = __importDefault(__webpack_require__(/*! ./savedStatusIndicator/SavedStatusIndicatorImpl */ "./resources/js/write/savedStatusIndicator/SavedStatusIndicatorImpl.js"));
+
+var BlogMainImageInput_1 = __importDefault(__webpack_require__(/*! ./blogMainImageInput/BlogMainImageInput */ "./resources/js/write/blogMainImageInput/BlogMainImageInput.js"));
+
+__webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
+
+var Write =
+/** @class */
+function () {
+  function Write(blog) {
+    this.blog = blog;
+    this.init();
+  }
+
+  Write.prototype.init = function () {
+    this.initializeElements();
+    this.initializeRequestOptions();
+    this.initializeBlogsService();
+    this.setupEditor(this.blog);
+    this.setupBlogTitleEl();
+    this.setupBlogPreviewImageInput();
+    this.setupPublishButton();
+    this.setupBlogTagInputEl();
+    this.setupModalPublishButton();
+    this.setupSaveAsDraftButton();
+  };
+
+  Write.prototype.initializeElements = function () {
+    this.blogTitleInput = document.getElementById('blog-title-input');
+    this.blogTagInput = new component_1.MDCTextField(document.querySelector('#blog-tag-input-container'));
+    this.publishBtn = document.getElementById("publish-btn");
+    this.blogContentTextArea = document.getElementById("blog-content-textarea");
+    this.modalPublishBtn = document.getElementById("modal-publish-btn");
+    this.modalSaveAsDraftBtn = document.getElementById("modal-save-draft-btn");
+  };
+
+  Write.prototype.initializeRequestOptions = function () {
+    this.requestOptions = {
+      csrfToken: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+      baseUrl: document.querySelector('meta[name="base-url"]').getAttribute('content')
+    };
+  };
+
+  Write.prototype.initializeBlogsService = function () {
+    this.blogsService = new BlogsService_1["default"](this.requestOptions);
+  };
+
+  Write.prototype.setupBlogTitleEl = function () {
+    console.log('setupBlogTitleEl');
+
+    if (this.blog != undefined && this.blog.title != undefined) {
+      this.blogTitleInput.value = this.blog.title;
+    }
+  };
+
+  Write.prototype.setupEditor = function (blog) {
+    var _this = this;
+
+    console.log('setupEditor');
+    editor_1.initCkEditor(this.blogContentTextArea).then(function (editor) {
+      if (blog != undefined) {
+        editor.setData(blog.content);
+      }
+
+      _this.enableNavbarPublishButtonOnInputToEditor(editor);
+
+      _this.setupPeriodicBlogContentSaver(editor);
+    });
+  };
+
+  Write.prototype.enableNavbarPublishButtonOnInputToEditor = function (editor) {
+    var _this = this;
+
+    this.handlePublishButtonEnabledState(editor);
+    editor.model.document.on('change:data', function () {
+      _this.handlePublishButtonEnabledState(editor);
+    });
+  };
+
+  Write.prototype.handlePublishButtonEnabledState = function (editor) {
+    if (editor.getData() === '') {
+      this.publishBtn.setAttribute('disabled', 'true');
+    } else {
+      this.publishBtn.removeAttribute('disabled');
+    }
+  };
+
+  Write.prototype.setupPeriodicBlogContentSaver = function (editor) {
+    var _this = this;
+
+    console.log(this.blogsService);
+    var blogStatusIndicatorEl = document.getElementById('save-status');
+    var savedStatusIndicator = new SavedStatusIndicatorImpl_1["default"](blogStatusIndicatorEl);
+    var periodicBlogContentSaver = new PeriodicBlogContentSaver_1["default"](editor, this.blogTitleInput, savedStatusIndicator, this.blogsService, this.blog);
+    periodicBlogContentSaver.onSaved(function (blog) {
+      return _this.handleOnPeriodicSave(blog);
+    });
+    periodicBlogContentSaver.activate();
+  };
+
+  Write.prototype.handleOnPeriodicSave = function (blog) {
+    console.log('saved blog', blog);
+
+    if (this.blog == undefined) {
+      this.blog = blog;
+    } else {
+      this.blog.title = blog.title;
+      this.blog.content = blog.content;
+    }
+  };
+
+  Write.prototype.setupBlogPreviewImageInput = function () {
+    var _this = this;
+
+    var blogPreviewImage = new BlogMainImageInput_1["default"]({
+      imagePreviewElement: document.getElementById('blog-preview-img-thumbnail'),
+      imageInputButton: document.getElementById('preview-img-input-btn'),
+      hiddenImageInputElement: document.getElementById('blog-image-hidden-input'),
+      progressBar: document.getElementById('preview-img-progress-bar')
+    });
+
+    if (this.blog !== undefined && this.blog.main_image_filename !== undefined) {
+      var assetUrl = document.querySelector('meta[name="asset-url"]').getAttribute('content');
+      blogPreviewImage.addImage(assetUrl + "storage/blog-main-images/" + this.blog.main_image_filename, this.blog.main_image_filename);
+      console.log('Uppy', blogPreviewImage.uppy);
+    }
+
+    blogPreviewImage.onImageInputted(function (image, updated) {
+      if (updated && _this.blog != undefined) {
+        _this.blog.main_image = image;
+      }
+
+      console.log(_this.blog);
+    });
+  };
+
+  Write.prototype.setupPublishButton = function () {
+    this.publishBtn.addEventListener('click', function (e) {
+      $('#publish-modal').modal('toggle');
+    });
+  };
+
+  Write.prototype.setupBlogTagInputEl = function () {
+    if (this.blog != undefined && this.blog.tag != undefined) {
+      this.blogTagInput.value = this.blog.tag;
+    }
+  };
+
+  Write.prototype.setupModalPublishButton = function () {
+    var modalPublishButton = document.getElementById("modal-publish-btn");
+    modalPublishButton.addEventListener('click', function (e) {//
+    });
+  };
+
+  Write.prototype.setupSaveAsDraftButton = function () {
+    var _this = this;
+
+    var modalSaveAsDraftBtn = document.getElementById("modal-save-draft-btn");
+    modalSaveAsDraftBtn.addEventListener('click', function (e) {
+      _this.blog.tag = _this.blogTagInput.value; // const blogsService = new BlogsService(this.requestOptions);
+      // blogsService.update(currentBlog).then(blog => console.log('saved blog (whole)', blog))
+
+      _this.blogsService.updateWithImage(_this.getFormFromBlog(_this.blog)).then(function (blog) {
+        return console.log('saved blog (whole)', blog);
+      });
+    });
+  }; // TODO Refactor code and remove this method
+
+
+  Write.prototype.getFormFromBlog = function (blog) {
+    var form = new FormData();
+    form.append('id', blog.id);
+    form.append('title', this.blogTitleInput.value);
+    form.append('content', blog.content);
+
+    if (blog.main_image !== undefined) {
+      form.append('main_image', blog.main_image, blog.main_image.name);
+    }
+
+    console.log(form.get('main_image'));
+    form.append('tag', blog.tag);
+    return form;
+  };
+
+  return Write;
+}();
+
+exports["default"] = Write;
 
 /***/ }),
 
@@ -1094,10 +1173,12 @@ function () {
     var _this = this;
 
     this.showProgressBar();
-    fetch(url + "/" + filename).then(function (response) {
+    fetch(url).then(function (response) {
       return response.blob();
     }) // returns a Blob
     .then(function (blob) {
+      _this.uppy.reset();
+
       _this.uppy.addFile({
         name: filename,
         type: blob.type,

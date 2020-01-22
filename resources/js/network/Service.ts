@@ -16,7 +16,7 @@ export default class Service<T extends Model> {
     }
 
     update(t: T, urlSuffix?: string): Promise<any> {
-        return this._fetch(HttpMethod.PUT, t, `/${t.id}`);
+        return this._fetch(HttpMethod.POST, t, `/${t.id}`);
     }
 
     protected async _fetch(method: HttpMethod, data: T, urlSuffix?: string) {
