@@ -17,6 +17,9 @@ __webpack_require__.r(__webpack_exports__);
 var appUrl = document.querySelector('meta[name="base-url"]').getAttribute('content');
 var draftBlogsTabHeader = document.getElementById('draft-blogs-tab-header');
 var publishedBlogsTabHeader = document.getElementById('published-blogs-tab-header');
+var CURRENT_TAB = 'current-tab';
+var CURRENT_TAB_DRAFT = 'drafts';
+var CURRENT_TAB_PUBLISHED = 'published';
 var currentTab;
 $(function () {
   draftBlogsTabHeader.addEventListener('click', function (e) {
@@ -24,6 +27,7 @@ $(function () {
       publishedBlogsTabHeader.classList.remove('active');
       draftBlogsTabHeader.classList.add('active');
       currentTab = 'drafts';
+      sessionStorage.setItem(CURRENT_TAB, CURRENT_TAB_DRAFT);
       showDraftBlogs();
       setupBlogEntryDeleteMenuItem();
     }
@@ -33,6 +37,7 @@ $(function () {
       draftBlogsTabHeader.classList.remove('active');
       publishedBlogsTabHeader.classList.add('active');
       currentTab = 'published';
+      sessionStorage.setItem(CURRENT_TAB, CURRENT_TAB_PUBLISHED);
       showPublishedBlogs();
       setupBlogEntryDeleteMenuItem();
     }
@@ -177,13 +182,13 @@ $(function () {
     }
   }
 
-  console.log('WINDOW READY');
   var deleteConfirmationDialog = new _material_dialog_component__WEBPACK_IMPORTED_MODULE_0__["MDCDialog"](document.getElementById('delete-confirmation-dialog'));
   var requestOptions = {
     csrfToken: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
     baseUrl: document.querySelector('meta[name="base-url"]').getAttribute('content')
   };
-  draftBlogsTabHeader.click();
+  if (!sessionStorage.getItem(CURRENT_TAB)) sessionStorage.setItem(CURRENT_TAB, CURRENT_TAB_DRAFT);
+  if (sessionStorage.getItem(CURRENT_TAB) === CURRENT_TAB_DRAFT) draftBlogsTabHeader.click();else if (sessionStorage.getItem(CURRENT_TAB) === CURRENT_TAB_PUBLISHED) publishedBlogsTabHeader.click();
   setupBlogEntryDeleteMenuItem();
 
   function setupBlogEntryDeleteMenuItem() {

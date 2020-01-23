@@ -6,6 +6,10 @@ const appUrl = document.querySelector('meta[name="base-url"]').getAttribute('con
 const draftBlogsTabHeader = document.getElementById('draft-blogs-tab-header');
 const publishedBlogsTabHeader = document.getElementById('published-blogs-tab-header');
 
+const CURRENT_TAB = 'current-tab';
+const CURRENT_TAB_DRAFT = 'drafts';
+const CURRENT_TAB_PUBLISHED = 'published';
+
 let currentTab;
 
 $(() => {
@@ -14,6 +18,7 @@ $(() => {
             publishedBlogsTabHeader.classList.remove('active');
             draftBlogsTabHeader.classList.add('active');
             currentTab = 'drafts';
+            sessionStorage.setItem(CURRENT_TAB, CURRENT_TAB_DRAFT);
             showDraftBlogs();
             setupBlogEntryDeleteMenuItem()
         }
@@ -24,6 +29,7 @@ $(() => {
             draftBlogsTabHeader.classList.remove('active');
             publishedBlogsTabHeader.classList.add('active');
             currentTab = 'published';
+            sessionStorage.setItem(CURRENT_TAB, CURRENT_TAB_PUBLISHED);
             showPublishedBlogs();
             setupBlogEntryDeleteMenuItem()
         }
@@ -143,7 +149,6 @@ $(() => {
         }
     }
 
-    console.log('WINDOW READY');
     const deleteConfirmationDialog =
         new MDCDialog(document.getElementById('delete-confirmation-dialog'));
 
@@ -152,7 +157,13 @@ $(() => {
         baseUrl: document.querySelector('meta[name="base-url"]').getAttribute('content')
     };
 
-    draftBlogsTabHeader.click();
+    if (!sessionStorage.getItem(CURRENT_TAB))
+        sessionStorage.setItem(CURRENT_TAB, CURRENT_TAB_DRAFT);
+
+    if(sessionStorage.getItem(CURRENT_TAB) === CURRENT_TAB_DRAFT)
+        draftBlogsTabHeader.click();
+    else if (sessionStorage.getItem(CURRENT_TAB) === CURRENT_TAB_PUBLISHED)
+        publishedBlogsTabHeader.click();
 
     setupBlogEntryDeleteMenuItem();
 
