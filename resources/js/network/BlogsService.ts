@@ -10,7 +10,7 @@ export default class BlogsService extends Service<Blog> {
         super(requestOptions, BlogsService.relativeURL);
     }
 
-    //TODO Refactor [Service] and remove below method
+    //TODO Refactor [Service] and remove this method
     async updateWithImage(blog: FormData) {
         const {csrfToken, baseUrl} = this.requestOptions;
         const fetchUrl = Service.makeUrl(baseUrl, this.relativeUrl, `/${blog.get('id')}`);
@@ -22,6 +22,22 @@ export default class BlogsService extends Service<Blog> {
                 'X-CSRF-TOKEN': csrfToken
             },
             body: blog
+        });
+
+        return await response.json();
+    }
+
+    //TODO Refactor [Service] and remove this method
+    async delete(blogId) {
+        const {csrfToken, baseUrl} = this.requestOptions;
+        const fetchUrl = Service.makeUrl(baseUrl, this.relativeUrl, `/${blogId}`);
+
+        const response = await fetch(fetchUrl, {
+            method: HttpMethod.DELETE,
+            headers: {
+                'Accept': 'application/json',   //To tell Laravel this is an ajax call
+                'X-CSRF-TOKEN': csrfToken
+            }
         });
 
         return await response.json();

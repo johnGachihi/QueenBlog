@@ -139,10 +139,10 @@ class BlogsController extends Controller
      * Remove the specified resource from storage.
      *
      * @param \App\Blog $blog
-     * @return \Illuminate\Http\Response
      */
     public function destroy(Blog $blog)
     {
-        //
+        $blog->delete();
+        return response()->json(['status' => 'ok']);
     }
 }

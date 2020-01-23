@@ -154,4 +154,19 @@ class BlogsControllerTest extends TestCase
         $response->assertStatus(200)
             ->assertJson(['status' => 'ok']);
     }
+
+    public function testDestroy_withNonExistentBlog() {
+        $response = $this->json('DELETE', '/blog/1');
+
+        $response->assertStatus(404);
+    }
+
+    public function testDestroy_withExistingBlog() {
+        $blog = factory(Blog::class)->create();
+
+        $response = $this->json('DELETE', '/blog/'.$blog->id);
+
+        $this->assertDatabaseMissing('blogs', ['id' => $blog->id]);
+        $response->assertJson(['status' => 'ok']);
+    }
 }

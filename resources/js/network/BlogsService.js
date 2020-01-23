@@ -59,7 +59,7 @@ var BlogsService = /** @class */ (function (_super) {
     function BlogsService(requestOptions) {
         return _super.call(this, requestOptions, BlogsService.relativeURL) || this;
     }
-    //TODO Refactor [Service] and remove below method
+    //TODO Refactor [Service] and remove this method
     BlogsService.prototype.updateWithImage = function (blog) {
         return __awaiter(this, void 0, void 0, function () {
             var _a, csrfToken, baseUrl, fetchUrl, response;
@@ -75,6 +75,30 @@ var BlogsService = /** @class */ (function (_super) {
                                     'X-CSRF-TOKEN': csrfToken
                                 },
                                 body: blog
+                            })];
+                    case 1:
+                        response = _b.sent();
+                        return [4 /*yield*/, response.json()];
+                    case 2: return [2 /*return*/, _b.sent()];
+                }
+            });
+        });
+    };
+    //TODO Refactor [Service] and remove this method
+    BlogsService.prototype.delete = function (blogId) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a, csrfToken, baseUrl, fetchUrl, response;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = this.requestOptions, csrfToken = _a.csrfToken, baseUrl = _a.baseUrl;
+                        fetchUrl = Service_1.default.makeUrl(baseUrl, this.relativeUrl, "/" + blogId);
+                        return [4 /*yield*/, fetch(fetchUrl, {
+                                method: HttpMethod_1.HttpMethod.DELETE,
+                                headers: {
+                                    'Accept': 'application/json',
+                                    'X-CSRF-TOKEN': csrfToken
+                                }
                             })];
                     case 1:
                         response = _b.sent();

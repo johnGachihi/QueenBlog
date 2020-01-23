@@ -4,5 +4,6 @@ var HttpMethod;
 (function (HttpMethod) {
     HttpMethod["POST"] = "POST";
     HttpMethod["PUT"] = "PUT";
+    HttpMethod["DELETE"] = "DELETE";
 })(HttpMethod = exports.HttpMethod || (exports.HttpMethod = {}));
 //# sourceMappingURL=HttpMethod.js.map

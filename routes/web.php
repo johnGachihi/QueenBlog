@@ -35,3 +35,4 @@ Route::prefix('only/juli')->group(function () {
  */
 Route::post('blog', 'BlogsController@store');
 Route::post('blog/{blog}', 'BlogsController@update');
+Route::delete('blog/{blog}', 'BlogsController@destroy');
