@@ -1,3 +1,8 @@
+import FirebaseConfig from "./firebase/FirebaseConfig";
+import * as firebase from "firebase";
+import FirebaseRemoteConfigInit from "./firebase/FirebaseRemoteConfigInit";
+// import IndexPage from "./ui/visitors/IndexPage";
+
 require('./bootstrap');
 
 if(document.getElementById('write-page')) {
@@ -12,4 +17,12 @@ if(document.getElementById('write-page')) {
     })
 } else if(document.getElementById('blogs-page')) {
     import('./blogs/blogs')
+} else if (document.getElementById('index-page')) {
+    console.log('This is amazing grace');
+    firebase.initializeApp(FirebaseConfig.get());
+    const remoteConfig = FirebaseRemoteConfigInit.initAndGet(firebase);
+    import('./ui/visitors/IndexPage').then((module) => {
+        const IndexPage = module.default;
+        new IndexPage(remoteConfig)
+    })
 }

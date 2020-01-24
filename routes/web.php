@@ -13,20 +13,27 @@
 
 use App\Blog;
 
+// Visitors
 Route::get('/', function () {
-    return view('welcome');
+    return view('visitors.index', [
+        'blogs' => Blog::where('status', 'published')->orderBy('id', 'desc')->take(10)->get()
+    ]);
 });
 
+
+// Renee
 Route::prefix('only/juli')->group(function () {
     Route::get('write', function () {
         return view('write');
     })->name('write');
+
     Route::get('blogs', function () {
         return view('blogs', [
             'draftBlogs' => Blog::where('status', 'draft')->get(),
             'publishedBlogs' => Blog::where('status', 'published')->get()
         ]);
     });
+
     Route::get('blog/{blog}', 'BlogsController@show');
 });
 

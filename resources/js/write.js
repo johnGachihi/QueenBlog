@@ -122,3 +122,6 @@ function getFormFromBlog(blog) {
 
     return form;
 }
+
+
+// TODO: Make Tags required

@@ -2,31 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ba4312e-56ad-419e-b4b7-cc2a10cfd510" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.babelrc" beforeDir="false" afterPath="$PROJECT_DIR$/.babelrc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BlogsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BlogsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Blog.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Blog.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/BlogFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/BlogFactory.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/0.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/0.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/1.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/1.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/2.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/3.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/3.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/5.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/dropzone.min.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/blogs/blogs.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/blogs/blogs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/models/Blog.ts" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/models/Blog.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/network/Service.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/network/Service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/network/Service.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/network/Service.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/network/Service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/network/Service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/write.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/write.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/write/PeriodicBlogContentSaver.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/write/PeriodicBlogContentSaver.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/write/PeriodicBlogContentSaver.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/write/PeriodicBlogContentSaver.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/write/PeriodicBlogContentSaver.ts" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/write/PeriodicBlogContentSaver.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/write/blogMainImageInput/BlogMainImageInput.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/write/blogMainImageInput/BlogMainImageInput.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/write/blogMainImageInput/BlogMainImageInput.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/write/blogMainImageInput/BlogMainImageInput.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/write/blogMainImageInput/BlogMainImageInput.ts" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/write/blogMainImageInput/BlogMainImageInput.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/blogs.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/blogs.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/write.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/write.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/BlogsControllerTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/BlogsControllerTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,18 +144,20 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/storage/app/public" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/storage/app/public/blog-main-images" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="settings.typescriptcompiler" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views/visitors" />
       <recent name="$PROJECT_DIR$/resources/js/write/savedStatusIndicator" />
       <recent name="$PROJECT_DIR$/resources/js/write/blogMainImageInput" />
       <recent name="$PROJECT_DIR$/public/js" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/storage/app/public/blog-main-images" />
       <recent name="$PROJECT_DIR$/storage/app/public" />
       <recent name="$PROJECT_DIR$/public/css" />
     </key>
@@ -221,6 +213,10 @@
       <workItem from="1579411657341" duration="24836000" />
       <workItem from="1579501949881" duration="59538000" />
       <workItem from="1579640639810" duration="6996000" />
+      <workItem from="1579772509646" duration="11000" />
+      <workItem from="1579791092071" duration="1992000" />
+      <workItem from="1579858188031" duration="8938000" />
+      <workItem from="1579872134392" duration="17771000" />
     </task>
     <servers />
   </component>
@@ -228,32 +224,40 @@
     <option name="version" value="1" />
     <option name="exactExcludedFiles">
       <list>
-        <option value="$PROJECT_DIR$/resources/js/write/blogMainImageInput/BlogImageInputConfigOptions.js" />
-        <option value="$PROJECT_DIR$/resources/js/write/blogMainImageInput/BlogMainImageInput.js.map" />
-        <option value="$PROJECT_DIR$/resources/js/write/blogMainImageInput/BlogMainImageInput.js" />
         <option value="$PROJECT_DIR$/resources/js/write/blogMainImageInput/BlogImageInputConfigOptions.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/network/HttpMethod.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/write/blogMainImageInput/BlogMainImageInput.js" />
+        <option value="$PROJECT_DIR$/resources/js/write/blogMainImageInput/BlogMainImageInput.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/write/blogMainImageInput/BlogImageInputConfigOptions.js" />
         <option value="$PROJECT_DIR$/resources/js/write/Timeout.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/network/Service.js" />
         <option value="$PROJECT_DIR$/resources/js/write/Timeout.js" />
-        <option value="$PROJECT_DIR$/resources/js/write/PeriodicBlogContentSaver.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/network/RequestOptions.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/network/BlogsService.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/models/Model.js" />
+        <option value="$PROJECT_DIR$/resources/js/network/Service.js.map" />
         <option value="$PROJECT_DIR$/resources/js/write/PeriodicBlogContentSaver.js" />
-        <option value="$PROJECT_DIR$/resources/js/write/savedStatusIndicator/SavedStatusIndicator.js.map" />
-        <option value="$PROJECT_DIR$/resources/js/write/savedStatusIndicator/SavedStatusIndicator.js" />
-        <option value="$PROJECT_DIR$/resources/js/write/savedStatusIndicator/SavedStatusIndicatorImpl.js.map" />
-        <option value="$PROJECT_DIR$/resources/js/write/savedStatusIndicator/SavedStatusIndicatorImpl.js" />
+        <option value="$PROJECT_DIR$/resources/js/network/HttpMethod.js" />
+        <option value="$PROJECT_DIR$/resources/js/write/PeriodicBlogContentSaver.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/network/BlogsService.js" />
         <option value="$PROJECT_DIR$/resources/js/models/Blog.js.map" />
         <option value="$PROJECT_DIR$/resources/js/models/Blog.js" />
-        <option value="$PROJECT_DIR$/resources/js/network/HttpMethod.js" />
-        <option value="$PROJECT_DIR$/resources/js/network/BlogsService.js" />
-        <option value="$PROJECT_DIR$/resources/js/network/BlogsService.js.map" />
-        <option value="$PROJECT_DIR$/resources/js/network/Service.js.map" />
-        <option value="$PROJECT_DIR$/resources/js/network/RequestOptions.js.map" />
-        <option value="$PROJECT_DIR$/resources/js/network/RequestOptions.js" />
-        <option value="$PROJECT_DIR$/resources/js/network/HttpMethod.js.map" />
-        <option value="$PROJECT_DIR$/resources/js/network/Service.js" />
+        <option value="$PROJECT_DIR$/resources/js/write/savedStatusIndicator/SavedStatusIndicator.js" />
+        <option value="$PROJECT_DIR$/resources/js/write/savedStatusIndicator/SavedStatusIndicator.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/write/savedStatusIndicator/SavedStatusIndicatorImpl.js" />
+        <option value="$PROJECT_DIR$/resources/js/write/savedStatusIndicator/SavedStatusIndicatorImpl.js.map" />
         <option value="$PROJECT_DIR$/resources/js/models/Model.js.map" />
-        <option value="$PROJECT_DIR$/resources/js/models/Model.js" />
-        <option value="$PROJECT_DIR$/resources/js/write/MyUploadAdapter.js.map" />
-        <option value="$PROJECT_DIR$/resources/js/write/MyUploadAdapter.js" />
+        <option value="$PROJECT_DIR$/resources/js/network/RequestOptions.js" />
+        <option value="$PROJECT_DIR$/resources/js/firebase/FirebaseConfig.js" />
+        <option value="$PROJECT_DIR$/resources/js/firebase/FirebaseConfig.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/network/AboutReneeService.js" />
+        <option value="$PROJECT_DIR$/resources/js/network/AboutReneeService.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/ui/visitors/IndexPage.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/ui/visitors/IndexPage.js" />
+        <option value="$PROJECT_DIR$/resources/js/firebase/RemoteConfigKeys.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/firebase/FirebaseRemoteConfigInit.js" />
+        <option value="$PROJECT_DIR$/resources/js/firebase/FirebaseRemoteConfigInit.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/firebase/RemoteConfigKeys.js" />
       </list>
     </option>
   </component>
@@ -286,6 +290,10 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="449" y="145" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/67.27.1299.741@67.27.1299.741" timestamp="1579635355926" />
+    <state x="449" y="154" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1579887255724">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="449" y="154" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/67.27.1299.741@67.27.1299.741" timestamp="1579887255724" />
     <state x="167" y="125" width="1099" height="543" key="DiffContextDialog" timestamp="1579607529209">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
@@ -306,29 +314,29 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state width="1253" height="240" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1579191417960" />
-    <state x="512" y="322" width="399" height="149" key="NewPhpFileDialog" timestamp="1579518069455">
+    <state x="512" y="322" width="399" height="149" key="NewPhpFileDialog" timestamp="1579894997097">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="512" y="322" width="399" height="149" key="NewPhpFileDialog/67.27.1299.741@67.27.1299.741" timestamp="1579518069455" />
+    <state x="512" y="322" width="399" height="149" key="NewPhpFileDialog/67.27.1299.741@67.27.1299.741" timestamp="1579894997097" />
     <state x="205" y="31" key="SettingsEditor" timestamp="1579446222862">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="205" y="31" key="SettingsEditor/67.27.1299.741@67.27.1299.741" timestamp="1579446222862" />
-    <state x="372" y="224" key="com.intellij.ide.util.TipDialog" timestamp="1579640644544">
+    <state x="372" y="224" key="com.intellij.ide.util.TipDialog" timestamp="1579872138607">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="372" y="224" key="com.intellij.ide.util.TipDialog/67.27.1299.741@67.27.1299.741" timestamp="1579640644544" />
+    <state x="372" y="224" key="com.intellij.ide.util.TipDialog/67.27.1299.741@67.27.1299.741" timestamp="1579872138607" />
     <state x="380" y="175" key="run.anything.popup" timestamp="1578995080600">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="380" y="175" key="run.anything.popup/67.27.1299.741@67.27.1299.741" timestamp="1578995080600" />
-    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1579515451820">
+    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1579860590292">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup/67.27.1299.741@67.27.1299.741" timestamp="1579515451820" />
-    <state x="436" y="310" width="540" height="172" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1579673274433">
+    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup/67.27.1299.741@67.27.1299.741" timestamp="1579860590292" />
+    <state x="436" y="310" width="540" height="172" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1579861240957">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="436" y="310" width="540" height="172" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/67.27.1299.741@67.27.1299.741" timestamp="1579673274433" />
+    <state x="436" y="310" width="540" height="172" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/67.27.1299.741@67.27.1299.741" timestamp="1579861240957" />
   </component>
 </project>

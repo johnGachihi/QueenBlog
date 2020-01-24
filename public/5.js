@@ -1,48 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[5],{
 
-/***/ "./resources/js/models/Blog.js":
-/*!*************************************!*\
-  !*** ./resources/js/models/Blog.js ***!
-  \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var BlogStatus;
-
-(function (BlogStatus) {
-  BlogStatus["DRAFT"] = "draft";
-  BlogStatus["PUBLISHED"] = "published";
-})(BlogStatus = exports.BlogStatus || (exports.BlogStatus = {}));
-
-/***/ }),
-
-/***/ "./resources/js/utils/constants.js":
-/*!*****************************************!*\
-  !*** ./resources/js/utils/constants.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.blogsPageRelativeURL = 'only/juli/blogs';
-
-/***/ }),
-
-/***/ "./resources/js/write/PeriodicBlogContentSaver.js":
-/*!********************************************************!*\
-  !*** ./resources/js/write/PeriodicBlogContentSaver.js ***!
-  \********************************************************/
+/***/ "./resources/js/network/AboutReneeService.js":
+/*!***************************************************!*\
+  !*** ./resources/js/network/AboutReneeService.js ***!
+  \***************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -192,188 +153,48 @@ var __generator = this && this.__generator || function (thisArg, body) {
   }
 };
 
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var Timeout_1 = __importDefault(__webpack_require__(/*! ./Timeout */ "./resources/js/write/Timeout.js"));
-
-var PeriodicBlogContentSaver =
+var AboutReneeService =
 /** @class */
 function () {
-  function PeriodicBlogContentSaver(editor, blogTitleEl, savedStatusIndicator, blogsService, blog) {
-    this.editor = editor;
-    this.blogTitleEl = blogTitleEl;
-    this.savedStatusIndicator = savedStatusIndicator;
-    this.blogService = blogsService;
-    this.blog = blog;
+  function AboutReneeService(remoteConfig) {
+    this.remoteConfig = remoteConfig;
   }
 
-  PeriodicBlogContentSaver.prototype.activate = function () {
-    this.saveDataOnBlogContentChange();
-  };
-
-  PeriodicBlogContentSaver.prototype.saveDataOnBlogContentChange = function () {
-    var _this = this;
-
-    var timeout = new Timeout_1["default"]();
-    this.editor.model.document.on('change:data', function () {
-      if (!timeout.isSet()) {
-        timeout.setTimeOut(3000, function () {
-          return _this.saveBlogContent();
-        });
-      }
-
-      _this.savedStatusIndicator.clearSavedStatus();
-
-      if (_this.editorChangeHandler) _this.editorChangeHandler();
-      timeout.resetTimeOut();
-    });
-  };
-
-  PeriodicBlogContentSaver.prototype.saveBlogContent = function () {
-    var _this = this;
-
-    this.beforeSave();
-
-    if (!this.blog) {
-      this.saveNew().then(function (blog) {
-        return _this.blog = blog;
-      });
-    } else {
-      this.updateExisting();
-    }
-  };
-
-  PeriodicBlogContentSaver.prototype.beforeSave = function () {
-    this.savedStatusIndicator.indicateSaving();
-    PeriodicBlogContentSaver.callCallbackIfPresent(this.savingHandler);
-  };
-
-  PeriodicBlogContentSaver.prototype.saveNew = function () {
+  AboutReneeService.prototype.fetchAboutRenee = function () {
     return __awaiter(this, void 0, void 0, function () {
-      var blog, response;
       return __generator(this, function (_a) {
         switch (_a.label) {
           case 0:
-            blog = {
-              title: this.blogTitleEl.value,
-              content: this.editor.getData()
-            };
             return [4
             /*yield*/
-            , this.blogService.save(blog)];
+            , this.remoteConfig.fetchAndActivate()];
 
           case 1:
-            response = _a.sent();
-            blog.id = response.blog_id;
-            this.afterSave(blog);
+            _a.sent();
+
             return [2
             /*return*/
-            , blog];
+            , this.remoteConfig.getString('about_renee')];
         }
       });
     });
   };
 
-  PeriodicBlogContentSaver.prototype.updateExisting = function () {
-    var _this = this;
-
-    this.blog.content = this.editor.getData();
-    this.blog.title = this.blogTitleEl.value;
-    this.blogService.update(this.blog).then(function (response) {
-      _this.afterSave(_this.blog);
-    });
-  };
-
-  PeriodicBlogContentSaver.prototype.afterSave = function (blog) {
-    this.savedStatusIndicator.indicateSaved();
-    if (this.onSavedHandler) this.onSavedHandler(blog);
-  };
-
-  PeriodicBlogContentSaver.prototype.onEditorChange = function (changeHandler) {
-    this.editorChangeHandler = function () {
-      return changeHandler();
-    };
-
-    return this;
-  };
-
-  PeriodicBlogContentSaver.prototype.onSaving = function (savingHandler) {
-    this.savingHandler = function () {
-      return savingHandler();
-    };
-
-    return this;
-  };
-
-  PeriodicBlogContentSaver.prototype.onSaved = function (onSavedHandler) {
-    this.onSavedHandler = onSavedHandler;
-    return this;
-  };
-
-  PeriodicBlogContentSaver.callCallbackIfPresent = function (callback) {
-    if (callback) callback();
-  };
-
-  return PeriodicBlogContentSaver;
+  return AboutReneeService;
 }();
 
-exports["default"] = PeriodicBlogContentSaver;
+exports["default"] = AboutReneeService;
 
 /***/ }),
 
-/***/ "./resources/js/write/Timeout.js":
-/*!***************************************!*\
-  !*** ./resources/js/write/Timeout.js ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var Timeout =
-/** @class */
-function () {
-  function Timeout() {}
-
-  Timeout.prototype.setTimeOut = function (delay, action) {
-    this.delay = delay;
-    this.action = action;
-    this.timeoutID = setTimeout(this.action, this.delay);
-  };
-
-  Timeout.prototype.resetTimeOut = function () {
-    clearTimeout(this.timeoutID);
-    this.timeoutID = setTimeout(this.action, this.delay);
-  };
-
-  Timeout.prototype.isSet = function () {
-    return this.timeoutID !== undefined;
-  };
-
-  return Timeout;
-}();
-
-exports["default"] = Timeout;
-
-/***/ }),
-
-/***/ "./resources/js/write/Write.js":
-/*!*************************************!*\
-  !*** ./resources/js/write/Write.js ***!
-  \*************************************/
+/***/ "./resources/js/ui/visitors/IndexPage.js":
+/*!***********************************************!*\
+  !*** ./resources/js/ui/visitors/IndexPage.js ***!
+  \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -390,485 +211,41 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var component_1 = __webpack_require__(/*! @material/textfield/component */ "./node_modules/@material/textfield/component.js");
+var AboutReneeService_1 = __importDefault(__webpack_require__(/*! ../../network/AboutReneeService */ "./resources/js/network/AboutReneeService.js"));
 
-var editor_1 = __webpack_require__(/*! ./editor */ "./resources/js/write/editor.js");
-
-var BlogsService_1 = __importDefault(__webpack_require__(/*! ../network/BlogsService */ "./resources/js/network/BlogsService.js"));
-
-var PeriodicBlogContentSaver_1 = __importDefault(__webpack_require__(/*! ./PeriodicBlogContentSaver */ "./resources/js/write/PeriodicBlogContentSaver.js"));
-
-var SavedStatusIndicatorImpl_1 = __importDefault(__webpack_require__(/*! ./savedStatusIndicator/SavedStatusIndicatorImpl */ "./resources/js/write/savedStatusIndicator/SavedStatusIndicatorImpl.js"));
-
-var Blog_1 = __webpack_require__(/*! ../models/Blog */ "./resources/js/models/Blog.js");
-
-var BlogMainImageInput_1 = __importDefault(__webpack_require__(/*! ./blogMainImageInput/BlogMainImageInput */ "./resources/js/write/blogMainImageInput/BlogMainImageInput.js"));
-
-__webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
-
-var constants_1 = __webpack_require__(/*! ../utils/constants */ "./resources/js/utils/constants.js");
-
-var Write =
+var IndexPage =
 /** @class */
 function () {
-  function Write(blog) {
-    this.blog = blog;
-    this.init();
+  function IndexPage(remoteConfig) {
+    this.init(remoteConfig);
   }
 
-  Write.prototype.init = function () {
-    this.initializeElements();
-    this.initializeRequestOptions();
-    this.initializeBlogsService();
-    this.setupEditor(this.blog);
-    this.setupBlogTitleEl();
-    this.setupBlogPreviewImageInput();
-    this.setupPublishButton();
-    this.setupBlogTagInputEl();
-    this.setupModalPublishButton();
-    this.setupSaveAsDraftButton();
+  IndexPage.prototype.init = function (remoteConfig) {
+    this.initElements();
+    this.setupAboutReneeService(remoteConfig);
+    this.setupAboutReneePar();
   };
 
-  Write.prototype.initializeElements = function () {
-    this.blogTitleInput = document.getElementById('blog-title-input');
-    this.blogTagInput = new component_1.MDCTextField(document.querySelector('#blog-tag-input-container'));
-    this.publishBtn = document.getElementById("publish-btn");
-    this.blogContentTextArea = document.getElementById("blog-content-textarea");
-    this.modalPublishBtn = document.getElementById("modal-publish-btn");
-    this.modalSaveAsDraftBtn = document.getElementById("modal-save-draft-btn");
-    this.publishModalProgessbar = document.getElementById('publish-modal-progressbar');
+  IndexPage.prototype.initElements = function () {
+    this.aboutReneePar = document.getElementById('about-renee');
   };
 
-  Write.prototype.initializeRequestOptions = function () {
-    this.requestOptions = {
-      csrfToken: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-      baseUrl: document.querySelector('meta[name="base-url"]').getAttribute('content')
-    };
+  IndexPage.prototype.setupAboutReneeService = function (remoteConfig) {
+    this.aboutReneeService = new AboutReneeService_1["default"](remoteConfig);
   };
 
-  Write.prototype.initializeBlogsService = function () {
-    this.blogsService = new BlogsService_1["default"](this.requestOptions);
-  };
-
-  Write.prototype.setupBlogTitleEl = function () {
-    console.log('setupBlogTitleEl');
-
-    if (this.blog != undefined && this.blog.title != undefined) {
-      this.blogTitleInput.value = this.blog.title;
-    }
-  };
-
-  Write.prototype.setupEditor = function (blog) {
+  IndexPage.prototype.setupAboutReneePar = function () {
     var _this = this;
 
-    console.log('setupEditor');
-    editor_1.initCkEditor(this.blogContentTextArea).then(function (editor) {
-      if (blog != undefined) {
-        editor.setData(blog.content);
-      }
-
-      _this.enableNavbarPublishButtonOnInputToEditor(editor);
-
-      _this.setupPeriodicBlogContentSaver(editor);
-    });
+    this.aboutReneeService.fetchAboutRenee().then(function (res) {
+      _this.aboutReneePar.innerText = res;
+    })["catch"](console.log);
   };
 
-  Write.prototype.enableNavbarPublishButtonOnInputToEditor = function (editor) {
-    var _this = this;
-
-    this.handlePublishButtonEnabledState(editor);
-    editor.model.document.on('change:data', function () {
-      _this.handlePublishButtonEnabledState(editor);
-    });
-  };
-
-  Write.prototype.handlePublishButtonEnabledState = function (editor) {
-    if (editor.getData() === '') {
-      this.publishBtn.setAttribute('disabled', 'true');
-    } else {
-      this.publishBtn.removeAttribute('disabled');
-    }
-  };
-
-  Write.prototype.setupPeriodicBlogContentSaver = function (editor) {
-    var _this = this;
-
-    console.log(this.blogsService);
-    var blogStatusIndicatorEl = document.getElementById('save-status');
-    var savedStatusIndicator = new SavedStatusIndicatorImpl_1["default"](blogStatusIndicatorEl);
-    var periodicBlogContentSaver = new PeriodicBlogContentSaver_1["default"](editor, this.blogTitleInput, savedStatusIndicator, this.blogsService, this.blog);
-    periodicBlogContentSaver.onSaved(function (blog) {
-      return _this.handleOnPeriodicSave(blog);
-    });
-    periodicBlogContentSaver.activate();
-  };
-
-  Write.prototype.handleOnPeriodicSave = function (blog) {
-    console.log('saved blog', blog);
-
-    if (this.blog == undefined) {
-      this.blog = blog;
-    } else {
-      this.blog.title = blog.title;
-      this.blog.content = blog.content;
-    }
-  };
-
-  Write.prototype.setupBlogPreviewImageInput = function () {
-    var _this = this;
-
-    var blogPreviewImage = new BlogMainImageInput_1["default"]({
-      imagePreviewElement: document.getElementById('blog-preview-img-thumbnail'),
-      imageInputButton: document.getElementById('preview-img-input-btn'),
-      hiddenImageInputElement: document.getElementById('blog-image-hidden-input'),
-      progressBar: document.getElementById('preview-img-progress-bar')
-    });
-
-    if (this.blog !== undefined && this.blog.main_image_filename !== undefined) {
-      var assetUrl = document.querySelector('meta[name="asset-url"]').getAttribute('content');
-      blogPreviewImage.addImage(assetUrl + "storage/blog-main-images/" + this.blog.main_image_filename, this.blog.main_image_filename);
-      console.log('Uppy', blogPreviewImage.uppy);
-    }
-
-    blogPreviewImage.onImageInputted(function (image, updated) {
-      if (updated && _this.blog != undefined) {
-        _this.blog.main_image = image;
-      }
-
-      console.log(_this.blog);
-    });
-  };
-
-  Write.prototype.setupPublishButton = function () {
-    this.publishBtn.addEventListener('click', function (e) {
-      $('#publish-modal').modal('toggle');
-    });
-  };
-
-  Write.prototype.setupBlogTagInputEl = function () {
-    if (this.blog != undefined && this.blog.tag != undefined) {
-      this.blogTagInput.value = this.blog.tag;
-    }
-  };
-
-  Write.prototype.setupModalPublishButton = function () {
-    var _this = this;
-
-    var modalPublishButton = document.getElementById("modal-publish-btn");
-    modalPublishButton.addEventListener('click', function (e) {
-      _this.saveBlog(Blog_1.BlogStatus.PUBLISHED);
-    });
-  };
-
-  Write.prototype.setupSaveAsDraftButton = function () {
-    var _this = this;
-
-    var modalSaveAsDraftBtn = document.getElementById("modal-save-draft-btn");
-    modalSaveAsDraftBtn.addEventListener('click', function (e) {
-      _this.saveBlog(Blog_1.BlogStatus.DRAFT);
-    });
-  };
-
-  Write.prototype.saveBlog = function (status) {
-    var _this = this;
-
-    this.showPublishModalProgressbar();
-    this.blogsService.updateWithImage(this.getFormFromBlog(this.blog, status)).then(function (blog) {
-      console.log('saved blog (whole)', blog);
-
-      _this.hidePublishModalProgressbar();
-
-      window.location.replace(_this.requestOptions.baseUrl + "/" + constants_1.blogsPageRelativeURL);
-    });
-  };
-
-  Write.prototype.showPublishModalProgressbar = function () {
-    this.publishModalProgessbar.classList.remove('d-none');
-  };
-
-  Write.prototype.hidePublishModalProgressbar = function () {
-    this.publishModalProgessbar.classList.add('d-none');
-  }; // TODO Refactor code and remove this method
-
-
-  Write.prototype.getFormFromBlog = function (blog, blogStatus) {
-    var form = new FormData();
-    form.append('id', blog.id);
-    form.append('title', this.blogTitleInput.value);
-    form.append('content', blog.content);
-
-    if (blog.main_image !== undefined) {
-      form.append('main_image', blog.main_image, blog.main_image.name);
-    }
-
-    form.append('tag', this.blogTagInput.value);
-    form.append('status', blogStatus);
-    return form;
-  };
-
-  return Write;
+  return IndexPage;
 }();
 
-exports["default"] = Write;
-
-/***/ }),
-
-/***/ "./resources/js/write/blogMainImageInput/BlogMainImageInput.js":
-/*!*********************************************************************!*\
-  !*** ./resources/js/write/blogMainImageInput/BlogMainImageInput.js ***!
-  \*********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var core_1 = __importDefault(__webpack_require__(/*! @uppy/core */ "./node_modules/@uppy/core/lib/index.js"));
-
-var thumbnail_generator_1 = __importDefault(__webpack_require__(/*! @uppy/thumbnail-generator */ "./node_modules/@uppy/thumbnail-generator/lib/index.js"));
-
-var BlogMainImageInput =
-/** @class */
-function () {
-  function BlogMainImageInput(configOptions) {
-    var _this = this;
-
-    this.updated = false;
-    this.configOptions = configOptions;
-    this.initUppy();
-    this.setupImageInputButton();
-    this.listenForImageInput(function (file) {
-      return _this.handleImageInputted(file);
-    });
-    this.listenForThumbnailGenerated(function (file, preview) {
-      return _this.handleThumbnailGenerated(file, preview);
-    });
-  }
-
-  BlogMainImageInput.prototype.initUppy = function () {
-    this.uppy = core_1["default"]({
-      allowMultipleUploads: false,
-      autoProceed: false,
-      restrictions: {
-        maxNumberOfFiles: 1
-      }
-    }).use(thumbnail_generator_1["default"], {
-      id: 'ThumbnailGenerator',
-      thumbnailWidth: 200,
-      thumbnailHeight: 200
-    });
-  };
-
-  BlogMainImageInput.prototype.setupImageInputButton = function () {
-    var _this = this;
-
-    this.configOptions.imageInputButton.addEventListener('click', function () {
-      return _this.openFileExplorer();
-    });
-  };
-
-  BlogMainImageInput.prototype.openFileExplorer = function () {
-    this.configOptions.hiddenImageInputElement.click();
-  };
-
-  BlogMainImageInput.prototype.listenForImageInput = function (handleImageInputted) {
-    var _this = this;
-
-    this.configOptions.hiddenImageInputElement.addEventListener('change', function () {
-      handleImageInputted(_this.configOptions.hiddenImageInputElement.files[0]);
-    });
-  };
-
-  BlogMainImageInput.prototype.handleImageInputted = function (file) {
-    this.updated = true;
-    if (this.onImageInputtedHandler) this.onImageInputtedHandler(file, this.updated);
-    this.addImageToUppy(file);
-    this.showProgressBar();
-  };
-
-  BlogMainImageInput.prototype.addImageToUppy = function (file) {
-    this.uppy.reset();
-    this.uppy.addFile({
-      name: file.name,
-      type: file.type,
-      data: file
-    });
-  };
-
-  BlogMainImageInput.prototype.showProgressBar = function () {
-    this.configOptions.progressBar.classList.remove('d-none');
-  };
-
-  BlogMainImageInput.prototype.listenForThumbnailGenerated = function (handleThumbnailGenerated) {
-    this.uppy.on('thumbnail:generated', handleThumbnailGenerated);
-  };
-
-  BlogMainImageInput.prototype.handleThumbnailGenerated = function (file, preview) {
-    console.log('handleThumbnailGenerated');
-    this.configOptions.imagePreviewElement.src = preview;
-    this.configOptions.imagePreviewElement.classList.remove('d-none');
-
-    if (this.uppy.getFiles().length > 0) {
-      this.configOptions.imageInputButton.innerText = "Change";
-    }
-
-    this.hideProgressBar();
-    this.changeButtonToOutlined();
-  };
-
-  BlogMainImageInput.prototype.hideProgressBar = function () {
-    this.configOptions.progressBar.classList.add('d-none');
-  };
-
-  BlogMainImageInput.prototype.changeButtonToOutlined = function () {
-    this.configOptions.imageInputButton.classList.add('mdc-button--outlined');
-  };
-
-  BlogMainImageInput.prototype.onImageInputted = function (onImageInputtedHandler) {
-    this.onImageInputtedHandler = onImageInputtedHandler;
-  };
-
-  BlogMainImageInput.prototype.addImage = function (url, filename) {
-    var _this = this;
-
-    this.showProgressBar();
-    fetch(url).then(function (response) {
-      return response.blob();
-    }) // returns a Blob
-    .then(function (blob) {
-      _this.uppy.reset();
-
-      _this.uppy.addFile({
-        name: filename,
-        type: blob.type,
-        data: blob
-      });
-
-      _this.hideProgressBar();
-    })["catch"](function (err) {
-      return console.log(err);
-    });
-  };
-
-  return BlogMainImageInput;
-}();
-
-exports["default"] = BlogMainImageInput;
-
-/***/ }),
-
-/***/ "./resources/js/write/editor.js":
-/*!**************************************!*\
-  !*** ./resources/js/write/editor.js ***!
-  \**************************************/
-/*! exports provided: initCkEditor */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initCkEditor", function() { return initCkEditor; });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _ckeditor_ckeditor5_build_balloon_block__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ckeditor/ckeditor5-build-balloon-block */ "./node_modules/@ckeditor/ckeditor5-build-balloon-block/build/ckeditor.js");
-/* harmony import */ var _ckeditor_ckeditor5_build_balloon_block__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_ckeditor_ckeditor5_build_balloon_block__WEBPACK_IMPORTED_MODULE_1__);
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
- // import BalloonBlockEditor from './ckeditor';
-
-function initCkEditor(_x) {
-  return _initCkEditor.apply(this, arguments);
-}
-
-function _initCkEditor() {
-  _initCkEditor = _asyncToGenerator(
-  /*#__PURE__*/
-  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(targetEl) {
-    var ckEditor;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            _context.next = 2;
-            return _ckeditor_ckeditor5_build_balloon_block__WEBPACK_IMPORTED_MODULE_1___default.a.create(targetEl, {
-              placeholder: 'Write the word...',
-              toolbar: ['heading', '|', 'bold', 'italic', 'link', 'blockQuote'],
-              ignoreEmptyParagraph: true
-            }).then(function (editor) {
-              ckEditor = editor;
-            })["catch"](function (error) {
-              throw error;
-            });
-
-          case 2:
-            return _context.abrupt("return", ckEditor);
-
-          case 3:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee);
-  }));
-  return _initCkEditor.apply(this, arguments);
-}
-
-/***/ }),
-
-/***/ "./resources/js/write/savedStatusIndicator/SavedStatusIndicatorImpl.js":
-/*!*****************************************************************************!*\
-  !*** ./resources/js/write/savedStatusIndicator/SavedStatusIndicatorImpl.js ***!
-  \*****************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var SavedStatusIndicatorImpl =
-/** @class */
-function () {
-  function SavedStatusIndicatorImpl(indicatorElement) {
-    this.indicatorElement = indicatorElement;
-  }
-
-  SavedStatusIndicatorImpl.prototype.clearSavedStatus = function () {
-    if (this.indicatorElement.innerText === "Saved") {
-      this.indicatorElement.innerText = "";
-    }
-  };
-
-  SavedStatusIndicatorImpl.prototype.indicateSaved = function () {
-    this.indicatorElement.innerText = "Saved";
-    console.log('saved');
-  };
-
-  SavedStatusIndicatorImpl.prototype.indicateSaving = function () {
-    this.indicatorElement.innerText = "Saving...";
-    console.log('saving');
-  };
-
-  return SavedStatusIndicatorImpl;
-}();
-
-exports["default"] = SavedStatusIndicatorImpl;
+exports["default"] = IndexPage;
 
 /***/ })
 
