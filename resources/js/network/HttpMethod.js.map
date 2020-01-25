@@ -1,1 +1,1 @@
-{"version":3,"file":"HttpMethod.js","sourceRoot":"","sources":["HttpMethod.ts"],"names":[],"mappings":";;AAAA,IAAY,UAIX;AAJD,WAAY,UAAU;IAClB,2BAAa,CAAA;IACb,yBAAW,CAAA;IACX,+BAAiB,CAAA;AACrB,CAAC,EAJW,UAAU,GAAV,kBAAU,KAAV,kBAAU,QAIrB"}
+{"version":3,"file":"HttpMethod.js","sourceRoot":"","sources":["HttpMethod.ts"],"names":[],"mappings":";;AAAA,IAAY,UAKX;AALD,WAAY,UAAU;IAClB,yBAAW,CAAA;IACX,2BAAa,CAAA;IACb,yBAAW,CAAA;IACX,+BAAiB,CAAA;AACrB,CAAC,EALW,UAAU,GAAV,kBAAU,KAAV,kBAAU,QAKrB"}

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
+// TODO: Remove unused methods.
 class BlogsController extends Controller
 {
     const BLOG_MAIN_IMAGES_FOLDER = 'blog-main-images';
@@ -144,5 +145,9 @@ class BlogsController extends Controller
     {
         $blog->delete();
         return response()->json(['status' => 'ok']);
+    }
+
+    public function paginated() {
+        return Blog::where('status', 'published')->orderBy('id', 'desc')->take(10)->paginate(10);
     }
 }

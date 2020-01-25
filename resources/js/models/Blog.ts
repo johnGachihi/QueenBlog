@@ -9,7 +9,9 @@ export default interface Blog extends Model{
     tag?: string,
     status?: BlogStatus,
     views?: number,
-    likes?: number
+    likes?: number,
+    updated_at?: string,
+    created_at?: string
 }
 
 export enum BlogStatus {

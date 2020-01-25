@@ -315,6 +315,14 @@ header .main-menu li.drop-down a.mouseover + ul.drop-down-menu{ display: block;
 
 .blog-posts .load-more-btn{ clear: both; margin: 70px 0 30px; }
 
+.blog-posts .load-more-btn:focus { color: #fff; }
+
+.blog-posts .load-more-btn:hover { color: #FFAD4D; }
+
+.blog-posts .load-more-btn:active { color: #fff; }
+
+.blog-posts .load-more-btn:hover:active { color: #FFAD4D; }
+
 
 /* ---------------------------------
 6. SIDEBAR STYLING

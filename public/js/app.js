@@ -90471,7 +90471,7 @@ if (document.getElementById('write-page')) {
   console.log('This is amazing grace');
   firebase__WEBPACK_IMPORTED_MODULE_1__["initializeApp"](_firebase_FirebaseConfig__WEBPACK_IMPORTED_MODULE_0___default.a.get());
   var remoteConfig = _firebase_FirebaseRemoteConfigInit__WEBPACK_IMPORTED_MODULE_2___default.a.initAndGet(firebase__WEBPACK_IMPORTED_MODULE_1__);
-  __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.t.bind(null, /*! ./ui/visitors/IndexPage */ "./resources/js/ui/visitors/IndexPage.js", 7)).then(function (module) {
+  Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(7)]).then(__webpack_require__.t.bind(null, /*! ./ui/visitors/indexpage/IndexPage */ "./resources/js/ui/visitors/indexpage/IndexPage.js", 7)).then(function (module) {
     var IndexPage = module["default"];
     new IndexPage(remoteConfig);
   });

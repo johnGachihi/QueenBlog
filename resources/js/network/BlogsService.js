@@ -108,6 +108,30 @@ var BlogsService = /** @class */ (function (_super) {
             });
         });
     };
+    //TODO Refactor [Service] and remove this method
+    BlogsService.prototype.fetchPaginatedBlogs = function (page) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a, csrfToken, baseUrl, fetchUrl, response;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = this.requestOptions, csrfToken = _a.csrfToken, baseUrl = _a.baseUrl;
+                        fetchUrl = Service_1.default.makeUrl(baseUrl, this.relativeUrl, "/paginated?page=" + page);
+                        return [4 /*yield*/, fetch(fetchUrl, {
+                                method: HttpMethod_1.HttpMethod.GET,
+                                headers: {
+                                    'Accept': 'application/json',
+                                    'X-CSRF-TOKEN': csrfToken
+                                }
+                            })];
+                    case 1:
+                        response = _b.sent();
+                        return [4 /*yield*/, response.json()];
+                    case 2: return [2 /*return*/, _b.sent()];
+                }
+            });
+        });
+    };
     BlogsService.relativeURL = '/blog';
     return BlogsService;
 }(Service_1.default));

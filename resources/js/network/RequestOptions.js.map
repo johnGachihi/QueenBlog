@@ -1,1 +1,1 @@
-{"version":3,"file":"RequestOptions.js","sourceRoot":"","sources":["RequestOptions.ts"],"names":[],"mappings":""}
+{"version":3,"file":"RequestOptions.js","sourceRoot":"","sources":["RequestOptions.ts"],"names":[],"mappings":";;AAKA;IAAA;IAOA,CAAC;IANU,wBAAG,GAAV;QACI,OAAO;YACH,SAAS,EAAE,QAAQ,CAAC,aAAa,CAAC,yBAAyB,CAAC,CAAC,YAAY,CAAC,SAAS,CAAC;YACpF,OAAO,EAAE,QAAQ,CAAC,aAAa,CAAC,uBAAuB,CAAC,CAAC,YAAY,CAAC,SAAS,CAAC;SACnF,CAAC;IACN,CAAC;IACL,2BAAC;AAAD,CAAC,AAPD,IAOC;AAPY,oDAAoB"}

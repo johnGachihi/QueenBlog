@@ -21,7 +21,7 @@ if(document.getElementById('write-page')) {
     console.log('This is amazing grace');
     firebase.initializeApp(FirebaseConfig.get());
     const remoteConfig = FirebaseRemoteConfigInit.initAndGet(firebase);
-    import('./ui/visitors/IndexPage').then((module) => {
+    import('./ui/visitors/indexpage/IndexPage').then((module) => {
         const IndexPage = module.default;
         new IndexPage(remoteConfig)
     })

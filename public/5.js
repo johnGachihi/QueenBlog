@@ -191,10 +191,10 @@ exports["default"] = AboutReneeService;
 
 /***/ }),
 
-/***/ "./resources/js/ui/visitors/IndexPage.js":
-/*!***********************************************!*\
-  !*** ./resources/js/ui/visitors/IndexPage.js ***!
-  \***********************************************/
+/***/ "./resources/js/ui/visitors/indexpage/IndexPage.js":
+/*!*********************************************************!*\
+  !*** ./resources/js/ui/visitors/indexpage/IndexPage.js ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -211,7 +211,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var AboutReneeService_1 = __importDefault(__webpack_require__(/*! ../../network/AboutReneeService */ "./resources/js/network/AboutReneeService.js"));
+var AboutReneeService_1 = __importDefault(__webpack_require__(/*! ../../../network/AboutReneeService */ "./resources/js/network/AboutReneeService.js"));
 
 var IndexPage =
 /** @class */

@@ -11,6 +11,9 @@
 |
 */
 
+// TODO: Use controllers
+
+
 use App\Blog;
 
 // Visitors
@@ -43,3 +46,4 @@ Route::prefix('only/juli')->group(function () {
 Route::post('blog', 'BlogsController@store');
 Route::post('blog/{blog}', 'BlogsController@update');
 Route::delete('blog/{blog}', 'BlogsController@destroy');
+Route::get('blog/paginated', 'BlogsController@paginated');
