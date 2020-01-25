@@ -5,6 +5,7 @@ import BlogsService from "../../../network/BlogsService";
 import RequestOptions, {RequestOptionsValues} from "../../../network/RequestOptions";
 import Blog from "../../../models/Blog";
 import BlogElement from "./BlogElement";
+import Like from "../Like";
 
 export default class IndexPage {
     private aboutReneePar: HTMLParagraphElement;
@@ -22,6 +23,8 @@ export default class IndexPage {
         this.initBlogsService();
         this.setupAboutReneePar();
         this.setupLoadMoreButton();
+        this.setupLikeAnchors();
+        this.colorFillLikedIconForLikedBlogs();
     }
 
     private initElements() {
@@ -55,6 +58,7 @@ export default class IndexPage {
                     this.hideLoader();
                     IndexPage.appendBlogs(page.data);
                     this.updatePaginatedBlogsPageNumber(page.current_page);
+                    this.colorFillLikedIconForLikedBlogs();
                 })
         })
     }
@@ -72,6 +76,37 @@ export default class IndexPage {
     }
 
     // TODO: Add implementation
-    private showLoader() { console.log('Loading...') }
-    private hideLoader() { console.log('Loaded') }
+    private showLoader() {console.log('Loading...')}
+    private hideLoader() {console.log('Loaded')}
+
+    private setupLikeAnchors() {
+        const likeAnchors = document.getElementsByClassName('like-blog');
+        for (let i = 0; i < likeAnchors.length; i++) {
+            likeAnchors[i].addEventListener('click', e => {
+                e.preventDefault();
+                Like.like(e.currentTarget as HTMLAnchorElement);
+            })
+        }
+    }
+
+    private colorFillLikedIconForLikedBlogs() {
+        const likeAnchors = document.getElementsByClassName('like-blog');
+        for (let i = 0; i < likeAnchors.length; i++) {
+            const likeAnchor = <HTMLAnchorElement>likeAnchors[i];
+            if(IndexPage.isAnchorForLikedBlog(likeAnchor)) {
+                const iconEl = likeAnchor.querySelector('i');
+                IndexPage.colorFillLikeIcon(iconEl);
+            }
+        }
+    }
+
+    private static isAnchorForLikedBlog(likeAnchor: HTMLAnchorElement) {
+        const blogId = likeAnchor.dataset.blogId;
+        return localStorage.getItem(`blog-liked-${blogId}`) != undefined;
+    }
+
+    private static colorFillLikeIcon(iconEl: HTMLElement) {
+        iconEl.classList.remove('ion-android-favorite-outline');
+        iconEl.classList.add('ion-android-favorite');
+    }
 }

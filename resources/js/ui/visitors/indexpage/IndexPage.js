@@ -7,6 +7,7 @@ var AboutReneeService_1 = __importDefault(require("../../../network/AboutReneeSe
 var BlogsService_1 = __importDefault(require("../../../network/BlogsService"));
 var RequestOptions_1 = require("../../../network/RequestOptions");
 var BlogElement_1 = __importDefault(require("./BlogElement"));
+var Like_1 = __importDefault(require("../Like"));
 var IndexPage = /** @class */ (function () {
     function IndexPage(remoteConfig) {
         this.paginatedBlogsPageNumber = 1;
@@ -18,6 +19,8 @@ var IndexPage = /** @class */ (function () {
         this.initBlogsService();
         this.setupAboutReneePar();
         this.setupLoadMoreButton();
+        this.setupLikeAnchors();
+        this.colorFillLikedIconForLikedBlogs();
     };
     IndexPage.prototype.initElements = function () {
         this.aboutReneePar =
@@ -48,6 +51,7 @@ var IndexPage = /** @class */ (function () {
                 _this.hideLoader();
                 IndexPage.appendBlogs(page.data);
                 _this.updatePaginatedBlogsPageNumber(page.current_page);
+                _this.colorFillLikedIconForLikedBlogs();
             });
         });
     };
@@ -65,6 +69,33 @@ var IndexPage = /** @class */ (function () {
     // TODO: Add implementation
     IndexPage.prototype.showLoader = function () { console.log('Loading...'); };
     IndexPage.prototype.hideLoader = function () { console.log('Loaded'); };
+    IndexPage.prototype.setupLikeAnchors = function () {
+        var likeAnchors = document.getElementsByClassName('like-blog');
+        for (var i = 0; i < likeAnchors.length; i++) {
+            likeAnchors[i].addEventListener('click', function (e) {
+                e.preventDefault();
+                Like_1.default.like(e.currentTarget);
+            });
+        }
+    };
+    IndexPage.prototype.colorFillLikedIconForLikedBlogs = function () {
+        var likeAnchors = document.getElementsByClassName('like-blog');
+        for (var i = 0; i < likeAnchors.length; i++) {
+            var likeAnchor = likeAnchors[i];
+            if (IndexPage.isAnchorForLikedBlog(likeAnchor)) {
+                var iconEl = likeAnchor.querySelector('i');
+                IndexPage.colorFillLikeIcon(iconEl);
+            }
+        }
+    };
+    IndexPage.isAnchorForLikedBlog = function (likeAnchor) {
+        var blogId = likeAnchor.dataset.blogId;
+        return localStorage.getItem("blog-liked-" + blogId) != undefined;
+    };
+    IndexPage.colorFillLikeIcon = function (iconEl) {
+        iconEl.classList.remove('ion-android-favorite-outline');
+        iconEl.classList.add('ion-android-favorite');
+    };
     return IndexPage;
 }());
 exports.default = IndexPage;

@@ -150,4 +150,11 @@ class BlogsController extends Controller
     public function paginated() {
         return Blog::where('status', 'published')->orderBy('id', 'desc')->take(10)->paginate(10);
     }
+
+    public function like(Blog $blog) {
+        $blog->likes = $blog->likes + 1;
+        $blog->save();
+
+        return response()->json(['status' => 'ok']);
+    }
 }

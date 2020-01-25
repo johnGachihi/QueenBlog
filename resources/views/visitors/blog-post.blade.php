@@ -10,8 +10,13 @@
         </div>
         <ul class="right-area social-icons">
             <li><a href="#"><i class="ion-android-share-alt"></i>Share</a></li>
-            <li><a href="#"><i class="ion-android-favorite-outline"></i>{{ $blog->likes }}</a></li>
-            <li><a href="#"><i class="ion-ios-eye"></i>{{ $blog->views }}</a></li>
+            <li>
+                <a href="#" class="like-blog" data-blog-id="{{ $blog->id }}">
+                    <i class="ion-android-favorite-outline"></i>
+                    <span>{{ $blog->likes }}</span>
+                </a>
+            </li>
+            <li style="padding-left: 15px"><i class="ion-ios-eye"></i>{{ $blog->views }}</li>
         </ul>
     </div>
     <h6 class="date"><em>{{ $blog->updated_at }}</em></h6>

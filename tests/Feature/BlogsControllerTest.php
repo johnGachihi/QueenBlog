@@ -169,4 +169,15 @@ class BlogsControllerTest extends TestCase
         $this->assertDatabaseMissing('blogs', ['id' => $blog->id]);
         $response->assertJson(['status' => 'ok']);
     }
+
+    public function testLike() {
+        $blog = factory(Blog::class)->create();
+        $previous_likes = $blog->likes;
+
+        $response = $this->json('GET', '/blog/like/'.$blog->id);
+
+        $response->assertStatus(200)
+            ->assertJson(['status' => 'ok']);
+        $this->assertDatabaseHas('blogs', ['likes' => $previous_likes + 1]);
+    }
 }

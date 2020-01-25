@@ -282,8 +282,10 @@ header .main-menu li.drop-down a.mouseover + ul.drop-down-menu{ display: block;
 .single-post .icons ul.social-icons{ color: #666; }
 
 .single-post .icons ul.social-icons > li > a{ padding-left: 15px; }
+.single-post .icons ul.social-icons > li { padding-left: 15px; }
 
 .single-post .icons ul.social-icons > li > a > i{ margin-right: 10px; }
+.single-post .icons ul.social-icons > li > i{ margin-right: 10px; }
 
 .single-post .title{ margin: 20px 0 15px; }
 

@@ -55,3 +55,4 @@ Route::post('blog', 'BlogsController@store');
 Route::post('blog/{blog}', 'BlogsController@update');
 Route::delete('blog/{blog}', 'BlogsController@destroy');
 Route::get('blog/paginated', 'BlogsController@paginated');
+Route::get('blog/like/{blog}', 'BlogsController@like');

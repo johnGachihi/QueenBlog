@@ -19,6 +19,7 @@
 
     <!-- Stylesheets -->
 
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/common-css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('css/common-css/ionicons.css') }}" rel="stylesheet">
     <link href="{{ asset('css/common-css/layerslider.css') }}" rel="stylesheet">
@@ -415,7 +416,8 @@
                         <h4 class="title"><b class="light-color">Categories</b></h4>
                         @foreach($categories as $category)
                             <a class="category" href="#">
-                                <img src="{{ asset('storage/blog-main-images/'.$category['image']) }}" alt="Category Image">
+                                <img src="{{ asset('storage/blog-main-images/'.$category['image']) }}"
+                                     alt="Category Image">
                                 <h6 class="name">{{ strtoupper($category['tag']) }}</h6>
                             </a>
                         @endforeach
@@ -581,7 +583,6 @@
 </section><!-- section -->
 --}}
 
-
 <footer>
     <div class="container">
         <div class="row">
@@ -619,7 +620,7 @@
 <script src="{{ asset('js/common-js/bootstrap.js') }}"></script>
 <script src="{{ asset('js/common-js/layerslider.js') }}"></script>
 <script src="{{ asset('js/common-js/scripts.js') }}"></script>
-<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/app.js') }}" defer></script>
 <script>
     const categories = @json($categories);
     console.log(categories);
