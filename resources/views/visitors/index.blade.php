@@ -439,10 +439,29 @@
                         </a>--}}
                     </div><!-- sidebar-section category-area -->
 
+                    {{--TODO: Ask if this section is necessary--}}
                     <div class="sidebar-section latest-post-area">
                         <h4 class="title"><b class="light-color">Latest Posts</b></h4>
 
-                        <div class="latest-post" href="#">
+                        @foreach($blogs as $blog)
+                            <div class="latest-post" href="#">
+                                <div class="l-post-image">
+                                    <img src="{{ asset('storage/blog-main-images/'.$blog['main_image_filename']) }}"
+                                         alt="Category Image">
+                                </div>
+                                <div class="post-info">
+                                    <a class="btn category-btn" href="#">{{ strtoupper($blog['tag']) }}</a>
+                                    <h5><a href="#"><b class="light-color">{{ $blog['title'] }}</b></a></h5>
+                                    <h6 class="date"><em>{{ $blog['updated_at'] }}</em></h6>
+                                </div>
+                            </div>
+
+                            @if($loop->iteration == 5)
+                                @break
+                            @endif
+                        @endforeach
+
+                        {{--<div class="latest-post" href="#">
                             <div class="l-post-image"><img src="{{ asset('storage/images/recent-post-1-150x200.jpg') }}"
                                                            alt="Category Image">
                             </div>
@@ -483,7 +502,7 @@
                                 <h5><a href="#"><b class="light-color">Smile 10 times a day</b></a></h5>
                                 <h6 class="date"><em>Monday, October 13, 2017</em></h6>
                             </div>
-                        </div>
+                        </div>--}}
 
                     </div><!-- sidebar-section latest-post-area -->
 
@@ -517,13 +536,16 @@
                     <div class="sidebar-section tags-area">
                         <h4 class="title"><b class="light-color">Tags</b></h4>
                         <ul class="tags">
-                            <li><a class="btn" href="#">design</a></li>
+                            @foreach($categories as $category)
+                                <li><a class="btn" href="#">{{ ucfirst(strtolower($category['tag'])) }}</a></li>
+                            @endforeach
+                            {{--<li><a class="btn" href="#">design</a></li>
                             <li><a class="btn" href="#">fasinon</a></li>
                             <li><a class="btn" href="#">travel</a></li>
                             <li><a class="btn" href="#">music</a></li>
                             <li><a class="btn" href="#">video</a></li>
                             <li><a class="btn" href="#">photography</a></li>
-                            <li><a class="btn" href="#">adventure</a></li>
+                            <li><a class="btn" href="#">adventure</a></li>--}}
                         </ul>
                     </div><!-- sidebar-section tags-area -->
 
