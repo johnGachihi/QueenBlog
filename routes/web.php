@@ -18,8 +18,16 @@ use App\Blog;
 
 // Visitors
 Route::get('/', function () {
+    $tags = Blog::where('status', 'published')->orderBy('tag')->pluck('tag')->unique();
+    $categories = $tags->map(function ($tag, $key) {
+        $category = [];
+        $category['tag'] = $tag;
+        $category['image'] = Blog::where('tag', $tag)->orderBy('id', 'desc')->pluck('main_image_filename')->first();
+        return $category;
+    });
     return view('visitors.index', [
-        'blogs' => Blog::where('status', 'published')->orderBy('id', 'desc')->take(10)->get()
+        'blogs' => Blog::where('status', 'published')->orderBy('id', 'desc')->take(10)->get(),
+        'categories' => $categories
     ]);
 });
 

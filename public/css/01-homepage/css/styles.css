@@ -332,7 +332,7 @@ header .main-menu li.drop-down a.mouseover + ul.drop-down-menu{ display: block;
 
 .sidebar-section .title{ margin-bottom: 30px; }
 
-.sidebar-area img{ max-width: 600px; }
+.sidebar-area img{ max-width: 600px; max-height: 150px; object-fit: cover}
 
 
 /* ABOUT AUTHOR */

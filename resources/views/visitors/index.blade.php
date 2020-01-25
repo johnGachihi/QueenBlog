@@ -413,7 +413,13 @@
 
                     <div class="sidebar-section category-area">
                         <h4 class="title"><b class="light-color">Categories</b></h4>
-                        <a class="category" href="#">
+                        @foreach($categories as $category)
+                            <a class="category" href="#">
+                                <img src="{{ asset('storage/blog-main-images/'.$category['image']) }}" alt="Category Image">
+                                <h6 class="name">{{ strtoupper($category['tag']) }}</h6>
+                            </a>
+                        @endforeach
+                        {{--<a class="category" href="#">
                             <img src="{{ asset('storage/images/category-1-400x150.jpg') }}" alt="Category Image">
                             <h6 class="name">TRAVEL</h6>
                         </a>
@@ -430,7 +436,7 @@
                         <a class="category" href="#">
                             <img src="{{ asset('storage/images/category-4-400x150.jpg') }}" alt="Category Image">
                             <h6 class="name">DESIGN</h6>
-                        </a>
+                        </a>--}}
                     </div><!-- sidebar-section category-area -->
 
                     <div class="sidebar-section latest-post-area">
@@ -593,9 +599,8 @@
 <script src="{{ asset('js/common-js/scripts.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 <script>
-    const blogs = @json($blogs);
-    console.log(blogs);
-    console.log({{ $blogs->count() }});
+    const categories = @json($categories);
+    console.log(categories);
 </script>
 </body>
 </html>
