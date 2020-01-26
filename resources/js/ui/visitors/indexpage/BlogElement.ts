@@ -17,15 +17,20 @@ export default class BlogElement {
                         ${this.getBlogImageElementAsString()}
                     </div>
 
-                    <div class="icons">
+                    <div class="icons d-flex justify-content-between">
                         <div class="left-area">
                             <!--TODO: Add tag links href-->
                             <a class="btn category-btn" href="#"><b>${this.getTagToShow()}</b></a>
                         </div>
                         <ul class="right-area social-icons">
                             <li><a href="#"><i class="ion-android-share-alt"></i>Share</a></li>
-                            <li><a href="#"><i class="ion-android-favorite-outline"></i>${this.blog.likes}</a></li>
-                            <li><a href="#"><i class="ion-ios-eye"></i>${this.blog.views}</a></li>
+                            <li>
+                                <a href="#" class="like-blog" data-blog-id="${this.blog.id}">
+                                    <i class="ion-android-favorite-outline"></i>
+                                    <span>${this.blog.likes}</span>
+                                </a>
+                            </li>
+                            <li style="padding-left: 30px"><i class="ion-ios-eye"></i>${this.blog.views}</li>
                         </ul>
                     </div>
                     <h6 class="date"><em>${this.blog.updated_at}</em></h6>

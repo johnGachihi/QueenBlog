@@ -80,13 +80,18 @@ export default class IndexPage {
     private hideLoader() {console.log('Loaded')}
 
     private setupLikeAnchors() {
-        const likeAnchors = document.getElementsByClassName('like-blog');
+        /*const likeAnchors = document.getElementsByClassName('like-blog');
         for (let i = 0; i < likeAnchors.length; i++) {
             likeAnchors[i].addEventListener('click', e => {
                 e.preventDefault();
                 Like.like(e.currentTarget as HTMLAnchorElement);
             })
-        }
+        }*/
+
+        $(document).on('click', '.like-blog', e => {
+            e.preventDefault();
+            Like.like(e.currentTarget as HTMLAnchorElement);
+        })
     }
 
     private colorFillLikedIconForLikedBlogs() {

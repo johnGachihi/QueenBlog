@@ -70,13 +70,17 @@ var IndexPage = /** @class */ (function () {
     IndexPage.prototype.showLoader = function () { console.log('Loading...'); };
     IndexPage.prototype.hideLoader = function () { console.log('Loaded'); };
     IndexPage.prototype.setupLikeAnchors = function () {
-        var likeAnchors = document.getElementsByClassName('like-blog');
-        for (var i = 0; i < likeAnchors.length; i++) {
-            likeAnchors[i].addEventListener('click', function (e) {
+        /*const likeAnchors = document.getElementsByClassName('like-blog');
+        for (let i = 0; i < likeAnchors.length; i++) {
+            likeAnchors[i].addEventListener('click', e => {
                 e.preventDefault();
-                Like_1.default.like(e.currentTarget);
-            });
-        }
+                Like.like(e.currentTarget as HTMLAnchorElement);
+            })
+        }*/
+        $(document).on('click', '.like-blog', function (e) {
+            e.preventDefault();
+            Like_1.default.like(e.currentTarget);
+        });
     };
     IndexPage.prototype.colorFillLikedIconForLikedBlogs = function () {
         var likeAnchors = document.getElementsByClassName('like-blog');

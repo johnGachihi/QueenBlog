@@ -4,7 +4,7 @@
              alt="Blog Image">
     </div>
 
-    <div class="icons">
+    <div class="icons d-flex justify-content-between">
         <div class="left-area">
             <a class="btn category-btn" href="#"><b>{{ ucfirst($blog->tag) }}</b></a>
         </div>
@@ -16,7 +16,7 @@
                     <span>{{ $blog->likes }}</span>
                 </a>
             </li>
-            <li style="padding-left: 15px"><i class="ion-ios-eye"></i>{{ $blog->views }}</li>
+            <li style="padding-left: 30px"><i class="ion-ios-eye"></i>{{ $blog->views }}</li>
         </ul>
     </div>
     <h6 class="date"><em>{{ $blog->updated_at }}</em></h6>

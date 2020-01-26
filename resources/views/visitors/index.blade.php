@@ -10,6 +10,11 @@
     <div class="main-slider">
         <div id="slider">
 
+            @foreach($blogs as $blog)
+                @component('visitors.slider-item', ['blog' => $blog])
+                @endcomponent
+            @endforeach
+
             <div class="ls-slide"
                  data-ls="bgsize:cover; bgposition:50% 50%; duration:4000; transition2d:104; kenburnsscale:1.00;">
                 <img src="{{ asset('storage/images/slider-1-1600x800.jpg') }}" class="ls-bg" alt=""/>
