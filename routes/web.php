@@ -32,6 +32,9 @@ Route::get('/', function () {
 })->name('index');
 
 Route::get('/post/{blog}', function (Blog $blog) {
+    $blog->views = $blog->views + 1;
+    $blog->save();
+
     $tags = Blog::where('status', 'published')->orderBy('tag')->pluck('tag')->unique();
     $categories = $tags->map(function ($tag, $key) {
         $category = [];
