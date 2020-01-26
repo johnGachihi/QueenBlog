@@ -29,7 +29,7 @@ Route::get('/', function () {
         'blogs' => Blog::where('status', 'published')->orderBy('id', 'desc')->take(10)->get(),
         'categories' => $categories
     ]);
-});
+})->name('index');
 
 
 // Renee
