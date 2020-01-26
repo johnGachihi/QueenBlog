@@ -22,7 +22,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/common-css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('css/common-css/ionicons.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/common-css/layerslider.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/common-css/app.css') }}"rel="stylesheet">
+
     @yield('stylesheets')
 
 </head>
@@ -347,10 +348,8 @@
 <script src="{{ asset('js/common-js/layerslider.js') }}"></script>
 <script src="{{ asset('js/common-js/scripts.js') }}"></script>
 <script src="{{ asset('js/app.js') }}" defer></script>
-<script>
-    const categories = @json($categories);
-    console.log(categories);
-    console.log({{ Route::current()->getName()}});
-</script>
+
+@yield('scripts')
+
 </body>
 </html>

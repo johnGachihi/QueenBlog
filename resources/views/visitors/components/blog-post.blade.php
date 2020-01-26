@@ -21,7 +21,7 @@
     </div>
     <h6 class="date"><em>{{ $blog->updated_at }}</em></h6>
     <h3 class="title">
-        <a href="#"><b class="title-text light-color">{{ $blog->title }}</b></a>
+        <a href="{{ url('/post/'.$blog->id) }}"><b class="title-text light-color">{{ $blog->title }}</b></a>
     </h3>
     <div style="height: 6.8em; overflow: hidden">
         <p>{!! $blog->content !!}</p>

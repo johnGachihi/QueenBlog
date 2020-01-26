@@ -13,9 +13,7 @@ $factory->define(Blog::class, function (Faker $faker) {
     $tags = ['faith', 'love', 'hope', 'joy', 'tomorrow'];
     $status = ['draft', 'published'];
     return [
-        'content' => $faker->paragraphs(20, true),
-
-//        TODO: Check if adding the below affects tests
+        'content' => generateBlogContent($faker),
         'title' => $faker->unique()->sentence,
         'main_image_filename' => $images[rand(0, count($images) - 1)],
         'tag' => $tags[rand(0, count($tags) - 1)],
@@ -25,3 +23,12 @@ $factory->define(Blog::class, function (Faker $faker) {
 
     ];
 });
+
+function generateBlogContent(Faker $faker): string {
+    $blogContent = '';
+    for ($i = 1; $i <= 20; $i++) {
+        $blogContent .= "<p>".$faker->paragraph(6)."</p>";
+    }
+
+    return $blogContent;
+}

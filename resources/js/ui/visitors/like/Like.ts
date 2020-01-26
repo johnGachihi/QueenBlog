@@ -1,5 +1,5 @@
-import BlogsService from "../../network/BlogsService";
-import {RequestOptionsValues} from "../../network/RequestOptions";
+import BlogsService from "../../../network/BlogsService";
+import {RequestOptionsValues} from "../../../network/RequestOptions";
 
 export default class Like {
 

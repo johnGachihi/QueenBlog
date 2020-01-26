@@ -31,6 +31,21 @@ Route::get('/', function () {
     ]);
 })->name('index');
 
+Route::get('/post/{blog}', function (Blog $blog) {
+    $tags = Blog::where('status', 'published')->orderBy('tag')->pluck('tag')->unique();
+    $categories = $tags->map(function ($tag, $key) {
+        $category = [];
+        $category['tag'] = $tag;
+        $category['image'] = Blog::where('tag', $tag)->orderBy('id', 'desc')->pluck('main_image_filename')->first();
+        return $category;
+    });
+    return view('visitors.single-post', [
+        'blog' => $blog,
+        'categories' => $categories,
+        'blogs' => Blog::where('status', 'published')->orderBy('id', 'desc')->take(10)->get(),
+    ]);
+});
+
 
 // Renee
 Route::prefix('only/juli')->group(function () {

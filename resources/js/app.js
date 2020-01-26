@@ -1,9 +1,10 @@
 import FirebaseConfig from "./firebase/FirebaseConfig";
 import * as firebase from "firebase";
 import FirebaseRemoteConfigInit from "./firebase/FirebaseRemoteConfigInit";
-// import IndexPage from "./ui/visitors/IndexPage";
 
 require('./bootstrap');
+
+firebase.initializeApp(FirebaseConfig.get());
 
 if(document.getElementById('write-page')) {
     import('./write/Write').then(module => {
@@ -18,11 +19,23 @@ if(document.getElementById('write-page')) {
 } else if(document.getElementById('blogs-page')) {
     import('./blogs/blogs')
 } else if (document.getElementById('index-page')) {
-    console.log('This is amazing grace');
-    firebase.initializeApp(FirebaseConfig.get());
-    const remoteConfig = FirebaseRemoteConfigInit.initAndGet(firebase);
     import('./ui/visitors/indexpage/IndexPage').then((module) => {
         const IndexPage = module.default;
-        new IndexPage(remoteConfig)
+        new IndexPage()
+    })
+}
+
+if (document.querySelector('.about-author #about-renee')) {
+    import('./ui/visitors/sidebar/SideBar')
+        .then(module => {
+            const SideBar = module.default;
+            new SideBar(FirebaseRemoteConfigInit.initAndGet(firebase))
+        })
+}
+
+if (document.querySelector('.like-blog')) {
+    import('./ui/visitors/like/LikeView').then(module => {
+        module.setupLikeAnchors();
+        module.colorFillLikedIconForLikedBlogs();
     })
 }
