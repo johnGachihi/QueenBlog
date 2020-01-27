@@ -1,5 +1,5 @@
 import Blog from "../../../models/Blog";
-import {appUrl, blogImagesRelativeUrl} from "../../../utils/constants";
+import {appUrl, blogImagesRelativeUrl, blogPostRelativeUrl} from "../../../utils/constants";
 
 export default class BlogElement {
     private blog: Blog;
@@ -23,7 +23,12 @@ export default class BlogElement {
                             <a class="btn category-btn" href="#"><b>${this.getTagToShow()}</b></a>
                         </div>
                         <ul class="right-area social-icons">
-                            <li><a href="#"><i class="ion-android-share-alt"></i>Share</a></li>
+                            <li>
+                                <a class="share-blog" href="#" data-blog-id="${this.blog.id}" data-blog-title="${this.blog.title}">
+                                    <i class="ion-android-share-alt"></i>
+                                    Share
+                                </a>
+                            </li>
                             <li>
                                 <a href="#" class="like-blog" data-blog-id="${this.blog.id}">
                                     <i class="ion-android-favorite-outline"></i>
@@ -35,7 +40,7 @@ export default class BlogElement {
                     </div>
                     <h6 class="date"><em>${this.blog.updated_at}</em></h6>
                     <h3 class="title">
-                        <a href="#"><b class="title-text light-color">${this.blog.title}</b></a>
+                        <a href="${appUrl}/${blogPostRelativeUrl}/${this.blog.id}"><b class="title-text light-color">${this.blog.title}</b></a>
                     </h3>
                     <div style="height: 6.8em; overflow: hidden">
                         <p>${this.blog.content}</p>

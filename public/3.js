@@ -38,6 +38,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.appUrl = document.querySelector('meta[name="base-url"]').getAttribute('content');
 exports.blogsPageRelativeURL = 'only/juli/blogs';
 exports.blogImagesRelativeUrl = 'storage/blog-main-images';
+exports.blogPostRelativeUrl = 'post';
 
 /***/ }),
 

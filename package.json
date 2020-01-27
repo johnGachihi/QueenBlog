@@ -58,6 +58,7 @@
         "@uppy/dashboard": "^1.5.1",
         "@uppy/thumbnail-generator": "^1.5.1",
         "firebase": "^7.7.0",
+        "goodshare.js": "^6.1.4",
         "postcss-loader": "^3.0.0",
         "raw-loader": "^3.1.0",
         "style-loader": "^1.1.3",

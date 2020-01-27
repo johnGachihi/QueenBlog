@@ -47,3 +47,7 @@
         <a id="load-more-btn" class="btn load-more-btn" href="#">LOAD OLDER POSTS</a>
     @endif
 @endsection
+
+@section('scripts')
+{{--    <script src="//cdn.jsdelivr.net/npm/goodshare.js@6/goodshare.min.js"></script>--}}
+@endsection

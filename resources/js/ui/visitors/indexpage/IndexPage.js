@@ -31,6 +31,7 @@ var IndexPage = /** @class */ (function () {
                 IndexPage.appendBlogs(page.data);
                 _this.updatePaginatedBlogsPageNumber(page.current_page);
                 LikeView_1.colorFillLikedIconForLikedBlogs();
+                // setupShareAnchors()
             });
         });
     };

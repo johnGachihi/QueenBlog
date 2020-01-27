@@ -2,7 +2,6 @@ import BlogsService from "../../../network/BlogsService";
 import {RequestOptionsValues} from "../../../network/RequestOptions";
 import Blog from "../../../models/Blog";
 import BlogElement from "./BlogElement";
-import Like from "../like/Like";
 import {colorFillLikedIconForLikedBlogs} from "../like/LikeView";
 
 export default class IndexPage {
@@ -33,6 +32,7 @@ export default class IndexPage {
                     IndexPage.appendBlogs(page.data);
                     this.updatePaginatedBlogsPageNumber(page.current_page);
                     colorFillLikedIconForLikedBlogs();
+                    // setupShareAnchors()
                 })
         })
     }

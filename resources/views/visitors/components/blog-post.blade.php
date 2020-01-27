@@ -4,7 +4,9 @@
              alt="Blog Image">
     </div>
 
-    <div class="icons d-flex justify-content-between">
+    @component('visitors.components.tag-share-like-views', ['blog' => $blog])
+    @endcomponent
+    {{--<div class="icons d-flex justify-content-between">
         <div class="left-area">
             <a class="btn category-btn" href="#"><b>{{ ucfirst($blog->tag) }}</b></a>
         </div>
@@ -18,7 +20,7 @@
             </li>
             <li style="padding-left: 30px"><i class="ion-ios-eye"></i>{{ $blog->views }}</li>
         </ul>
-    </div>
+    </div>--}}
     <h6 class="date"><em>{{ $blog->updated_at }}</em></h6>
     <h3 class="title">
         <a href="{{ url('/post/'.$blog->id) }}"><b class="title-text light-color">{{ $blog->title }}</b></a>

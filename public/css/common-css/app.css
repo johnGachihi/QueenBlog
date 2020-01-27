@@ -3,3 +3,7 @@
 
 .single-post .icons ul.social-icons > li > a > i{ margin-right: 10px; }
 .single-post .icons ul.social-icons > li > i{ margin-right: 10px; }
+
+.icon {
+    font-size: 22px !important;
+}

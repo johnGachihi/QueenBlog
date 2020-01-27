@@ -90468,25 +90468,33 @@ if (document.getElementById('write-page')) {
     }
   });
 } else if (document.getElementById('blogs-page')) {
-  Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(4), __webpack_require__.e(0), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ./blogs/blogs */ "./resources/js/blogs/blogs.js"));
+  Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(4), __webpack_require__.e(0), __webpack_require__.e(9)]).then(__webpack_require__.bind(null, /*! ./blogs/blogs */ "./resources/js/blogs/blogs.js"));
 } else if (document.getElementById('index-page')) {
-  Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(5)]).then(__webpack_require__.t.bind(null, /*! ./ui/visitors/indexpage/IndexPage */ "./resources/js/ui/visitors/indexpage/IndexPage.js", 7)).then(function (module) {
+  Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(6)]).then(__webpack_require__.t.bind(null, /*! ./ui/visitors/indexpage/IndexPage */ "./resources/js/ui/visitors/indexpage/IndexPage.js", 7)).then(function (module) {
     var IndexPage = module["default"];
     new IndexPage();
   });
 }
 
 if (document.querySelector('.about-author #about-renee')) {
-  __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.t.bind(null, /*! ./ui/visitors/sidebar/SideBar */ "./resources/js/ui/visitors/sidebar/SideBar.js", 7)).then(function (module) {
+  __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.t.bind(null, /*! ./ui/visitors/sidebar/SideBar */ "./resources/js/ui/visitors/sidebar/SideBar.js", 7)).then(function (module) {
     var SideBar = module["default"];
     new SideBar(_firebase_FirebaseRemoteConfigInit__WEBPACK_IMPORTED_MODULE_2___default.a.initAndGet(firebase__WEBPACK_IMPORTED_MODULE_1__));
   });
 }
 
 if (document.querySelector('.like-blog')) {
-  Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(8)]).then(__webpack_require__.t.bind(null, /*! ./ui/visitors/like/LikeView */ "./resources/js/ui/visitors/like/LikeView.js", 7)).then(function (module) {
+  Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(7)]).then(__webpack_require__.t.bind(null, /*! ./ui/visitors/like/LikeView */ "./resources/js/ui/visitors/like/LikeView.js", 7)).then(function (module) {
     module.setupLikeAnchors();
     module.colorFillLikedIconForLikedBlogs();
+  });
+}
+
+if (document.querySelector('.share-blog')) {
+  __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.t.bind(null, /*! ./ui/visitors/share/share */ "./resources/js/ui/visitors/share/share.js", 7)).then(function (module) {
+    // module.setupShareAnchors();
+    var Share = module.Share;
+    new Share().setupShareAnchors();
   });
 }
 

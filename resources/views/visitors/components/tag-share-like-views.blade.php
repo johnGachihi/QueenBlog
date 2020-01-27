@@ -3,7 +3,12 @@
         <a class="btn category-btn" href="#"><b>{{ ucfirst($blog->tag) }}</b></a>
     </div>
     <ul class="right-area social-icons">
-        <li><a href="#"><i class="ion-android-share-alt"></i>Share</a></li>
+        <li>
+            <a class="share-blog" href="#" data-blog-id="{{ $blog->id }}" data-blog-title="{{ $blog->title }}">
+                <i class="ion-android-share-alt"></i>
+                Share
+            </a>
+        </li>
         <li>
             <a href="#" class="like-blog" data-blog-id="{{ $blog->id }}">
                 <i class="ion-android-favorite-outline"></i>

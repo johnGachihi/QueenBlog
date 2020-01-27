@@ -39,3 +39,11 @@ if (document.querySelector('.like-blog')) {
         module.colorFillLikedIconForLikedBlogs();
     })
 }
+
+if (document.querySelector('.share-blog')) {
+    import('./ui/visitors/share/share').then(module => {
+        // module.setupShareAnchors();
+        const Share = module.Share;
+        new Share().setupShareAnchors();
+    })
+}
