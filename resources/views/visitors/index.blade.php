@@ -13,6 +13,10 @@
             @foreach($blogs as $blog)
                 @component('visitors.components.slider-item', ['blog' => $blog])
                 @endcomponent
+
+                @if($loop->iteration == 1)
+                    @break
+                @endif
             @endforeach
         </div><!-- slider -->
     </div><!-- main-slider -->
