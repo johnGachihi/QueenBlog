@@ -85,7 +85,7 @@
                     <div class="sidebar-section category-area">
                         <h4 class="title"><b class="light-color">Categories</b></h4>
                         @foreach($categories as $category)
-                            <a class="category" href="#">
+                            <a class="category" href="{{ url('categories/'.$category['tag']) }}">
                                 <img src="{{ asset('storage/blog-main-images/'.$category['image']) }}"
                                      alt="Category Image">
                                 <h6 class="name">{{ strtoupper($category['tag']) }}</h6>
@@ -122,8 +122,8 @@
                                          alt="Category Image">
                                 </div>
                                 <div class="post-info">
-                                    <a class="btn category-btn" href="#">{{ strtoupper($blog['tag']) }}</a>
-                                    <h5><a href="#"><b class="light-color">{{ $blog['title'] }}</b></a></h5>
+                                    <a class="btn category-btn" href="{{ url('categories/'.$blog->tag) }}">{{ strtoupper($blog['tag']) }}</a>
+                                    <h5><a href="{{ url('post/'.$blog->id) }}"><b class="light-color">{{ $blog['title'] }}</b></a></h5>
                                     <h6 class="date"><em>{{ $blog['updated_at'] }}</em></h6>
                                 </div>
                             </div>
@@ -209,7 +209,7 @@
                         <h4 class="title"><b class="light-color">Tags</b></h4>
                         <ul class="tags">
                             @foreach($categories as $category)
-                                <li><a class="btn" href="#">{{ ucfirst(strtolower($category['tag'])) }}</a></li>
+                                <li><a class="btn" href="{{ url('categories/'.$blog->tag) }}">{{ ucfirst(strtolower($category['tag'])) }}</a></li>
                             @endforeach
                             {{--<li><a class="btn" href="#">design</a></li>
                             <li><a class="btn" href="#">fasinon</a></li>

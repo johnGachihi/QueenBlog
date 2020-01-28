@@ -20,7 +20,7 @@ export default class BlogElement {
                     <div class="icons d-flex justify-content-between">
                         <div class="left-area">
                             <!--TODO: Add tag links href-->
-                            <a class="btn category-btn" href="#"><b>${this.getTagToShow()}</b></a>
+                            <a class="btn category-btn" href="categories/${this.blog.tag}"><b>${this.getTagToShow()}</b></a>
                         </div>
                         <ul class="right-area social-icons">
                             <li>
@@ -46,7 +46,7 @@ export default class BlogElement {
                         <p>${this.blog.content}</p>
                     </div>
                     <!--TODO: Add link href-->
-                    <a class="btn read-more-btn" href="#"><b>READ MORE</b></a>
+                    <a class="btn read-more-btn" href="${appUrl}/${blogPostRelativeUrl}/${this.blog.id}"><b>READ MORE</b></a>
                 </div>
             </div>
         `.trim();

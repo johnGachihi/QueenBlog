@@ -10,7 +10,7 @@
         <div class="image-wrapper">
             <img src="{{ asset('storage/blog-main-images/'.$blog->main_image_filename) }}" alt="Blog Image">
         </div>
-
+        {{--TODO: Correct title and others--}}
         @component('visitors.components.tag-share-like-views', ['blog' => $blog, 'withoutTag' => false])
         @endcomponent
 

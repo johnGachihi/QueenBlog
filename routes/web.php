@@ -58,7 +58,7 @@ Route::get('/categories/{tag?}', function ($tag = null) {
         'tags' => $tags,
         'blogs' => Blog::where('status', 'published')->where('tag', $tag)->get()
     ]);
-});
+})->name('categories');
 
 
 // Renee

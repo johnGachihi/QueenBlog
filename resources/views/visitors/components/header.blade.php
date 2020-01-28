@@ -26,7 +26,7 @@
 
     </div><!-- top-menu -->
 
-    <div class="middle-menu center-text"><a href="#" class="logo"><img src="{{ asset('storage/images/logo.png') }}"
+    <div class="middle-menu center-text"><a href="{{ url('/') }}" class="logo"><img src="{{ asset('storage/images/logo.png') }}"
                                                                        alt="Logo Image"></a></div>
 
     <div class="bottom-area">
@@ -34,7 +34,7 @@
         <div class="menu-nav-icon" data-nav-menu="#main-menu"><i class="ion-navicon"></i></div>
 
         <ul class="main-menu visible-on-click" id="main-menu">
-            <li class="drop-down"><a href="#!">HOME<i class="ion-ios-arrow-down"></i></a>
+            {{--<li class="drop-down"><a href="#!">HOME<i class="ion-ios-arrow-down"></i></a>
 
                 <ul class="drop-down-menu">
                     <li><a href="#">FEATURED</a></li>
@@ -48,10 +48,11 @@
                     </li>
                 </ul>
 
-            </li>
+            </li>--}}
+            <li><a href="{{ url('/') }}" class="@if(Route::is('index')) active @endif">HOME</a></li>
             <li><a href="#">FEATURED</a></li>
             <li><a href="03-About-me.html">ABOUT</a></li>   <!-- TODO -->
-            <li><a href="{{ url('categories') }}" @if(Request::is('categories*')) style="color: #ffad4d" @endif>CATEGORIES</a></li>
+            <li><a href="{{ url('categories') }}" class="@if(Route::is('categories')) active @endif">CATEGORIES</a></li>
             <li><a href="04-Contact.html">CONTACT</a></li>  <!-- TODO -->
         </ul><!-- main-menu -->
 

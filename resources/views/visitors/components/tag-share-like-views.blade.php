@@ -1,6 +1,6 @@
 <div class="icons @if(!$withoutTag) d-flex justify-content-between @endif">
     <div class="left-area @if($withoutTag) d-none @endif">
-        <a class="btn category-btn" href="#"><b>{{ ucfirst($blog->tag) }}</b></a>
+        <a class="btn category-btn" href="{{ url('categories/'.$blog->tag) }}"><b>{{ ucfirst($blog->tag) }}</b></a>
     </div>
     <ul class="right-area social-icons">
         <li>
