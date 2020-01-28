@@ -63,6 +63,8 @@ Route::get('/categories/{tag?}', function ($tag = null) {
 
 // Renee
 Route::prefix('only/juli')->group(function () {
+    Route::redirect('/', 'juli/blogs');  //TODO: check the redirect url
+
     Route::get('write', function () {
         return view('write');
     })->name('write');
