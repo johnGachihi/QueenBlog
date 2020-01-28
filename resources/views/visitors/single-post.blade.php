@@ -11,7 +11,7 @@
             <img src="{{ asset('storage/blog-main-images/'.$blog->main_image_filename) }}" alt="Blog Image">
         </div>
 
-        @component('visitors.components.tag-share-like-views', ['blog' => $blog])
+        @component('visitors.components.tag-share-like-views', ['blog' => $blog, 'withoutTag' => false])
         @endcomponent
 
         <p class="date"><em>{{ $blog->updated_at }}</em></p>

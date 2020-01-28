@@ -49,6 +49,17 @@ Route::get('/post/{blog}', function (Blog $blog) {
     ]);
 });
 
+Route::get('/categories/{tag?}', function ($tag = null) {
+    $tags = Blog::where('status', 'published')->orderBy('tag')->pluck('tag')->unique();
+    if($tag == null) {
+        $tag = $tags->get(0);
+    }
+    return view('visitors.categories', [
+        'tags' => $tags,
+        'blogs' => Blog::where('status', 'published')->where('tag', $tag)->get()
+    ]);
+});
+
 
 // Renee
 Route::prefix('only/juli')->group(function () {

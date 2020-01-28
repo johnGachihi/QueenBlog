@@ -90474,6 +90474,8 @@ if (document.getElementById('write-page')) {
     var IndexPage = module["default"];
     new IndexPage();
   });
+} else if (document.getElementById('categories-page')) {
+  __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ./ui/visitors/categoriespage/categoriesPage */ "./resources/js/ui/visitors/categoriespage/categoriesPage.js"));
 }
 
 if (document.querySelector('.about-author #about-renee')) {

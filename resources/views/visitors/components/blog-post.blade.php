@@ -4,7 +4,14 @@
              alt="Blog Image">
     </div>
 
-    @component('visitors.components.tag-share-like-views', ['blog' => $blog])
+    @php
+    $tagShareLikeViewOptions = ['blog' => $blog, 'withoutTag' => false];
+    if(isset($withoutTag)){
+        $tagShareLikeViewOptions['withoutTag'] = $withoutTag;
+    }
+    @endphp
+
+    @component('visitors.components.tag-share-like-views', $tagShareLikeViewOptions)
     @endcomponent
     {{--<div class="icons d-flex justify-content-between">
         <div class="left-area">

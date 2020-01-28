@@ -23,6 +23,8 @@ if(document.getElementById('write-page')) {
         const IndexPage = module.default;
         new IndexPage()
     })
+} else if (document.getElementById('categories-page')) {
+    import('./ui/visitors/categoriespage/categoriesPage')
 }
 
 if (document.querySelector('.about-author #about-renee')) {

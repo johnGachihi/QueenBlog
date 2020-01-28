@@ -51,9 +51,10 @@
             </li>
             <li><a href="#">FEATURED</a></li>
             <li><a href="03-About-me.html">ABOUT</a></li>   <!-- TODO -->
-            <li><a href="#">CATEGORIES</a></li>
+            <li><a href="{{ url('categories') }}" @if(Request::is('categories*')) style="color: #ffad4d" @endif>CATEGORIES</a></li>
             <li><a href="04-Contact.html">CONTACT</a></li>  <!-- TODO -->
         </ul><!-- main-menu -->
 
     </div><!-- conatiner -->
 </header>
+
