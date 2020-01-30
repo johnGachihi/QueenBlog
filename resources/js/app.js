@@ -57,3 +57,10 @@ if (document.getElementById('logout')) {
         })
     })
 }
+
+if (document.getElementById('about-me-side-image-edit')) {
+    import('./ui/renee/edit-aboutme/editimages').then(module => {
+        module.setupEditSideImageButton();
+        module.setupEditSideNameButton()
+    })
+}

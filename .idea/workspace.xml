@@ -2,18 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ba4312e-56ad-419e-b4b7-cc2a10cfd510" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/QueenBlog.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/QueenBlog.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/6.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/6.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/common-css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/common-css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/ui/visitors/indexpage/BlogElement.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/visitors/indexpage/BlogElement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/ui/visitors/indexpage/BlogElement.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/visitors/indexpage/BlogElement.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/ui/visitors/indexpage/BlogElement.ts" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/visitors/indexpage/BlogElement.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/BlogFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/BlogFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/10.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/10.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/11.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/11.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/7.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/7.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/8.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/8.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/9.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/9.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/visitors/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/visitors/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/visitors/components/blog-post.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/visitors/components/blog-post.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/visitors/components/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/visitors/components/header.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/visitors/components/slider-item.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/visitors/components/slider-item.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/visitors/components/tag-share-like-views.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/visitors/components/tag-share-like-views.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/visitors/single-post.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/visitors/single-post.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/visitors/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/visitors/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,8 +36,8 @@
       <list>
         <option value="tsconfig.json" />
         <option value="CSS File" />
-        <option value="TypeScript File" />
         <option value="JavaScript File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -130,6 +134,9 @@
       <path value="$PROJECT_DIR$/vendor/sebastian/resource-operations" />
       <path value="$PROJECT_DIR$/vendor/phpoption/phpoption" />
       <path value="$PROJECT_DIR$/vendor/laravel/ui" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/event-manager" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
     </include_path>
   </component>
   <component name="ProjectId" id="1WL2qZVBDQXOAwo6K785Wv3cTST" />
@@ -221,6 +228,7 @@
       <workItem from="1579941543356" duration="32780000" />
       <workItem from="1580017442730" duration="37069000" />
       <workItem from="1580109899012" duration="8675000" />
+      <workItem from="1580385712655" duration="25308000" />
     </task>
     <servers />
   </component>
@@ -236,7 +244,9 @@
         <option value="$PROJECT_DIR$/resources/js/write/blogMainImageInput/BlogImageInputConfigOptions.js" />
         <option value="$PROJECT_DIR$/resources/js/ui/visitors/indexpage/BlogElement.js" />
         <option value="$PROJECT_DIR$/resources/js/network/Service.js" />
+        <option value="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editimages.js.map" />
         <option value="$PROJECT_DIR$/resources/js/network/RequestOptions.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editimages.js" />
         <option value="$PROJECT_DIR$/resources/js/network/BlogsService.js.map" />
         <option value="$PROJECT_DIR$/resources/js/models/Model.js" />
         <option value="$PROJECT_DIR$/resources/js/network/Service.js.map" />
@@ -268,8 +278,9 @@
         <option value="$PROJECT_DIR$/resources/js/write/savedStatusIndicator/SavedStatusIndicatorImpl.js" />
         <option value="$PROJECT_DIR$/resources/js/write/savedStatusIndicator/SavedStatusIndicatorImpl.js.map" />
         <option value="$PROJECT_DIR$/resources/js/network/RequestOptions.js" />
-        <option value="$PROJECT_DIR$/resources/js/ui/visitors/categoriespage/categoriesPage.js.map" />
         <option value="$PROJECT_DIR$/resources/js/ui/visitors/categoriespage/categoriesPage.js" />
+        <option value="$PROJECT_DIR$/resources/js/models/AboutMe.js" />
+        <option value="$PROJECT_DIR$/resources/js/models/AboutMe.js.map" />
       </list>
     </option>
   </component>
@@ -302,10 +313,10 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="449" y="145" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/67.27.1299.741@67.27.1299.741" timestamp="1579635355926" />
-    <state x="449" y="154" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1579887255724">
+    <state x="449" y="154" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1580395472851">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="449" y="154" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/67.27.1299.741@67.27.1299.741" timestamp="1579887255724" />
+    <state x="449" y="154" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/67.27.1299.741@67.27.1299.741" timestamp="1580395472851" />
     <state x="167" y="125" width="1099" height="543" key="DiffContextDialog" timestamp="1579607529209">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
@@ -330,10 +341,14 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state width="1253" height="240" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1579191417960" />
-    <state x="518" y="340" width="399" height="149" key="NewPhpFileDialog" timestamp="1580134829791">
+    <state x="471" y="210" width="481" height="373" key="NewPhpClassDialog" timestamp="1580395219630">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="518" y="340" width="399" height="149" key="NewPhpFileDialog/67.27.1299.741@67.27.1299.741" timestamp="1580134829791" />
+    <state x="471" y="210" width="481" height="373" key="NewPhpClassDialog/67.27.1299.741@67.27.1299.741" timestamp="1580395219630" />
+    <state x="518" y="340" width="399" height="149" key="NewPhpFileDialog" timestamp="1580395249832">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="518" y="340" width="399" height="149" key="NewPhpFileDialog/67.27.1299.741@67.27.1299.741" timestamp="1580395249832" />
     <state x="205" y="31" key="SettingsEditor" timestamp="1579446222862">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
@@ -342,18 +357,18 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state width="501" height="446" key="SwitcherDM/67.27.1299.741@67.27.1299.741" timestamp="1580213597193" />
-    <state x="372" y="224" key="com.intellij.ide.util.TipDialog" timestamp="1580111982066">
+    <state x="372" y="224" key="com.intellij.ide.util.TipDialog" timestamp="1580385718827">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="372" y="224" key="com.intellij.ide.util.TipDialog/67.27.1299.741@67.27.1299.741" timestamp="1580111982066" />
+    <state x="372" y="224" key="com.intellij.ide.util.TipDialog/67.27.1299.741@67.27.1299.741" timestamp="1580385718827" />
     <state x="380" y="175" key="run.anything.popup" timestamp="1578995080600">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="380" y="175" key="run.anything.popup/67.27.1299.741@67.27.1299.741" timestamp="1578995080600" />
-    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1579966423779">
+    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1580388138400">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup/67.27.1299.741@67.27.1299.741" timestamp="1579966423779" />
+    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup/67.27.1299.741@67.27.1299.741" timestamp="1580388138400" />
     <state x="436" y="310" width="540" height="172" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1580140327858">
       <screen x="67" y="27" width="1299" height="741" />
     </state>

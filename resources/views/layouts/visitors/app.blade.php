@@ -16,6 +16,8 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Maven+Pro&display=swap" rel="stylesheet">
 
+    <!-- Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Stylesheets -->
 
@@ -46,16 +48,36 @@
                 <div class="sidebar-area">
 
                     <div class="sidebar-section about-author center-text">
-                        <div class="author-image"><img src="{{ asset('storage/images/slider-2-1600x800.jpg') }}"
-                                                       width=200 height=200
-                                                       alt="Author Image"></div>
+                        <div class="author-image">
+                            <img src="{{ asset('storage/images/slider-2-1600x800.jpg') }}"
+                                width=200 height=200 alt="Author Image"/>
+                            <a id="about-me-side-image-edit" href="#">
+                                <i class="material-icons" style="font-size: 15px">edit</i>
+                            </a>
+                        </div>
 
                         <ul class="social-icons">
                             <li><a href="#"><i class="ion-social-facebook-outline"></i></a></li>
                             <li><a href="#"><i class="ion-social-instagram-outline"></i></a></li>
                         </ul><!-- right-area -->
 
-                        <h4 class="author-name"><b class="light-color" contenteditable="true">Renee Tikolo</b></h4>
+                        <div style="margin-top: 20px">
+                            <div class="d-flex justify-content-center">
+
+                                <h4 class="author-name" style="margin: 0;"><b id="about-me-side-name" class="light-color">{{ $about_me->about_me_side_name }}</b></h4>
+
+                                @auth
+                                <a id="about-me-side-name-edit" href="#"><i class="material-icons" style="font-size: 15px">edit</i></a>
+                                <div id="save-and-cancel-about-me-side-name-buttons" class="d-none m-0">
+                                    <a id="save-about-me-side-name" href="#"><i class="material-icons" style="font-size: 15px">save</i></a>
+                                    <a id="cancel-about-me-side-name" href="#"><i class="material-icons" style="font-size: 15px">cancel</i></a>
+                                </div>
+                                <i id="loading-about-me-side-name" class="material-icons d-none">hourglass_empty</i>
+                                @endauth
+                            </div>
+                        </div>
+
+                        <i class="material-icons" style="font-size: 15px">edit</i>
                         <p id="about-renee"></p>
 
 

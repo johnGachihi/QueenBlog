@@ -54,6 +54,9 @@
             <li><a href="03-About-me.html">ABOUT</a></li>   <!-- TODO -->
             <li><a href="{{ url('categories') }}" class="@if(Route::is('categories')) active @endif">CATEGORIES</a></li>
             <li><a href="04-Contact.html">CONTACT</a></li>  <!-- TODO -->
+            @auth
+            <li><a href="#" id="logout">LOGOUT</a></li>
+            @endauth
         </ul><!-- main-menu -->
 
     </div><!-- conatiner -->

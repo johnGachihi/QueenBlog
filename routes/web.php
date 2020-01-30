@@ -14,6 +14,7 @@
 // TODO: Use controllers
 
 
+use App\AboutMe;
 use App\Blog;
 
 // Visitors
@@ -27,7 +28,8 @@ Route::get('/', function () {
     });
     return view('visitors.index', [
         'blogs' => Blog::where('status', 'published')->orderBy('id', 'desc')->take(10)->get(),
-        'categories' => $categories
+        'categories' => $categories,
+        'about_me' => AboutMe::first()
     ]);
 })->name('index');
 
@@ -80,6 +82,8 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('blog/{blog}', 'BlogsController@show');
     });
+
+    Route::post('about_me', 'AboutMeController@update');
 
 });
 

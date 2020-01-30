@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[7],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[12],{
 
 /***/ "./resources/js/network/HttpMethod.js":
 /*!********************************************!*\
@@ -57,10 +57,10 @@ exports.RequestOptionsValues = RequestOptionsValues;
 
 /***/ }),
 
-/***/ "./resources/js/utils/logout.js":
-/*!**************************************!*\
-  !*** ./resources/js/utils/logout.js ***!
-  \**************************************/
+/***/ "./resources/js/ui/renee/edit-aboutme/editimages.js":
+/*!**********************************************************!*\
+  !*** ./resources/js/ui/renee/edit-aboutme/editimages.js ***!
+  \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -212,47 +212,101 @@ var __generator = this && this.__generator || function (thisArg, body) {
 
 Object.defineProperty(exports, "__esModule", {
   value: true
-}); //TODO: Refactor network-Service and remove this function
+});
 
-var RequestOptions_1 = __webpack_require__(/*! ../network/RequestOptions */ "./resources/js/network/RequestOptions.js");
+var RequestOptions_1 = __webpack_require__(/*! ../../../network/RequestOptions */ "./resources/js/network/RequestOptions.js");
 
-var HttpMethod_1 = __webpack_require__(/*! ../network/HttpMethod */ "./resources/js/network/HttpMethod.js");
+var HttpMethod_1 = __webpack_require__(/*! ../../../network/HttpMethod */ "./resources/js/network/HttpMethod.js");
 
-function logout() {
+function setupEditSideImageButton() {
+  document.getElementById('about-me-side-image-edit').addEventListener('click', function (e) {
+    e.preventDefault();
+    console.log('about-me-side-image-edit');
+  });
+}
+
+exports.setupEditSideImageButton = setupEditSideImageButton;
+var aboutMeSideName = document.getElementById('about-me-side-name');
+var saveAndCancelAboutMeSideNameButtons = document.getElementById('save-and-cancel-about-me-side-name-buttons');
+var loadingAboutMeSideName = document.getElementById('loading-about-me-side-name');
+
+function setupEditSideNameButton() {
+  var editSideNameButton = document.getElementById('about-me-side-name-edit');
+  editSideNameButton.addEventListener('click', function (ev) {
+    ev.preventDefault();
+    aboutMeSideName.setAttribute('contenteditable', 'true');
+    aboutMeSideName.focus();
+    document.execCommand('selectAll', false, null);
+    hide(editSideNameButton);
+    show(saveAndCancelAboutMeSideNameButtons);
+  });
+}
+
+exports.setupEditSideNameButton = setupEditSideNameButton;
+aboutMeSideName.addEventListener('input', function (ev) {
+  // TODO: Enable save and cancel buttons here
+  console.log('Editting................');
+});
+var saveAboutMeSideName = document.getElementById('save-about-me-side-name');
+saveAboutMeSideName.addEventListener('click', function (ev) {
+  ev.preventDefault();
+  hide(saveAndCancelAboutMeSideNameButtons);
+  show(loadingAboutMeSideName);
+  persistAboutMeSideName().then(function (res) {
+    hide(loadingAboutMeSideName);
+
+    if (res.status != 'ok') {// TODO: Revert and ask user to try again or try again later
+    }
+  })["catch"](function (err) {// TODO: Revert and ask user to try again or try again later
+  });
+  aboutMeSideName.blur();
+});
+
+function hide(element) {
+  element.classList.add('d-none');
+}
+
+function show(element) {
+  element.classList.remove('d-none');
+}
+
+function persistAboutMeSideName() {
   return __awaiter(this, void 0, void 0, function () {
-    var _a, csrfToken, baseUrl, url, response;
+    var _a, csrfToken, baseUrl, fetchUrl, response;
 
     return __generator(this, function (_b) {
       switch (_b.label) {
         case 0:
           _a = RequestOptions_1.RequestOptionsValues.get(), csrfToken = _a.csrfToken, baseUrl = _a.baseUrl;
-          url = baseUrl + "/logout";
+          fetchUrl = baseUrl + "/about_me";
           return [4
           /*yield*/
-          , fetch(url, {
+          , fetch(fetchUrl, {
             method: HttpMethod_1.HttpMethod.POST,
             headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
               'X-CSRF-TOKEN': csrfToken
             },
-            redirect: 'follow'
+            body: JSON.stringify({
+              "about_me_side_name": aboutMeSideName.innerHTML
+            })
           })];
 
         case 1:
           response = _b.sent();
+          return [4
+          /*yield*/
+          , response.json()];
 
-          if (response.redirected) {
-            window.location.href = response.url;
-          }
-
+        case 2:
           return [2
           /*return*/
-          ];
+          , _b.sent()];
       }
     });
   });
 }
-
-exports.logout = logout;
 
 /***/ })
 

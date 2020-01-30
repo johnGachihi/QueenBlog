@@ -53,5 +53,8 @@
 @endsection
 
 @section('scripts')
-{{--    <script src="//cdn.jsdelivr.net/npm/goodshare.js@6/goodshare.min.js"></script>--}}
+    <script>
+        console.log(@json($about_me));
+        const aboutMe = @json($about_me);
+    </script>
 @endsection
