@@ -6,7 +6,7 @@
          data-ls="offsetyin:100%; offsetxout:-50%; durationin:800; delayin:100; durationout:400; parallaxlevel:0;">
         {{--TODO: setup anchor--}}
         <a class="btn" href="{{ url('categories/'.$blog->tag) }}">{{ ucfirst(strtolower($blog->tag)) }}</a>
-        <h3 class="title" style="max-width: 550px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">
+        <h3 class="title" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap">
             <a href="{{ url('post/'.$blog->id) }}"><b>{{ $blog->title }}</b></a>
         </h3>
         <h6>{{ $blog->updated_at }}</h6>
