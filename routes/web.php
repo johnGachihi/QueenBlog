@@ -62,21 +62,25 @@ Route::get('/categories/{tag?}', function ($tag = null) {
 
 
 // Renee
-Route::prefix('only/juli')->group(function () {
-    Route::redirect('/', 'juli/blogs');  //TODO: check the redirect url
+Route::middleware(['auth'])->group(function () {
 
-    Route::get('write', function () {
-        return view('write');
-    })->name('write');
+    Route::prefix('only/juli')->group(function () {
+        Route::redirect('/', 'juli/blogs');  //TODO: check the redirect url
 
-    Route::get('blogs', function () {
-        return view('blogs', [
-            'draftBlogs' => Blog::where('status', 'draft')->get(),
-            'publishedBlogs' => Blog::where('status', 'published')->get()
-        ]);
+        Route::get('write', function () {
+            return view('write');
+        })->name('write');
+
+        Route::get('blogs', function () {
+            return view('blogs', [
+                'draftBlogs' => Blog::where('status', 'draft')->get(),
+                'publishedBlogs' => Blog::where('status', 'published')->get()
+            ]);
+        });
+
+        Route::get('blog/{blog}', 'BlogsController@show');
     });
 
-    Route::get('blog/{blog}', 'BlogsController@show');
 });
 
 /**
@@ -87,3 +91,9 @@ Route::post('blog/{blog}', 'BlogsController@update');
 Route::delete('blog/{blog}', 'BlogsController@destroy');
 Route::get('blog/paginated', 'BlogsController@paginated');
 Route::get('blog/like/{blog}', 'BlogsController@like');
+
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -6,7 +6,7 @@ require('./bootstrap');
 
 firebase.initializeApp(FirebaseConfig.get());
 
-if(document.getElementById('write-page')) {
+if (document.getElementById('write-page')) {
     import('./write/Write').then(module => {
         const Write = module.default;
         // const write = new Write();
@@ -16,7 +16,7 @@ if(document.getElementById('write-page')) {
             new Write(blog)
         }
     })
-} else if(document.getElementById('blogs-page')) {
+} else if (document.getElementById('blogs-page')) {
     import('./blogs/blogs')
 } else if (document.getElementById('index-page')) {
     import('./ui/visitors/indexpage/IndexPage').then((module) => {
@@ -47,5 +47,13 @@ if (document.querySelector('.share-blog')) {
         // module.setupShareAnchors();
         const Share = module.Share;
         new Share().setupShareAnchors();
+    })
+}
+
+if (document.getElementById('logout')) {
+    import('./utils/logout').then(module => {
+        document.getElementById('logout').addEventListener('click', ev => {
+            module.logout().then()
+        })
     })
 }

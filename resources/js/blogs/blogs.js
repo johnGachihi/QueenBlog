@@ -88,7 +88,6 @@ $(() => {
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="blog-entry-menu-link">
                         <a class="dropdown-item" href="${appUrl}/only/juli/blog/${blog.id}">Edit</a>
                         <a class="dropdown-item delete-blog-entry-menu-item" data-blog-id="${blog.id}" href="#">Delete</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
                       </div>
                 </div>
             </div>

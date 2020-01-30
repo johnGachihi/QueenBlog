@@ -90500,6 +90500,14 @@ if (document.querySelector('.share-blog')) {
   });
 }
 
+if (document.getElementById('logout')) {
+  __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.t.bind(null, /*! ./utils/logout */ "./resources/js/utils/logout.js", 7)).then(function (module) {
+    document.getElementById('logout').addEventListener('click', function (ev) {
+      module.logout().then();
+    });
+  });
+}
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

@@ -55,7 +55,7 @@
                             <li><a href="#"><i class="ion-social-instagram-outline"></i></a></li>
                         </ul><!-- right-area -->
 
-                        <h4 class="author-name"><b class="light-color">Renee Tikolo</b></h4>
+                        <h4 class="author-name"><b class="light-color" contenteditable="true">Renee Tikolo</b></h4>
                         <p id="about-renee"></p>
 
 

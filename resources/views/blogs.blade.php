@@ -20,6 +20,7 @@
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
             <a class="dropdown-item active" href="{{ url('/only/juli/blogs') }}">Your blogs</a>
             <a class="dropdown-item" href="{{ url('/only/juli/write') }}">New Blog</a>
+            <a class="dropdown-item" href="#" id="logout">Logout</a>
         </div>
     </div>
 
