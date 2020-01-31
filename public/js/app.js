@@ -90468,25 +90468,26 @@ if (document.getElementById('write-page')) {
     }
   });
 } else if (document.getElementById('blogs-page')) {
-  Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(4), __webpack_require__.e(0), __webpack_require__.e(11)]).then(__webpack_require__.bind(null, /*! ./blogs/blogs */ "./resources/js/blogs/blogs.js"));
+  Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(4), __webpack_require__.e(0), __webpack_require__.e(12)]).then(__webpack_require__.bind(null, /*! ./blogs/blogs */ "./resources/js/blogs/blogs.js"));
 } else if (document.getElementById('index-page')) {
   Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(6)]).then(__webpack_require__.t.bind(null, /*! ./ui/visitors/indexpage/IndexPage */ "./resources/js/ui/visitors/indexpage/IndexPage.js", 7)).then(function (module) {
     var IndexPage = module["default"];
     new IndexPage();
   });
 } else if (document.getElementById('categories-page')) {
-  __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ./ui/visitors/categoriespage/categoriesPage */ "./resources/js/ui/visitors/categoriespage/categoriesPage.js"));
+  __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ./ui/visitors/categoriespage/categoriesPage */ "./resources/js/ui/visitors/categoriespage/categoriesPage.js"));
 }
+/*if (document.querySelector('.about-author #about-renee')) {
+    import('./ui/visitors/sidebar/SideBar')
+        .then(module => {
+            const SideBar = module.default;
+            new SideBar(FirebaseRemoteConfigInit.initAndGet(firebase))
+        })
+}*/
 
-if (document.querySelector('.about-author #about-renee')) {
-  __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.t.bind(null, /*! ./ui/visitors/sidebar/SideBar */ "./resources/js/ui/visitors/sidebar/SideBar.js", 7)).then(function (module) {
-    var SideBar = module["default"];
-    new SideBar(_firebase_FirebaseRemoteConfigInit__WEBPACK_IMPORTED_MODULE_2___default.a.initAndGet(firebase__WEBPACK_IMPORTED_MODULE_1__));
-  });
-}
 
 if (document.querySelector('.like-blog')) {
-  Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(8)]).then(__webpack_require__.t.bind(null, /*! ./ui/visitors/like/LikeView */ "./resources/js/ui/visitors/like/LikeView.js", 7)).then(function (module) {
+  Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(9)]).then(__webpack_require__.t.bind(null, /*! ./ui/visitors/like/LikeView */ "./resources/js/ui/visitors/like/LikeView.js", 7)).then(function (module) {
     module.setupLikeAnchors();
     module.colorFillLikedIconForLikedBlogs();
   });
@@ -90501,7 +90502,7 @@ if (document.querySelector('.share-blog')) {
 }
 
 if (document.getElementById('logout')) {
-  __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.t.bind(null, /*! ./utils/logout */ "./resources/js/utils/logout.js", 7)).then(function (module) {
+  __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.t.bind(null, /*! ./utils/logout */ "./resources/js/utils/logout.js", 7)).then(function (module) {
     document.getElementById('logout').addEventListener('click', function (ev) {
       module.logout().then();
     });
@@ -90509,9 +90510,8 @@ if (document.getElementById('logout')) {
 }
 
 if (document.getElementById('about-me-side-image-edit')) {
-  __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.t.bind(null, /*! ./ui/renee/edit-aboutme/editimages */ "./resources/js/ui/renee/edit-aboutme/editimages.js", 7)).then(function (module) {
-    module.setupEditSideImageButton();
-    module.setupEditSideNameButton();
+  __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.t.bind(null, /*! ./ui/renee/edit-aboutme/editimages */ "./resources/js/ui/renee/edit-aboutme/editimages.js", 7)).then(function (module) {// module.setupEditSideImageButton();
+    // module.setupEditSideNameButton()
   });
 }
 

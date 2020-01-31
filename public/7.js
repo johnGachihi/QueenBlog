@@ -57,10 +57,10 @@ exports.RequestOptionsValues = RequestOptionsValues;
 
 /***/ }),
 
-/***/ "./resources/js/utils/logout.js":
-/*!**************************************!*\
-  !*** ./resources/js/utils/logout.js ***!
-  \**************************************/
+/***/ "./resources/js/ui/renee/edit-aboutme/editimages.js":
+/*!**********************************************************!*\
+  !*** ./resources/js/ui/renee/edit-aboutme/editimages.js ***!
+  \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -212,47 +212,235 @@ var __generator = this && this.__generator || function (thisArg, body) {
 
 Object.defineProperty(exports, "__esModule", {
   value: true
-}); //TODO: Refactor network-Service and remove this function
+});
 
-var RequestOptions_1 = __webpack_require__(/*! ../network/RequestOptions */ "./resources/js/network/RequestOptions.js");
+var RequestOptions_1 = __webpack_require__(/*! ../../../network/RequestOptions */ "./resources/js/network/RequestOptions.js");
 
-var HttpMethod_1 = __webpack_require__(/*! ../network/HttpMethod */ "./resources/js/network/HttpMethod.js");
+var HttpMethod_1 = __webpack_require__(/*! ../../../network/HttpMethod */ "./resources/js/network/HttpMethod.js");
 
-function logout() {
+var ElementUtils_1 = __webpack_require__(/*! ../../../utils/ElementUtils */ "./resources/js/utils/ElementUtils.js");
+/*
+export function setupEditSideImageButton() {
+    document.getElementById('about-me-side-image-edit').addEventListener('click', e => {
+        e.preventDefault();
+        console.log('about-me-side-image-edit');
+    })
+}
+
+const aboutMeSideName = document.getElementById('about-me-side-name');
+const saveAndCancelAboutMeSideNameButtons =
+    document.getElementById('save-and-cancel-about-me-side-name-buttons');
+const loadingAboutMeSideName = document.getElementById('loading-about-me-side-name');
+
+
+export function setupEditSideNameButton() {
+    const editSideNameButton = document.getElementById('about-me-side-name-edit');
+    editSideNameButton.addEventListener('click', ev => {
+        ev.preventDefault();
+        aboutMeSideName.setAttribute('contenteditable', 'true');
+        aboutMeSideName.focus();
+
+        document.execCommand('selectAll',false,null);
+
+        hide(editSideNameButton);
+
+        show(saveAndCancelAboutMeSideNameButtons)
+    })
+}
+
+
+aboutMeSideName.addEventListener('input', ev => {
+    // TODO: Enable save and cancel buttons here
+    console.log('Editting................')
+});
+
+const saveAboutMeSideName = document.getElementById('save-about-me-side-name');
+saveAboutMeSideName.addEventListener('click', ev => {
+    ev.preventDefault();
+    hide(saveAndCancelAboutMeSideNameButtons);
+    show(loadingAboutMeSideName);
+    aboutMeSideName.setAttribute('contenteditable', 'true');
+
+    persistAboutMeSideName().then(res => {
+        hide(loadingAboutMeSideName);
+        if (res.status != 'ok') {
+            // TODO: Revert and ask user to try again or try again later
+        }
+    }).catch(err => {
+        // TODO: Revert and ask user to try again or try again later
+    });
+    aboutMeSideName.blur();
+});
+
+function hide(element: HTMLElement) {
+    element.classList.add('d-none');
+}
+
+function show(element: HTMLElement) {
+    element.classList.remove('d-none');
+}
+*/
+
+
+var AboutMeSideName =
+/** @class */
+function () {
+  function AboutMeSideName() {
+    this.initElements();
+    this.enterInitialState();
+  }
+
+  AboutMeSideName.prototype.initElements = function () {
+    this.editButton = new ElementUtils_1.El(document.getElementById('about-me-side-name-edit'));
+    this.contentElement = new ElementUtils_1.El(document.getElementById('about-me-side-name'));
+    this.saveAndCancelContainer = new ElementUtils_1.El(document.getElementById('save-and-cancel-about-me-side-name-buttons'));
+    this.saveButton = new ElementUtils_1.El(document.getElementById('save-about-me-side-name'));
+    this.cancelButton = new ElementUtils_1.El(document.getElementById('cancel-about-me-side-name'));
+    this.loadIndicator = new ElementUtils_1.El(document.getElementById('loading-about-me-side-name'));
+  };
+
+  AboutMeSideName.prototype.enterInitialState = function () {
+    this.editButton.show();
+    this.contentElement.makeNotEditable();
+    this.saveAndCancelContainer.hide();
+  };
+
+  AboutMeSideName.prototype.enterEditingState = function () {
+    this.editButton.hide();
+    this.contentElement.makeEditable();
+    this.saveAndCancelContainer.show();
+    this.contentElement.focusAndHighlightAllText();
+  };
+
+  AboutMeSideName.prototype.enterSavingState = function () {
+    this.editButton.hide();
+    this.saveAndCancelContainer.hide();
+    this.loadIndicator.hide();
+    this.contentElement.makeNotEditable();
+  };
+
+  AboutMeSideName.prototype.getContent = function () {
+    return this.contentElement.el.innerHTML;
+  };
+
+  return AboutMeSideName;
+}();
+
+var aboutMeSideName = new AboutMeSideName();
+document.getElementById('about-me-side-name-edit').addEventListener('click', function (ev) {
+  ev.preventDefault();
+  aboutMeSideName.enterEditingState();
+});
+document.getElementById('save-about-me-side-name').addEventListener('click', function (ev) {
+  ev.preventDefault();
+  aboutMeSideName.enterSavingState();
+  persistAboutMeSideName().then(function (res) {
+    if (res.status == 'ok') aboutMeSideName.enterInitialState();else handleSaveFailure();
+  })["catch"](handleSaveFailure);
+});
+
+function handleSaveFailure(err) {
+  console.log(err); // TODO: Add implementation
+}
+
+function persistAboutMeSideName() {
   return __awaiter(this, void 0, void 0, function () {
-    var _a, csrfToken, baseUrl, url, response;
+    var _a, csrfToken, baseUrl, fetchUrl, response;
 
     return __generator(this, function (_b) {
       switch (_b.label) {
         case 0:
           _a = RequestOptions_1.RequestOptionsValues.get(), csrfToken = _a.csrfToken, baseUrl = _a.baseUrl;
-          url = baseUrl + "/logout";
+          fetchUrl = baseUrl + "/about_me";
           return [4
           /*yield*/
-          , fetch(url, {
+          , fetch(fetchUrl, {
             method: HttpMethod_1.HttpMethod.POST,
             headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
               'X-CSRF-TOKEN': csrfToken
             },
-            redirect: 'follow'
+            body: JSON.stringify({
+              "about_me_side_name": aboutMeSideName.getContent()
+            })
           })];
 
         case 1:
           response = _b.sent();
+          return [4
+          /*yield*/
+          , response.json()];
 
-          if (response.redirected) {
-            window.location.href = response.url;
-          }
-
+        case 2:
           return [2
           /*return*/
-          ];
+          , _b.sent()];
       }
     });
   });
 }
 
-exports.logout = logout;
+/***/ }),
+
+/***/ "./resources/js/utils/ElementUtils.js":
+/*!********************************************!*\
+  !*** ./resources/js/utils/ElementUtils.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function show(element) {
+  element.classList.remove('d-none');
+}
+
+exports.show = show;
+
+function hide(element) {
+  element.classList.add('d-none');
+}
+
+exports.hide = hide;
+
+var El =
+/** @class */
+function () {
+  function El(el) {
+    this.el = el;
+  }
+
+  El.prototype.show = function () {
+    this.el.classList.remove('d-none');
+  };
+
+  El.prototype.hide = function () {
+    this.el.classList.add('d-none');
+  };
+
+  El.prototype.makeEditable = function () {
+    this.el.setAttribute('contenteditable', 'true');
+  };
+
+  El.prototype.makeNotEditable = function () {
+    this.el.setAttribute('contenteditable', 'false');
+  };
+
+  El.prototype.focusAndHighlightAllText = function () {
+    this.el.focus();
+    document.execCommand('selectAll', false, null);
+  };
+
+  return El;
+}();
+
+exports.El = El;
 
 /***/ })
 

@@ -69,7 +69,7 @@
                                 @auth
                                 <a id="about-me-side-name-edit" href="#"><i class="material-icons" style="font-size: 15px">edit</i></a>
                                 <div id="save-and-cancel-about-me-side-name-buttons" class="d-none m-0">
-                                    <a id="save-about-me-side-name" href="#"><i class="material-icons" style="font-size: 15px">save</i></a>
+                                    <a id="save-about-me-side-name" class="ml-1" href="#"><i class="material-icons" style="font-size: 15px">save</i></a>
                                     <a id="cancel-about-me-side-name" href="#"><i class="material-icons" style="font-size: 15px">cancel</i></a>
                                 </div>
                                 <i id="loading-about-me-side-name" class="material-icons d-none">hourglass_empty</i>

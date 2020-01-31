@@ -27,13 +27,13 @@ if (document.getElementById('write-page')) {
     import('./ui/visitors/categoriespage/categoriesPage')
 }
 
-if (document.querySelector('.about-author #about-renee')) {
+/*if (document.querySelector('.about-author #about-renee')) {
     import('./ui/visitors/sidebar/SideBar')
         .then(module => {
             const SideBar = module.default;
             new SideBar(FirebaseRemoteConfigInit.initAndGet(firebase))
         })
-}
+}*/
 
 if (document.querySelector('.like-blog')) {
     import('./ui/visitors/like/LikeView').then(module => {
@@ -60,7 +60,7 @@ if (document.getElementById('logout')) {
 
 if (document.getElementById('about-me-side-image-edit')) {
     import('./ui/renee/edit-aboutme/editimages').then(module => {
-        module.setupEditSideImageButton();
-        module.setupEditSideNameButton()
+        // module.setupEditSideImageButton();
+        // module.setupEditSideNameButton()
     })
 }

@@ -14,7 +14,7 @@
                 @component('visitors.components.slider-item', ['blog' => $blog])
                 @endcomponent
 
-                @if($loop->iteration == 1)
+                @if($loop->iteration == 4)
                     @break
                 @endif
             @endforeach

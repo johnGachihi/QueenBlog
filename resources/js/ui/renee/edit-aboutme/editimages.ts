@@ -2,8 +2,9 @@ import Uppy from "@uppy/core";
 import ThumbnailGenerator from "@uppy/thumbnail-generator";
 import {RequestOptionsValues} from "../../../network/RequestOptions";
 import {HttpMethod} from "../../../network/HttpMethod";
+import {El} from "../../../utils/ElementUtils";
 
-
+/*
 export function setupEditSideImageButton() {
     document.getElementById('about-me-side-image-edit').addEventListener('click', e => {
         e.preventDefault();
@@ -63,6 +64,79 @@ function hide(element: HTMLElement) {
 function show(element: HTMLElement) {
     element.classList.remove('d-none');
 }
+*/
+
+class AboutMeSideName {
+    private editButton: El<HTMLElement>;
+    private contentElement: El<HTMLDivElement>;
+    private saveAndCancelContainer: El<HTMLDivElement>;
+    private saveButton: El<HTMLElement>;
+    private cancelButton: El<HTMLElement>;
+    private loadIndicator: El<HTMLElement>;
+
+    constructor() {
+        this.initElements();
+        this.enterInitialState();
+    }
+
+    private initElements() {
+        this.editButton = new El(document.getElementById('about-me-side-name-edit'));
+        this.contentElement = new El(document.getElementById(
+            'about-me-side-name') as HTMLDivElement);
+        this.saveAndCancelContainer = new El(document.getElementById(
+            'save-and-cancel-about-me-side-name-buttons') as HTMLDivElement);
+        this.saveButton = new El(document.getElementById('save-about-me-side-name'));
+        this.cancelButton = new El(document.getElementById('cancel-about-me-side-name'));
+        this.loadIndicator = new El(document.getElementById('loading-about-me-side-name'));
+    }
+
+    enterInitialState() {
+        this.editButton.show();
+        this.contentElement.makeNotEditable();
+        this.saveAndCancelContainer.hide();
+    }
+
+    enterEditingState() {
+        this.editButton.hide();
+        this.contentElement.makeEditable();
+        this.saveAndCancelContainer.show();
+        this.contentElement.focusAndHighlightAllText();
+    }
+
+    enterSavingState() {
+        this.editButton.hide();
+        this.saveAndCancelContainer.hide();
+        this.loadIndicator.hide();
+        this.contentElement.makeNotEditable();
+    }
+
+    getContent(): string {
+        return this.contentElement.el.innerHTML;
+    }
+}
+
+const aboutMeSideName = new AboutMeSideName();
+
+document.getElementById('about-me-side-name-edit').addEventListener('click', ev => {
+    ev.preventDefault();
+    aboutMeSideName.enterEditingState();
+});
+document.getElementById('save-about-me-side-name').addEventListener('click', ev => {
+    ev.preventDefault();
+    aboutMeSideName.enterSavingState();
+    persistAboutMeSideName()
+        .then(res => {
+            if (res.status == 'ok')
+                aboutMeSideName.enterInitialState();
+            else
+                handleSaveFailure();
+        })
+        .catch(handleSaveFailure)
+});
+
+function handleSaveFailure(err?) {
+    console.log(err);   // TODO: Add implementation
+}
 
 async function persistAboutMeSideName() {
     const {csrfToken, baseUrl} = RequestOptionsValues.get();
@@ -74,7 +148,8 @@ async function persistAboutMeSideName() {
             'Accept': 'application/json',
             'X-CSRF-TOKEN': csrfToken,
         },
-        body: JSON.stringify({ "about_me_side_name": aboutMeSideName.innerHTML })
+        body: JSON.stringify({ "about_me_side_name": aboutMeSideName.getContent() })
     });
     return await response.json();
 }
+
