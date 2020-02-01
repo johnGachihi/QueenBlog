@@ -2,7 +2,7 @@
 
 /***/ "./resources/js/network/AboutReneeService.js":
 /*!***************************************************!*\
-  !*** ./resources/js/network/AboutReneeService.js ***!
+  !*** ./resources/js/network/AboutMeService.js ***!
   \***************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {

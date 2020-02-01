@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var AboutReneeService = /** @class */ (function () {
+var AboutMeService = /** @class */ (function () {
     function AboutReneeService(remoteConfig) {
         this.remoteConfig = remoteConfig;
     }
