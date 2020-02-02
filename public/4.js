@@ -377,6 +377,7 @@ function () {
     this.editButton.show();
     this.contentElement.makeNotEditable();
     this.saveAndCancelContainer.hide();
+    this.loadIndicator.hide();
   };
 
   AboutMeSideText.prototype.enterEditingState = function () {
@@ -384,12 +385,13 @@ function () {
     this.contentElement.makeEditable();
     this.saveAndCancelContainer.show();
     this.contentElement.focusAndHighlightAllText();
+    this.loadIndicator.hide();
   };
 
   AboutMeSideText.prototype.enterSavingState = function () {
     this.editButton.hide();
     this.saveAndCancelContainer.hide();
-    this.loadIndicator.hide();
+    this.loadIndicator.show();
     this.contentElement.makeNotEditable();
   };
 
@@ -400,6 +402,8 @@ function () {
       ev.preventDefault();
 
       _this.enterEditingState();
+
+      CallIfPresent_1.callCallbackIfPresent(_this.onEditClicked);
     });
     this.saveButton.el.addEventListener('click', function (ev) {
       ev.preventDefault();
@@ -410,13 +414,20 @@ function () {
     });
     $(this.contentElement.el).on('keydown', function (e) {
       if (e.keyCode === 13) {
-        console.log('Enter/Return');
-
         _this.saveButton.el.click();
 
         return false;
       }
     });
+    this.contentElement.el.addEventListener('click', function (ev) {
+      ev.preventDefault();
+
+      _this.editButton.el.click();
+    });
+  };
+
+  AboutMeSideText.prototype.setOnEditClicked = function (onEditClicked) {
+    this.onEditClicked = onEditClicked;
   };
 
   AboutMeSideText.prototype.setOnSaveClicked = function (onSaveClicked) {

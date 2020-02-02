@@ -52,11 +52,26 @@
 
                     <div class="sidebar-section about-author center-text">
                         <div class="author-image">
-                            <img src="{{ asset('storage/images/slider-2-1600x800.jpg') }}"
+                            <img id="about-me-side-image" src="{{ asset('storage/about_me_images_folder/'.$about_me->about_me_side_image) }}"
                                  width=200 height=200 alt="Author Image"/>
-                            <a id="about-me-side-image-edit" href="#">
-                                <i class="material-icons" style="font-size: 15px">edit</i>
-                            </a>
+                            @auth
+                            <div>
+                                <a id="about-me-side-image-edit" href="#">
+                                    <i class="material-icons" style="font-size: 15px">edit</i>
+                                </a>
+                                <div id="save-and-cancel-about-me-side-image-buttons" class="d-none m-0">
+                                    <a id="save-about-me-side-image" class="ml-1" href="#">
+                                        <i class="material-icons" style="font-size: 15px">save</i>
+                                    </a>
+                                    <a id="cancel-about-me-side-image" href="#">
+                                        <i class="material-icons" style="font-size: 15px">cancel</i>
+                                    </a>
+                                </div>
+                                <i id="loading-about-me-side-image" class="material-icons d-none">hourglass_empty</i>
+
+                                <input id="about-me-side-image-hidden-input" class="d-none" type="file"/>
+                            </div>
+                            @endauth
                         </div>
 
                         <ul class="social-icons">
