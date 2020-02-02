@@ -34,6 +34,13 @@ var AboutMeSideText = /** @class */ (function () {
             _this.enterSavingState();
             CallIfPresent_1.callCallbackIfPresent(_this.onSaveClicked);
         });
+        $(this.contentElement.el).on('keydown', function (e) {
+            if (e.keyCode === 13) {
+                console.log('Enter/Return');
+                _this.saveButton.el.click();
+                return false;
+            }
+        });
     };
     AboutMeSideText.prototype.setOnSaveClicked = function (onSaveClicked) {
         this.onSaveClicked = onSaveClicked;

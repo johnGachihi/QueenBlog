@@ -50,6 +50,14 @@ export abstract class AboutMeSideText {
 
             callCallbackIfPresent(this.onSaveClicked);
         });
+
+        $(this.contentElement.el).on('keydown', e => {
+            if (e.keyCode === 13) {
+                console.log('Enter/Return')
+                this.saveButton.el.click();
+                return false;
+            }
+        })
     }
 
     setOnSaveClicked(onSaveClicked: () => void) {

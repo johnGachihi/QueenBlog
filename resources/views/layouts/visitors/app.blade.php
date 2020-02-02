@@ -24,7 +24,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/common-css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('css/common-css/ionicons.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/common-css/app.css') }}"rel="stylesheet">
+    <link href="{{ asset('css/common-css/app.css') }}" rel="stylesheet">
 
     @yield('stylesheets')
 
@@ -35,6 +35,9 @@
 
 @yield('after-header')
 
+@auth
+    <div id="renee" class="d-none"></div>
+@endauth
 <section class="@if(Route::is('index'))section @endif blog-area">
     <div class="container">
         <div class="row">
@@ -50,7 +53,7 @@
                     <div class="sidebar-section about-author center-text">
                         <div class="author-image">
                             <img src="{{ asset('storage/images/slider-2-1600x800.jpg') }}"
-                                width=200 height=200 alt="Author Image"/>
+                                 width=200 height=200 alt="Author Image"/>
                             <a id="about-me-side-image-edit" href="#">
                                 <i class="material-icons" style="font-size: 15px">edit</i>
                             </a>
@@ -63,22 +66,51 @@
 
                         <div style="margin-top: 20px">
                             <div class="d-flex justify-content-center">
-
-                                <h4 class="author-name" style="margin: 0;"><b id="about-me-side-name" class="light-color">{{ $about_me->about_me_side_name }}</b></h4>
-
+                                {{--<h4 class="author-name" style="margin: 0;">
+                                    <b id="about-me-side-name"
+                                       class="light-color">{{ $about_me->about_me_side_name }}</b>
+                                </h4>--}}
+                                <h4 id="about-me-side-name" class="author-name w-75 mx-auto" style="margin: 0; font-weight: 500; color: #444">
+                                    {!! $about_me->about_me_side_name !!}
+                                </h4>
                                 @auth
-                                <a id="about-me-side-name-edit" href="#"><i class="material-icons" style="font-size: 15px">edit</i></a>
-                                <div id="save-and-cancel-about-me-side-name-buttons" class="d-none m-0">
-                                    <a id="save-about-me-side-name" class="ml-1" href="#"><i class="material-icons" style="font-size: 15px">save</i></a>
-                                    <a id="cancel-about-me-side-name" href="#"><i class="material-icons" style="font-size: 15px">cancel</i></a>
-                                </div>
-                                <i id="loading-about-me-side-name" class="material-icons d-none">hourglass_empty</i>
+                                    <a id="about-me-side-name-edit" href="#">
+                                        <i class="material-icons" style="font-size: 15px">edit</i>
+                                    </a>
+                                    <div id="save-and-cancel-about-me-side-name-buttons" class="d-none m-0">
+                                        <a id="save-about-me-side-name" class="ml-1" href="#">
+                                            <i class="material-icons" style="font-size: 15px">save</i>
+                                        </a>
+                                        <a id="cancel-about-me-side-name" href="#">
+                                            <i class="material-icons" style="font-size: 15px">cancel</i>
+                                        </a>
+                                    </div>
+                                    <i id="loading-about-me-side-name" class="material-icons d-none">hourglass_empty</i>
                                 @endauth
                             </div>
                         </div>
 
-                        <i class="material-icons" style="font-size: 15px">edit</i>
-                        <p id="about-renee"></p>
+                        <div class="d-flex">
+{{--                            <div>--}}
+                                <p id="about-me-side" class="w-75 mx-auto"> {!! $about_me->about_me_side !!}</p>
+{{--                            </div>--}}
+                            @auth
+                            <div>
+                                <a id="edit-about-me-side" href="#">
+                                    <i class="material-icons" style="font-size: 15px">edit</i>
+                                </a>
+                                <div id="about-me-side-save-cancel-container" class="d-none">
+                                    <a id="save-about-me-side" href="#">
+                                        <i class="material-icons" style="font-size: 15px">save</i>
+                                    </a>
+                                    <a id="cancel-about-me-side" href="#">
+                                        <i class="material-icons" style="font-size: 15px">cancel</i>
+                                    </a>
+                                </div>
+                                <i id="loading-about-me-side" class="material-icons d-none" style="font-size: 15px">hourglass_empty</i>
+                            </div>
+                            @endauth
+                        </div>
 
 
                         <div class="signature-image"><img src="{{ asset('storage/images/signature-image.png') }}"
@@ -144,8 +176,10 @@
                                          alt="Category Image">
                                 </div>
                                 <div class="post-info">
-                                    <a class="btn category-btn" href="{{ url('categories/'.$blog->tag) }}">{{ strtoupper($blog['tag']) }}</a>
-                                    <h5><a href="{{ url('post/'.$blog->id) }}"><b class="light-color">{{ $blog['title'] }}</b></a></h5>
+                                    <a class="btn category-btn"
+                                       href="{{ url('categories/'.$blog->tag) }}">{{ strtoupper($blog['tag']) }}</a>
+                                    <h5><a href="{{ url('post/'.$blog->id) }}"><b
+                                                class="light-color">{{ $blog['title'] }}</b></a></h5>
                                     <h6 class="date"><em>{{ $blog['updated_at'] }}</em></h6>
                                 </div>
                             </div>
@@ -231,7 +265,9 @@
                         <h4 class="title"><b class="light-color">Tags</b></h4>
                         <ul class="tags">
                             @foreach($categories as $category)
-                                <li><a class="btn" href="{{ url('categories/'.$blog->tag) }}">{{ ucfirst(strtolower($category['tag'])) }}</a></li>
+                                <li><a class="btn"
+                                       href="{{ url('categories/'.$blog->tag) }}">{{ ucfirst(strtolower($category['tag'])) }}</a>
+                                </li>
                             @endforeach
                             {{--<li><a class="btn" href="#">design</a></li>
                             <li><a class="btn" href="#">fasinon</a></li>

@@ -17,7 +17,7 @@ class CreateAboutMeSingleRowTable extends Migration
             $table->bigIncrements('id');
             $table->longText('about_me')->nullable();
             $table->string('about_me_image')->nullable();
-            $table->string('about_me_side')->nullable();
+            $table->longText('about_me_side')->nullable();
             $table->string('about_me_side_image')->nullable();
             $table->string('about_me_side_name')->nullable();
             $table->timestamps();

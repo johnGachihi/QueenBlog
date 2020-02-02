@@ -19,7 +19,7 @@ export default class Service<T extends Model> {
         return this._fetch(HttpMethod.POST, t, `/${t.id}`);
     }
 
-    protected async _fetch(method: HttpMethod, data: T, urlSuffix?: string) {
+    protected async _fetch(method: HttpMethod, data: T | FormData, urlSuffix?: string | number, headers?: HeadersInit) {
         const {csrfToken, baseUrl} = this.requestOptions;
         const fetchUrl = Service.makeUrl(baseUrl, this.relativeUrl, urlSuffix);
 
@@ -36,11 +36,15 @@ export default class Service<T extends Model> {
         return await response.json();
     }
 
-    protected static makeUrl(baseUrl: string, relativeUrl: string, urlSuffix?: string) {
-        if(urlSuffix != undefined) {
+    protected static makeUrl(baseUrl: string, relativeUrl: string, urlSuffix?: string | number) {
+        if (urlSuffix != undefined) {
             return baseUrl + relativeUrl + urlSuffix;
         } else {
             return baseUrl + relativeUrl;
         }
     }
+
+    // private getRequestData(data: T | FormData): string | FormData {
+    //     if (data )
+    // }
 }

@@ -1,4 +1,17 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -39,71 +52,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var RequestOptions_1 = require("../../../network/RequestOptions");
 var HttpMethod_1 = require("../../../network/HttpMethod");
 var ElementUtils_1 = require("../../../utils/ElementUtils");
-/*
-export function setupEditSideImageButton() {
-    document.getElementById('about-me-side-image-edit').addEventListener('click', e => {
-        e.preventDefault();
-        console.log('about-me-side-image-edit');
-    })
-}
-
-const aboutMeSideName = document.getElementById('about-me-side-name');
-const saveAndCancelAboutMeSideNameButtons =
-    document.getElementById('save-and-cancel-about-me-side-name-buttons');
-const loadingAboutMeSideName = document.getElementById('loading-about-me-side-name');
-
-
-export function setupEditSideNameButton() {
-    const editSideNameButton = document.getElementById('about-me-side-name-edit');
-    editSideNameButton.addEventListener('click', ev => {
-        ev.preventDefault();
-        aboutMeSideName.setAttribute('contenteditable', 'true');
-        aboutMeSideName.focus();
-
-        document.execCommand('selectAll',false,null);
-
-        hide(editSideNameButton);
-
-        show(saveAndCancelAboutMeSideNameButtons)
-    })
-}
-
-
-aboutMeSideName.addEventListener('input', ev => {
-    // TODO: Enable save and cancel buttons here
-    console.log('Editting................')
-});
-
-const saveAboutMeSideName = document.getElementById('save-about-me-side-name');
-saveAboutMeSideName.addEventListener('click', ev => {
-    ev.preventDefault();
-    hide(saveAndCancelAboutMeSideNameButtons);
-    show(loadingAboutMeSideName);
-    aboutMeSideName.setAttribute('contenteditable', 'true');
-
-    persistAboutMeSideName().then(res => {
-        hide(loadingAboutMeSideName);
-        if (res.status != 'ok') {
-            // TODO: Revert and ask user to try again or try again later
-        }
-    }).catch(err => {
-        // TODO: Revert and ask user to try again or try again later
-    });
-    aboutMeSideName.blur();
-});
-
-function hide(element: HTMLElement) {
-    element.classList.add('d-none');
-}
-
-function show(element: HTMLElement) {
-    element.classList.remove('d-none');
-}
-*/
-var AboutMeSideName = /** @class */ (function () {
+var AboutMeSideText_1 = require("./AboutMeSideText");
+var AboutMeSideName = /** @class */ (function (_super) {
+    __extends(AboutMeSideName, _super);
     function AboutMeSideName() {
-        this.initElements();
-        this.enterInitialState();
+        var _this = _super.call(this) || this;
+        _this.enterInitialState();
+        return _this;
     }
     AboutMeSideName.prototype.initElements = function () {
         this.editButton = new ElementUtils_1.El(document.getElementById('about-me-side-name-edit'));
@@ -113,36 +68,13 @@ var AboutMeSideName = /** @class */ (function () {
         this.cancelButton = new ElementUtils_1.El(document.getElementById('cancel-about-me-side-name'));
         this.loadIndicator = new ElementUtils_1.El(document.getElementById('loading-about-me-side-name'));
     };
-    AboutMeSideName.prototype.enterInitialState = function () {
-        this.editButton.show();
-        this.contentElement.makeNotEditable();
-        this.saveAndCancelContainer.hide();
-    };
-    AboutMeSideName.prototype.enterEditingState = function () {
-        this.editButton.hide();
-        this.contentElement.makeEditable();
-        this.saveAndCancelContainer.show();
-        this.contentElement.focusAndHighlightAllText();
-    };
-    AboutMeSideName.prototype.enterSavingState = function () {
-        this.editButton.hide();
-        this.saveAndCancelContainer.hide();
-        this.loadIndicator.hide();
-        this.contentElement.makeNotEditable();
-    };
     AboutMeSideName.prototype.getContent = function () {
         return this.contentElement.el.innerHTML;
     };
     return AboutMeSideName;
-}());
+}(AboutMeSideText_1.AboutMeSideText));
 var aboutMeSideName = new AboutMeSideName();
-document.getElementById('about-me-side-name-edit').addEventListener('click', function (ev) {
-    ev.preventDefault();
-    aboutMeSideName.enterEditingState();
-});
-document.getElementById('save-about-me-side-name').addEventListener('click', function (ev) {
-    ev.preventDefault();
-    aboutMeSideName.enterSavingState();
+aboutMeSideName.setOnSaveClicked(function () {
     persistAboutMeSideName()
         .then(function (res) {
         if (res.status == 'ok')
@@ -155,6 +87,7 @@ document.getElementById('save-about-me-side-name').addEventListener('click', fun
 function handleSaveFailure(err) {
     console.log(err); // TODO: Add implementation
 }
+// TODO: move to appropriate module
 function persistAboutMeSideName() {
     return __awaiter(this, void 0, void 0, function () {
         var _a, csrfToken, baseUrl, fetchUrl, response;

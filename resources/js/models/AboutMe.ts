@@ -1,4 +1,6 @@
-export default interface AboutMe {
+import Model from "./Model";
+
+export default interface AboutMe extends Model{
     about_me?: string
     about_me_image_file?: File
     about_me_image?: string

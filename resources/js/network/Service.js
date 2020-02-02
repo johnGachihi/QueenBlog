@@ -48,7 +48,7 @@ var Service = /** @class */ (function () {
     Service.prototype.update = function (t, urlSuffix) {
         return this._fetch(HttpMethod_1.HttpMethod.POST, t, "/" + t.id);
     };
-    Service.prototype._fetch = function (method, data, urlSuffix) {
+    Service.prototype._fetch = function (method, data, urlSuffix, headers) {
         return __awaiter(this, void 0, void 0, function () {
             var _a, csrfToken, baseUrl, fetchUrl, response;
             return __generator(this, function (_b) {

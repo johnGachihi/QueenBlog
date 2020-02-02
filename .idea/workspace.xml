@@ -3,20 +3,40 @@
   <component name="ChangeListManager">
     <list default="true" id="0ba4312e-56ad-419e-b4b7-cc2a10cfd510" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_30_054518_create-about-me-single-row-table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_30_054518_create-about-me-single-row-table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/0.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/0.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/10.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/10.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/11.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/11.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/12.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/12.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/4.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/4.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/5.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/6.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/6.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/7.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/7.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/8.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/8.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/9.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/9.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/models/AboutMe.ts" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/models/AboutMe.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/network/AboutMeService.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/network/AboutMeService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/network/AboutMeService.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/network/AboutMeService.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/network/AboutMeService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/network/AboutMeService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/network/Service.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/network/Service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/network/Service.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/network/Service.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/network/Service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/network/Service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeSideText.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeSideText.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeSideText.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeSideText.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeSideText.ts" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeSideText.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editaboutmeside.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editaboutmeside.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editaboutmeside.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editaboutmeside.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editaboutmeside.ts" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editaboutmeside.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editimages.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editimages.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editimages.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editimages.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editimages.ts" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editimages.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/ui/visitors/sidebar/SideBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/visitors/sidebar/SideBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/ui/visitors/sidebar/SideBar.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/visitors/sidebar/SideBar.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/utils/ElementUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/utils/ElementUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/utils/ElementUtils.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/utils/ElementUtils.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/utils/ElementUtils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/utils/ElementUtils.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/visitors/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/visitors/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/visitors/components/slider-item.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/visitors/components/slider-item.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/visitors/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/visitors/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +168,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Unscripted (1)/juli-master/juli-master/04-Contact.html" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../beckham" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="settings.typescriptcompiler" />
@@ -227,7 +247,8 @@
       <workItem from="1580017442730" duration="37069000" />
       <workItem from="1580109899012" duration="8675000" />
       <workItem from="1580385712655" duration="26419000" />
-      <workItem from="1580460629996" duration="5755000" />
+      <workItem from="1580460629996" duration="15347000" />
+      <workItem from="1580628036087" duration="6900000" />
     </task>
     <servers />
   </component>
@@ -242,10 +263,7 @@
         <option value="$PROJECT_DIR$/resources/js/write/blogMainImageInput/BlogMainImageInput.js.map" />
         <option value="$PROJECT_DIR$/resources/js/write/blogMainImageInput/BlogImageInputConfigOptions.js" />
         <option value="$PROJECT_DIR$/resources/js/ui/visitors/indexpage/BlogElement.js" />
-        <option value="$PROJECT_DIR$/resources/js/network/Service.js" />
-        <option value="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editimages.js.map" />
         <option value="$PROJECT_DIR$/resources/js/network/RequestOptions.js.map" />
-        <option value="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editimages.js" />
         <option value="$PROJECT_DIR$/resources/js/network/BlogsService.js.map" />
         <option value="$PROJECT_DIR$/resources/js/models/Model.js" />
         <option value="$PROJECT_DIR$/resources/js/network/Service.js.map" />
@@ -255,22 +273,11 @@
         <option value="$PROJECT_DIR$/resources/js/network/BlogsService.js" />
         <option value="$PROJECT_DIR$/resources/js/models/Blog.js.map" />
         <option value="$PROJECT_DIR$/resources/js/models/Blog.js" />
-        <option value="$PROJECT_DIR$/resources/js/ui/visitors/share/share.js.map" />
-        <option value="$PROJECT_DIR$/resources/js/ui/visitors/share/share.js" />
-        <option value="$PROJECT_DIR$/resources/js/ui/visitors/like/LikeView.js.map" />
-        <option value="$PROJECT_DIR$/resources/js/models/Model.js.map" />
-        <option value="$PROJECT_DIR$/resources/js/ui/visitors/like/LikeView.js" />
-        <option value="$PROJECT_DIR$/resources/js/ui/visitors/sidebar/SideBar.js" />
-        <option value="$PROJECT_DIR$/resources/js/ui/visitors/sidebar/SideBar.js.map" />
-        <option value="$PROJECT_DIR$/resources/js/write/Timeout.js.map" />
         <option value="$PROJECT_DIR$/resources/js/firebase/RemoteConfigKeys.js" />
-        <option value="$PROJECT_DIR$/resources/js/write/Timeout.js" />
         <option value="$PROJECT_DIR$/resources/js/firebase/FirebaseRemoteConfigInit.js" />
         <option value="$PROJECT_DIR$/resources/js/firebase/FirebaseRemoteConfigInit.js.map" />
         <option value="$PROJECT_DIR$/resources/js/firebase/RemoteConfigKeys.js.map" />
-        <option value="$PROJECT_DIR$/resources/js/network/AboutReneeService.js.map" />
         <option value="$PROJECT_DIR$/resources/js/firebase/FirebaseConfig.js.map" />
-        <option value="$PROJECT_DIR$/resources/js/network/AboutReneeService.js" />
         <option value="$PROJECT_DIR$/resources/js/firebase/FirebaseConfig.js" />
         <option value="$PROJECT_DIR$/resources/js/write/savedStatusIndicator/SavedStatusIndicator.js" />
         <option value="$PROJECT_DIR$/resources/js/write/savedStatusIndicator/SavedStatusIndicator.js.map" />
@@ -278,10 +285,26 @@
         <option value="$PROJECT_DIR$/resources/js/write/savedStatusIndicator/SavedStatusIndicatorImpl.js.map" />
         <option value="$PROJECT_DIR$/resources/js/network/RequestOptions.js" />
         <option value="$PROJECT_DIR$/resources/js/ui/visitors/categoriespage/categoriesPage.js" />
+        <option value="$PROJECT_DIR$/resources/js/utils/ElementUtils.js.map" />
         <option value="$PROJECT_DIR$/resources/js/models/AboutMe.js" />
         <option value="$PROJECT_DIR$/resources/js/models/AboutMe.js.map" />
-        <option value="$PROJECT_DIR$/resources/js/utils/ElementUtils.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/network/Service.js" />
+        <option value="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editimages.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editimages.js" />
         <option value="$PROJECT_DIR$/resources/js/utils/ElementUtils.js" />
+        <option value="$PROJECT_DIR$/resources/js/utils/CallIfPresent.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/ui/visitors/share/share.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/utils/CallIfPresent.js" />
+        <option value="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editaboutmeside.js" />
+        <option value="$PROJECT_DIR$/resources/js/ui/visitors/share/share.js" />
+        <option value="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editaboutmeside.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/ui/visitors/like/LikeView.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/models/Model.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/ui/visitors/like/LikeView.js" />
+        <option value="$PROJECT_DIR$/resources/js/ui/visitors/sidebar/SideBar.js" />
+        <option value="$PROJECT_DIR$/resources/js/ui/visitors/sidebar/SideBar.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/write/Timeout.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/write/Timeout.js" />
       </list>
     </option>
   </component>
@@ -302,14 +325,18 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="416" y="201" width="591" height="390" key="#com.intellij.fileTypes.FileTypeChooser/67.27.1299.741@67.27.1299.741" timestamp="1579161602888" />
-    <state x="524" y="115" width="374" height="562" key="#com.intellij.ide.util.MemberChooser" timestamp="1579608945631">
+    <state x="524" y="115" width="374" height="562" key="#com.intellij.ide.util.MemberChooser" timestamp="1580487395344">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="524" y="115" width="374" height="562" key="#com.intellij.ide.util.MemberChooser/67.27.1299.741@67.27.1299.741" timestamp="1579608945631" />
+    <state x="524" y="115" width="374" height="562" key="#com.intellij.ide.util.MemberChooser/67.27.1299.741@67.27.1299.741" timestamp="1580487395344" />
     <state x="399" y="124" width="624" height="544" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1578919415507">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="399" y="124" width="624" height="544" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/67.27.1299.741@67.27.1299.741" timestamp="1578919415507" />
+    <state x="461" y="27" width="489" height="741" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1580487192328">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="461" y="27" width="489" height="741" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/67.27.1299.741@67.27.1299.741" timestamp="1580487192328" />
     <state x="449" y="145" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1579635355926">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
@@ -322,10 +349,10 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="167" y="125" width="1099" height="543" key="DiffContextDialog/67.27.1299.741@67.27.1299.741" timestamp="1579607529209" />
-    <state x="499" y="154" width="424" height="484" key="FileChooserDialogImpl" timestamp="1580018771384">
+    <state x="499" y="154" width="424" height="484" key="FileChooserDialogImpl" timestamp="1580577029952">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="499" y="154" width="424" height="484" key="FileChooserDialogImpl/67.27.1299.741@67.27.1299.741" timestamp="1580018771384" />
+    <state x="499" y="154" width="424" height="484" key="FileChooserDialogImpl/67.27.1299.741@67.27.1299.741" timestamp="1580577029952" />
     <state width="1253" height="240" key="GridCell.Tab.0.bottom" timestamp="1579191417960">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
@@ -342,6 +369,14 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state width="1253" height="240" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1579191417960" />
+    <state x="187" y="85" width="1039" height="622" key="MergeDialog" timestamp="1580570812618">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="187" y="85" width="1039" height="622" key="MergeDialog/67.27.1299.741@67.27.1299.741" timestamp="1580570812618" />
+    <state x="421" y="112" width="580" height="568" key="MultipleFileMergeDialog" timestamp="1580570814397">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="421" y="112" width="580" height="568" key="MultipleFileMergeDialog/67.27.1299.741@67.27.1299.741" timestamp="1580570814397" />
     <state x="471" y="210" width="481" height="373" key="NewPhpClassDialog" timestamp="1580395219630">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
@@ -358,18 +393,18 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state width="501" height="446" key="SwitcherDM/67.27.1299.741@67.27.1299.741" timestamp="1580213597193" />
-    <state x="372" y="224" key="com.intellij.ide.util.TipDialog" timestamp="1580460630741">
+    <state x="372" y="224" key="com.intellij.ide.util.TipDialog" timestamp="1580628042960">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="372" y="224" key="com.intellij.ide.util.TipDialog/67.27.1299.741@67.27.1299.741" timestamp="1580460630741" />
+    <state x="372" y="224" key="com.intellij.ide.util.TipDialog/67.27.1299.741@67.27.1299.741" timestamp="1580628042960" />
     <state x="380" y="175" key="run.anything.popup" timestamp="1578995080600">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="380" y="175" key="run.anything.popup/67.27.1299.741@67.27.1299.741" timestamp="1578995080600" />
-    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1580388138400">
+    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1580568732578">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup/67.27.1299.741@67.27.1299.741" timestamp="1580388138400" />
+    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup/67.27.1299.741@67.27.1299.741" timestamp="1580568732578" />
     <state x="436" y="310" width="540" height="172" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1580140327858">
       <screen x="67" y="27" width="1299" height="741" />
     </state>

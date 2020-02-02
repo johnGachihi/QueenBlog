@@ -12,15 +12,19 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var AboutMeSideText_1 = require("./AboutMeSideText");
 var ElementUtils_1 = require("../../../utils/ElementUtils");
-var EditAboutMeSide = /** @class */ (function (_super) {
-    __extends(EditAboutMeSide, _super);
-    function EditAboutMeSide() {
-        return _super !== null && _super.apply(this, arguments) || this;
+var AboutMeService_1 = __importDefault(require("../../../network/AboutMeService"));
+var AboutMeSideContent = /** @class */ (function (_super) {
+    __extends(AboutMeSideContent, _super);
+    function AboutMeSideContent() {
+        return _super.call(this) || this;
     }
-    EditAboutMeSide.prototype.initElements = function () {
+    AboutMeSideContent.prototype.initElements = function () {
         this.editButton = new ElementUtils_1.El(document.getElementById('edit-about-me-side'));
         this.contentElement = new ElementUtils_1.El(document.getElementById('about-me-side'));
         this.saveAndCancelContainer = new ElementUtils_1.El(document.getElementById('about-me-side-save-cancel-container'));
@@ -28,6 +32,24 @@ var EditAboutMeSide = /** @class */ (function (_super) {
         this.cancelButton = new ElementUtils_1.El(document.getElementById('cancel-about-me-side'));
         this.loadIndicator = new ElementUtils_1.El(document.getElementById('loading-about-me-side'));
     };
-    return EditAboutMeSide;
+    AboutMeSideContent.prototype.getContent = function () {
+        return this.contentElement.el.innerHTML;
+    };
+    return AboutMeSideContent;
 }(AboutMeSideText_1.AboutMeSideText));
+var editAboutMeSide = new AboutMeSideContent();
+editAboutMeSide.setOnSaveClicked(function () {
+    var aboutMeService = new AboutMeService_1.default();
+    aboutMeService.save({ about_me_side: editAboutMeSide.getContent() })
+        .then(function (res) {
+        if (res.status == 'ok')
+            editAboutMeSide.enterInitialState();
+        else
+            handleSaveFailure();
+    })
+        .catch(handleSaveFailure);
+});
+function handleSaveFailure(err) {
+    console.log(err); // TODO: Add implementation
+}
 //# sourceMappingURL=editaboutmeside.js.map

@@ -1,13 +1,12 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-function show(element) {
-    element.classList.remove('d-none');
+/*export function show(element: HTMLElement) {
+    element.classList.remove('d-none')
 }
-exports.show = show;
-function hide(element) {
+
+export function hide(element: HTMLElement) {
     element.classList.add('d-none');
-}
-exports.hide = hide;
+}*/
+Object.defineProperty(exports, "__esModule", { value: true });
 var El = /** @class */ (function () {
     function El(el) {
         this.el = el;
@@ -18,6 +17,10 @@ var El = /** @class */ (function () {
     El.prototype.hide = function () { this.el.classList.add('d-none'); };
     El.prototype.makeEditable = function () {
         this.el.setAttribute('contenteditable', 'true');
+        document.execCommand("defaultParagraphSeparator", false, "p"); //
+        // document.execCommand("defaultParagraphSeparator", false, "br"); //
+        // this.setupEditableContentEl();
+        // document.execCommand('insertBrOnReturn');
     };
     El.prototype.makeNotEditable = function () {
         this.el.setAttribute('contenteditable', 'false');

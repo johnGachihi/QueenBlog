@@ -57,6 +57,87 @@ exports.RequestOptionsValues = RequestOptionsValues;
 
 /***/ }),
 
+/***/ "./resources/js/ui/renee/edit-aboutme/AboutMeSideText.js":
+/*!***************************************************************!*\
+  !*** ./resources/js/ui/renee/edit-aboutme/AboutMeSideText.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var CallIfPresent_1 = __webpack_require__(/*! ../../../utils/CallIfPresent */ "./resources/js/utils/CallIfPresent.js");
+
+var AboutMeSideText =
+/** @class */
+function () {
+  function AboutMeSideText() {
+    this.initElements();
+    this.setupButtonListeners();
+  }
+
+  AboutMeSideText.prototype.enterInitialState = function () {
+    this.editButton.show();
+    this.contentElement.makeNotEditable();
+    this.saveAndCancelContainer.hide();
+  };
+
+  AboutMeSideText.prototype.enterEditingState = function () {
+    this.editButton.hide();
+    this.contentElement.makeEditable();
+    this.saveAndCancelContainer.show();
+    this.contentElement.focusAndHighlightAllText();
+  };
+
+  AboutMeSideText.prototype.enterSavingState = function () {
+    this.editButton.hide();
+    this.saveAndCancelContainer.hide();
+    this.loadIndicator.hide();
+    this.contentElement.makeNotEditable();
+  };
+
+  AboutMeSideText.prototype.setupButtonListeners = function () {
+    var _this = this;
+
+    this.editButton.el.addEventListener('click', function (ev) {
+      ev.preventDefault();
+
+      _this.enterEditingState();
+    });
+    this.saveButton.el.addEventListener('click', function (ev) {
+      ev.preventDefault();
+
+      _this.enterSavingState();
+
+      CallIfPresent_1.callCallbackIfPresent(_this.onSaveClicked);
+    });
+    $(this.contentElement.el).on('keydown', function (e) {
+      if (e.keyCode === 13) {
+        console.log('Enter/Return');
+
+        _this.saveButton.el.click();
+
+        return false;
+      }
+    });
+  };
+
+  AboutMeSideText.prototype.setOnSaveClicked = function (onSaveClicked) {
+    this.onSaveClicked = onSaveClicked;
+  };
+
+  return AboutMeSideText;
+}();
+
+exports.AboutMeSideText = AboutMeSideText;
+
+/***/ }),
+
 /***/ "./resources/js/ui/renee/edit-aboutme/editimages.js":
 /*!**********************************************************!*\
   !*** ./resources/js/ui/renee/edit-aboutme/editimages.js ***!
@@ -66,6 +147,32 @@ exports.RequestOptionsValues = RequestOptionsValues;
 
 "use strict";
 
+
+var __extends = this && this.__extends || function () {
+  var _extendStatics = function extendStatics(d, b) {
+    _extendStatics = Object.setPrototypeOf || {
+      __proto__: []
+    } instanceof Array && function (d, b) {
+      d.__proto__ = b;
+    } || function (d, b) {
+      for (var p in b) {
+        if (b.hasOwnProperty(p)) d[p] = b[p];
+      }
+    };
+
+    return _extendStatics(d, b);
+  };
+
+  return function (d, b) {
+    _extendStatics(d, b);
+
+    function __() {
+      this.constructor = d;
+    }
+
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+  };
+}();
 
 var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, generator) {
   function adopt(value) {
@@ -219,75 +326,20 @@ var RequestOptions_1 = __webpack_require__(/*! ../../../network/RequestOptions *
 var HttpMethod_1 = __webpack_require__(/*! ../../../network/HttpMethod */ "./resources/js/network/HttpMethod.js");
 
 var ElementUtils_1 = __webpack_require__(/*! ../../../utils/ElementUtils */ "./resources/js/utils/ElementUtils.js");
-/*
-export function setupEditSideImageButton() {
-    document.getElementById('about-me-side-image-edit').addEventListener('click', e => {
-        e.preventDefault();
-        console.log('about-me-side-image-edit');
-    })
-}
 
-const aboutMeSideName = document.getElementById('about-me-side-name');
-const saveAndCancelAboutMeSideNameButtons =
-    document.getElementById('save-and-cancel-about-me-side-name-buttons');
-const loadingAboutMeSideName = document.getElementById('loading-about-me-side-name');
-
-
-export function setupEditSideNameButton() {
-    const editSideNameButton = document.getElementById('about-me-side-name-edit');
-    editSideNameButton.addEventListener('click', ev => {
-        ev.preventDefault();
-        aboutMeSideName.setAttribute('contenteditable', 'true');
-        aboutMeSideName.focus();
-
-        document.execCommand('selectAll',false,null);
-
-        hide(editSideNameButton);
-
-        show(saveAndCancelAboutMeSideNameButtons)
-    })
-}
-
-
-aboutMeSideName.addEventListener('input', ev => {
-    // TODO: Enable save and cancel buttons here
-    console.log('Editting................')
-});
-
-const saveAboutMeSideName = document.getElementById('save-about-me-side-name');
-saveAboutMeSideName.addEventListener('click', ev => {
-    ev.preventDefault();
-    hide(saveAndCancelAboutMeSideNameButtons);
-    show(loadingAboutMeSideName);
-    aboutMeSideName.setAttribute('contenteditable', 'true');
-
-    persistAboutMeSideName().then(res => {
-        hide(loadingAboutMeSideName);
-        if (res.status != 'ok') {
-            // TODO: Revert and ask user to try again or try again later
-        }
-    }).catch(err => {
-        // TODO: Revert and ask user to try again or try again later
-    });
-    aboutMeSideName.blur();
-});
-
-function hide(element: HTMLElement) {
-    element.classList.add('d-none');
-}
-
-function show(element: HTMLElement) {
-    element.classList.remove('d-none');
-}
-*/
-
+var AboutMeSideText_1 = __webpack_require__(/*! ./AboutMeSideText */ "./resources/js/ui/renee/edit-aboutme/AboutMeSideText.js");
 
 var AboutMeSideName =
 /** @class */
-function () {
+function (_super) {
+  __extends(AboutMeSideName, _super);
+
   function AboutMeSideName() {
-    this.initElements();
-    this.enterInitialState();
+    var _this = _super.call(this) || this;
+
+    _this.enterInitialState();
+
+    return _this;
   }
 
   AboutMeSideName.prototype.initElements = function () {
@@ -299,41 +351,15 @@ function () {
     this.loadIndicator = new ElementUtils_1.El(document.getElementById('loading-about-me-side-name'));
   };
 
-  AboutMeSideName.prototype.enterInitialState = function () {
-    this.editButton.show();
-    this.contentElement.makeNotEditable();
-    this.saveAndCancelContainer.hide();
-  };
-
-  AboutMeSideName.prototype.enterEditingState = function () {
-    this.editButton.hide();
-    this.contentElement.makeEditable();
-    this.saveAndCancelContainer.show();
-    this.contentElement.focusAndHighlightAllText();
-  };
-
-  AboutMeSideName.prototype.enterSavingState = function () {
-    this.editButton.hide();
-    this.saveAndCancelContainer.hide();
-    this.loadIndicator.hide();
-    this.contentElement.makeNotEditable();
-  };
-
   AboutMeSideName.prototype.getContent = function () {
     return this.contentElement.el.innerHTML;
   };
 
   return AboutMeSideName;
-}();
+}(AboutMeSideText_1.AboutMeSideText);
 
 var aboutMeSideName = new AboutMeSideName();
-document.getElementById('about-me-side-name-edit').addEventListener('click', function (ev) {
-  ev.preventDefault();
-  aboutMeSideName.enterEditingState();
-});
-document.getElementById('save-about-me-side-name').addEventListener('click', function (ev) {
-  ev.preventDefault();
-  aboutMeSideName.enterSavingState();
+aboutMeSideName.setOnSaveClicked(function () {
   persistAboutMeSideName().then(function (res) {
     if (res.status == 'ok') aboutMeSideName.enterInitialState();else handleSaveFailure();
   })["catch"](handleSaveFailure);
@@ -341,7 +367,8 @@ document.getElementById('save-about-me-side-name').addEventListener('click', fun
 
 function handleSaveFailure(err) {
   console.log(err); // TODO: Add implementation
-}
+} // TODO: move to appropriate module
+
 
 function persistAboutMeSideName() {
   return __awaiter(this, void 0, void 0, function () {
@@ -383,10 +410,10 @@ function persistAboutMeSideName() {
 
 /***/ }),
 
-/***/ "./resources/js/utils/ElementUtils.js":
-/*!********************************************!*\
-  !*** ./resources/js/utils/ElementUtils.js ***!
-  \********************************************/
+/***/ "./resources/js/utils/CallIfPresent.js":
+/*!*********************************************!*\
+  !*** ./resources/js/utils/CallIfPresent.js ***!
+  \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -397,17 +424,36 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-function show(element) {
-  element.classList.remove('d-none');
+function callCallbackIfPresent(callback) {
+  if (callback !== undefined) {
+    callback();
+  }
 }
 
-exports.show = show;
+exports.callCallbackIfPresent = callCallbackIfPresent;
 
-function hide(element) {
-  element.classList.add('d-none');
+/***/ }),
+
+/***/ "./resources/js/utils/ElementUtils.js":
+/*!********************************************!*\
+  !*** ./resources/js/utils/ElementUtils.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/*export function show(element: HTMLElement) {
+    element.classList.remove('d-none')
 }
 
-exports.hide = hide;
+export function hide(element: HTMLElement) {
+    element.classList.add('d-none');
+}*/
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
 var El =
 /** @class */
@@ -426,6 +472,10 @@ function () {
 
   El.prototype.makeEditable = function () {
     this.el.setAttribute('contenteditable', 'true');
+    document.execCommand("defaultParagraphSeparator", false, "p"); //
+    // document.execCommand("defaultParagraphSeparator", false, "br"); //
+    // this.setupEditableContentEl();
+    // document.execCommand('insertBrOnReturn');
   };
 
   El.prototype.makeNotEditable = function () {

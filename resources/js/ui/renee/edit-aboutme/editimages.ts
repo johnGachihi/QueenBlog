@@ -1,85 +1,15 @@
-import Uppy from "@uppy/core";
-import ThumbnailGenerator from "@uppy/thumbnail-generator";
 import {RequestOptionsValues} from "../../../network/RequestOptions";
 import {HttpMethod} from "../../../network/HttpMethod";
 import {El} from "../../../utils/ElementUtils";
+import {AboutMeSideText} from "./AboutMeSideText";
 
-/*
-export function setupEditSideImageButton() {
-    document.getElementById('about-me-side-image-edit').addEventListener('click', e => {
-        e.preventDefault();
-        console.log('about-me-side-image-edit');
-    })
-}
-
-const aboutMeSideName = document.getElementById('about-me-side-name');
-const saveAndCancelAboutMeSideNameButtons =
-    document.getElementById('save-and-cancel-about-me-side-name-buttons');
-const loadingAboutMeSideName = document.getElementById('loading-about-me-side-name');
-
-
-export function setupEditSideNameButton() {
-    const editSideNameButton = document.getElementById('about-me-side-name-edit');
-    editSideNameButton.addEventListener('click', ev => {
-        ev.preventDefault();
-        aboutMeSideName.setAttribute('contenteditable', 'true');
-        aboutMeSideName.focus();
-
-        document.execCommand('selectAll',false,null);
-
-        hide(editSideNameButton);
-
-        show(saveAndCancelAboutMeSideNameButtons)
-    })
-}
-
-
-aboutMeSideName.addEventListener('input', ev => {
-    // TODO: Enable save and cancel buttons here
-    console.log('Editting................')
-});
-
-const saveAboutMeSideName = document.getElementById('save-about-me-side-name');
-saveAboutMeSideName.addEventListener('click', ev => {
-    ev.preventDefault();
-    hide(saveAndCancelAboutMeSideNameButtons);
-    show(loadingAboutMeSideName);
-    aboutMeSideName.setAttribute('contenteditable', 'true');
-
-    persistAboutMeSideName().then(res => {
-        hide(loadingAboutMeSideName);
-        if (res.status != 'ok') {
-            // TODO: Revert and ask user to try again or try again later
-        }
-    }).catch(err => {
-        // TODO: Revert and ask user to try again or try again later
-    });
-    aboutMeSideName.blur();
-});
-
-function hide(element: HTMLElement) {
-    element.classList.add('d-none');
-}
-
-function show(element: HTMLElement) {
-    element.classList.remove('d-none');
-}
-*/
-
-class AboutMeSideName {
-    private editButton: El<HTMLElement>;
-    private contentElement: El<HTMLDivElement>;
-    private saveAndCancelContainer: El<HTMLDivElement>;
-    private saveButton: El<HTMLElement>;
-    private cancelButton: El<HTMLElement>;
-    private loadIndicator: El<HTMLElement>;
-
+class AboutMeSideName extends AboutMeSideText {
     constructor() {
-        this.initElements();
+        super();
         this.enterInitialState();
     }
 
-    private initElements() {
+    protected initElements() {
         this.editButton = new El(document.getElementById('about-me-side-name-edit'));
         this.contentElement = new El(document.getElementById(
             'about-me-side-name') as HTMLDivElement);
@@ -90,40 +20,13 @@ class AboutMeSideName {
         this.loadIndicator = new El(document.getElementById('loading-about-me-side-name'));
     }
 
-    enterInitialState() {
-        this.editButton.show();
-        this.contentElement.makeNotEditable();
-        this.saveAndCancelContainer.hide();
-    }
-
-    enterEditingState() {
-        this.editButton.hide();
-        this.contentElement.makeEditable();
-        this.saveAndCancelContainer.show();
-        this.contentElement.focusAndHighlightAllText();
-    }
-
-    enterSavingState() {
-        this.editButton.hide();
-        this.saveAndCancelContainer.hide();
-        this.loadIndicator.hide();
-        this.contentElement.makeNotEditable();
-    }
-
     getContent(): string {
         return this.contentElement.el.innerHTML;
     }
 }
 
 const aboutMeSideName = new AboutMeSideName();
-
-document.getElementById('about-me-side-name-edit').addEventListener('click', ev => {
-    ev.preventDefault();
-    aboutMeSideName.enterEditingState();
-});
-document.getElementById('save-about-me-side-name').addEventListener('click', ev => {
-    ev.preventDefault();
-    aboutMeSideName.enterSavingState();
+aboutMeSideName.setOnSaveClicked(() => {
     persistAboutMeSideName()
         .then(res => {
             if (res.status == 'ok')
@@ -138,6 +41,7 @@ function handleSaveFailure(err?) {
     console.log(err);   // TODO: Add implementation
 }
 
+// TODO: move to appropriate module
 async function persistAboutMeSideName() {
     const {csrfToken, baseUrl} = RequestOptionsValues.get();
     const fetchUrl = `${baseUrl}/about_me`;
@@ -148,7 +52,7 @@ async function persistAboutMeSideName() {
             'Accept': 'application/json',
             'X-CSRF-TOKEN': csrfToken,
         },
-        body: JSON.stringify({ "about_me_side_name": aboutMeSideName.getContent() })
+        body: JSON.stringify({"about_me_side_name": aboutMeSideName.getContent()})
     });
     return await response.json();
 }

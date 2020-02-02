@@ -1,10 +1,10 @@
-export function show(element: HTMLElement) {
+/*export function show(element: HTMLElement) {
     element.classList.remove('d-none')
 }
 
 export function hide(element: HTMLElement) {
     element.classList.add('d-none');
-}
+}*/
 
 export class El<T extends HTMLElement> {
     el: T;
@@ -21,6 +21,10 @@ export class El<T extends HTMLElement> {
 
     makeEditable() {
         this.el.setAttribute('contenteditable', 'true');
+        document.execCommand("defaultParagraphSeparator", false, "p"); //
+        // document.execCommand("defaultParagraphSeparator", false, "br"); //
+        // this.setupEditableContentEl();
+        // document.execCommand('insertBrOnReturn');
     }
 
     makeNotEditable() {

@@ -53,14 +53,12 @@ if (document.querySelector('.share-blog')) {
 if (document.getElementById('logout')) {
     import('./utils/logout').then(module => {
         document.getElementById('logout').addEventListener('click', ev => {
-            module.logout().then()
+            module.logout()
         })
     })
 }
 
-if (document.getElementById('about-me-side-image-edit')) {
-    import('./ui/renee/edit-aboutme/editimages').then(module => {
-        // module.setupEditSideImageButton();
-        // module.setupEditSideNameButton()
-    })
+if (document.getElementById('renee')) {
+    import('./ui/renee/edit-aboutme/editimages');
+    import('./ui/renee/edit-aboutme/editaboutmeside');
 }
