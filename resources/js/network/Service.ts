@@ -11,26 +11,33 @@ export default class Service<T extends Model> {
         this.relativeUrl = relativeUrl;
     }
 
-    save(t: T): Promise<any> {
+    save(t: T | FormData): Promise<any> {
         return this._fetch(HttpMethod.POST, t);
     }
 
-    update(t: T, urlSuffix?: string): Promise<any> {
+    update(t: T): Promise<any> {
         return this._fetch(HttpMethod.POST, t, `/${t.id}`);
     }
 
-    protected async _fetch(method: HttpMethod, data: T | FormData, urlSuffix?: string | number, headers?: HeadersInit) {
+    protected async _fetch(method: HttpMethod, data: T | FormData, urlSuffix?: string | number) {
         const {csrfToken, baseUrl} = this.requestOptions;
         const fetchUrl = Service.makeUrl(baseUrl, this.relativeUrl, urlSuffix);
+        let fetchBody: BodyInit;
+        let fetchHeaders: HeadersInit = {
+            'Accept': 'application/json',   //To tell Laravel this is an ajax call
+            'X-CSRF-TOKEN': csrfToken
+        };
 
+        if (this.isFormData(data)) {
+            fetchBody = data;
+        } else {
+            fetchBody = JSON.stringify(data);
+            fetchHeaders['Content-Type'] = 'application/json';
+        }
         const response = await fetch(fetchUrl, {
             method: method,
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',   //To tell Laravel this is an ajax call
-                'X-CSRF-TOKEN': csrfToken
-            },
-            body: JSON.stringify(data)
+            headers: fetchHeaders,
+            body: fetchBody
         });
 
         return await response.json();
@@ -42,6 +49,10 @@ export default class Service<T extends Model> {
         } else {
             return baseUrl + relativeUrl;
         }
+    }
+
+    private isFormData(data: T | FormData): data is FormData {
+        return (data as FormData).append !== undefined;
     }
 
     // private getRequestData(data: T | FormData): string | FormData {

@@ -48,6 +48,7 @@ Route::get('/post/{blog}', function (Blog $blog) {
         'blog' => $blog,
         'categories' => $categories,
         'blogs' => Blog::where('status', 'published')->orderBy('id', 'desc')->take(10)->get(),
+        'about_me' => AboutMe::first()
     ]);
 });
 
@@ -58,9 +59,26 @@ Route::get('/categories/{tag?}', function ($tag = null) {
     }
     return view('visitors.categories', [
         'tags' => $tags,
-        'blogs' => Blog::where('status', 'published')->where('tag', $tag)->get()
+        'blogs' => Blog::where('status', 'published')->where('tag', $tag)->get(),
+        'about_me' => AboutMe::first()
     ]);
 })->name('categories');
+
+Route::get('/aboutme', function () {
+    $tags = Blog::where('status', 'published')->orderBy('tag')->pluck('tag')->unique();
+    $categories = $tags->map(function ($tag, $key) {
+        $category = [];
+        $category['tag'] = $tag;
+        $category['image'] = Blog::where('tag', $tag)->orderBy('id', 'desc')->pluck('main_image_filename')->first();
+        return $category;
+    });
+
+    return view('visitors.about-me', [
+        'categories' => $categories,
+        'blogs' => Blog::where('status', 'published')->orderBy('id', 'desc')->take(10)->get(),
+        'about_me' => AboutMe::first()
+    ]);
+});
 
 
 // Renee

@@ -1,388 +1,97 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[6],{
 
-/***/ "./node_modules/goodshare.js/src/providers/Facebook.js":
-/*!*************************************************************!*\
-  !*** ./node_modules/goodshare.js/src/providers/Facebook.js ***!
-  \*************************************************************/
-/*! exports provided: Facebook */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "./resources/js/network/AboutMeService.js":
+/*!************************************************!*\
+  !*** ./resources/js/network/AboutMeService.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Facebook", function() { return Facebook; });
-/* harmony import */ var _utils_ProviderMixin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/ProviderMixin */ "./node_modules/goodshare.js/src/utils/ProviderMixin.js");
-/**
- *  Vic Shóstak <truewebartisans@gmail.com>
- *  Copyright (c) 2019 True web artisans https://1wa.co
- *  http://opensource.org/licenses/MIT The MIT License (MIT)
- *
- *  goodshare.js
- *
- *  Facebook (https://facebook.com) provider.
- */
 
 
-
-class Facebook extends _utils_ProviderMixin__WEBPACK_IMPORTED_MODULE_0__["ProviderMixin"] {
-  constructor(url = document.location.href, title = document.title) {
-    super();
-    this.url = encodeURIComponent(url);
-    this.title = encodeURIComponent(title);
-    this.createEvents = this.createEvents.bind(this);
-  }
-
-  getPreparedData(item) {
-    const url = item.dataset.url
-      ? encodeURIComponent(item.dataset.url)
-      : this.url;
-    const title = item.dataset.title
-      ? encodeURIComponent(item.dataset.title)
-      : this.title;
-    const share_url = `https://facebook.com/sharer/sharer.php?u=${url}&t=${title}`;
-
-    return {
-      callback: this.callback,
-      share_url: share_url,
-      windowTitle: "Share this",
-      windowWidth: 640,
-      windowHeight: 480
-    };
-  }
-
-  // Share event
-  shareWindow() {
-    const share_elements = document.querySelectorAll(
-      '[data-social="facebook"]'
-    );
-
-    return this.createEvents(share_elements);
-  }
-
-  // Show counter event
-  getCounter() {
-    const script = document.createElement("script");
-    const callback = ("goodshare_" + Math.random()).replace(".", "");
-    const count_elements = document.querySelectorAll(
-      '[data-counter="facebook"]'
-    );
-    const count_url = `https://graph.facebook.com/?id=${
-      this.url
-    }&callback=${callback}`;
-
-    if (count_elements.length > 0) {
-      window[callback] = counter => {
-        [...count_elements].forEach(item => {
-          item.innerHTML = counter.share ? counter.share.share_count : 0;
-        });
-
-        if (script.parentNode === null) {
-          return;
-        }
-
-        script.parentNode.removeChild(script);
-      };
-
-      script.src = count_url;
-      document.body.appendChild(script);
-    }
-  }
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/goodshare.js/src/providers/Twitter.js":
-/*!************************************************************!*\
-  !*** ./node_modules/goodshare.js/src/providers/Twitter.js ***!
-  \************************************************************/
-/*! exports provided: Twitter */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Twitter", function() { return Twitter; });
-/* harmony import */ var _utils_ProviderMixin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/ProviderMixin */ "./node_modules/goodshare.js/src/utils/ProviderMixin.js");
-/**
- *  Vic Shóstak <truewebartisans@gmail.com>
- *  Copyright (c) 2019 True web artisans https://1wa.co
- *  http://opensource.org/licenses/MIT The MIT License (MIT)
- *
- *  goodshare.js
- *
- *  Twitter (https://twitter.com) provider.
- */
-
-
-
-class Twitter extends _utils_ProviderMixin__WEBPACK_IMPORTED_MODULE_0__["ProviderMixin"] {
-  constructor(url = document.location.href, title = document.title) {
-    super();
-    this.url = encodeURIComponent(url);
-    this.title = encodeURIComponent(title);
-    this.createEvents = this.createEvents.bind(this);
-  }
-
-  getPreparedData(item) {
-    const url = item.dataset.url
-      ? encodeURIComponent(item.dataset.url)
-      : this.url;
-    const title = item.dataset.title
-      ? encodeURIComponent(item.dataset.title)
-      : this.title;
-    const share_url = `https://twitter.com/share?url=${url}&text=${title}`;
-
-    return {
-      callback: this.callback,
-      share_url: share_url,
-      windowTitle: "Share this",
-      windowWidth: 640,
-      windowHeight: 480
-    };
-  }
-
-  // Share event
-  shareWindow() {
-    const share_elements = document.querySelectorAll('[data-social="twitter"]');
-
-    return this.createEvents(share_elements);
-  }
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/goodshare.js/src/providers/WhatsApp.js":
-/*!*************************************************************!*\
-  !*** ./node_modules/goodshare.js/src/providers/WhatsApp.js ***!
-  \*************************************************************/
-/*! exports provided: WhatsApp */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WhatsApp", function() { return WhatsApp; });
-/* harmony import */ var _utils_ProviderMixin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/ProviderMixin */ "./node_modules/goodshare.js/src/utils/ProviderMixin.js");
-/**
- *  Vic Shóstak <truewebartisans@gmail.com>
- *  Copyright (c) 2019 True web artisans https://1wa.co
- *  http://opensource.org/licenses/MIT The MIT License (MIT)
- *
- *  goodshare.js
- *
- *  WhatsApp (https://whatsapp.com) provider.
- */
-
-
-
-class WhatsApp extends _utils_ProviderMixin__WEBPACK_IMPORTED_MODULE_0__["ProviderMixin"] {
-  constructor(url = document.location.href) {
-    super();
-    this.url = encodeURIComponent(url);
-    this.createEvents = this.createEvents.bind(this);
-  }
-
-  getPreparedData(item) {
-    const url = item.dataset.url
-      ? encodeURIComponent(item.dataset.url)
-      : this.url;
-    const share_url = `https://wa.me/?text=${url}`;
-
-    return {
-      callback: this.callback,
-      share_url: share_url,
-      windowTitle: "Share this",
-      windowWidth: 640,
-      windowHeight: 480
-    };
-  }
-
-  // Share event
-  shareWindow() {
-    const share_elements = document.querySelectorAll(
-      '[data-social="whatsapp"]'
-    );
-
-    return this.createEvents(share_elements);
-  }
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/goodshare.js/src/utils/EventWrapper.js":
-/*!*************************************************************!*\
-  !*** ./node_modules/goodshare.js/src/utils/EventWrapper.js ***!
-  \*************************************************************/
-/*! exports provided: EventWrapper */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EventWrapper", function() { return EventWrapper; });
-/**
- *  Ilya Reshetnikov
- *  Copyright (c) 2018 Ilya Reshetnikov https://github.com/devxom
- *  http://opensource.org/licenses/MIT The MIT License (MIT)
- *
- *  EventWrapper for goodshare.js
- */
-
-class EventWrapper {
-  constructor() {
-    this.handlers = {};
-  }
-
-  // Add EventListener to element
-  addEventListener(target = document, eventWithNamespace = "click", func) {
-    this.handlers[eventWithNamespace] = {
-      func: func,
-      target: target
-    };
-
-    const eventType = eventWithNamespace.split(".")[0];
-    const eventHandler = this.handlers[eventWithNamespace]["func"];
-
-    target.addEventListener(eventType, eventHandler);
-  }
-
-  // Remove EventListener from element
-  removeEventListener(event = "click") {
-    const eventType = event.split(".")[0];
-    const eventData = this.handlers[event];
-    const target = eventData.target;
-
-    target.removeEventListener(eventType, eventData.func);
-
-    delete this.handlers[event];
-  }
-
-  // Remove all EventListeners
-  removeAll() {
-    for (const key in this.handlers) {
-      this.removeEventListener(key);
-    }
-  }
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/goodshare.js/src/utils/ProviderMixin.js":
-/*!**************************************************************!*\
-  !*** ./node_modules/goodshare.js/src/utils/ProviderMixin.js ***!
-  \**************************************************************/
-/*! exports provided: ProviderMixin */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProviderMixin", function() { return ProviderMixin; });
-/* harmony import */ var _EventWrapper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EventWrapper */ "./node_modules/goodshare.js/src/utils/EventWrapper.js");
-/**
- *  Ilya Reshetnikov
- *  Copyright (c) 2018 Ilya Reshetnikov https://github.com/devxom
- *  http://opensource.org/licenses/MIT The MIT License (MIT)
- *
- *  ProviderMixin for goodshare.js
- */
-
-
-
-// Generate unique ID
-const getUniqueId = (prefix = "id") =>
-  `${prefix}-${Math.random()
-    .toString(36)
-    .substr(2, 8)}`;
-
-class ProviderMixin {
-  constructor() {
-    this.events = new _EventWrapper__WEBPACK_IMPORTED_MODULE_0__["EventWrapper"]();
-    this.callback = function() {};
-    this.updateInstanceId();
-  }
-
-  // Handler wrapper for callback manipulations
-  eventHandler(event, { share_url, windowTitle, windowWidth, windowHeight }) {
-    event.preventDefault();
-
-    // Calc top & left window position
-    const screenWidth =
-      window.outerWidth || window.document.documentElement.offsetWidth;
-    const screenHeight =
-      window.outerHeight || window.document.documentElement.offsetHeight;
-    const screenTop = Math.round(screenHeight / 2 - windowHeight / 2);
-    const screenLeft = Math.round(screenWidth / 2 - windowWidth / 2);
-
-    // Set window size & window position
-    const windowSize = `width=${windowWidth},height=${windowHeight}`;
-    const windowPosition = `left=${screenLeft},top=${screenTop}`;
-
-    // Build full window options
-    const windowOptions = `${windowSize},${windowPosition},location=no,toolbar=no,menubar=no`;
-
-    // Build window open object
-    const windowObject = window.open(share_url, windowTitle, windowOptions);
-
-    const windowCloseChecker = setInterval(() => {
-      if (windowObject.closed) {
-        this.callback(
-          event,
-          { share_url, windowTitle, windowOptions },
-          windowObject
-        );
-        clearInterval(windowCloseChecker);
+var __extends = this && this.__extends || function () {
+  var _extendStatics = function extendStatics(d, b) {
+    _extendStatics = Object.setPrototypeOf || {
+      __proto__: []
+    } instanceof Array && function (d, b) {
+      d.__proto__ = b;
+    } || function (d, b) {
+      for (var p in b) {
+        if (b.hasOwnProperty(p)) d[p] = b[p];
       }
-    }, 10);
+    };
 
-    return windowObject;
+    return _extendStatics(d, b);
+  };
+
+  return function (d, b) {
+    _extendStatics(d, b);
+
+    function __() {
+      this.constructor = d;
+    }
+
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+  };
+}();
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var Service_1 = __importDefault(__webpack_require__(/*! ./Service */ "./resources/js/network/Service.js"));
+
+var AboutMeService =
+/** @class */
+function (_super) {
+  __extends(AboutMeService, _super);
+
+  function AboutMeService(requestOptions) {
+    return _super.call(this, requestOptions, '/about_me') || this;
   }
 
-  setShareCallback(callback) {
-    this.callback = callback;
-  }
+  return AboutMeService;
+}(Service_1["default"]);
 
-  createEvents(share_elements) {
-    [...share_elements].forEach(item => {
-      const options = this.getPreparedData(item);
-      const eventHandler = event =>
-        this.eventHandler.call(this, event, options);
-
-      this.events.addEventListener(
-        item,
-        `click.${this.instanceId}`,
-        eventHandler
-      );
-    });
-  }
-
-  // Get instance
-  getInstance() {
-    if (typeof this.shareWindow === "function") this.shareWindow();
-    if (typeof this.getCounter === "function") this.getCounter();
-
-    return this;
-  }
-
-  // Update instance ID
-  updateInstanceId() {
-    this.instanceId = getUniqueId();
-  }
-
-  // Renew instance
-  reNewInstance() {
-    this.events.removeAll();
-    this.updateInstanceId();
-    return this.getInstance();
-  }
-}
-
+exports["default"] = AboutMeService;
 
 /***/ }),
 
-/***/ "./resources/js/ui/visitors/share/share.js":
-/*!*************************************************!*\
-  !*** ./resources/js/ui/visitors/share/share.js ***!
-  \*************************************************/
+/***/ "./resources/js/network/HttpMethod.js":
+/*!********************************************!*\
+  !*** ./resources/js/network/HttpMethod.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var HttpMethod;
+
+(function (HttpMethod) {
+  HttpMethod["GET"] = "GET";
+  HttpMethod["POST"] = "POST";
+  HttpMethod["PUT"] = "PUT";
+  HttpMethod["DELETE"] = "DELETE";
+})(HttpMethod = exports.HttpMethod || (exports.HttpMethod = {}));
+
+/***/ }),
+
+/***/ "./resources/js/network/RequestOptions.js":
+/*!************************************************!*\
+  !*** ./resources/js/network/RequestOptions.js ***!
+  \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -393,157 +102,28 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var Facebook_1 = __webpack_require__(/*! ./../../../../../node_modules/goodshare.js/src/providers/Facebook */ "./node_modules/goodshare.js/src/providers/Facebook.js");
-
-var Twitter_1 = __webpack_require__(/*! ./../../../../../node_modules/goodshare.js/src/providers/Twitter */ "./node_modules/goodshare.js/src/providers/Twitter.js");
-
-var WhatsApp_1 = __webpack_require__(/*! ./../../../../../node_modules/goodshare.js/src/providers/WhatsApp */ "./node_modules/goodshare.js/src/providers/WhatsApp.js");
-
-var constants_1 = __webpack_require__(/*! ../../../utils/constants */ "./resources/js/utils/constants.js");
-
-var shareMessagePrefix = "Checkout this blog by Renee Tikolo:";
-
-var Share =
+var RequestOptionsValues =
 /** @class */
 function () {
-  function Share() {}
+  function RequestOptionsValues() {}
 
-  Share.prototype.setupShareAnchors = function () {
-    var _this = this;
-
-    $(document).on('click', '.share-blog', function (e) {
-      e.preventDefault();
-      _this.clickedShareAnchor = e.currentTarget;
-      var popover = new Popover(e.currentTarget);
-      popover.show();
-
-      _this.setupPopoverSocialShare();
-    });
+  RequestOptionsValues.get = function () {
+    return {
+      csrfToken: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+      baseUrl: document.querySelector('meta[name="base-url"]').getAttribute('content')
+    };
   };
 
-  Share.prototype.setupPopoverSocialShare = function () {
-    var url = constants_1.appUrl + "/" + constants_1.blogPostRelativeUrl + "/" + this.getClickedShareAnchorBlogId();
-    var shareMessage = shareMessagePrefix + " " + this.getClickedShareAnchorTitle();
-    new Facebook_1.Facebook(url, shareMessage).shareWindow();
-    new Twitter_1.Twitter(url, shareMessage).shareWindow();
-    new WhatsApp_1.WhatsApp(shareMessage + ' ' + url).shareWindow();
-  };
-
-  Share.prototype.getClickedShareAnchorBlogId = function () {
-    return parseInt(this.clickedShareAnchor.dataset.blogId);
-  };
-
-  Share.prototype.getClickedShareAnchorTitle = function () {
-    return this.clickedShareAnchor.dataset.blogTitle;
-  };
-
-  return Share;
+  return RequestOptionsValues;
 }();
 
-exports.Share = Share;
-
-var Popover =
-/** @class */
-function () {
-  function Popover(shareAnchor) {
-    this.element = shareAnchor;
-    this.setupPopover();
-  }
-
-  Popover.prototype.setupPopover = function () {
-    var _this = this;
-
-    $(this.element).popover({
-      html: true,
-      placement: 'left',
-      content: "\n                <a class=\"mx-2 sharer\" href=\"#\" data-social=\"facebook\"><i class=\"icon ion-social-facebook\"></i></a>\n                <a class=\"mx-2 sharer\" href=\"#\" data-social=\"twitter\"><i class=\"icon ion-social-twitter\"></i></a>\n                <a class=\"mx-2 sharer\" href=\"#\" data-social=\"whatsapp\"><i class=\"icon ion-social-whatsapp\"></i></a>\n            ".trim(),
-      sanitize: false
-    });
-    $(document).off('click', '.sharer');
-    $(document).on('click', '.sharer', function (e) {
-      e.preventDefault();
-
-      _this.dispose();
-    });
-  };
-
-  Popover.prototype.show = function () {
-    $(this.element).popover('show');
-  };
-
-  Popover.prototype.dispose = function () {
-    $(this.element).popover('dispose');
-  };
-
-  return Popover;
-}();
-/*
-
-export function setupShareAnchors() {
-    $(document).on('click', '.share-blog', e => {
-        e.preventDefault();
-        showPopoverFor(e.currentTarget);
-        const blogId = getBlogIdFrom(e.currentTarget);
-        const blogTitle = getBlogTitleFrom(e.currentTarget);
-        setupPopoverSocialShareLinks(blogId, blogTitle);
-    })
-}
-
-function showPopoverFor(element: HTMLElement) {
-    setup(element);
-    show(element);
-}
-
-function setup(element: HTMLElement) {
-    $(element).popover({
-        html: true,
-        placement: 'left',
-        content: `
-                <a class="mx-2 sharer" href="#" data-social="facebook"><i class="icon ion-social-facebook"></i></a>
-                <a class="mx-2 sharer" href="#" data-social="twitter"><i class="icon ion-social-twitter"></i></a>
-                <a class="mx-2 sharer" href="#" data-social="whatsapp"><i class="icon ion-social-whatsapp"></i></a>
-            `.trim(),
-        sanitize: false
-    });
-}
-
-function show(element) {
-    $(element).popover('show');
-}
-
-function getBlogIdFrom(element: HTMLElement): number {
-    return parseInt(element.dataset.blogId);
-}
-
-function getBlogTitleFrom(element: HTMLElement) {
-    return element.dataset.blogTitle;
-}
-
-function setupPopoverSocialShareLinks(blogId: number, blogTitle: string) {
-    const url = `${appUrl}/${blogPostRelativeUrl}/${blogId}`;
-    const shareMessage = `${shareMessagePrefix} ${blogTitle}`;
-    new Facebook(url, shareMessage).shareWindow();
-    new Twitter(url, shareMessage).shareWindow();
-    new WhatsApp(shareMessage + ' ' + url).shareWindow();
-}
-
-function isDeviceMobile(): boolean {
-    //Courtesy of Stackoverflow
-    var isMobile = false;
-    if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|ipad|iris|kindle|Android|Silk|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(navigator.userAgent)
-        || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(navigator.userAgent.substr(0,4))) {
-        isMobile = true;
-    }
-
-    return isMobile;
-}
-*/
+exports.RequestOptionsValues = RequestOptionsValues;
 
 /***/ }),
 
-/***/ "./resources/js/utils/constants.js":
+/***/ "./resources/js/network/Service.js":
 /*!*****************************************!*\
-  !*** ./resources/js/utils/constants.js ***!
+  !*** ./resources/js/network/Service.js ***!
   \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -551,13 +131,502 @@ function isDeviceMobile(): boolean {
 "use strict";
 
 
+var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, generator) {
+  function adopt(value) {
+    return value instanceof P ? value : new P(function (resolve) {
+      resolve(value);
+    });
+  }
+
+  return new (P || (P = Promise))(function (resolve, reject) {
+    function fulfilled(value) {
+      try {
+        step(generator.next(value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+
+    function rejected(value) {
+      try {
+        step(generator["throw"](value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+
+    function step(result) {
+      result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+    }
+
+    step((generator = generator.apply(thisArg, _arguments || [])).next());
+  });
+};
+
+var __generator = this && this.__generator || function (thisArg, body) {
+  var _ = {
+    label: 0,
+    sent: function sent() {
+      if (t[0] & 1) throw t[1];
+      return t[1];
+    },
+    trys: [],
+    ops: []
+  },
+      f,
+      y,
+      t,
+      g;
+  return g = {
+    next: verb(0),
+    "throw": verb(1),
+    "return": verb(2)
+  }, typeof Symbol === "function" && (g[Symbol.iterator] = function () {
+    return this;
+  }), g;
+
+  function verb(n) {
+    return function (v) {
+      return step([n, v]);
+    };
+  }
+
+  function step(op) {
+    if (f) throw new TypeError("Generator is already executing.");
+
+    while (_) {
+      try {
+        if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+        if (y = 0, t) op = [op[0] & 2, t.value];
+
+        switch (op[0]) {
+          case 0:
+          case 1:
+            t = op;
+            break;
+
+          case 4:
+            _.label++;
+            return {
+              value: op[1],
+              done: false
+            };
+
+          case 5:
+            _.label++;
+            y = op[1];
+            op = [0];
+            continue;
+
+          case 7:
+            op = _.ops.pop();
+
+            _.trys.pop();
+
+            continue;
+
+          default:
+            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+              _ = 0;
+              continue;
+            }
+
+            if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
+              _.label = op[1];
+              break;
+            }
+
+            if (op[0] === 6 && _.label < t[1]) {
+              _.label = t[1];
+              t = op;
+              break;
+            }
+
+            if (t && _.label < t[2]) {
+              _.label = t[2];
+
+              _.ops.push(op);
+
+              break;
+            }
+
+            if (t[2]) _.ops.pop();
+
+            _.trys.pop();
+
+            continue;
+        }
+
+        op = body.call(thisArg, _);
+      } catch (e) {
+        op = [6, e];
+        y = 0;
+      } finally {
+        f = t = 0;
+      }
+    }
+
+    if (op[0] & 5) throw op[1];
+    return {
+      value: op[0] ? op[1] : void 0,
+      done: true
+    };
+  }
+};
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.appUrl = document.querySelector('meta[name="base-url"]').getAttribute('content');
-exports.blogsPageRelativeURL = 'only/juli/blogs';
-exports.blogImagesRelativeUrl = 'storage/blog-main-images';
-exports.blogPostRelativeUrl = 'post';
+
+var HttpMethod_1 = __webpack_require__(/*! ./HttpMethod */ "./resources/js/network/HttpMethod.js");
+
+var Service =
+/** @class */
+function () {
+  function Service(requestOptions, relativeUrl) {
+    this.requestOptions = requestOptions;
+    this.relativeUrl = relativeUrl;
+  }
+
+  Service.prototype.save = function (t) {
+    return this._fetch(HttpMethod_1.HttpMethod.POST, t);
+  };
+
+  Service.prototype.update = function (t) {
+    return this._fetch(HttpMethod_1.HttpMethod.POST, t, "/" + t.id);
+  };
+
+  Service.prototype._fetch = function (method, data, urlSuffix) {
+    return __awaiter(this, void 0, void 0, function () {
+      var _a, csrfToken, baseUrl, fetchUrl, fetchBody, fetchHeaders, response;
+
+      return __generator(this, function (_b) {
+        switch (_b.label) {
+          case 0:
+            _a = this.requestOptions, csrfToken = _a.csrfToken, baseUrl = _a.baseUrl;
+            fetchUrl = Service.makeUrl(baseUrl, this.relativeUrl, urlSuffix);
+            fetchHeaders = {
+              'Accept': 'application/json',
+              'X-CSRF-TOKEN': csrfToken
+            };
+
+            if (this.isFormData(data)) {
+              fetchBody = data;
+            } else {
+              fetchBody = JSON.stringify(data);
+              fetchHeaders['Content-Type'] = 'application/json';
+            }
+
+            return [4
+            /*yield*/
+            , fetch(fetchUrl, {
+              method: method,
+              headers: fetchHeaders,
+              body: fetchBody
+            })];
+
+          case 1:
+            response = _b.sent();
+            return [4
+            /*yield*/
+            , response.json()];
+
+          case 2:
+            return [2
+            /*return*/
+            , _b.sent()];
+        }
+      });
+    });
+  };
+
+  Service.makeUrl = function (baseUrl, relativeUrl, urlSuffix) {
+    if (urlSuffix != undefined) {
+      return baseUrl + relativeUrl + urlSuffix;
+    } else {
+      return baseUrl + relativeUrl;
+    }
+  };
+
+  Service.prototype.isFormData = function (data) {
+    return data.append !== undefined;
+  };
+
+  return Service;
+}();
+
+exports["default"] = Service;
+
+/***/ }),
+
+/***/ "./resources/js/ui/renee/edit-aboutme/AboutMeSideText.js":
+/*!***************************************************************!*\
+  !*** ./resources/js/ui/renee/edit-aboutme/AboutMeSideText.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var CallIfPresent_1 = __webpack_require__(/*! ../../../utils/CallIfPresent */ "./resources/js/utils/CallIfPresent.js");
+
+var AboutMeSideText =
+/** @class */
+function () {
+  function AboutMeSideText() {
+    this.initElements();
+    this.setupButtonListeners();
+  }
+
+  AboutMeSideText.prototype.enterInitialState = function () {
+    this.editButton.show();
+    this.contentElement.makeNotEditable();
+    this.saveAndCancelContainer.hide();
+    this.loadIndicator.hide();
+  };
+
+  AboutMeSideText.prototype.enterEditingState = function () {
+    this.editButton.hide();
+    this.contentElement.makeEditable();
+    this.saveAndCancelContainer.show();
+    this.contentElement.focusAndHighlightAllText();
+    this.loadIndicator.hide();
+  };
+
+  AboutMeSideText.prototype.enterSavingState = function () {
+    this.editButton.hide();
+    this.saveAndCancelContainer.hide();
+    this.loadIndicator.show();
+    this.contentElement.makeNotEditable();
+  };
+
+  AboutMeSideText.prototype.setupButtonListeners = function () {
+    var _this = this;
+
+    this.editButton.el.addEventListener('click', function (ev) {
+      ev.preventDefault();
+
+      _this.enterEditingState();
+
+      CallIfPresent_1.callCallbackIfPresent(_this.onEditClicked);
+    });
+    this.saveButton.el.addEventListener('click', function (ev) {
+      ev.preventDefault();
+
+      _this.enterSavingState();
+
+      CallIfPresent_1.callCallbackIfPresent(_this.onSaveClicked);
+    });
+    $(this.contentElement.el).on('keydown', function (e) {
+      if (e.keyCode === 13) {
+        _this.saveButton.el.click();
+
+        return false;
+      }
+    });
+    this.contentElement.el.addEventListener('click', function (ev) {
+      ev.preventDefault();
+
+      _this.editButton.el.click();
+    });
+  };
+
+  AboutMeSideText.prototype.setOnEditClicked = function (onEditClicked) {
+    this.onEditClicked = onEditClicked;
+  };
+
+  AboutMeSideText.prototype.setOnSaveClicked = function (onSaveClicked) {
+    this.onSaveClicked = onSaveClicked;
+  };
+
+  return AboutMeSideText;
+}();
+
+exports.AboutMeSideText = AboutMeSideText;
+
+/***/ }),
+
+/***/ "./resources/js/ui/renee/edit-aboutme/editaboutmeside.js":
+/*!***************************************************************!*\
+  !*** ./resources/js/ui/renee/edit-aboutme/editaboutmeside.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __extends = this && this.__extends || function () {
+  var _extendStatics = function extendStatics(d, b) {
+    _extendStatics = Object.setPrototypeOf || {
+      __proto__: []
+    } instanceof Array && function (d, b) {
+      d.__proto__ = b;
+    } || function (d, b) {
+      for (var p in b) {
+        if (b.hasOwnProperty(p)) d[p] = b[p];
+      }
+    };
+
+    return _extendStatics(d, b);
+  };
+
+  return function (d, b) {
+    _extendStatics(d, b);
+
+    function __() {
+      this.constructor = d;
+    }
+
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+  };
+}();
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var AboutMeSideText_1 = __webpack_require__(/*! ./AboutMeSideText */ "./resources/js/ui/renee/edit-aboutme/AboutMeSideText.js");
+
+var ElementUtils_1 = __webpack_require__(/*! ../../../utils/ElementUtils */ "./resources/js/utils/ElementUtils.js");
+
+var AboutMeService_1 = __importDefault(__webpack_require__(/*! ../../../network/AboutMeService */ "./resources/js/network/AboutMeService.js"));
+
+var RequestOptions_1 = __webpack_require__(/*! ../../../network/RequestOptions */ "./resources/js/network/RequestOptions.js");
+
+var AboutMeSideContent =
+/** @class */
+function (_super) {
+  __extends(AboutMeSideContent, _super);
+
+  function AboutMeSideContent() {
+    return _super.call(this) || this;
+  }
+
+  AboutMeSideContent.prototype.initElements = function () {
+    this.editButton = new ElementUtils_1.El(document.getElementById('edit-about-me-side'));
+    this.contentElement = new ElementUtils_1.El(document.getElementById('about-me-side'));
+    this.saveAndCancelContainer = new ElementUtils_1.El(document.getElementById('about-me-side-save-cancel-container'));
+    this.saveButton = new ElementUtils_1.El(document.getElementById('save-about-me-side'));
+    this.cancelButton = new ElementUtils_1.El(document.getElementById('cancel-about-me-side'));
+    this.loadIndicator = new ElementUtils_1.El(document.getElementById('loading-about-me-side'));
+  };
+
+  AboutMeSideContent.prototype.getContent = function () {
+    return this.contentElement.el.innerHTML;
+  };
+
+  return AboutMeSideContent;
+}(AboutMeSideText_1.AboutMeSideText);
+
+var editAboutMeSide = new AboutMeSideContent();
+editAboutMeSide.setOnSaveClicked(function () {
+  var aboutMeService = new AboutMeService_1["default"](RequestOptions_1.RequestOptionsValues.get());
+  aboutMeService.save({
+    about_me_side: editAboutMeSide.getContent()
+  }).then(function (res) {
+    if (res.status == 'ok') editAboutMeSide.enterInitialState();else handleSaveFailure();
+  })["catch"](handleSaveFailure);
+});
+
+function handleSaveFailure(err) {
+  console.log(err); // TODO: Add implementation
+}
+
+/***/ }),
+
+/***/ "./resources/js/utils/CallIfPresent.js":
+/*!*********************************************!*\
+  !*** ./resources/js/utils/CallIfPresent.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function callCallbackIfPresent(callback) {
+  if (callback !== undefined) {
+    callback();
+  }
+}
+
+exports.callCallbackIfPresent = callCallbackIfPresent;
+
+/***/ }),
+
+/***/ "./resources/js/utils/ElementUtils.js":
+/*!********************************************!*\
+  !*** ./resources/js/utils/ElementUtils.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/*export function show(element: HTMLElement) {
+    element.classList.remove('d-none')
+}
+
+export function hide(element: HTMLElement) {
+    element.classList.add('d-none');
+}*/
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var El =
+/** @class */
+function () {
+  function El(el) {
+    this.el = el;
+  }
+
+  El.prototype.show = function () {
+    this.el.classList.remove('d-none');
+  };
+
+  El.prototype.hide = function () {
+    this.el.classList.add('d-none');
+  };
+
+  El.prototype.makeEditable = function () {
+    this.el.setAttribute('contenteditable', 'true');
+    document.execCommand("defaultParagraphSeparator", false, "p"); //
+    // document.execCommand("defaultParagraphSeparator", false, "br"); //
+    // this.setupEditableContentEl();
+    // document.execCommand('insertBrOnReturn');
+  };
+
+  El.prototype.makeNotEditable = function () {
+    this.el.setAttribute('contenteditable', 'false');
+  };
+
+  El.prototype.focusAndHighlightAllText = function () {
+    this.el.focus();
+    document.execCommand('selectAll', false, null);
+  };
+
+  return El;
+}();
+
+exports.El = El;
 
 /***/ })
 

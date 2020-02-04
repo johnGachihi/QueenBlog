@@ -19,6 +19,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var AboutMeSideText_1 = require("./AboutMeSideText");
 var ElementUtils_1 = require("../../../utils/ElementUtils");
 var AboutMeService_1 = __importDefault(require("../../../network/AboutMeService"));
+var RequestOptions_1 = require("../../../network/RequestOptions");
 var AboutMeSideContent = /** @class */ (function (_super) {
     __extends(AboutMeSideContent, _super);
     function AboutMeSideContent() {
@@ -39,7 +40,7 @@ var AboutMeSideContent = /** @class */ (function (_super) {
 }(AboutMeSideText_1.AboutMeSideText));
 var editAboutMeSide = new AboutMeSideContent();
 editAboutMeSide.setOnSaveClicked(function () {
-    var aboutMeService = new AboutMeService_1.default();
+    var aboutMeService = new AboutMeService_1.default(RequestOptions_1.RequestOptionsValues.get());
     aboutMeService.save({ about_me_side: editAboutMeSide.getContent() })
         .then(function (res) {
         if (res.status == 'ok')

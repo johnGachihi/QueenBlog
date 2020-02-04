@@ -69,7 +69,7 @@
                                 </div>
                                 <i id="loading-about-me-side-image" class="material-icons d-none">hourglass_empty</i>
 
-                                <input id="about-me-side-image-hidden-input" class="d-none" type="file"/>
+                                <input id="about-me-side-image-hidden-input" class="d-none" type="file" accept="image/*"/>
                             </div>
                             @endauth
                         </div>

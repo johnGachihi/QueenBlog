@@ -1,6 +1,7 @@
 import {AboutMeSideText} from "./AboutMeSideText";
 import {El} from "../../../utils/ElementUtils";
 import AboutMeService from "../../../network/AboutMeService";
+import {RequestOptionsValues} from "../../../network/RequestOptions";
 
 class AboutMeSideContent extends AboutMeSideText{
     constructor() {
@@ -24,7 +25,7 @@ class AboutMeSideContent extends AboutMeSideText{
 
 const editAboutMeSide = new AboutMeSideContent();
 editAboutMeSide.setOnSaveClicked(() => {
-    const aboutMeService = new AboutMeService();
+    const aboutMeService = new AboutMeService(RequestOptionsValues.get());
     aboutMeService.save({about_me_side: editAboutMeSide.getContent()})
         .then(res => {
             if (res.status == 'ok')

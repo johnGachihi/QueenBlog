@@ -4,17 +4,33 @@
     <list default="true" id="0ba4312e-56ad-419e-b4b7-cc2a10cfd510" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/0.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/0.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/1.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/1.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/2.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/10.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/10.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/11.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/11.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/12.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/12.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/13.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/13.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/14.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/14.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/3.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/3.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/4.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/4.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/5.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/6.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/6.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/7.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/7.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/8.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/8.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/9.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/9.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeSideText.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeSideText.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeSideText.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeSideText.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeSideText.ts" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeSideText.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/visitors/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/visitors/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/network/AboutMeService.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/network/AboutMeService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/network/AboutMeService.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/network/AboutMeService.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/network/AboutMeService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/network/AboutMeService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/network/Service.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/network/Service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/network/Service.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/network/Service.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/network/Service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/network/Service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeImage.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeImage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeImage.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeImage.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeImage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeImage.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editaboutmeside.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editaboutmeside.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editaboutmeside.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editaboutmeside.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editaboutmeside.ts" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editaboutmeside.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/visitors/components/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/visitors/components/header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,8 +164,10 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/storage/app/public/about_me_images_folder" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="TypeScript" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Unscripted (1)/juli-master/juli-master/03-About-me.html" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="nodejs.jest.jest_package" value="$PROJECT_DIR$/node_modules/jest" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="settings.typescriptcompiler" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
@@ -169,13 +187,75 @@
       <recent name="$PROJECT_DIR$/public/css" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.BlogsControllerTest">
-    <configuration name="BlogsControllerTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\BlogsControllerTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/BlogsControllerTest.php" scope="Class" />
+  <component name="RunManager" selected="Jest.test Service (1)">
+    <configuration name="test Service (1)" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/resources/js/test/network/AboutMeService.spec.ts" />
+      <test-names>
+        <test-name value="test Service" />
+      </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="BlogsControllerTest.testStore_withoutBlogContent" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\BlogsControllerTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/BlogsControllerTest.php" method="testStore_withoutBlogContent" scope="Method" />
+    <configuration name="test Service" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/resources/js/test/network/Service.spec.ts" />
+      <test-names>
+        <test-name value="test Service" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="test Service.request fetch-url" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/resources/js/test/network/AboutMeService.spec.ts" />
+      <test-names>
+        <test-name value="test Service" />
+        <test-name value="request fetch-url" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="test Service.test save() with Model.request body" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/resources/js/test/network/Service.spec.ts" />
+      <test-names>
+        <test-name value="test Service" />
+        <test-name value="test save() with Model" />
+        <test-name value="request body" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="test Service.test save() with Model.request headers" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/resources/js/test/network/Service.spec.ts" />
+      <test-names>
+        <test-name value="test Service" />
+        <test-name value="test save() with Model" />
+        <test-name value="request headers" />
+      </test-names>
       <method v="2" />
     </configuration>
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -184,8 +264,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="PHPUnit.BlogsControllerTest" />
-        <item itemvalue="PHPUnit.BlogsControllerTest.testStore_withoutBlogContent" />
+        <item itemvalue="Jest.test Service (1)" />
+        <item itemvalue="Jest.test Service.request fetch-url" />
+        <item itemvalue="Jest.test Service" />
+        <item itemvalue="Jest.test Service.test save() with Model.request body" />
+        <item itemvalue="Jest.test Service.test save() with Model.request headers" />
       </list>
     </recent_temporary>
   </component>
@@ -229,7 +312,9 @@
       <workItem from="1580109899012" duration="8675000" />
       <workItem from="1580385712655" duration="26419000" />
       <workItem from="1580460629996" duration="15347000" />
-      <workItem from="1580628036087" duration="14774000" />
+      <workItem from="1580628036087" duration="21795000" />
+      <workItem from="1580713263542" duration="613000" />
+      <workItem from="1580733042315" duration="36562000" />
     </task>
     <servers />
   </component>
@@ -288,6 +373,16 @@
         <option value="$PROJECT_DIR$/resources/js/write/Timeout.js" />
         <option value="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeImage.js.map" />
         <option value="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeImage.js" />
+        <option value="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeComponents.js" />
+        <option value="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeComponents.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/utils/ErrorHandling.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/utils/ErrorHandling.js" />
+        <option value="$PROJECT_DIR$/resources/js/test/network/Service.spec.js" />
+        <option value="$PROJECT_DIR$/resources/js/test/network/Service.spec.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/test/TestUtils/fetchResponses.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/test/TestUtils/fetchResponses.js" />
+        <option value="$PROJECT_DIR$/resources/js/test/network/AboutMeService.spec.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/test/network/AboutMeService.spec.js" />
       </list>
     </option>
   </component>
@@ -304,14 +399,18 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="174" y="54" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1299.741@67.27.1299.741" timestamp="1579247079425" />
+    <state x="167" y="125" width="1099" height="543" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1580806315593">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="167" y="125" width="1099" height="543" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/67.27.1299.741@67.27.1299.741" timestamp="1580806315593" />
     <state x="416" y="201" width="591" height="390" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1579161602888">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="416" y="201" width="591" height="390" key="#com.intellij.fileTypes.FileTypeChooser/67.27.1299.741@67.27.1299.741" timestamp="1579161602888" />
-    <state x="524" y="115" width="374" height="562" key="#com.intellij.ide.util.MemberChooser" timestamp="1580642720791">
+    <state x="524" y="115" width="374" height="562" key="#com.intellij.ide.util.MemberChooser" timestamp="1580736392147">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="524" y="115" width="374" height="562" key="#com.intellij.ide.util.MemberChooser/67.27.1299.741@67.27.1299.741" timestamp="1580642720791" />
+    <state x="524" y="115" width="374" height="562" key="#com.intellij.ide.util.MemberChooser/67.27.1299.741@67.27.1299.741" timestamp="1580736392147" />
     <state x="399" y="124" width="624" height="544" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1578919415507">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
@@ -328,30 +427,34 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="449" y="154" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/67.27.1299.741@67.27.1299.741" timestamp="1580395472851" />
+    <state x="377" y="52" width="669" height="688" key="#it_works_(2)" timestamp="1580803251168">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="377" y="52" width="669" height="688" key="#it_works_(2)/67.27.1299.741@67.27.1299.741" timestamp="1580803251168" />
     <state x="167" y="125" width="1099" height="543" key="DiffContextDialog" timestamp="1579607529209">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="167" y="125" width="1099" height="543" key="DiffContextDialog/67.27.1299.741@67.27.1299.741" timestamp="1579607529209" />
-    <state x="499" y="154" width="424" height="484" key="FileChooserDialogImpl" timestamp="1580577029952">
+    <state x="499" y="154" width="424" height="484" key="FileChooserDialogImpl" timestamp="1580647475143">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="499" y="154" width="424" height="484" key="FileChooserDialogImpl/67.27.1299.741@67.27.1299.741" timestamp="1580577029952" />
-    <state width="1253" height="240" key="GridCell.Tab.0.bottom" timestamp="1579191417960">
+    <state x="499" y="154" width="424" height="484" key="FileChooserDialogImpl/67.27.1299.741@67.27.1299.741" timestamp="1580647475143" />
+    <state width="1253" height="132" key="GridCell.Tab.0.bottom" timestamp="1580821508667">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="240" key="GridCell.Tab.0.bottom/67.27.1299.741@67.27.1299.741" timestamp="1579191417960" />
-    <state width="1253" height="240" key="GridCell.Tab.0.center" timestamp="1579191417960">
+    <state width="1253" height="132" key="GridCell.Tab.0.bottom/67.27.1299.741@67.27.1299.741" timestamp="1580821508667" />
+    <state width="1253" height="132" key="GridCell.Tab.0.center" timestamp="1580821508666">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="240" key="GridCell.Tab.0.center/67.27.1299.741@67.27.1299.741" timestamp="1579191417960" />
-    <state width="1253" height="240" key="GridCell.Tab.0.left" timestamp="1579191417959">
+    <state width="1253" height="132" key="GridCell.Tab.0.center/67.27.1299.741@67.27.1299.741" timestamp="1580821508666" />
+    <state width="1253" height="132" key="GridCell.Tab.0.left" timestamp="1580821508666">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="240" key="GridCell.Tab.0.left/67.27.1299.741@67.27.1299.741" timestamp="1579191417959" />
-    <state width="1253" height="240" key="GridCell.Tab.0.right" timestamp="1579191417960">
+    <state width="1253" height="132" key="GridCell.Tab.0.left/67.27.1299.741@67.27.1299.741" timestamp="1580821508666" />
+    <state width="1253" height="132" key="GridCell.Tab.0.right" timestamp="1580821508667">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="240" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1579191417960" />
+    <state width="1253" height="132" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1580821508667" />
     <state x="187" y="85" width="1039" height="622" key="MergeDialog" timestamp="1580570812618">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
@@ -364,10 +467,10 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="471" y="210" width="481" height="373" key="NewPhpClassDialog/67.27.1299.741@67.27.1299.741" timestamp="1580395219630" />
-    <state x="518" y="340" width="399" height="149" key="NewPhpFileDialog" timestamp="1580395249832">
+    <state x="518" y="340" width="399" height="149" key="NewPhpFileDialog" timestamp="1580647535932">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="518" y="340" width="399" height="149" key="NewPhpFileDialog/67.27.1299.741@67.27.1299.741" timestamp="1580395249832" />
+    <state x="518" y="340" width="399" height="149" key="NewPhpFileDialog/67.27.1299.741@67.27.1299.741" timestamp="1580647535932" />
     <state x="205" y="31" key="SettingsEditor" timestamp="1579446222862">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
@@ -376,18 +479,18 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state width="501" height="446" key="SwitcherDM/67.27.1299.741@67.27.1299.741" timestamp="1580213597193" />
-    <state x="372" y="224" key="com.intellij.ide.util.TipDialog" timestamp="1580628042960">
+    <state x="372" y="224" key="com.intellij.ide.util.TipDialog" timestamp="1580733053145">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="372" y="224" key="com.intellij.ide.util.TipDialog/67.27.1299.741@67.27.1299.741" timestamp="1580628042960" />
+    <state x="372" y="224" key="com.intellij.ide.util.TipDialog/67.27.1299.741@67.27.1299.741" timestamp="1580733053145" />
     <state x="380" y="175" key="run.anything.popup" timestamp="1578995080600">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="380" y="175" key="run.anything.popup/67.27.1299.741@67.27.1299.741" timestamp="1578995080600" />
-    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1580568732578">
+    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1580742436305">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup/67.27.1299.741@67.27.1299.741" timestamp="1580568732578" />
+    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup/67.27.1299.741@67.27.1299.741" timestamp="1580742436305" />
     <state x="436" y="310" width="540" height="172" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1580646770658">
       <screen x="67" y="27" width="1299" height="741" />
     </state>

@@ -1,21 +1,103 @@
 import Uppy from "@uppy/core";
 import ThumbnailGenerator from "@uppy/thumbnail-generator";
-import {AboutMeSideText} from "./AboutMeSideText";
 import {El} from "../../../utils/ElementUtils";
-import AboutMeService from "../../../network/AboutMeService";
-import {RequestOptionsValues} from "../../../network/RequestOptions";
-import {HttpMethod} from "../../../network/HttpMethod";
+import AboutMeComponents from "./AboutMeComponents";
 
-export default class AboutMeImage extends AboutMeSideText{
-    private hiddenImageInput: El<HTMLInputElement>;
-    private uppy;
-    private content: File;
+export default abstract class AboutMeImageComponent extends AboutMeComponents{
+    protected hiddenImageInput: El<HTMLInputElement>;
+    protected content: File;
+    private uppy;     /* When like this:
+                           private uppy = Uppy();
+                         Even after [initUppy] is called, the ThumbnailGenerator
+                         plugin does not seem to be set. Why?
+                      */
 
-    constructor() {
+    protected constructor() {
         super();
-        this.enterInitialState();
-        this.initUppy();
-        this.setupImageInputListener();
+
+        // this.enterInitialState();
+    }
+
+    protected abstract initElements()
+
+    /*protected initUppy() {
+        this.uppy = Uppy({
+            allowMultipleUploads: false,
+            autoProceed: false,
+            restrictions: {
+                maxNumberOfFiles: 1
+            }
+        })
+            .use(ThumbnailGenerator, {
+                id: 'ThumbnailGenerator',
+                thumbnailWidth: this.contentElement.el.offsetWidth,
+                // thumbnailHeight: 200,
+            });
+    }*/
+
+    enterEditingState() {
+        super.enterEditingState();
+        this.openFileExplorer();
+    }
+
+    openFileExplorer() {
+        this.hiddenImageInput.el.click();
+    }
+
+    protected setupListeners() {
+        super.setupListeners();
+
+        this.hiddenImageInput.el.addEventListener('change', ev => {
+            if (this.hiddenImageInput.el.files && this.hiddenImageInput.el.files[0]) {
+                const image = this.hiddenImageInput.el.files[0];
+                this.content = image;
+                // this.addImage(image);
+
+                const reader = new FileReader();
+                reader.onload = e => {
+                    this.contentElement.el.setAttribute('src', e.target.result as string)
+                };
+
+                reader.readAsDataURL(this.hiddenImageInput.el.files[0]);
+            }
+        });
+
+    }
+
+    /*private addImage(image: File) {
+        this.uppy.reset();
+        this.uppy.addFile({
+            name: image.name,
+            type: image.type,
+            data: image
+        });
+    }*/
+
+    protected getContent() {
+        return (this.contentElement.el as HTMLImageElement).src;
+    }
+
+    protected abstract getContentToSave();
+
+    protected setContent(content: any) {
+        (this.contentElement.el as HTMLImageElement).src = content;
+    }
+}
+
+class AboutMeSideImage extends AboutMeImageComponent {
+
+    private static INSTANCE;
+
+    static getInstance() {
+        if (this.INSTANCE == undefined) {
+            this.INSTANCE = new AboutMeSideImage();
+        }
+
+        return this.INSTANCE;
+    }
+
+    private constructor() {
+        super();
     }
 
     protected initElements() {
@@ -31,93 +113,12 @@ export default class AboutMeImage extends AboutMeSideText{
             'about-me-side-image-hidden-input') as HTMLInputElement);
     }
 
-    private initUppy() {
-        this.uppy = Uppy({
-            allowMultipleUploads: false,
-            autoProceed: false,
-            restrictions: {
-                maxNumberOfFiles: 1
-            }
-        })
-            .use(ThumbnailGenerator, {
-                id: 'ThumbnailGenerator',
-                thumbnailWidth: 200,
-                thumbnailHeight: 200,
-            });
+    protected getContentToSave(): FormData {
+        const formData = new FormData();
+        formData.append('about_me_side_image_file', this.content, this.content.name);
+        return formData;
     }
 
-    enterEditingState() {
-        this.editButton.hide();
-        this.contentElement.makeEditable();
-        this.saveAndCancelContainer.show();
-        this.openFileExplorer();
-    }
-
-    openFileExplorer() {
-        this.hiddenImageInput.el.click();
-    }
-
-    private setupImageInputListener() {
-        this.hiddenImageInput.el.addEventListener('change', ev => {
-            const image = this.hiddenImageInput.el.files[0];
-            this.content = image;
-            this.addImage(image);
-        });
-
-        this.uppy.on('thumbnail:generated', (file, preview) => {
-            (<HTMLImageElement>this.contentElement.el).src = preview
-        })
-    }
-
-    private addImage(image: File) {
-        this.uppy.reset();
-        this.uppy.addFile({
-            name: image.name,
-            type: image.type,
-            data: image
-        });
-    }
-
-    getContent() {
-        return this.content;
-    }
 }
 
-
-const aboutMeImage = new AboutMeImage();
-aboutMeImage.setOnSaveClicked(() => {
-    saveImage(aboutMeImage.getContent())
-        .then(res => {
-            if (res.status == 'ok') {
-                aboutMeImage.enterInitialState();
-            } else {
-                saveFailedHandler();
-            }
-        })
-        .catch(saveFailedHandler)
-});
-
-function saveFailedHandler(err?) {
-    if (err == undefined)
-        console.log('Error saving image');
-    else
-        console.log(err);
-}
-
-async function saveImage(image: File) {
-    const formData = new FormData();
-    formData.append('about_me_side_image_file', image, image.name);
-    const {csrfToken, baseUrl} = RequestOptionsValues.get();
-    const fetchUrl = `${baseUrl}/about_me`;
-
-    const response = await fetch(fetchUrl, {
-        method: HttpMethod.POST,
-        headers: {
-            'Accept': 'application/json',   //To tell Laravel this is an ajax call
-            'X-CSRF-TOKEN': csrfToken
-        },
-        body: formData
-    });
-
-    return await response.json()
-}
+const aboutMeImage = AboutMeSideImage.getInstance();

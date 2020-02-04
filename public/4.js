@@ -48,15 +48,13 @@ Object.defineProperty(exports, "__esModule", {
 
 var Service_1 = __importDefault(__webpack_require__(/*! ./Service */ "./resources/js/network/Service.js"));
 
-var RequestOptions_1 = __webpack_require__(/*! ./RequestOptions */ "./resources/js/network/RequestOptions.js");
-
 var AboutMeService =
 /** @class */
 function (_super) {
   __extends(AboutMeService, _super);
 
-  function AboutMeService() {
-    return _super.call(this, RequestOptions_1.RequestOptionsValues.get(), '/about_me') || this;
+  function AboutMeService(requestOptions) {
+    return _super.call(this, requestOptions, '/about_me') || this;
   }
 
   return AboutMeService;
@@ -294,29 +292,37 @@ function () {
     return this._fetch(HttpMethod_1.HttpMethod.POST, t);
   };
 
-  Service.prototype.update = function (t, urlSuffix) {
+  Service.prototype.update = function (t) {
     return this._fetch(HttpMethod_1.HttpMethod.POST, t, "/" + t.id);
   };
 
-  Service.prototype._fetch = function (method, data, urlSuffix, headers) {
+  Service.prototype._fetch = function (method, data, urlSuffix) {
     return __awaiter(this, void 0, void 0, function () {
-      var _a, csrfToken, baseUrl, fetchUrl, response;
+      var _a, csrfToken, baseUrl, fetchUrl, fetchBody, fetchHeaders, response;
 
       return __generator(this, function (_b) {
         switch (_b.label) {
           case 0:
             _a = this.requestOptions, csrfToken = _a.csrfToken, baseUrl = _a.baseUrl;
             fetchUrl = Service.makeUrl(baseUrl, this.relativeUrl, urlSuffix);
+            fetchHeaders = {
+              'Accept': 'application/json',
+              'X-CSRF-TOKEN': csrfToken
+            };
+
+            if (this.isFormData(data)) {
+              fetchBody = data;
+            } else {
+              fetchBody = JSON.stringify(data);
+              fetchHeaders['Content-Type'] = 'application/json';
+            }
+
             return [4
             /*yield*/
             , fetch(fetchUrl, {
               method: method,
-              headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'X-CSRF-TOKEN': csrfToken
-              },
-              body: JSON.stringify(data)
+              headers: fetchHeaders,
+              body: fetchBody
             })];
 
           case 1:
@@ -342,6 +348,10 @@ function () {
     }
   };
 
+  Service.prototype.isFormData = function (data) {
+    return data.append !== undefined;
+  };
+
   return Service;
 }();
 
@@ -349,53 +359,68 @@ exports["default"] = Service;
 
 /***/ }),
 
-/***/ "./resources/js/ui/renee/edit-aboutme/AboutMeSideText.js":
-/*!***************************************************************!*\
-  !*** ./resources/js/ui/renee/edit-aboutme/AboutMeSideText.js ***!
-  \***************************************************************/
+/***/ "./resources/js/ui/renee/edit-aboutme/AboutMeComponents.js":
+/*!*****************************************************************!*\
+  !*** ./resources/js/ui/renee/edit-aboutme/AboutMeComponents.js ***!
+  \*****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var AboutMeService_1 = __importDefault(__webpack_require__(/*! ../../../network/AboutMeService */ "./resources/js/network/AboutMeService.js"));
+
 var CallIfPresent_1 = __webpack_require__(/*! ../../../utils/CallIfPresent */ "./resources/js/utils/CallIfPresent.js");
 
-var AboutMeSideText =
+var ErrorHandling_1 = __importDefault(__webpack_require__(/*! ../../../utils/ErrorHandling */ "./resources/js/utils/ErrorHandling.js"));
+
+var RequestOptions_1 = __webpack_require__(/*! ../../../network/RequestOptions */ "./resources/js/network/RequestOptions.js");
+
+var AboutMeComponents =
 /** @class */
 function () {
-  function AboutMeSideText() {
+  function AboutMeComponents() {
+    this.aboutMeService = new AboutMeService_1["default"](RequestOptions_1.RequestOptionsValues.get());
     this.initElements();
-    this.setupButtonListeners();
+    this.enterInitialState();
+    this.setupListeners();
   }
 
-  AboutMeSideText.prototype.enterInitialState = function () {
+  AboutMeComponents.prototype.enterInitialState = function () {
     this.editButton.show();
     this.contentElement.makeNotEditable();
     this.saveAndCancelContainer.hide();
     this.loadIndicator.hide();
+    this.contentBeforeEdit = this.getContent(); // Should this be here
   };
 
-  AboutMeSideText.prototype.enterEditingState = function () {
+  AboutMeComponents.prototype.enterEditingState = function () {
     this.editButton.hide();
     this.contentElement.makeEditable();
     this.saveAndCancelContainer.show();
-    this.contentElement.focusAndHighlightAllText();
     this.loadIndicator.hide();
+    console.log(this.contentBeforeEdit);
   };
 
-  AboutMeSideText.prototype.enterSavingState = function () {
+  AboutMeComponents.prototype.enterSavingState = function () {
     this.editButton.hide();
     this.saveAndCancelContainer.hide();
     this.loadIndicator.show();
     this.contentElement.makeNotEditable();
   };
 
-  AboutMeSideText.prototype.setupButtonListeners = function () {
+  AboutMeComponents.prototype.setupListeners = function () {
     var _this = this;
 
     this.editButton.el.addEventListener('click', function (ev) {
@@ -410,7 +435,16 @@ function () {
 
       _this.enterSavingState();
 
+      _this.saveContent();
+
       CallIfPresent_1.callCallbackIfPresent(_this.onSaveClicked);
+    });
+    this.cancelButton.el.addEventListener('click', function (ev) {
+      ev.preventDefault();
+
+      _this.cancelEdit();
+
+      _this.enterInitialState();
     });
     $(this.contentElement.el).on('keydown', function (e) {
       if (e.keyCode === 13) {
@@ -426,25 +460,41 @@ function () {
     });
   };
 
-  AboutMeSideText.prototype.setOnEditClicked = function (onEditClicked) {
-    this.onEditClicked = onEditClicked;
+  AboutMeComponents.prototype.saveContent = function () {
+    var _this = this;
+
+    this.aboutMeService.save(this.getContentToSave()).then(function (response) {
+      if (response.status != 'ok') {
+        ErrorHandling_1["default"]("Unable to save " + response);
+
+        _this.cancelEdit();
+      }
+
+      _this.enterInitialState();
+    })["catch"](function (err) {
+      _this.enterInitialState();
+
+      ErrorHandling_1["default"](err);
+    });
   };
 
-  AboutMeSideText.prototype.setOnSaveClicked = function (onSaveClicked) {
-    this.onSaveClicked = onSaveClicked;
+  ;
+
+  AboutMeComponents.prototype.cancelEdit = function () {
+    this.setContent(this.contentBeforeEdit);
   };
 
-  return AboutMeSideText;
+  return AboutMeComponents;
 }();
 
-exports.AboutMeSideText = AboutMeSideText;
+exports["default"] = AboutMeComponents;
 
 /***/ }),
 
-/***/ "./resources/js/ui/renee/edit-aboutme/editaboutmeside.js":
-/*!***************************************************************!*\
-  !*** ./resources/js/ui/renee/edit-aboutme/editaboutmeside.js ***!
-  \***************************************************************/
+/***/ "./resources/js/ui/renee/edit-aboutme/AboutMeImage.js":
+/*!************************************************************!*\
+  !*** ./resources/js/ui/renee/edit-aboutme/AboutMeImage.js ***!
+  \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -487,50 +537,129 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var AboutMeSideText_1 = __webpack_require__(/*! ./AboutMeSideText */ "./resources/js/ui/renee/edit-aboutme/AboutMeSideText.js");
+var core_1 = __importDefault(__webpack_require__(/*! @uppy/core */ "./node_modules/@uppy/core/lib/index.js"));
+
+var thumbnail_generator_1 = __importDefault(__webpack_require__(/*! @uppy/thumbnail-generator */ "./node_modules/@uppy/thumbnail-generator/lib/index.js"));
 
 var ElementUtils_1 = __webpack_require__(/*! ../../../utils/ElementUtils */ "./resources/js/utils/ElementUtils.js");
 
-var AboutMeService_1 = __importDefault(__webpack_require__(/*! ../../../network/AboutMeService */ "./resources/js/network/AboutMeService.js"));
+var AboutMeComponents_1 = __importDefault(__webpack_require__(/*! ./AboutMeComponents */ "./resources/js/ui/renee/edit-aboutme/AboutMeComponents.js"));
 
-var AboutMeSideContent =
+var AboutMeImageComponent =
 /** @class */
 function (_super) {
-  __extends(AboutMeSideContent, _super);
+  __extends(AboutMeImageComponent, _super);
 
-  function AboutMeSideContent() {
+  function AboutMeImageComponent() {
+    return _super.call(this) || this; // this.enterInitialState();
+  }
+
+  AboutMeImageComponent.prototype.initUppy = function () {
+    this.uppy = core_1["default"]({
+      allowMultipleUploads: false,
+      autoProceed: false,
+      restrictions: {
+        maxNumberOfFiles: 1
+      }
+    }).use(thumbnail_generator_1["default"], {
+      id: 'ThumbnailGenerator',
+      thumbnailWidth: this.contentElement.el.offsetWidth
+    });
+  };
+
+  AboutMeImageComponent.prototype.enterEditingState = function () {
+    _super.prototype.enterEditingState.call(this);
+
+    this.openFileExplorer();
+  };
+
+  AboutMeImageComponent.prototype.openFileExplorer = function () {
+    this.hiddenImageInput.el.click();
+  };
+
+  AboutMeImageComponent.prototype.setupListeners = function () {
+    var _this = this;
+
+    _super.prototype.setupListeners.call(this);
+
+    this.hiddenImageInput.el.addEventListener('change', function (ev) {
+      if (_this.hiddenImageInput.el.files && _this.hiddenImageInput.el.files[0]) {
+        var image = _this.hiddenImageInput.el.files[0];
+        _this.content = image;
+
+        _this.addImage(image);
+
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          _this.contentElement.el.setAttribute('src', e.target.result);
+        };
+
+        reader.readAsDataURL(_this.hiddenImageInput.el.files[0]);
+      }
+    });
+  };
+
+  AboutMeImageComponent.prototype.addImage = function (image) {
+    this.uppy.reset();
+    this.uppy.addFile({
+      name: image.name,
+      type: image.type,
+      data: image
+    });
+  };
+
+  AboutMeImageComponent.prototype.getContent = function () {
+    return this.contentElement.el.src;
+  };
+
+  AboutMeImageComponent.prototype.setContent = function (content) {
+    this.contentElement.el.src = content;
+  };
+
+  return AboutMeImageComponent;
+}(AboutMeComponents_1["default"]);
+
+exports["default"] = AboutMeImageComponent;
+
+var AboutMeSideImage =
+/** @class */
+function (_super) {
+  __extends(AboutMeSideImage, _super);
+
+  function AboutMeSideImage() {
     return _super.call(this) || this;
   }
 
-  AboutMeSideContent.prototype.initElements = function () {
-    this.editButton = new ElementUtils_1.El(document.getElementById('edit-about-me-side'));
-    this.contentElement = new ElementUtils_1.El(document.getElementById('about-me-side'));
-    this.saveAndCancelContainer = new ElementUtils_1.El(document.getElementById('about-me-side-save-cancel-container'));
-    this.saveButton = new ElementUtils_1.El(document.getElementById('save-about-me-side'));
-    this.cancelButton = new ElementUtils_1.El(document.getElementById('cancel-about-me-side'));
-    this.loadIndicator = new ElementUtils_1.El(document.getElementById('loading-about-me-side'));
+  AboutMeSideImage.getInstance = function () {
+    if (this.INSTANCE == undefined) {
+      this.INSTANCE = new AboutMeSideImage();
+    }
+
+    return this.INSTANCE;
   };
 
-  AboutMeSideContent.prototype.getContent = function () {
-    return this.contentElement.el.innerHTML;
+  AboutMeSideImage.prototype.initElements = function () {
+    this.editButton = new ElementUtils_1.El(document.getElementById('about-me-side-image-edit'));
+    this.contentElement = new ElementUtils_1.El(document.getElementById('about-me-side-image'));
+    this.saveAndCancelContainer = new ElementUtils_1.El(document.getElementById('save-and-cancel-about-me-side-image-buttons'));
+    this.saveButton = new ElementUtils_1.El(document.getElementById('save-about-me-side-image'));
+    this.cancelButton = new ElementUtils_1.El(document.getElementById('cancel-about-me-side-image'));
+    this.loadIndicator = new ElementUtils_1.El(document.getElementById('loading-about-me-side-image'));
+    this.hiddenImageInput = new ElementUtils_1.El(document.getElementById('about-me-side-image-hidden-input'));
+    this.initUppy(); // This is not ok
   };
 
-  return AboutMeSideContent;
-}(AboutMeSideText_1.AboutMeSideText);
+  AboutMeSideImage.prototype.getContentToSave = function () {
+    var formData = new FormData();
+    formData.append('about_me_side_image_file', this.content, this.content.name);
+    return formData;
+  };
 
-var editAboutMeSide = new AboutMeSideContent();
-editAboutMeSide.setOnSaveClicked(function () {
-  var aboutMeService = new AboutMeService_1["default"]();
-  aboutMeService.save({
-    about_me_side: editAboutMeSide.getContent()
-  }).then(function (res) {
-    if (res.status == 'ok') editAboutMeSide.enterInitialState();else handleSaveFailure();
-  })["catch"](handleSaveFailure);
-});
+  return AboutMeSideImage;
+}(AboutMeImageComponent);
 
-function handleSaveFailure(err) {
-  console.log(err); // TODO: Add implementation
-}
+var aboutMeImage = AboutMeSideImage.getInstance();
 
 /***/ }),
 
@@ -615,6 +744,28 @@ function () {
 }();
 
 exports.El = El;
+
+/***/ }),
+
+/***/ "./resources/js/utils/ErrorHandling.js":
+/*!*********************************************!*\
+  !*** ./resources/js/utils/ErrorHandling.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+}); // TODO: Add implementation e.g Show modal
+
+function handleFailure(errMessage) {
+  console.log(errMessage);
+}
+
+exports["default"] = handleFailure;
 
 /***/ })
 

@@ -546,29 +546,37 @@ function () {
     return this._fetch(HttpMethod_1.HttpMethod.POST, t);
   };
 
-  Service.prototype.update = function (t, urlSuffix) {
+  Service.prototype.update = function (t) {
     return this._fetch(HttpMethod_1.HttpMethod.POST, t, "/" + t.id);
   };
 
-  Service.prototype._fetch = function (method, data, urlSuffix, headers) {
+  Service.prototype._fetch = function (method, data, urlSuffix) {
     return __awaiter(this, void 0, void 0, function () {
-      var _a, csrfToken, baseUrl, fetchUrl, response;
+      var _a, csrfToken, baseUrl, fetchUrl, fetchBody, fetchHeaders, response;
 
       return __generator(this, function (_b) {
         switch (_b.label) {
           case 0:
             _a = this.requestOptions, csrfToken = _a.csrfToken, baseUrl = _a.baseUrl;
             fetchUrl = Service.makeUrl(baseUrl, this.relativeUrl, urlSuffix);
+            fetchHeaders = {
+              'Accept': 'application/json',
+              'X-CSRF-TOKEN': csrfToken
+            };
+
+            if (this.isFormData(data)) {
+              fetchBody = data;
+            } else {
+              fetchBody = JSON.stringify(data);
+              fetchHeaders['Content-Type'] = 'application/json';
+            }
+
             return [4
             /*yield*/
             , fetch(fetchUrl, {
               method: method,
-              headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'X-CSRF-TOKEN': csrfToken
-              },
-              body: JSON.stringify(data)
+              headers: fetchHeaders,
+              body: fetchBody
             })];
 
           case 1:
@@ -592,6 +600,10 @@ function () {
     } else {
       return baseUrl + relativeUrl;
     }
+  };
+
+  Service.prototype.isFormData = function (data) {
+    return data.append !== undefined;
   };
 
   return Service;

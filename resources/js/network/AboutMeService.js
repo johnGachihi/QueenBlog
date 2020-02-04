@@ -17,11 +17,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var Service_1 = __importDefault(require("./Service"));
-var RequestOptions_1 = require("./RequestOptions");
 var AboutMeService = /** @class */ (function (_super) {
     __extends(AboutMeService, _super);
-    function AboutMeService() {
-        return _super.call(this, RequestOptions_1.RequestOptionsValues.get(), '/about_me') || this;
+    function AboutMeService(requestOptions) {
+        return _super.call(this, requestOptions, '/about_me') || this;
     }
     return AboutMeService;
 }(Service_1.default));

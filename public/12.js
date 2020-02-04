@@ -1,223 +1,183 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[12],{
 
-/***/ "./resources/js/blogs/blogs.js":
-/*!*************************************!*\
-  !*** ./resources/js/blogs/blogs.js ***!
-  \*************************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "./resources/js/network/RequestOptions.js":
+/*!************************************************!*\
+  !*** ./resources/js/network/RequestOptions.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _material_dialog_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @material/dialog/component */ "./node_modules/@material/dialog/component.js");
-/* harmony import */ var _network_BlogsService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../network/BlogsService */ "./resources/js/network/BlogsService.js");
-/* harmony import */ var _network_BlogsService__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_network_BlogsService__WEBPACK_IMPORTED_MODULE_1__);
 
 
-var appUrl = document.querySelector('meta[name="base-url"]').getAttribute('content');
-var draftBlogsTabHeader = document.getElementById('draft-blogs-tab-header');
-var publishedBlogsTabHeader = document.getElementById('published-blogs-tab-header');
-var CURRENT_TAB = 'current-tab';
-var CURRENT_TAB_DRAFT = 'drafts';
-var CURRENT_TAB_PUBLISHED = 'published';
-var currentTab;
-$(function () {
-  draftBlogsTabHeader.addEventListener('click', function (e) {
-    if (currentTab !== "drafts") {
-      publishedBlogsTabHeader.classList.remove('active');
-      draftBlogsTabHeader.classList.add('active');
-      currentTab = 'drafts';
-      sessionStorage.setItem(CURRENT_TAB, CURRENT_TAB_DRAFT);
-      showDraftBlogs();
-      setupBlogEntryDeleteMenuItem();
-    }
-  });
-  publishedBlogsTabHeader.addEventListener('click', function (e) {
-    if (currentTab !== "published") {
-      draftBlogsTabHeader.classList.remove('active');
-      publishedBlogsTabHeader.classList.add('active');
-      currentTab = 'published';
-      sessionStorage.setItem(CURRENT_TAB, CURRENT_TAB_PUBLISHED);
-      showPublishedBlogs();
-      setupBlogEntryDeleteMenuItem();
-    }
-  });
-  var blogsContainer = document.getElementById('blogs-container');
-
-  function showDraftBlogs() {
-    emptyBlogsContainer();
-
-    if (draftBlogs.length < 1) {
-      blogsContainer.innerText = "No draft blogs.";
-    }
-
-    var _iteratorNormalCompletion = true;
-    var _didIteratorError = false;
-    var _iteratorError = undefined;
-
-    try {
-      for (var _iterator = draftBlogs[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-        var blog = _step.value;
-        blogsContainer.appendChild(blogHtml(blog));
-      }
-    } catch (err) {
-      _didIteratorError = true;
-      _iteratorError = err;
-    } finally {
-      try {
-        if (!_iteratorNormalCompletion && _iterator["return"] != null) {
-          _iterator["return"]();
-        }
-      } finally {
-        if (_didIteratorError) {
-          throw _iteratorError;
-        }
-      }
-    }
-  }
-
-  function showPublishedBlogs() {
-    emptyBlogsContainer();
-
-    if (publishedBlogs.length < 1) {
-      blogsContainer.innerText = "No published blogs.";
-    }
-
-    var _iteratorNormalCompletion2 = true;
-    var _didIteratorError2 = false;
-    var _iteratorError2 = undefined;
-
-    try {
-      for (var _iterator2 = publishedBlogs[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-        var blog = _step2.value;
-        blogsContainer.appendChild(blogHtml(blog));
-      }
-    } catch (err) {
-      _didIteratorError2 = true;
-      _iteratorError2 = err;
-    } finally {
-      try {
-        if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
-          _iterator2["return"]();
-        }
-      } finally {
-        if (_didIteratorError2) {
-          throw _iteratorError2;
-        }
-      }
-    }
-  }
-
-  function emptyBlogsContainer() {
-    blogsContainer.innerHTML = '';
-  }
-
-  function blogHtml(blog) {
-    var isDraft = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-    var div = document.createElement('div');
-    var blogContentToDisplay = getBlogContentToDisplay(blog['content']);
-    var blogImageToShow = getBlogImageToShow(blog['main_image_filename']);
-    div.innerHTML = "\n            <div class=\"d-flex blog-entry col-12\">\n                <a href=\"".concat(appUrl, "/only/juli/blog/").concat(blog.id, "\" class=\"d-flex flex-grow-1\" style=\"text-decoration: none; color: inherit\">\n                    <div>\n                        <img class=\"blog-entry-img\" src=\"").concat(blogImageToShow, "\" width=\"100px\"/>\n                    </div>\n                    <div class=\"flex-grow-1 d-flex flex-column ml-4\">\n                        <span class=\"h3 blog-entry-title\" style=\"display: block; text-overflow: ellipsis; word-wrap: break-word; overflow: hidden; max-height: 60px; line-height: 30px;\">").concat(getBlogTitleToShow(blog['title']), "</span>\n                        <span style=\"text-overflow: ellipsis; overflow: hidden;\">").concat(blogContentToDisplay, "</span>\n                    </div>\n                </a>\n                <div class=\"dropdown show\">\n                    <a class=\"\" href=\"#\" role=\"button\" id=\"blog-entry-menu-link\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                        <i class=\"material-icons\">arrow_drop_down</i>\n                    </a>\n                    <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"blog-entry-menu-link\">\n                        <a class=\"dropdown-item\" href=\"").concat(appUrl, "/only/juli/blog/").concat(blog.id, "\">Edit</a>\n                        <a class=\"dropdown-item delete-blog-entry-menu-item\" data-blog-id=\"").concat(blog.id, "\" href=\"#\">Delete</a>\n                      </div>\n                </div>\n            </div>\n    ").trim();
-    return div.firstChild;
-  }
-
-  function getBlogContentToDisplay(blogContent) {
-    var div = document.createElement('div');
-    div.innerHTML = blogContent.trim();
-    var firstParagraphEl = getFirstParagraphElement(div.childNodes);
-
-    if (firstParagraphEl !== undefined) {
-      return getFittingBlogContentSize(firstParagraphEl.innerText);
-    } else {
-      return 'No content';
-    }
-  }
-
-  function getFirstParagraphElement() {
-    var elements = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : NodeList;
-    var nodeListArray = Array.from(elements);
-    var firstParagraphEl;
-
-    for (var _i = 0, _nodeListArray = nodeListArray; _i < _nodeListArray.length; _i++) {
-      var node = _nodeListArray[_i];
-
-      if (node instanceof HTMLParagraphElement) {
-        firstParagraphEl = node;
-        break;
-      }
-    }
-
-    return firstParagraphEl;
-  }
-
-  function getFittingBlogContentSize(blogContentString) {
-    var fittingBlogContentText;
-
-    if (blogContentString.length > 100) {
-      fittingBlogContentText = blogContentString.slice(0, 100).trim();
-      fittingBlogContentText += '...';
-    } else {
-      fittingBlogContentText = blogContentString;
-    }
-
-    return fittingBlogContentText;
-  }
-
-  function getBlogImageToShow(blogImageName) {
-    var assetUrl = document.querySelector('meta[name="asset-url"]').getAttribute('content');
-
-    if (blogImageName == null) {
-      console.log('blogImage', blogImageName);
-      return "".concat(assetUrl, "/storage/blog-image-placeholder.png");
-    } else {
-      return "".concat(assetUrl, "storage/blog-main-images/").concat(blogImageName);
-    }
-  }
-
-  function getBlogTitleToShow(blogTitle) {
-    if (blogTitle != null) {
-      return blogTitle;
-    } else {
-      return '';
-    }
-  }
-
-  var deleteConfirmationDialog = new _material_dialog_component__WEBPACK_IMPORTED_MODULE_0__["MDCDialog"](document.getElementById('delete-confirmation-dialog'));
-  var requestOptions = {
-    csrfToken: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-    baseUrl: document.querySelector('meta[name="base-url"]').getAttribute('content')
-  };
-  if (!sessionStorage.getItem(CURRENT_TAB)) sessionStorage.setItem(CURRENT_TAB, CURRENT_TAB_DRAFT);
-  if (sessionStorage.getItem(CURRENT_TAB) === CURRENT_TAB_DRAFT) draftBlogsTabHeader.click();else if (sessionStorage.getItem(CURRENT_TAB) === CURRENT_TAB_PUBLISHED) publishedBlogsTabHeader.click();
-  setupBlogEntryDeleteMenuItem();
-
-  function setupBlogEntryDeleteMenuItem() {
-    $('.delete-blog-entry-menu-item').off('click');
-    $('.delete-blog-entry-menu-item').on('click', function (event) {
-      event.preventDefault();
-      deleteConfirmationDialog.open();
-      var blogId = event.target.dataset.blogId;
-      setupConfirmationDialogDeleteButtonListener(blogId);
-      console.log(blogId);
-    });
-  }
-
-  function setupConfirmationDialogDeleteButtonListener(blogId) {
-    $('#delete-confirmation-dialog-delete-btn').on('click', function (event) {
-      console.log('Confirmation modal delete clicked');
-      var blogsService = new _network_BlogsService__WEBPACK_IMPORTED_MODULE_1___default.a(requestOptions);
-      blogsService["delete"](blogId).then(function (res) {
-        console.log("".concat(blogId, " deleted"));
-        destroyConfirmationDialogDeleteButtonListener();
-        window.location.reload();
-      });
-    });
-  }
-
-  function destroyConfirmationDialogDeleteButtonListener() {
-    $('.delete-confirmation-dialog-delete-btn').off('click');
-  }
+Object.defineProperty(exports, "__esModule", {
+  value: true
 });
+
+var RequestOptionsValues =
+/** @class */
+function () {
+  function RequestOptionsValues() {}
+
+  RequestOptionsValues.get = function () {
+    return {
+      csrfToken: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+      baseUrl: document.querySelector('meta[name="base-url"]').getAttribute('content')
+    };
+  };
+
+  return RequestOptionsValues;
+}();
+
+exports.RequestOptionsValues = RequestOptionsValues;
+
+/***/ }),
+
+/***/ "./resources/js/ui/visitors/like/Like.js":
+/*!***********************************************!*\
+  !*** ./resources/js/ui/visitors/like/Like.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var BlogsService_1 = __importDefault(__webpack_require__(/*! ../../../network/BlogsService */ "./resources/js/network/BlogsService.js"));
+
+var RequestOptions_1 = __webpack_require__(/*! ../../../network/RequestOptions */ "./resources/js/network/RequestOptions.js");
+
+var Like =
+/** @class */
+function () {
+  function Like() {}
+
+  Like.like = function (likeAnchor) {
+    var blogId = parseInt(likeAnchor.dataset.blogId);
+
+    if (!localStorage.getItem("blog-liked-" + blogId)) {
+      Like.editUI(likeAnchor);
+      Like.sendLikeRequest(blogId).then(function (res) {
+        console.log(res);
+      });
+      localStorage.setItem("blog-liked-" + blogId, '1');
+    } else {
+      console.log('Already liked');
+      Like.showAlreadyLikedToast(likeAnchor);
+    }
+  };
+
+  Like.editUI = function (likeAnchor) {
+    var iconEl = likeAnchor.getElementsByClassName('ion-android-favorite-outline')[0]; // TODO: use element instead of class to select
+
+    if (iconEl != undefined) {
+      Like.colorFillLikeIcon(iconEl);
+    }
+
+    var likesSpan = likeAnchor.querySelector('span');
+    Like.incrementLikes(likesSpan);
+  };
+
+  Like.colorFillLikeIcon = function (iconEl) {
+    iconEl.classList.remove('ion-android-favorite-outline');
+    iconEl.classList.add('ion-android-favorite');
+  };
+
+  Like.incrementLikes = function (likesSpan) {
+    var likes = parseInt(likesSpan.innerText);
+    likesSpan.innerText = "" + (likes + 1);
+  };
+
+  Like.sendLikeRequest = function (blogId) {
+    var blogsService = new BlogsService_1["default"](RequestOptions_1.RequestOptionsValues.get());
+    return blogsService.like(blogId);
+  };
+
+  Like.showAlreadyLikedToast = function (likeAnchor) {
+    $(likeAnchor).popover({
+      template: "\n                <div class=\"popover\" role=\"tooltip\">\n                    <h3 class=\"popover-header\"></h3>\n                    <div class=\"popover-body\"></div>\n                </div>\n            ",
+      content: 'Already liked',
+      delay: 100
+    });
+    $(likeAnchor).popover('show');
+    setTimeout(function () {
+      return $(likeAnchor).popover('hide');
+    }, 1000);
+  };
+
+  return Like;
+}();
+
+exports["default"] = Like;
+
+/***/ }),
+
+/***/ "./resources/js/ui/visitors/like/LikeView.js":
+/*!***************************************************!*\
+  !*** ./resources/js/ui/visitors/like/LikeView.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var Like_1 = __importDefault(__webpack_require__(/*! ./Like */ "./resources/js/ui/visitors/like/Like.js"));
+
+function setupLikeAnchors() {
+  $(document).on('click', '.like-blog', function (e) {
+    console.log(e.currentTarget);
+    e.preventDefault();
+    Like_1["default"].like(e.currentTarget);
+  });
+}
+
+exports.setupLikeAnchors = setupLikeAnchors;
+
+function colorFillLikedIconForLikedBlogs() {
+  var likeAnchors = document.getElementsByClassName('like-blog');
+
+  for (var i = 0; i < likeAnchors.length; i++) {
+    var likeAnchor = likeAnchors[i];
+
+    if (isAnchorForLikedBlog(likeAnchor)) {
+      var iconEl = likeAnchor.querySelector('i');
+      colorFillLikeIcon(iconEl);
+    }
+  }
+}
+
+exports.colorFillLikedIconForLikedBlogs = colorFillLikedIconForLikedBlogs;
+
+function isAnchorForLikedBlog(likeAnchor) {
+  var blogId = likeAnchor.dataset.blogId;
+  return localStorage.getItem("blog-liked-" + blogId) != undefined;
+}
+
+function colorFillLikeIcon(iconEl) {
+  iconEl.classList.remove('ion-android-favorite-outline');
+  iconEl.classList.add('ion-android-favorite');
+}
 
 /***/ })
 
