@@ -35,4 +35,8 @@ export class El<T extends HTMLElement> {
         this.el.focus();
         document.execCommand('selectAll',false,null);
     }
+
+    on(event: string, handler: (e: Event) => void) {
+        this.el.addEventListener(event, handler);
+    }
 }

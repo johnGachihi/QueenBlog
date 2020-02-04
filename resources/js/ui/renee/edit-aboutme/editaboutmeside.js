@@ -12,14 +12,9 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 var AboutMeSideText_1 = require("./AboutMeSideText");
 var ElementUtils_1 = require("../../../utils/ElementUtils");
-var AboutMeService_1 = __importDefault(require("../../../network/AboutMeService"));
-var RequestOptions_1 = require("../../../network/RequestOptions");
 var AboutMeSideContent = /** @class */ (function (_super) {
     __extends(AboutMeSideContent, _super);
     function AboutMeSideContent() {
@@ -33,24 +28,10 @@ var AboutMeSideContent = /** @class */ (function (_super) {
         this.cancelButton = new ElementUtils_1.El(document.getElementById('cancel-about-me-side'));
         this.loadIndicator = new ElementUtils_1.El(document.getElementById('loading-about-me-side'));
     };
-    AboutMeSideContent.prototype.getContent = function () {
-        return this.contentElement.el.innerHTML;
+    AboutMeSideContent.prototype.getContentToSave = function () {
+        return { about_me_side: this.getContent() };
     };
     return AboutMeSideContent;
-}(AboutMeSideText_1.AboutMeSideText));
+}(AboutMeSideText_1.AboutMeTextComponent));
 var editAboutMeSide = new AboutMeSideContent();
-editAboutMeSide.setOnSaveClicked(function () {
-    var aboutMeService = new AboutMeService_1.default(RequestOptions_1.RequestOptionsValues.get());
-    aboutMeService.save({ about_me_side: editAboutMeSide.getContent() })
-        .then(function (res) {
-        if (res.status == 'ok')
-            editAboutMeSide.enterInitialState();
-        else
-            handleSaveFailure();
-    })
-        .catch(handleSaveFailure);
-});
-function handleSaveFailure(err) {
-    console.log(err); // TODO: Add implementation
-}
 //# sourceMappingURL=editaboutmeside.js.map

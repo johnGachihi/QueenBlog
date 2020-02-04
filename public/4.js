@@ -1,73 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[4],{
 
-/***/ "./resources/js/network/AboutMeService.js":
-/*!************************************************!*\
-  !*** ./resources/js/network/AboutMeService.js ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var __extends = this && this.__extends || function () {
-  var _extendStatics = function extendStatics(d, b) {
-    _extendStatics = Object.setPrototypeOf || {
-      __proto__: []
-    } instanceof Array && function (d, b) {
-      d.__proto__ = b;
-    } || function (d, b) {
-      for (var p in b) {
-        if (b.hasOwnProperty(p)) d[p] = b[p];
-      }
-    };
-
-    return _extendStatics(d, b);
-  };
-
-  return function (d, b) {
-    _extendStatics(d, b);
-
-    function __() {
-      this.constructor = d;
-    }
-
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-  };
-}();
-
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var Service_1 = __importDefault(__webpack_require__(/*! ./Service */ "./resources/js/network/Service.js"));
-
-var AboutMeService =
-/** @class */
-function (_super) {
-  __extends(AboutMeService, _super);
-
-  function AboutMeService(requestOptions) {
-    return _super.call(this, requestOptions, '/about_me') || this;
-  }
-
-  return AboutMeService;
-}(Service_1["default"]);
-
-exports["default"] = AboutMeService;
-
-/***/ }),
-
-/***/ "./resources/js/network/HttpMethod.js":
-/*!********************************************!*\
-  !*** ./resources/js/network/HttpMethod.js ***!
-  \********************************************/
+/***/ "./resources/js/models/Blog.js":
+/*!*************************************!*\
+  !*** ./resources/js/models/Blog.js ***!
+  \*************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -77,54 +13,39 @@ exports["default"] = AboutMeService;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var HttpMethod;
+var BlogStatus;
 
-(function (HttpMethod) {
-  HttpMethod["GET"] = "GET";
-  HttpMethod["POST"] = "POST";
-  HttpMethod["PUT"] = "PUT";
-  HttpMethod["DELETE"] = "DELETE";
-})(HttpMethod = exports.HttpMethod || (exports.HttpMethod = {}));
+(function (BlogStatus) {
+  BlogStatus["DRAFT"] = "draft";
+  BlogStatus["PUBLISHED"] = "published";
+})(BlogStatus = exports.BlogStatus || (exports.BlogStatus = {}));
 
 /***/ }),
 
-/***/ "./resources/js/network/RequestOptions.js":
-/*!************************************************!*\
-  !*** ./resources/js/network/RequestOptions.js ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var RequestOptionsValues =
-/** @class */
-function () {
-  function RequestOptionsValues() {}
-
-  RequestOptionsValues.get = function () {
-    return {
-      csrfToken: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-      baseUrl: document.querySelector('meta[name="base-url"]').getAttribute('content')
-    };
-  };
-
-  return RequestOptionsValues;
-}();
-
-exports.RequestOptionsValues = RequestOptionsValues;
-
-/***/ }),
-
-/***/ "./resources/js/network/Service.js":
+/***/ "./resources/js/utils/constants.js":
 /*!*****************************************!*\
-  !*** ./resources/js/network/Service.js ***!
+  !*** ./resources/js/utils/constants.js ***!
   \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.appUrl = document.querySelector('meta[name="base-url"]').getAttribute('content');
+exports.blogsPageRelativeURL = 'only/juli/blogs';
+exports.blogImagesRelativeUrl = 'storage/blog-main-images';
+exports.blogPostRelativeUrl = 'post';
+
+/***/ }),
+
+/***/ "./resources/js/write/PeriodicBlogContentSaver.js":
+/*!********************************************************!*\
+  !*** ./resources/js/write/PeriodicBlogContentSaver.js ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -274,95 +195,188 @@ var __generator = this && this.__generator || function (thisArg, body) {
   }
 };
 
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var HttpMethod_1 = __webpack_require__(/*! ./HttpMethod */ "./resources/js/network/HttpMethod.js");
+var Timeout_1 = __importDefault(__webpack_require__(/*! ./Timeout */ "./resources/js/write/Timeout.js"));
 
-var Service =
+var PeriodicBlogContentSaver =
 /** @class */
 function () {
-  function Service(requestOptions, relativeUrl) {
-    this.requestOptions = requestOptions;
-    this.relativeUrl = relativeUrl;
+  function PeriodicBlogContentSaver(editor, blogTitleEl, savedStatusIndicator, blogsService, blog) {
+    this.editor = editor;
+    this.blogTitleEl = blogTitleEl;
+    this.savedStatusIndicator = savedStatusIndicator;
+    this.blogService = blogsService;
+    this.blog = blog;
   }
 
-  Service.prototype.save = function (t) {
-    return this._fetch(HttpMethod_1.HttpMethod.POST, t);
+  PeriodicBlogContentSaver.prototype.activate = function () {
+    this.saveDataOnBlogContentChange();
   };
 
-  Service.prototype.update = function (t) {
-    return this._fetch(HttpMethod_1.HttpMethod.POST, t, "/" + t.id);
+  PeriodicBlogContentSaver.prototype.saveDataOnBlogContentChange = function () {
+    var _this = this;
+
+    var timeout = new Timeout_1["default"]();
+    this.editor.model.document.on('change:data', function () {
+      if (!timeout.isSet()) {
+        timeout.setTimeOut(3000, function () {
+          return _this.saveBlogContent();
+        });
+      }
+
+      _this.savedStatusIndicator.clearSavedStatus();
+
+      if (_this.editorChangeHandler) _this.editorChangeHandler();
+      timeout.resetTimeOut();
+    });
   };
 
-  Service.prototype._fetch = function (method, data, urlSuffix) {
+  PeriodicBlogContentSaver.prototype.saveBlogContent = function () {
+    var _this = this;
+
+    this.beforeSave();
+
+    if (!this.blog) {
+      this.saveNew().then(function (blog) {
+        return _this.blog = blog;
+      });
+    } else {
+      this.updateExisting();
+    }
+  };
+
+  PeriodicBlogContentSaver.prototype.beforeSave = function () {
+    this.savedStatusIndicator.indicateSaving();
+    PeriodicBlogContentSaver.callCallbackIfPresent(this.savingHandler);
+  };
+
+  PeriodicBlogContentSaver.prototype.saveNew = function () {
     return __awaiter(this, void 0, void 0, function () {
-      var _a, csrfToken, baseUrl, fetchUrl, fetchBody, fetchHeaders, response;
-
-      return __generator(this, function (_b) {
-        switch (_b.label) {
+      var blog, response;
+      return __generator(this, function (_a) {
+        switch (_a.label) {
           case 0:
-            _a = this.requestOptions, csrfToken = _a.csrfToken, baseUrl = _a.baseUrl;
-            fetchUrl = Service.makeUrl(baseUrl, this.relativeUrl, urlSuffix);
-            fetchHeaders = {
-              'Accept': 'application/json',
-              'X-CSRF-TOKEN': csrfToken
+            blog = {
+              title: this.blogTitleEl.value,
+              content: this.editor.getData()
             };
-
-            if (this.isFormData(data)) {
-              fetchBody = data;
-            } else {
-              fetchBody = JSON.stringify(data);
-              fetchHeaders['Content-Type'] = 'application/json';
-            }
-
             return [4
             /*yield*/
-            , fetch(fetchUrl, {
-              method: method,
-              headers: fetchHeaders,
-              body: fetchBody
-            })];
+            , this.blogService.save(blog)];
 
           case 1:
-            response = _b.sent();
-            return [4
-            /*yield*/
-            , response.json()];
-
-          case 2:
+            response = _a.sent();
+            blog.id = response.blog_id;
+            this.afterSave(blog);
             return [2
             /*return*/
-            , _b.sent()];
+            , blog];
         }
       });
     });
   };
 
-  Service.makeUrl = function (baseUrl, relativeUrl, urlSuffix) {
-    if (urlSuffix != undefined) {
-      return baseUrl + relativeUrl + urlSuffix;
-    } else {
-      return baseUrl + relativeUrl;
-    }
+  PeriodicBlogContentSaver.prototype.updateExisting = function () {
+    var _this = this;
+
+    this.blog.content = this.editor.getData();
+    this.blog.title = this.blogTitleEl.value;
+    this.blogService.update(this.blog).then(function (response) {
+      _this.afterSave(_this.blog);
+    });
   };
 
-  Service.prototype.isFormData = function (data) {
-    return data.append !== undefined;
+  PeriodicBlogContentSaver.prototype.afterSave = function (blog) {
+    this.savedStatusIndicator.indicateSaved();
+    if (this.onSavedHandler) this.onSavedHandler(blog);
   };
 
-  return Service;
+  PeriodicBlogContentSaver.prototype.onEditorChange = function (changeHandler) {
+    this.editorChangeHandler = function () {
+      return changeHandler();
+    };
+
+    return this;
+  };
+
+  PeriodicBlogContentSaver.prototype.onSaving = function (savingHandler) {
+    this.savingHandler = function () {
+      return savingHandler();
+    };
+
+    return this;
+  };
+
+  PeriodicBlogContentSaver.prototype.onSaved = function (onSavedHandler) {
+    this.onSavedHandler = onSavedHandler;
+    return this;
+  };
+
+  PeriodicBlogContentSaver.callCallbackIfPresent = function (callback) {
+    if (callback) callback();
+  };
+
+  return PeriodicBlogContentSaver;
 }();
 
-exports["default"] = Service;
+exports["default"] = PeriodicBlogContentSaver;
 
 /***/ }),
 
-/***/ "./resources/js/ui/renee/edit-aboutme/AboutMeComponents.js":
-/*!*****************************************************************!*\
-  !*** ./resources/js/ui/renee/edit-aboutme/AboutMeComponents.js ***!
-  \*****************************************************************/
+/***/ "./resources/js/write/Timeout.js":
+/*!***************************************!*\
+  !*** ./resources/js/write/Timeout.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var Timeout =
+/** @class */
+function () {
+  function Timeout() {}
+
+  Timeout.prototype.setTimeOut = function (delay, action) {
+    this.delay = delay;
+    this.action = action;
+    this.timeoutID = setTimeout(this.action, this.delay);
+  };
+
+  Timeout.prototype.resetTimeOut = function () {
+    clearTimeout(this.timeoutID);
+    this.timeoutID = setTimeout(this.action, this.delay);
+  };
+
+  Timeout.prototype.isSet = function () {
+    return this.timeoutID !== undefined;
+  };
+
+  return Timeout;
+}();
+
+exports["default"] = Timeout;
+
+/***/ }),
+
+/***/ "./resources/js/write/Write.js":
+/*!*************************************!*\
+  !*** ./resources/js/write/Write.js ***!
+  \*************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -379,153 +393,238 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var AboutMeService_1 = __importDefault(__webpack_require__(/*! ../../../network/AboutMeService */ "./resources/js/network/AboutMeService.js"));
+var component_1 = __webpack_require__(/*! @material/textfield/component */ "./node_modules/@material/textfield/component.js");
 
-var CallIfPresent_1 = __webpack_require__(/*! ../../../utils/CallIfPresent */ "./resources/js/utils/CallIfPresent.js");
+var editor_1 = __webpack_require__(/*! ./editor */ "./resources/js/write/editor.js");
 
-var ErrorHandling_1 = __importDefault(__webpack_require__(/*! ../../../utils/ErrorHandling */ "./resources/js/utils/ErrorHandling.js"));
+var BlogsService_1 = __importDefault(__webpack_require__(/*! ../network/BlogsService */ "./resources/js/network/BlogsService.js"));
 
-var RequestOptions_1 = __webpack_require__(/*! ../../../network/RequestOptions */ "./resources/js/network/RequestOptions.js");
+var PeriodicBlogContentSaver_1 = __importDefault(__webpack_require__(/*! ./PeriodicBlogContentSaver */ "./resources/js/write/PeriodicBlogContentSaver.js"));
 
-var AboutMeComponents =
+var SavedStatusIndicatorImpl_1 = __importDefault(__webpack_require__(/*! ./savedStatusIndicator/SavedStatusIndicatorImpl */ "./resources/js/write/savedStatusIndicator/SavedStatusIndicatorImpl.js"));
+
+var Blog_1 = __webpack_require__(/*! ../models/Blog */ "./resources/js/models/Blog.js");
+
+var BlogMainImageInput_1 = __importDefault(__webpack_require__(/*! ./blogMainImageInput/BlogMainImageInput */ "./resources/js/write/blogMainImageInput/BlogMainImageInput.js"));
+
+__webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
+
+var constants_1 = __webpack_require__(/*! ../utils/constants */ "./resources/js/utils/constants.js");
+
+var Write =
 /** @class */
 function () {
-  function AboutMeComponents() {
-    this.aboutMeService = new AboutMeService_1["default"](RequestOptions_1.RequestOptionsValues.get());
-    this.initElements();
-    this.enterInitialState();
-    this.setupListeners();
+  function Write(blog) {
+    this.blog = blog;
+    this.init();
   }
 
-  AboutMeComponents.prototype.enterInitialState = function () {
-    this.editButton.show();
-    this.contentElement.makeNotEditable();
-    this.saveAndCancelContainer.hide();
-    this.loadIndicator.hide();
-    this.contentBeforeEdit = this.getContent(); // Should this be here
+  Write.prototype.init = function () {
+    this.initializeElements();
+    this.initializeRequestOptions();
+    this.initializeBlogsService();
+    this.setupEditor(this.blog);
+    this.setupBlogTitleEl();
+    this.setupBlogPreviewImageInput();
+    this.setupPublishButton();
+    this.setupBlogTagInputEl();
+    this.setupModalPublishButton();
+    this.setupSaveAsDraftButton();
   };
 
-  AboutMeComponents.prototype.enterEditingState = function () {
-    this.editButton.hide();
-    this.contentElement.makeEditable();
-    this.saveAndCancelContainer.show();
-    this.loadIndicator.hide();
-    console.log(this.contentBeforeEdit);
+  Write.prototype.initializeElements = function () {
+    this.blogTitleInput = document.getElementById('blog-title-input');
+    this.blogTagInput = new component_1.MDCTextField(document.querySelector('#blog-tag-input-container'));
+    this.publishBtn = document.getElementById("publish-btn");
+    this.blogContentTextArea = document.getElementById("blog-content-textarea");
+    this.modalPublishBtn = document.getElementById("modal-publish-btn");
+    this.modalSaveAsDraftBtn = document.getElementById("modal-save-draft-btn");
+    this.publishModalProgessbar = document.getElementById('publish-modal-progressbar');
   };
 
-  AboutMeComponents.prototype.enterSavingState = function () {
-    this.editButton.hide();
-    this.saveAndCancelContainer.hide();
-    this.loadIndicator.show();
-    this.contentElement.makeNotEditable();
+  Write.prototype.initializeRequestOptions = function () {
+    this.requestOptions = {
+      csrfToken: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+      baseUrl: document.querySelector('meta[name="base-url"]').getAttribute('content')
+    };
   };
 
-  AboutMeComponents.prototype.setupListeners = function () {
+  Write.prototype.initializeBlogsService = function () {
+    this.blogsService = new BlogsService_1["default"](this.requestOptions);
+  };
+
+  Write.prototype.setupBlogTitleEl = function () {
+    console.log('setupBlogTitleEl');
+
+    if (this.blog != undefined && this.blog.title != undefined) {
+      this.blogTitleInput.value = this.blog.title;
+    }
+  };
+
+  Write.prototype.setupEditor = function (blog) {
     var _this = this;
 
-    this.editButton.el.addEventListener('click', function (ev) {
-      ev.preventDefault();
-
-      _this.enterEditingState();
-
-      CallIfPresent_1.callCallbackIfPresent(_this.onEditClicked);
-    });
-    this.saveButton.el.addEventListener('click', function (ev) {
-      ev.preventDefault();
-
-      _this.enterSavingState();
-
-      _this.saveContent();
-
-      CallIfPresent_1.callCallbackIfPresent(_this.onSaveClicked);
-    });
-    this.cancelButton.el.addEventListener('click', function (ev) {
-      ev.preventDefault();
-
-      _this.cancelEdit();
-
-      _this.enterInitialState();
-    });
-    $(this.contentElement.el).on('keydown', function (e) {
-      if (e.keyCode === 13) {
-        _this.saveButton.el.click();
-
-        return false;
+    console.log('setupEditor');
+    editor_1.initCkEditor(this.blogContentTextArea).then(function (editor) {
+      if (blog != undefined) {
+        editor.setData(blog.content);
       }
-    });
-    this.contentElement.el.addEventListener('click', function (ev) {
-      ev.preventDefault();
 
-      _this.editButton.el.click();
+      _this.enableNavbarPublishButtonOnInputToEditor(editor);
+
+      _this.setupPeriodicBlogContentSaver(editor);
     });
   };
 
-  AboutMeComponents.prototype.saveContent = function () {
+  Write.prototype.enableNavbarPublishButtonOnInputToEditor = function (editor) {
     var _this = this;
 
-    this.aboutMeService.save(this.getContentToSave()).then(function (response) {
-      if (response.status != 'ok') {
-        ErrorHandling_1["default"]("Unable to save " + response);
-
-        _this.cancelEdit();
-      }
-
-      _this.enterInitialState();
-    })["catch"](function (err) {
-      _this.enterInitialState();
-
-      ErrorHandling_1["default"](err);
+    this.handlePublishButtonEnabledState(editor);
+    editor.model.document.on('change:data', function () {
+      _this.handlePublishButtonEnabledState(editor);
     });
   };
 
-  ;
-
-  AboutMeComponents.prototype.cancelEdit = function () {
-    this.setContent(this.contentBeforeEdit);
+  Write.prototype.handlePublishButtonEnabledState = function (editor) {
+    if (editor.getData() === '') {
+      this.publishBtn.setAttribute('disabled', 'true');
+    } else {
+      this.publishBtn.removeAttribute('disabled');
+    }
   };
 
-  return AboutMeComponents;
+  Write.prototype.setupPeriodicBlogContentSaver = function (editor) {
+    var _this = this;
+
+    console.log(this.blogsService);
+    var blogStatusIndicatorEl = document.getElementById('save-status');
+    var savedStatusIndicator = new SavedStatusIndicatorImpl_1["default"](blogStatusIndicatorEl);
+    var periodicBlogContentSaver = new PeriodicBlogContentSaver_1["default"](editor, this.blogTitleInput, savedStatusIndicator, this.blogsService, this.blog);
+    periodicBlogContentSaver.onSaved(function (blog) {
+      return _this.handleOnPeriodicSave(blog);
+    });
+    periodicBlogContentSaver.activate();
+  };
+
+  Write.prototype.handleOnPeriodicSave = function (blog) {
+    console.log('saved blog', blog);
+
+    if (this.blog == undefined) {
+      this.blog = blog;
+    } else {
+      this.blog.title = blog.title;
+      this.blog.content = blog.content;
+    }
+  };
+
+  Write.prototype.setupBlogPreviewImageInput = function () {
+    var _this = this;
+
+    var blogPreviewImage = new BlogMainImageInput_1["default"]({
+      imagePreviewElement: document.getElementById('blog-preview-img-thumbnail'),
+      imageInputButton: document.getElementById('preview-img-input-btn'),
+      hiddenImageInputElement: document.getElementById('blog-image-hidden-input'),
+      progressBar: document.getElementById('preview-img-progress-bar')
+    });
+
+    if (this.blog !== undefined && this.blog.main_image_filename !== undefined) {
+      var assetUrl = document.querySelector('meta[name="asset-url"]').getAttribute('content');
+      blogPreviewImage.addImage(assetUrl + "storage/blog-main-images/" + this.blog.main_image_filename, this.blog.main_image_filename);
+      console.log('Uppy', blogPreviewImage.uppy);
+    }
+
+    blogPreviewImage.onImageInputted(function (image, updated) {
+      if (updated && _this.blog != undefined) {
+        _this.blog.main_image = image;
+      }
+
+      console.log(_this.blog);
+    });
+  };
+
+  Write.prototype.setupPublishButton = function () {
+    this.publishBtn.addEventListener('click', function (e) {
+      $('#publish-modal').modal('toggle');
+    });
+  };
+
+  Write.prototype.setupBlogTagInputEl = function () {
+    if (this.blog != undefined && this.blog.tag != undefined) {
+      this.blogTagInput.value = this.blog.tag;
+    }
+  };
+
+  Write.prototype.setupModalPublishButton = function () {
+    var _this = this;
+
+    var modalPublishButton = document.getElementById("modal-publish-btn");
+    modalPublishButton.addEventListener('click', function (e) {
+      _this.saveBlog(Blog_1.BlogStatus.PUBLISHED);
+    });
+  };
+
+  Write.prototype.setupSaveAsDraftButton = function () {
+    var _this = this;
+
+    var modalSaveAsDraftBtn = document.getElementById("modal-save-draft-btn");
+    modalSaveAsDraftBtn.addEventListener('click', function (e) {
+      _this.saveBlog(Blog_1.BlogStatus.DRAFT);
+    });
+  };
+
+  Write.prototype.saveBlog = function (status) {
+    var _this = this;
+
+    this.showPublishModalProgressbar();
+    this.blogsService.updateWithImage(this.getFormFromBlog(this.blog, status)).then(function (blog) {
+      console.log('saved blog (whole)', blog);
+
+      _this.hidePublishModalProgressbar();
+
+      window.location.replace(_this.requestOptions.baseUrl + "/" + constants_1.blogsPageRelativeURL);
+    });
+  };
+
+  Write.prototype.showPublishModalProgressbar = function () {
+    this.publishModalProgessbar.classList.remove('d-none');
+  };
+
+  Write.prototype.hidePublishModalProgressbar = function () {
+    this.publishModalProgessbar.classList.add('d-none');
+  }; // TODO Refactor code and remove this method
+
+
+  Write.prototype.getFormFromBlog = function (blog, blogStatus) {
+    var form = new FormData();
+    form.append('id', blog.id);
+    form.append('title', this.blogTitleInput.value);
+    form.append('content', blog.content);
+
+    if (blog.main_image !== undefined) {
+      form.append('main_image', blog.main_image, blog.main_image.name);
+    }
+
+    form.append('tag', this.blogTagInput.value);
+    form.append('status', blogStatus);
+    return form;
+  };
+
+  return Write;
 }();
 
-exports["default"] = AboutMeComponents;
+exports["default"] = Write;
 
 /***/ }),
 
-/***/ "./resources/js/ui/renee/edit-aboutme/AboutMeImage.js":
-/*!************************************************************!*\
-  !*** ./resources/js/ui/renee/edit-aboutme/AboutMeImage.js ***!
-  \************************************************************/
+/***/ "./resources/js/write/blogMainImageInput/BlogMainImageInput.js":
+/*!*********************************************************************!*\
+  !*** ./resources/js/write/blogMainImageInput/BlogMainImageInput.js ***!
+  \*********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-
-var __extends = this && this.__extends || function () {
-  var _extendStatics = function extendStatics(d, b) {
-    _extendStatics = Object.setPrototypeOf || {
-      __proto__: []
-    } instanceof Array && function (d, b) {
-      d.__proto__ = b;
-    } || function (d, b) {
-      for (var p in b) {
-        if (b.hasOwnProperty(p)) d[p] = b[p];
-      }
-    };
-
-    return _extendStatics(d, b);
-  };
-
-  return function (d, b) {
-    _extendStatics(d, b);
-
-    function __() {
-      this.constructor = d;
-    }
-
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-  };
-}();
 
 var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
@@ -541,20 +640,25 @@ var core_1 = __importDefault(__webpack_require__(/*! @uppy/core */ "./node_modul
 
 var thumbnail_generator_1 = __importDefault(__webpack_require__(/*! @uppy/thumbnail-generator */ "./node_modules/@uppy/thumbnail-generator/lib/index.js"));
 
-var ElementUtils_1 = __webpack_require__(/*! ../../../utils/ElementUtils */ "./resources/js/utils/ElementUtils.js");
-
-var AboutMeComponents_1 = __importDefault(__webpack_require__(/*! ./AboutMeComponents */ "./resources/js/ui/renee/edit-aboutme/AboutMeComponents.js"));
-
-var AboutMeImageComponent =
+var BlogMainImageInput =
 /** @class */
-function (_super) {
-  __extends(AboutMeImageComponent, _super);
+function () {
+  function BlogMainImageInput(configOptions) {
+    var _this = this;
 
-  function AboutMeImageComponent() {
-    return _super.call(this) || this; // this.enterInitialState();
+    this.updated = false;
+    this.configOptions = configOptions;
+    this.initUppy();
+    this.setupImageInputButton();
+    this.listenForImageInput(function (file) {
+      return _this.handleImageInputted(file);
+    });
+    this.listenForThumbnailGenerated(function (file, preview) {
+      return _this.handleThumbnailGenerated(file, preview);
+    });
   }
 
-  AboutMeImageComponent.prototype.initUppy = function () {
+  BlogMainImageInput.prototype.initUppy = function () {
     this.uppy = core_1["default"]({
       allowMultipleUploads: false,
       autoProceed: false,
@@ -563,194 +667,174 @@ function (_super) {
       }
     }).use(thumbnail_generator_1["default"], {
       id: 'ThumbnailGenerator',
-      thumbnailWidth: this.contentElement.el.offsetWidth
+      thumbnailWidth: 200,
+      thumbnailHeight: 200
     });
   };
 
-  AboutMeImageComponent.prototype.enterEditingState = function () {
-    _super.prototype.enterEditingState.call(this);
-
-    this.openFileExplorer();
-  };
-
-  AboutMeImageComponent.prototype.openFileExplorer = function () {
-    this.hiddenImageInput.el.click();
-  };
-
-  AboutMeImageComponent.prototype.setupListeners = function () {
+  BlogMainImageInput.prototype.setupImageInputButton = function () {
     var _this = this;
 
-    _super.prototype.setupListeners.call(this);
-
-    this.hiddenImageInput.el.addEventListener('change', function (ev) {
-      if (_this.hiddenImageInput.el.files && _this.hiddenImageInput.el.files[0]) {
-        var image = _this.hiddenImageInput.el.files[0];
-        _this.content = image;
-
-        _this.addImage(image);
-
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-          _this.contentElement.el.setAttribute('src', e.target.result);
-        };
-
-        reader.readAsDataURL(_this.hiddenImageInput.el.files[0]);
-      }
+    this.configOptions.imageInputButton.addEventListener('click', function () {
+      return _this.openFileExplorer();
     });
   };
 
-  AboutMeImageComponent.prototype.addImage = function (image) {
+  BlogMainImageInput.prototype.openFileExplorer = function () {
+    this.configOptions.hiddenImageInputElement.click();
+  };
+
+  BlogMainImageInput.prototype.listenForImageInput = function (handleImageInputted) {
+    var _this = this;
+
+    this.configOptions.hiddenImageInputElement.addEventListener('change', function () {
+      handleImageInputted(_this.configOptions.hiddenImageInputElement.files[0]);
+    });
+  };
+
+  BlogMainImageInput.prototype.handleImageInputted = function (file) {
+    this.updated = true;
+    if (this.onImageInputtedHandler) this.onImageInputtedHandler(file, this.updated);
+    this.addImageToUppy(file);
+    this.showProgressBar();
+  };
+
+  BlogMainImageInput.prototype.addImageToUppy = function (file) {
     this.uppy.reset();
     this.uppy.addFile({
-      name: image.name,
-      type: image.type,
-      data: image
+      name: file.name,
+      type: file.type,
+      data: file
     });
   };
 
-  AboutMeImageComponent.prototype.getContent = function () {
-    return this.contentElement.el.src;
+  BlogMainImageInput.prototype.showProgressBar = function () {
+    this.configOptions.progressBar.classList.remove('d-none');
   };
 
-  AboutMeImageComponent.prototype.setContent = function (content) {
-    this.contentElement.el.src = content;
+  BlogMainImageInput.prototype.listenForThumbnailGenerated = function (handleThumbnailGenerated) {
+    this.uppy.on('thumbnail:generated', handleThumbnailGenerated);
   };
 
-  return AboutMeImageComponent;
-}(AboutMeComponents_1["default"]);
+  BlogMainImageInput.prototype.handleThumbnailGenerated = function (file, preview) {
+    console.log('handleThumbnailGenerated');
+    this.configOptions.imagePreviewElement.src = preview;
+    this.configOptions.imagePreviewElement.classList.remove('d-none');
 
-exports["default"] = AboutMeImageComponent;
-
-var AboutMeSideImage =
-/** @class */
-function (_super) {
-  __extends(AboutMeSideImage, _super);
-
-  function AboutMeSideImage() {
-    return _super.call(this) || this;
-  }
-
-  AboutMeSideImage.getInstance = function () {
-    if (this.INSTANCE == undefined) {
-      this.INSTANCE = new AboutMeSideImage();
+    if (this.uppy.getFiles().length > 0) {
+      this.configOptions.imageInputButton.innerText = "Change";
     }
 
-    return this.INSTANCE;
+    this.hideProgressBar();
+    this.changeButtonToOutlined();
   };
 
-  AboutMeSideImage.prototype.initElements = function () {
-    this.editButton = new ElementUtils_1.El(document.getElementById('about-me-side-image-edit'));
-    this.contentElement = new ElementUtils_1.El(document.getElementById('about-me-side-image'));
-    this.saveAndCancelContainer = new ElementUtils_1.El(document.getElementById('save-and-cancel-about-me-side-image-buttons'));
-    this.saveButton = new ElementUtils_1.El(document.getElementById('save-about-me-side-image'));
-    this.cancelButton = new ElementUtils_1.El(document.getElementById('cancel-about-me-side-image'));
-    this.loadIndicator = new ElementUtils_1.El(document.getElementById('loading-about-me-side-image'));
-    this.hiddenImageInput = new ElementUtils_1.El(document.getElementById('about-me-side-image-hidden-input'));
-    this.initUppy(); // This is not ok
+  BlogMainImageInput.prototype.hideProgressBar = function () {
+    this.configOptions.progressBar.classList.add('d-none');
   };
 
-  AboutMeSideImage.prototype.getContentToSave = function () {
-    var formData = new FormData();
-    formData.append('about_me_side_image_file', this.content, this.content.name);
-    return formData;
+  BlogMainImageInput.prototype.changeButtonToOutlined = function () {
+    this.configOptions.imageInputButton.classList.add('mdc-button--outlined');
   };
 
-  return AboutMeSideImage;
-}(AboutMeImageComponent);
-
-var aboutMeImage = AboutMeSideImage.getInstance();
-
-/***/ }),
-
-/***/ "./resources/js/utils/CallIfPresent.js":
-/*!*********************************************!*\
-  !*** ./resources/js/utils/CallIfPresent.js ***!
-  \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-function callCallbackIfPresent(callback) {
-  if (callback !== undefined) {
-    callback();
-  }
-}
-
-exports.callCallbackIfPresent = callCallbackIfPresent;
-
-/***/ }),
-
-/***/ "./resources/js/utils/ElementUtils.js":
-/*!********************************************!*\
-  !*** ./resources/js/utils/ElementUtils.js ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/*export function show(element: HTMLElement) {
-    element.classList.remove('d-none')
-}
-
-export function hide(element: HTMLElement) {
-    element.classList.add('d-none');
-}*/
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var El =
-/** @class */
-function () {
-  function El(el) {
-    this.el = el;
-  }
-
-  El.prototype.show = function () {
-    this.el.classList.remove('d-none');
+  BlogMainImageInput.prototype.onImageInputted = function (onImageInputtedHandler) {
+    this.onImageInputtedHandler = onImageInputtedHandler;
   };
 
-  El.prototype.hide = function () {
-    this.el.classList.add('d-none');
+  BlogMainImageInput.prototype.addImage = function (url, filename) {
+    var _this = this;
+
+    this.showProgressBar();
+    fetch(url).then(function (response) {
+      return response.blob();
+    }) // returns a Blob
+    .then(function (blob) {
+      _this.uppy.reset();
+
+      _this.uppy.addFile({
+        name: filename,
+        type: blob.type,
+        data: blob
+      });
+
+      _this.hideProgressBar();
+    })["catch"](function (err) {
+      return console.log(err);
+    });
   };
 
-  El.prototype.makeEditable = function () {
-    this.el.setAttribute('contenteditable', 'true');
-    document.execCommand("defaultParagraphSeparator", false, "p"); //
-    // document.execCommand("defaultParagraphSeparator", false, "br"); //
-    // this.setupEditableContentEl();
-    // document.execCommand('insertBrOnReturn');
-  };
-
-  El.prototype.makeNotEditable = function () {
-    this.el.setAttribute('contenteditable', 'false');
-  };
-
-  El.prototype.focusAndHighlightAllText = function () {
-    this.el.focus();
-    document.execCommand('selectAll', false, null);
-  };
-
-  return El;
+  return BlogMainImageInput;
 }();
 
-exports.El = El;
+exports["default"] = BlogMainImageInput;
 
 /***/ }),
 
-/***/ "./resources/js/utils/ErrorHandling.js":
-/*!*********************************************!*\
-  !*** ./resources/js/utils/ErrorHandling.js ***!
-  \*********************************************/
+/***/ "./resources/js/write/editor.js":
+/*!**************************************!*\
+  !*** ./resources/js/write/editor.js ***!
+  \**************************************/
+/*! exports provided: initCkEditor */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initCkEditor", function() { return initCkEditor; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _ckeditor_ckeditor5_build_balloon_block__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ckeditor/ckeditor5-build-balloon-block */ "./node_modules/@ckeditor/ckeditor5-build-balloon-block/build/ckeditor.js");
+/* harmony import */ var _ckeditor_ckeditor5_build_balloon_block__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_ckeditor_ckeditor5_build_balloon_block__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+ // import BalloonBlockEditor from './ckeditor';
+
+function initCkEditor(_x) {
+  return _initCkEditor.apply(this, arguments);
+}
+
+function _initCkEditor() {
+  _initCkEditor = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(targetEl) {
+    var ckEditor;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return _ckeditor_ckeditor5_build_balloon_block__WEBPACK_IMPORTED_MODULE_1___default.a.create(targetEl, {
+              placeholder: 'Write the word...',
+              toolbar: ['heading', '|', 'bold', 'italic', 'link', 'blockQuote'],
+              ignoreEmptyParagraph: true
+            }).then(function (editor) {
+              ckEditor = editor;
+            })["catch"](function (error) {
+              throw error;
+            });
+
+          case 2:
+            return _context.abrupt("return", ckEditor);
+
+          case 3:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+  return _initCkEditor.apply(this, arguments);
+}
+
+/***/ }),
+
+/***/ "./resources/js/write/savedStatusIndicator/SavedStatusIndicatorImpl.js":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/write/savedStatusIndicator/SavedStatusIndicatorImpl.js ***!
+  \*****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -759,13 +843,35 @@ exports.El = El;
 
 Object.defineProperty(exports, "__esModule", {
   value: true
-}); // TODO: Add implementation e.g Show modal
+});
 
-function handleFailure(errMessage) {
-  console.log(errMessage);
-}
+var SavedStatusIndicatorImpl =
+/** @class */
+function () {
+  function SavedStatusIndicatorImpl(indicatorElement) {
+    this.indicatorElement = indicatorElement;
+  }
 
-exports["default"] = handleFailure;
+  SavedStatusIndicatorImpl.prototype.clearSavedStatus = function () {
+    if (this.indicatorElement.innerText === "Saved") {
+      this.indicatorElement.innerText = "";
+    }
+  };
+
+  SavedStatusIndicatorImpl.prototype.indicateSaved = function () {
+    this.indicatorElement.innerText = "Saved";
+    console.log('saved');
+  };
+
+  SavedStatusIndicatorImpl.prototype.indicateSaving = function () {
+    this.indicatorElement.innerText = "Saving...";
+    console.log('saving');
+  };
+
+  return SavedStatusIndicatorImpl;
+}();
+
+exports["default"] = SavedStatusIndicatorImpl;
 
 /***/ })
 

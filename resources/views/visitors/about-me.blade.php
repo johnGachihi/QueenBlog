@@ -7,20 +7,52 @@
 
 @section('page-content')
     <div class="single-post">
-        <div class="image-wrapper"><img src="images/blog-2-1000x600.jpg" alt="Blog Image"></div>
-
-        <div class="icons">
-            <div class="left-area">
-                <a class="btn caegory-btn" href="#"><b>TRAVEL</b></a>
-            </div>
-            <ul class="right-area social-icons">
-                <li><a href="#"><i class="ion-android-share-alt"></i>Share</a></li>
-                <li><a href="#"><i class="ion-android-favorite-outline"></i>03</a></li>
-                <li><a href="#"><i class="ion-android-textsms"></i>06</a></li>
-            </ul>
+        <div class="image-wrapper">
+            <img id="about-me-image" src="{{ asset('storage/about_me_images_folder/'.$about_me->about_me_image) }}" alt="Blog Image">
         </div>
-        <p class="date"><em>Monday, October 13, 2017</em></p>
-        <h3 class="title"><a href="#"><b class="light-color">This is post about travel, adventure and fun</b></a></h3>
+        @auth
+            <div class="d-flex justify-content-center mt-2">
+                <a id="about-me-image-edit" href="#">
+                    <i class="material-icons" style="font-size: 15px">edit</i>
+                </a>
+                <div id="save-and-cancel-about-me-image-buttons" class="d-none m-0">
+                    <a id="save-about-me-image" class="ml-1" href="#">
+                        <i class="material-icons" style="font-size: 15px">save</i>
+                    </a>
+                    <a id="cancel-about-me-image" href="#">
+                        <i class="material-icons" style="font-size: 15px">cancel</i>
+                    </a>
+                </div>
+                <i id="loading-about-me-image" class="material-icons d-none">hourglass_empty</i>
+
+                <input id="about-me-image-hidden-input" class="d-none" type="file" accept="image/*"/>
+            </div>
+        @endauth
+
+        <div class="d-flex justify-content-between mt-5">
+            <h3 class="title flex-grow-1">
+                <span id="about-me-title" href="#" style="font-weight: 500; color: #444; width: 100%">
+                    {{ $about_me->about_me_title }}
+                </span>
+            </h3>
+            @auth
+                <div class="title">
+                    <a id="about-me-title-edit" href="#">
+                        <i class="material-icons" style="font-size: 15px">edit</i>
+                    </a>
+                    <div id="save-and-cancel-about-me-title-buttons" class="d-none m-0">
+                        <a id="save-about-me-title" class="ml-1" href="#">
+                            <i class="material-icons" style="font-size: 15px">save</i>
+                        </a>
+                        <a id="cancel-about-me-title" href="#">
+                            <i class="material-icons" style="font-size: 15px">cancel</i>
+                        </a>
+                    </div>
+                    <i id="loading-about-me-title" class="material-icons d-none">hourglass_empty</i>
+                </div>
+            @endauth
+        </div>
+
         <p class="desc">Hello Everyone! My name is Renèe Tikolo and I am so glad that you decided to stop by and take a peek! 🙂 While you’re here, why not subscribe and join the UnScripted Sisterhood.</p>
 
         <p class="desc">My favorite color is yellow, And my favorite food is Pilau and Chicken😁. I love to read books and engage in quite deep and proactive conversations that make me think and challenge me to see life in a different light. As much as I am intellectual person I am quite an extrovert and love to be out there, have fun and spend quality time with people😄</p>

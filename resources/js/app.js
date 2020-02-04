@@ -59,7 +59,8 @@ if (document.getElementById('logout')) {
 }
 
 if (document.getElementById('renee')) {
-    import('./ui/renee/edit-aboutme/editimages');
+    import('./ui/renee/edit-aboutme/editAboutMeSideName');
     import('./ui/renee/edit-aboutme/editaboutmeside');
+    import('./ui/renee/edit-aboutme/editAboutMeTitle');
     import('./ui/renee/edit-aboutme/AboutMeImage');
 }

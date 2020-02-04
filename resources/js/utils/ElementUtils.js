@@ -29,6 +29,9 @@ var El = /** @class */ (function () {
         this.el.focus();
         document.execCommand('selectAll', false, null);
     };
+    El.prototype.on = function (event, handler) {
+        this.el.addEventListener(event, handler);
+    };
     return El;
 }());
 exports.El = El;

@@ -1,5 +1,7 @@
 import {El} from "../../../utils/ElementUtils";
 import {callCallbackIfPresent} from "../../../utils/CallIfPresent";
+import AboutMeComponents from "./AboutMeComponents";
+
 
 export abstract class AboutMeSideText {
     protected editButton: El<HTMLElement>;
@@ -61,7 +63,7 @@ export abstract class AboutMeSideText {
                 this.saveButton.el.click();
                 return false;
             }
-        })
+        });
 
         this.contentElement.el.addEventListener('click', ev => {
             ev.preventDefault();
@@ -78,4 +80,28 @@ export abstract class AboutMeSideText {
     }
 
 
+}
+
+
+export abstract class AboutMeTextComponent extends AboutMeComponents {
+    protected constructor() {
+        super();
+    }
+
+    protected abstract initElements();
+
+    enterEditingState() {
+        super.enterEditingState();
+        this.contentElement.focusAndHighlightAllText();
+    }
+
+    protected getContent() {
+        return this.contentElement.el.innerText;
+    }
+
+    protected setContent(content: string) {
+        this.contentElement.el.innerText = content
+    }
+
+    protected abstract getContentToSave();
 }

@@ -42,7 +42,6 @@ export default abstract class AboutMeComponents {
         this.contentElement.makeEditable();
         this.saveAndCancelContainer.show();
         this.loadIndicator.hide();
-        console.log(this.contentBeforeEdit);
     }
 
     enterSavingState() {
@@ -74,10 +73,15 @@ export default abstract class AboutMeComponents {
             this.enterInitialState();
         });
 
-        $(this.contentElement.el).on('keydown', e => {
+        this.contentElement.on('keydown', e => {
+            //@ts-ignore
             if (e.keyCode === 13) {
                 this.saveButton.el.click();
                 return false;
+            }
+            //@ts-ignore
+            if (e.keyCode === 27) {
+                this.cancelButton.el.click();
             }
         });
 

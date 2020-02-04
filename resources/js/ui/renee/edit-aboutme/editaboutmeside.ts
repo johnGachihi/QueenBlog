@@ -1,9 +1,8 @@
-import {AboutMeSideText} from "./AboutMeSideText";
+import {AboutMeTextComponent} from "./AboutMeSideText";
 import {El} from "../../../utils/ElementUtils";
-import AboutMeService from "../../../network/AboutMeService";
-import {RequestOptionsValues} from "../../../network/RequestOptions";
+import AboutMe from "../../../models/AboutMe";
 
-class AboutMeSideContent extends AboutMeSideText{
+class AboutMeSideContent extends AboutMeTextComponent{
     constructor() {
         super();
     }
@@ -18,24 +17,9 @@ class AboutMeSideContent extends AboutMeSideText{
         this.loadIndicator = new El(document.getElementById('loading-about-me-side'));
     }
 
-    getContent(): string {
-        return this.contentElement.el.innerHTML;
+    protected getContentToSave(): AboutMe {
+        return {about_me_side: this.getContent()};
     }
 }
 
 const editAboutMeSide = new AboutMeSideContent();
-editAboutMeSide.setOnSaveClicked(() => {
-    const aboutMeService = new AboutMeService(RequestOptionsValues.get());
-    aboutMeService.save({about_me_side: editAboutMeSide.getContent()})
-        .then(res => {
-            if (res.status == 'ok')
-                editAboutMeSide.enterInitialState();
-            else
-                handleSaveFailure();
-        })
-        .catch(handleSaveFailure)
-});
-
-function handleSaveFailure(err?) {
-    console.log(err);   // TODO: Add implementation
-}

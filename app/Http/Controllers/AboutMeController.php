@@ -30,7 +30,8 @@ class AboutMeController extends Controller
             'about_me_image_file' => 'nullable|image',
             'about_me_side' => 'nullable|string',
             'about_me_side_image_file' => 'nullable|image',
-            'about_me_side_name' => 'nullable|string'
+            'about_me_side_name' => 'nullable|string',
+            'about_me_title' => 'nullable|string'
         ]);
     }
 
@@ -53,6 +54,10 @@ class AboutMeController extends Controller
             $image = $request->file('about_me_image_file');
             $filename = $this->storeImage($image, self::ABOUT_ME_IMAGE);
             $about_me->about_me_image = $filename;
+        }
+
+        if ($request->has('about_me_title')) {
+            $about_me->about_me_title = $request->about_me_title;
         }
 
         if ($request->has('about_me_side')) {

@@ -2,13 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ba4312e-56ad-419e-b4b7-cc2a10cfd510" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editAboutMeSideName.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editAboutMeSideName.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editAboutMeSideName.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AboutMeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AboutMeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/0.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/0.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/1.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/1.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/10.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/10.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/11.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/11.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/12.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/12.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/13.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/13.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/14.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/14.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/15.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/15.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/3.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/3.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/4.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/4.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/5.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/5.js" afterDir="false" />
@@ -17,20 +23,28 @@
       <change beforePath="$PROJECT_DIR$/public/8.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/8.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/9.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/9.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/network/AboutMeService.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/network/AboutMeService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/network/AboutMeService.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/network/AboutMeService.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/network/AboutMeService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/network/AboutMeService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/network/Service.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/network/Service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/network/Service.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/network/Service.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/network/Service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/network/Service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/models/AboutMe.ts" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/models/AboutMe.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeComponents.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeComponents.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeComponents.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeComponents.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeComponents.ts" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeComponents.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeImage.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeImage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeImage.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeImage.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeImage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeImage.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeSideText.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeSideText.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeSideText.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeSideText.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeSideText.ts" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeSideText.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editaboutmeside.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editaboutmeside.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editaboutmeside.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editaboutmeside.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editaboutmeside.ts" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editaboutmeside.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/visitors/components/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/visitors/components/header.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editimages.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editimages.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editimages.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/utils/ElementUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/utils/ElementUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/utils/ElementUtils.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/utils/ElementUtils.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/utils/ElementUtils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/utils/ElementUtils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/visitors/about-me.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/visitors/about-me.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/AboutMeControllerTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/AboutMeControllerTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,7 +184,7 @@
     <property name="nodejs.jest.jest_package" value="$PROJECT_DIR$/node_modules/jest" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="settings.typescriptcompiler" />
-    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -314,7 +328,8 @@
       <workItem from="1580460629996" duration="15347000" />
       <workItem from="1580628036087" duration="21795000" />
       <workItem from="1580713263542" duration="613000" />
-      <workItem from="1580733042315" duration="36562000" />
+      <workItem from="1580733042315" duration="38024000" />
+      <workItem from="1580836075514" duration="8640000" />
     </task>
     <servers />
   </component>
@@ -383,6 +398,8 @@
         <option value="$PROJECT_DIR$/resources/js/test/TestUtils/fetchResponses.js" />
         <option value="$PROJECT_DIR$/resources/js/test/network/AboutMeService.spec.js.map" />
         <option value="$PROJECT_DIR$/resources/js/test/network/AboutMeService.spec.js" />
+        <option value="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editAboutMeTitle.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/editAboutMeTitle.js" />
       </list>
     </option>
   </component>
@@ -407,18 +424,18 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="416" y="201" width="591" height="390" key="#com.intellij.fileTypes.FileTypeChooser/67.27.1299.741@67.27.1299.741" timestamp="1579161602888" />
-    <state x="524" y="115" width="374" height="562" key="#com.intellij.ide.util.MemberChooser" timestamp="1580736392147">
+    <state x="524" y="115" width="374" height="562" key="#com.intellij.ide.util.MemberChooser" timestamp="1580841171515">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="524" y="115" width="374" height="562" key="#com.intellij.ide.util.MemberChooser/67.27.1299.741@67.27.1299.741" timestamp="1580736392147" />
+    <state x="524" y="115" width="374" height="562" key="#com.intellij.ide.util.MemberChooser/67.27.1299.741@67.27.1299.741" timestamp="1580841171515" />
     <state x="399" y="124" width="624" height="544" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1578919415507">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="399" y="124" width="624" height="544" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/67.27.1299.741@67.27.1299.741" timestamp="1578919415507" />
-    <state x="461" y="27" width="489" height="741" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1580487192328">
+    <state x="461" y="27" width="489" height="741" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1580845041414">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="461" y="27" width="489" height="741" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/67.27.1299.741@67.27.1299.741" timestamp="1580487192328" />
+    <state x="461" y="27" width="489" height="741" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/67.27.1299.741@67.27.1299.741" timestamp="1580845041414" />
     <state x="449" y="145" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1579635355926">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
@@ -439,22 +456,22 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="499" y="154" width="424" height="484" key="FileChooserDialogImpl/67.27.1299.741@67.27.1299.741" timestamp="1580647475143" />
-    <state width="1253" height="132" key="GridCell.Tab.0.bottom" timestamp="1580821508667">
+    <state width="1253" height="132" key="GridCell.Tab.0.bottom" timestamp="1580836011975">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="132" key="GridCell.Tab.0.bottom/67.27.1299.741@67.27.1299.741" timestamp="1580821508667" />
-    <state width="1253" height="132" key="GridCell.Tab.0.center" timestamp="1580821508666">
+    <state width="1253" height="132" key="GridCell.Tab.0.bottom/67.27.1299.741@67.27.1299.741" timestamp="1580836011975" />
+    <state width="1253" height="132" key="GridCell.Tab.0.center" timestamp="1580836011973">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="132" key="GridCell.Tab.0.center/67.27.1299.741@67.27.1299.741" timestamp="1580821508666" />
-    <state width="1253" height="132" key="GridCell.Tab.0.left" timestamp="1580821508666">
+    <state width="1253" height="132" key="GridCell.Tab.0.center/67.27.1299.741@67.27.1299.741" timestamp="1580836011973" />
+    <state width="1253" height="132" key="GridCell.Tab.0.left" timestamp="1580836011970">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="132" key="GridCell.Tab.0.left/67.27.1299.741@67.27.1299.741" timestamp="1580821508666" />
-    <state width="1253" height="132" key="GridCell.Tab.0.right" timestamp="1580821508667">
+    <state width="1253" height="132" key="GridCell.Tab.0.left/67.27.1299.741@67.27.1299.741" timestamp="1580836011970" />
+    <state width="1253" height="132" key="GridCell.Tab.0.right" timestamp="1580836011974">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="132" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1580821508667" />
+    <state width="1253" height="132" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1580836011974" />
     <state x="187" y="85" width="1039" height="622" key="MergeDialog" timestamp="1580570812618">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
@@ -479,10 +496,10 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state width="501" height="446" key="SwitcherDM/67.27.1299.741@67.27.1299.741" timestamp="1580213597193" />
-    <state x="372" y="224" key="com.intellij.ide.util.TipDialog" timestamp="1580733053145">
+    <state x="372" y="224" key="com.intellij.ide.util.TipDialog" timestamp="1580836220495">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="372" y="224" key="com.intellij.ide.util.TipDialog/67.27.1299.741@67.27.1299.741" timestamp="1580733053145" />
+    <state x="372" y="224" key="com.intellij.ide.util.TipDialog/67.27.1299.741@67.27.1299.741" timestamp="1580836220495" />
     <state x="380" y="175" key="run.anything.popup" timestamp="1578995080600">
       <screen x="67" y="27" width="1299" height="741" />
     </state>

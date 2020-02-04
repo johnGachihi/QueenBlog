@@ -26,7 +26,6 @@ var AboutMeComponents = /** @class */ (function () {
         this.contentElement.makeEditable();
         this.saveAndCancelContainer.show();
         this.loadIndicator.hide();
-        console.log(this.contentBeforeEdit);
     };
     AboutMeComponents.prototype.enterSavingState = function () {
         this.editButton.hide();
@@ -52,10 +51,15 @@ var AboutMeComponents = /** @class */ (function () {
             _this.cancelEdit();
             _this.enterInitialState();
         });
-        $(this.contentElement.el).on('keydown', function (e) {
+        this.contentElement.on('keydown', function (e) {
+            //@ts-ignore
             if (e.keyCode === 13) {
                 _this.saveButton.el.click();
                 return false;
+            }
+            //@ts-ignore
+            if (e.keyCode === 27) {
+                _this.cancelButton.el.click();
             }
         });
         this.contentElement.el.addEventListener('click', function (ev) {

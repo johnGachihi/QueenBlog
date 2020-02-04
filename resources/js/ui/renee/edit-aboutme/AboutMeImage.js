@@ -22,22 +22,7 @@ var AboutMeImageComponent = /** @class */ (function (_super) {
     __extends(AboutMeImageComponent, _super);
     function AboutMeImageComponent() {
         return _super.call(this) || this;
-        // this.enterInitialState();
     }
-    /*protected initUppy() {
-        this.uppy = Uppy({
-            allowMultipleUploads: false,
-            autoProceed: false,
-            restrictions: {
-                maxNumberOfFiles: 1
-            }
-        })
-            .use(ThumbnailGenerator, {
-                id: 'ThumbnailGenerator',
-                thumbnailWidth: this.contentElement.el.offsetWidth,
-                // thumbnailHeight: 200,
-            });
-    }*/
     AboutMeImageComponent.prototype.enterEditingState = function () {
         _super.prototype.enterEditingState.call(this);
         this.openFileExplorer();
@@ -48,27 +33,22 @@ var AboutMeImageComponent = /** @class */ (function (_super) {
     AboutMeImageComponent.prototype.setupListeners = function () {
         var _this = this;
         _super.prototype.setupListeners.call(this);
-        this.hiddenImageInput.el.addEventListener('change', function (ev) {
-            if (_this.hiddenImageInput.el.files && _this.hiddenImageInput.el.files[0]) {
-                var image = _this.hiddenImageInput.el.files[0];
-                _this.content = image;
-                // this.addImage(image);
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    _this.contentElement.el.setAttribute('src', e.target.result);
-                };
-                reader.readAsDataURL(_this.hiddenImageInput.el.files[0]);
+        this.hiddenImageInput.on('change', function (ev) {
+            if (_this.imageSelected()) {
+                _this.content = _this.hiddenImageInput.el.files[0];
+                _this.previewImage();
             }
         });
     };
-    /*private addImage(image: File) {
-        this.uppy.reset();
-        this.uppy.addFile({
-            name: image.name,
-            type: image.type,
-            data: image
-        });
-    }*/
+    AboutMeImageComponent.prototype.imageSelected = function () {
+        return !!(this.hiddenImageInput.el.files && this.hiddenImageInput.el.files[0]);
+    };
+    AboutMeImageComponent.prototype.previewImage = function () {
+        var _this = this;
+        var reader = new FileReader();
+        reader.onload = function (e) { return _this.setContent(e.target.result); };
+        reader.readAsDataURL(this.hiddenImageInput.el.files[0]);
+    };
     AboutMeImageComponent.prototype.getContent = function () {
         return this.contentElement.el.src;
     };
@@ -105,5 +85,33 @@ var AboutMeSideImage = /** @class */ (function (_super) {
     };
     return AboutMeSideImage;
 }(AboutMeImageComponent));
-var aboutMeImage = AboutMeSideImage.getInstance();
+var aboutMeSideImage = AboutMeSideImage.getInstance();
+var AboutMeImage = /** @class */ (function (_super) {
+    __extends(AboutMeImage, _super);
+    function AboutMeImage() {
+        return _super.call(this) || this;
+    }
+    AboutMeImage.getInstance = function () {
+        if (this.INSTANCE == undefined) {
+            this.INSTANCE = new AboutMeImage();
+        }
+        return this.INSTANCE;
+    };
+    AboutMeImage.prototype.initElements = function () {
+        this.editButton = new ElementUtils_1.El(document.getElementById('about-me-image-edit'));
+        this.contentElement = new ElementUtils_1.El(document.getElementById('about-me-image'));
+        this.saveAndCancelContainer = new ElementUtils_1.El(document.getElementById('save-and-cancel-about-me-image-buttons'));
+        this.saveButton = new ElementUtils_1.El(document.getElementById('save-about-me-image'));
+        this.cancelButton = new ElementUtils_1.El(document.getElementById('cancel-about-me-image'));
+        this.loadIndicator = new ElementUtils_1.El(document.getElementById('loading-about-me-image'));
+        this.hiddenImageInput = new ElementUtils_1.El(document.getElementById('about-me-image-hidden-input'));
+    };
+    AboutMeImage.prototype.getContentToSave = function () {
+        var formData = new FormData();
+        formData.append('about_me_image_file', this.content, this.content.name);
+        return formData;
+    };
+    return AboutMeImage;
+}(AboutMeImageComponent));
+var aboutMeImage = AboutMeImage.getInstance();
 //# sourceMappingURL=AboutMeImage.js.map

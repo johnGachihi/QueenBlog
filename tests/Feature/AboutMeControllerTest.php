@@ -28,14 +28,16 @@ class AboutMeControllerTest extends TestCase
         $response = $this->actingAs($user)->json('POST', 'about_me', [
             'about_me' => 123,
             'about_me_image_file' => UploadedFile::fake()->create('file.pdf', 0, 'application/pdf'),
+            'about_me_title' => 123,
             'about_me_side' => 123,
             'about_me_side_image_file' => UploadedFile::fake()->create('file.pdf', 0, 'application/pdf'),
-            'about_me_side_name' => 123
+            'about_me_side_name' => 123,
         ]);
 
         $response->assertStatus(422)
             ->assertJsonFragment(['about_me' => ['The about me must be a string.']])
             ->assertJsonFragment(['about_me_image_file' => ['The about me image file must be an image.']])
+            ->assertJsonFragment(['about_me_title' => ['The about me title must be a string.']])
             ->assertJsonFragment(['about_me_side' => ['The about me side must be a string.']])
             ->assertJsonFragment(['about_me_side_image_file' => ['The about me side image file must be an image.']])
             ->assertJsonFragment(['about_me_side_name' => ['The about me side name must be a string.']]);
@@ -62,6 +64,7 @@ class AboutMeControllerTest extends TestCase
         $response = $this->actingAs($user)->json('POST', 'about_me', [
             'about_me' => 'about me',
             'about_me_image_file' => UploadedFile::fake()->image('image.jpeg'),
+            'about_me_title' => 'about me title',
             'about_me_side' => 'about me side',
             'about_me_side_image_file' => UploadedFile::fake()->image('image.png'),
             'about_me_side_name' => 'about me side name'
@@ -70,6 +73,7 @@ class AboutMeControllerTest extends TestCase
         $this->assertDatabaseHas('about_me', [
             'about_me' => 'about me',
             'about_me_image' => AboutMeController::ABOUT_ME_IMAGE . '.jpeg',
+            'about_me_title' => 'about me title',
             'about_me_side' => 'about me side',
             'about_me_side_image' => AboutMeController::ABOUT_ME_SIDE_IMAGE . '.png',
             'about_me_side_name' => 'about me side name'
