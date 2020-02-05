@@ -76,26 +76,7 @@ export class WysiwigEditableMaker implements EditableMaker {
                 .then(res => {
                     this.editor = undefined;     // Fishy stuff.
                 })
-                .catch(err => {
-                    console.log(err);
-                })
+                .catch(console.log);
         }
     }
 }
-
-/*
-export async function initCkEditor(targetEl) {
-    let ckEditor;
-    await BalloonBlockEditor.create(targetEl, {
-        placeholder: 'Write the word...',
-        toolbar: ['heading', '|', 'bold', 'italic', 'link', 'blockQuote'],
-        ignoreEmptyParagraph: true
-    }).then(editor => {
-        ckEditor = editor
-    }).catch(error => {
-        throw error
-    });
-    return ckEditor
-}
-*/
-

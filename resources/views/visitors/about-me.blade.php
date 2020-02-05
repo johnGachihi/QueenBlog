@@ -54,10 +54,9 @@
             @endauth
         </div>
 
-        <div class="d-flex">
-            <div id="about-me" class="flex-grow-1">{!! $about_me->about_me !!}</div>
+        <div class="d-flex flex-column">
             @auth
-                <div>
+                <div class="d-flex justify-content-end">
                     <a id="about-me-edit" href="#">
                         <i class="material-icons" style="font-size: 15px">edit</i>
                     </a>
@@ -72,6 +71,7 @@
                     <i id="loading-about-me" class="material-icons d-none">hourglass_empty</i>
                 </div>
             @endauth
+            <div id="about-me" class="flex-grow-1">{!! $about_me->about_me !!}</div>
         </div>
     </div><!-- single-post -->
 

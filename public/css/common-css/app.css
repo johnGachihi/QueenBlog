@@ -11,3 +11,12 @@
 a.active {
     color: #ffad4d;
 }
+
+.material-icons {
+    color: #716f6f;
+    font-size: 15px;
+}
+
+.material-icons:hover {
+    color: #1b1e21;
+}
