@@ -1,7 +1,9 @@
-<div class="single-post">
-    <div class="image-wrapper">
-        <img src="{{ asset("storage/blog-main-images/".$blog['main_image_filename']) }}"
-             alt="Blog Image">
+<div class="single-post" data-responsive>
+    <div class="image-wrapper blog-post-image">
+        <div class="blog-post-image">
+                <img class="" src="{{ asset("storage/blog-main-images/".$blog['main_image_filename']) }}"
+                     alt="Blog Image" style="height: 100%;">
+        </div>
     </div>
 
     @php

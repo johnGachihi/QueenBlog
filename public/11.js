@@ -619,10 +619,8 @@ function () {
     if (this.editor !== undefined) {
       console.log('makeNotEditable', this.editor);
       this.editor.destroy().then(function (res) {
-        _this.editor = undefined;
-      })["catch"](function (err) {
-        console.log(err);
-      });
+        _this.editor = undefined; // Fishy stuff.
+      })["catch"](console.log);
     }
   };
 
@@ -630,21 +628,6 @@ function () {
 }();
 
 exports.WysiwigEditableMaker = WysiwigEditableMaker;
-/*
-export async function initCkEditor(targetEl) {
-    let ckEditor;
-    await BalloonBlockEditor.create(targetEl, {
-        placeholder: 'Write the word...',
-        toolbar: ['heading', '|', 'bold', 'italic', 'link', 'blockQuote'],
-        ignoreEmptyParagraph: true
-    }).then(editor => {
-        ckEditor = editor
-    }).catch(error => {
-        throw error
-    });
-    return ckEditor
-}
-*/
 
 /***/ }),
 

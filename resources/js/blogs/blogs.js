@@ -74,7 +74,8 @@ $(() => {
             <div class="d-flex blog-entry col-12">
                 <a href="${appUrl}/only/juli/blog/${blog.id}" class="d-flex flex-grow-1" style="text-decoration: none; color: inherit">
                     <div>
-                        <img class="blog-entry-img" src="${blogImageToShow}" width="100px"/>
+                        <img class="blog-entry-img" src="${blogImageToShow}" width="100px"
+                                style="max-height: 100px; object-fit: cover"/>
                     </div>
                     <div class="flex-grow-1 d-flex flex-column ml-4">
                         <span class="h3 blog-entry-title" style="display: block; text-overflow: ellipsis; word-wrap: break-word; overflow: hidden; max-height: 60px; line-height: 30px;">${getBlogTitleToShow(blog['title'])}</span>

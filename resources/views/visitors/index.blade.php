@@ -26,6 +26,7 @@
     @forelse($blogs as $blog)
         @component('visitors.components.blog-post', ['blog' => $blog])
         @endcomponent
+
         @if($loop->iteration == 2)
             @break
         @endif

@@ -3,9 +3,27 @@
   <component name="ChangeListManager">
     <list default="true" id="0ba4312e-56ad-419e-b4b7-cc2a10cfd510" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/BlogFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/BlogFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/11.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/11.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/12.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/12.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/14.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/14.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/7.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/7.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/common-css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/common-css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/utils/ElementUtils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/utils/ElementUtils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/blogs/blogs.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/blogs/blogs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeArticle.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeArticle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeArticle.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeArticle.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeArticle.ts" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/renee/edit-aboutme/AboutMeArticle.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/ui/visitors/indexpage/BlogElement.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/visitors/indexpage/BlogElement.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/ui/visitors/indexpage/BlogElement.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/visitors/indexpage/BlogElement.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/ui/visitors/indexpage/BlogElement.ts" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/visitors/indexpage/BlogElement.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/utils/ElementUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/utils/ElementUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/utils/ElementUtils.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/utils/ElementUtils.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/visitors/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/visitors/app.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/visitors/about-me.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/visitors/about-me.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/visitors/categories.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/visitors/categories.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/visitors/components/blog-post.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/visitors/components/blog-post.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/visitors/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/visitors/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/visitors/single-post.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/visitors/single-post.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,8 +41,8 @@
       <list>
         <option value="tsconfig.json" />
         <option value="CSS File" />
-        <option value="JavaScript File" />
         <option value="TypeScript File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -291,7 +309,7 @@
       <workItem from="1580713263542" duration="613000" />
       <workItem from="1580733042315" duration="38024000" />
       <workItem from="1580836075514" duration="10515000" />
-      <workItem from="1580883986171" duration="14234000" />
+      <workItem from="1580883986171" duration="23773000" />
     </task>
     <servers />
   </component>

@@ -8,7 +8,7 @@ use Faker\Generator as Faker;
 $factory->define(Blog::class, function (Faker $faker) {
     $images = ['henry-unsplash.jpg', 'kalen-unsplash.jpg', 'mark-unsplash.jpg',
         'luca-unsplash.jpg', 'riccardo-unsplash.jpg', 'frank-unsplash.jpg',
-        'philippe-unsplash.jpg'];
+        'philippe-unsplash.jpg', 'casey-unsplash.jpg', 'shifaaz-unsplash.jpg'];
 
     $tags = ['faith', 'love', 'hope', 'joy', 'tomorrow'];
     $status = ['draft', 'published'];

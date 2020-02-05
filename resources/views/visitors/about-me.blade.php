@@ -30,7 +30,7 @@
             </div>
         @endauth
 
-        <div class="d-flex justify-content-between mt-5">
+        <div class="d-flex justify-content-between mt-4">
             <h3 class="title flex-grow-1">
                 <span id="about-me-title" href="#" style="font-weight: 500; color: #444; width: 100%">
                     {{ $about_me->about_me_title }}
@@ -54,14 +54,15 @@
             @endauth
         </div>
 
-        <div class="d-flex flex-column">
+        <div class="d-flex">
+            <div id="about-me" class="flex-grow-1">{!! $about_me->about_me !!}</div>
             @auth
                 <div class="d-flex justify-content-end">
                     <a id="about-me-edit" href="#">
                         <i class="material-icons" style="font-size: 15px">edit</i>
                     </a>
-                    <div id="save-and-cancel-about-me-buttons" class="d-none m-0">
-                        <a id="save-about-me" class="ml-1" href="#">
+                    <div id="save-and-cancel-about-me-buttons" class="d-none flex-column m-0">
+                        <a id="save-about-me" href="#">
                             <i class="material-icons" style="font-size: 15px">save</i>
                         </a>
                         <a id="cancel-about-me" href="#">
@@ -71,7 +72,6 @@
                     <i id="loading-about-me" class="material-icons d-none">hourglass_empty</i>
                 </div>
             @endauth
-            <div id="about-me" class="flex-grow-1">{!! $about_me->about_me !!}</div>
         </div>
     </div><!-- single-post -->
 
@@ -111,7 +111,7 @@
             <div class="col-md-6">
 
                 <div class="recomend">
-                    <div class="post-image"><img src="images/recomended-1-200x200.jpg" alt="Post Image"></div>
+                    <div class="post-image"><img src="{{asset('storage/images/recomended-1-200x200.jpg')}}" alt="Post Image"></div>
 
                     <div class="post-info">
                         <a class="btn category-btn" href="#">TRAVEL</a>
@@ -126,7 +126,7 @@
             <div class="col-md-6">
 
                 <div class="recomend">
-                    <div class="post-image"><img src="images/recomended-2-200x200.jpg" alt="Post Image"></div>
+                    <div class="post-image"><img src="{{ asset('storage/images/recomended-2-200x200.jpg') }}" alt="Post Image"></div>
 
                     <div class="post-info">
                         <a class="btn category-btn" href="#">TRAVEL</a>

@@ -66,6 +66,10 @@
 <script src="{{ asset('js/common-js/layerslider.js') }}"></script>
 <script src="{{ asset('js/common-js/scripts.js') }}"></script>
 <script src="{{ asset('js/app.js') }}" defer></script>
+
+<script type="text/javascript" src="{{ asset('js/lib/ResizeSensor.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/lib/ElementQueries.js') }}"></script>
+
 <script>
     console.log(@json($blogs));
 </script>

@@ -14,7 +14,7 @@ var BlogElement = /** @class */ (function () {
         if (this.blog.main_image_filename == undefined) {
             return null;
         }
-        return "\n            <img src=\"" + constants_1.appUrl + "/" + constants_1.blogImagesRelativeUrl + "/" + this.blog.main_image_filename + "\"\n                alt=\"" + this.blog.title + "\">\n        ";
+        return "\n            <div class=\"blog-post-image\">\n                <img src=\"" + constants_1.appUrl + "/" + constants_1.blogImagesRelativeUrl + "/" + this.blog.main_image_filename + "\"\n                    alt=\"" + this.blog.title + "\" style=\"height: 100%;\">\n            </div>\n        ";
     };
     BlogElement.prototype.getTagToShow = function () {
         var tag = this.blog.tag;

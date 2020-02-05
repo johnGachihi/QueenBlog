@@ -73,6 +73,12 @@ function (_super) {
     this.loadIndicator = new ElementUtils_1.El(document.getElementById('loading-about-me'));
   };
 
+  AboutMeArticle.prototype.enterEditingState = function () {
+    _super.prototype.enterEditingState.call(this);
+
+    this.contentElement.el.focus();
+  };
+
   AboutMeArticle.prototype.getContent = function () {
     return this.contentElement.el.innerHTML;
   };

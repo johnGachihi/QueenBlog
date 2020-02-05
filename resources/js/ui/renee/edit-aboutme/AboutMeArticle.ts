@@ -28,6 +28,11 @@ class AboutMeArticle extends AboutMeComponents {
         this.loadIndicator = new El(document.getElementById('loading-about-me'));
     }
 
+    enterEditingState() {
+        super.enterEditingState();
+        this.contentElement.el.focus()
+    }
+
     protected getContent() {
         return this.contentElement.el.innerHTML;
     }

@@ -58,8 +58,10 @@ export default class BlogElement {
             return null;
         }
         return `
-            <img src="${appUrl}/${blogImagesRelativeUrl}/${this.blog.main_image_filename}"
-                alt="${this.blog.title}">
+            <div class="blog-post-image">
+                <img src="${appUrl}/${blogImagesRelativeUrl}/${this.blog.main_image_filename}"
+                    alt="${this.blog.title}" style="height: 100%;">
+            </div>
         `
     }
 
