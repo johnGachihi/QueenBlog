@@ -15,6 +15,7 @@ var AboutMeComponents = /** @class */ (function () {
         this.setupListeners();
     }
     AboutMeComponents.prototype.enterInitialState = function () {
+        this.state = AboutMeComponentState.INITIAL;
         this.editButton.show();
         this.contentElement.makeNotEditable();
         this.saveAndCancelContainer.hide();
@@ -22,12 +23,14 @@ var AboutMeComponents = /** @class */ (function () {
         this.contentBeforeEdit = this.getContent(); // Should this be here
     };
     AboutMeComponents.prototype.enterEditingState = function () {
+        this.state = AboutMeComponentState.EDITING;
         this.editButton.hide();
         this.contentElement.makeEditable();
         this.saveAndCancelContainer.show();
         this.loadIndicator.hide();
     };
     AboutMeComponents.prototype.enterSavingState = function () {
+        this.state = AboutMeComponentState.SAVING;
         this.editButton.hide();
         this.saveAndCancelContainer.hide();
         this.loadIndicator.show();
@@ -51,20 +54,11 @@ var AboutMeComponents = /** @class */ (function () {
             _this.cancelEdit();
             _this.enterInitialState();
         });
-        this.contentElement.on('keydown', function (e) {
-            //@ts-ignore
-            if (e.keyCode === 13) {
-                _this.saveButton.el.click();
-                return false;
-            }
-            //@ts-ignore
-            if (e.keyCode === 27) {
-                _this.cancelButton.el.click();
-            }
-        });
         this.contentElement.el.addEventListener('click', function (ev) {
-            ev.preventDefault();
-            _this.editButton.el.click();
+            if (_this.state === AboutMeComponentState.INITIAL) {
+                ev.preventDefault();
+                _this.editButton.el.click();
+            }
         });
     };
     AboutMeComponents.prototype.saveContent = function () {
@@ -72,14 +66,15 @@ var AboutMeComponents = /** @class */ (function () {
         this.aboutMeService.save(this.getContentToSave())
             .then(function (response) {
             if (response.status != 'ok') {
-                ErrorHandling_1.default("Unable to save " + response);
+                ErrorHandling_1.default("Unable to save: Error " + response);
                 _this.cancelEdit();
             }
             _this.enterInitialState();
         })
             .catch(function (err) {
-            _this.enterInitialState();
             ErrorHandling_1.default(err);
+            _this.cancelEdit();
+            _this.enterInitialState();
         });
     };
     ;
@@ -89,4 +84,10 @@ var AboutMeComponents = /** @class */ (function () {
     return AboutMeComponents;
 }());
 exports.default = AboutMeComponents;
+var AboutMeComponentState;
+(function (AboutMeComponentState) {
+    AboutMeComponentState["INITIAL"] = "initial";
+    AboutMeComponentState["EDITING"] = "editing";
+    AboutMeComponentState["SAVING"] = "loading";
+})(AboutMeComponentState = exports.AboutMeComponentState || (exports.AboutMeComponentState = {}));
 //# sourceMappingURL=AboutMeComponents.js.map

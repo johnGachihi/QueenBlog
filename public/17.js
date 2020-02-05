@@ -1,9 +1,9 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[12],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[17],{
 
-/***/ "./resources/js/ui/renee/edit-aboutme/AboutMeArticle.js":
-/*!**************************************************************!*\
+/***/ "./resources/js/ui/renee/edit-aboutme/AboutMe.js":
+/*!*******************************************************!*\
   !*** ./resources/js/ui/renee/edit-aboutme/AboutMeArticle.js ***!
-  \**************************************************************/
+  \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -59,11 +59,6 @@ function (_super) {
     return _super.call(this) || this;
   }
 
-  AboutMeArticle.getInstance = function () {
-    if (this.INSTANCE == undefined) this.INSTANCE = new AboutMeArticle();
-    return this.INSTANCE;
-  };
-
   AboutMeArticle.prototype.initElements = function () {
     this.editButton = new ElementUtils_1.El(document.getElementById('about-me-edit'));
     this.contentElement = new ElementUtils_1.El(document.getElementById('about-me'), new ElementUtils_1.WysiwigEditableMaker());
@@ -73,24 +68,17 @@ function (_super) {
     this.loadIndicator = new ElementUtils_1.El(document.getElementById('loading-about-me'));
   };
 
-  AboutMeArticle.prototype.getContent = function () {
-    return this.contentElement.el.innerHTML;
+  AboutMeArticle.prototype.getContent = function () {// if (this.state == )
   };
 
-  AboutMeArticle.prototype.setContent = function (content) {
-    this.contentElement.el.innerHTML = content;
-  };
+  AboutMeArticle.prototype.setContent = function (content) {};
 
-  AboutMeArticle.prototype.getContentToSave = function () {
-    return {
-      about_me: this.getContent()
-    };
-  };
+  AboutMeArticle.prototype.getContentToSave = function () {};
 
   return AboutMeArticle;
 }(AboutMeComponents_1["default"]);
 
-AboutMeArticle.getInstance();
+new AboutMeArticle();
 
 /***/ })
 

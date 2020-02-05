@@ -1,5 +1,93 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[11],{
 
+/***/ "./resources/js/network/AboutMeService.js":
+/*!************************************************!*\
+  !*** ./resources/js/network/AboutMeService.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __extends = this && this.__extends || function () {
+  var _extendStatics = function extendStatics(d, b) {
+    _extendStatics = Object.setPrototypeOf || {
+      __proto__: []
+    } instanceof Array && function (d, b) {
+      d.__proto__ = b;
+    } || function (d, b) {
+      for (var p in b) {
+        if (b.hasOwnProperty(p)) d[p] = b[p];
+      }
+    };
+
+    return _extendStatics(d, b);
+  };
+
+  return function (d, b) {
+    _extendStatics(d, b);
+
+    function __() {
+      this.constructor = d;
+    }
+
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+  };
+}();
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var Service_1 = __importDefault(__webpack_require__(/*! ./Service */ "./resources/js/network/Service.js"));
+
+var AboutMeService =
+/** @class */
+function (_super) {
+  __extends(AboutMeService, _super);
+
+  function AboutMeService(requestOptions) {
+    return _super.call(this, requestOptions, '/about_me') || this;
+  }
+
+  return AboutMeService;
+}(Service_1["default"]);
+
+exports["default"] = AboutMeService;
+
+/***/ }),
+
+/***/ "./resources/js/network/HttpMethod.js":
+/*!********************************************!*\
+  !*** ./resources/js/network/HttpMethod.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var HttpMethod;
+
+(function (HttpMethod) {
+  HttpMethod["GET"] = "GET";
+  HttpMethod["POST"] = "POST";
+  HttpMethod["PUT"] = "PUT";
+  HttpMethod["DELETE"] = "DELETE";
+})(HttpMethod = exports.HttpMethod || (exports.HttpMethod = {}));
+
+/***/ }),
+
 /***/ "./resources/js/network/RequestOptions.js":
 /*!************************************************!*\
   !*** ./resources/js/network/RequestOptions.js ***!
@@ -33,99 +121,248 @@ exports.RequestOptionsValues = RequestOptionsValues;
 
 /***/ }),
 
-/***/ "./resources/js/ui/visitors/like/Like.js":
-/*!***********************************************!*\
-  !*** ./resources/js/ui/visitors/like/Like.js ***!
-  \***********************************************/
+/***/ "./resources/js/network/Service.js":
+/*!*****************************************!*\
+  !*** ./resources/js/network/Service.js ***!
+  \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
+var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, generator) {
+  function adopt(value) {
+    return value instanceof P ? value : new P(function (resolve) {
+      resolve(value);
+    });
+  }
+
+  return new (P || (P = Promise))(function (resolve, reject) {
+    function fulfilled(value) {
+      try {
+        step(generator.next(value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+
+    function rejected(value) {
+      try {
+        step(generator["throw"](value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+
+    function step(result) {
+      result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+    }
+
+    step((generator = generator.apply(thisArg, _arguments || [])).next());
+  });
+};
+
+var __generator = this && this.__generator || function (thisArg, body) {
+  var _ = {
+    label: 0,
+    sent: function sent() {
+      if (t[0] & 1) throw t[1];
+      return t[1];
+    },
+    trys: [],
+    ops: []
+  },
+      f,
+      y,
+      t,
+      g;
+  return g = {
+    next: verb(0),
+    "throw": verb(1),
+    "return": verb(2)
+  }, typeof Symbol === "function" && (g[Symbol.iterator] = function () {
+    return this;
+  }), g;
+
+  function verb(n) {
+    return function (v) {
+      return step([n, v]);
+    };
+  }
+
+  function step(op) {
+    if (f) throw new TypeError("Generator is already executing.");
+
+    while (_) {
+      try {
+        if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+        if (y = 0, t) op = [op[0] & 2, t.value];
+
+        switch (op[0]) {
+          case 0:
+          case 1:
+            t = op;
+            break;
+
+          case 4:
+            _.label++;
+            return {
+              value: op[1],
+              done: false
+            };
+
+          case 5:
+            _.label++;
+            y = op[1];
+            op = [0];
+            continue;
+
+          case 7:
+            op = _.ops.pop();
+
+            _.trys.pop();
+
+            continue;
+
+          default:
+            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+              _ = 0;
+              continue;
+            }
+
+            if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
+              _.label = op[1];
+              break;
+            }
+
+            if (op[0] === 6 && _.label < t[1]) {
+              _.label = t[1];
+              t = op;
+              break;
+            }
+
+            if (t && _.label < t[2]) {
+              _.label = t[2];
+
+              _.ops.push(op);
+
+              break;
+            }
+
+            if (t[2]) _.ops.pop();
+
+            _.trys.pop();
+
+            continue;
+        }
+
+        op = body.call(thisArg, _);
+      } catch (e) {
+        op = [6, e];
+        y = 0;
+      } finally {
+        f = t = 0;
+      }
+    }
+
+    if (op[0] & 5) throw op[1];
+    return {
+      value: op[0] ? op[1] : void 0,
+      done: true
+    };
+  }
 };
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var BlogsService_1 = __importDefault(__webpack_require__(/*! ../../../network/BlogsService */ "./resources/js/network/BlogsService.js"));
+var HttpMethod_1 = __webpack_require__(/*! ./HttpMethod */ "./resources/js/network/HttpMethod.js");
 
-var RequestOptions_1 = __webpack_require__(/*! ../../../network/RequestOptions */ "./resources/js/network/RequestOptions.js");
-
-var Like =
+var Service =
 /** @class */
 function () {
-  function Like() {}
+  function Service(requestOptions, relativeUrl) {
+    this.requestOptions = requestOptions;
+    this.relativeUrl = relativeUrl;
+  }
 
-  Like.like = function (likeAnchor) {
-    var blogId = parseInt(likeAnchor.dataset.blogId);
+  Service.prototype.save = function (t) {
+    return this._fetch(HttpMethod_1.HttpMethod.POST, t);
+  };
 
-    if (!localStorage.getItem("blog-liked-" + blogId)) {
-      Like.editUI(likeAnchor);
-      Like.sendLikeRequest(blogId).then(function (res) {
-        console.log(res);
+  Service.prototype.update = function (t) {
+    return this._fetch(HttpMethod_1.HttpMethod.POST, t, "/" + t.id);
+  };
+
+  Service.prototype._fetch = function (method, data, urlSuffix) {
+    return __awaiter(this, void 0, void 0, function () {
+      var _a, csrfToken, baseUrl, fetchUrl, fetchBody, fetchHeaders, response;
+
+      return __generator(this, function (_b) {
+        switch (_b.label) {
+          case 0:
+            _a = this.requestOptions, csrfToken = _a.csrfToken, baseUrl = _a.baseUrl;
+            fetchUrl = Service.makeUrl(baseUrl, this.relativeUrl, urlSuffix);
+            fetchHeaders = {
+              'Accept': 'application/json',
+              'X-CSRF-TOKEN': csrfToken
+            };
+
+            if (this.isFormData(data)) {
+              fetchBody = data;
+            } else {
+              fetchBody = JSON.stringify(data);
+              fetchHeaders['Content-Type'] = 'application/json';
+            }
+
+            return [4
+            /*yield*/
+            , fetch(fetchUrl, {
+              method: method,
+              headers: fetchHeaders,
+              body: fetchBody
+            })];
+
+          case 1:
+            response = _b.sent();
+            return [4
+            /*yield*/
+            , response.json()];
+
+          case 2:
+            return [2
+            /*return*/
+            , _b.sent()];
+        }
       });
-      localStorage.setItem("blog-liked-" + blogId, '1');
-    } else {
-      console.log('Already liked');
-      Like.showAlreadyLikedToast(likeAnchor);
-    }
-  };
-
-  Like.editUI = function (likeAnchor) {
-    var iconEl = likeAnchor.getElementsByClassName('ion-android-favorite-outline')[0]; // TODO: use element instead of class to select
-
-    if (iconEl != undefined) {
-      Like.colorFillLikeIcon(iconEl);
-    }
-
-    var likesSpan = likeAnchor.querySelector('span');
-    Like.incrementLikes(likesSpan);
-  };
-
-  Like.colorFillLikeIcon = function (iconEl) {
-    iconEl.classList.remove('ion-android-favorite-outline');
-    iconEl.classList.add('ion-android-favorite');
-  };
-
-  Like.incrementLikes = function (likesSpan) {
-    var likes = parseInt(likesSpan.innerText);
-    likesSpan.innerText = "" + (likes + 1);
-  };
-
-  Like.sendLikeRequest = function (blogId) {
-    var blogsService = new BlogsService_1["default"](RequestOptions_1.RequestOptionsValues.get());
-    return blogsService.like(blogId);
-  };
-
-  Like.showAlreadyLikedToast = function (likeAnchor) {
-    $(likeAnchor).popover({
-      template: "\n                <div class=\"popover\" role=\"tooltip\">\n                    <h3 class=\"popover-header\"></h3>\n                    <div class=\"popover-body\"></div>\n                </div>\n            ",
-      content: 'Already liked',
-      delay: 100
     });
-    $(likeAnchor).popover('show');
-    setTimeout(function () {
-      return $(likeAnchor).popover('hide');
-    }, 1000);
   };
 
-  return Like;
+  Service.makeUrl = function (baseUrl, relativeUrl, urlSuffix) {
+    if (urlSuffix != undefined) {
+      return baseUrl + relativeUrl + urlSuffix;
+    } else {
+      return baseUrl + relativeUrl;
+    }
+  };
+
+  Service.prototype.isFormData = function (data) {
+    return data.append !== undefined;
+  };
+
+  return Service;
 }();
 
-exports["default"] = Like;
+exports["default"] = Service;
 
 /***/ }),
 
-/***/ "./resources/js/ui/visitors/like/LikeView.js":
-/*!***************************************************!*\
-  !*** ./resources/js/ui/visitors/like/LikeView.js ***!
-  \***************************************************/
+/***/ "./resources/js/ui/renee/edit-aboutme/AboutMeComponents.js":
+/*!*****************************************************************!*\
+  !*** ./resources/js/ui/renee/edit-aboutme/AboutMeComponents.js ***!
+  \*****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -142,41 +379,354 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var Like_1 = __importDefault(__webpack_require__(/*! ./Like */ "./resources/js/ui/visitors/like/Like.js"));
+var AboutMeService_1 = __importDefault(__webpack_require__(/*! ../../../network/AboutMeService */ "./resources/js/network/AboutMeService.js"));
 
-function setupLikeAnchors() {
-  $(document).on('click', '.like-blog', function (e) {
-    console.log(e.currentTarget);
-    e.preventDefault();
-    Like_1["default"].like(e.currentTarget);
-  });
-}
+var CallIfPresent_1 = __webpack_require__(/*! ../../../utils/CallIfPresent */ "./resources/js/utils/CallIfPresent.js");
 
-exports.setupLikeAnchors = setupLikeAnchors;
+var ErrorHandling_1 = __importDefault(__webpack_require__(/*! ../../../utils/ErrorHandling */ "./resources/js/utils/ErrorHandling.js"));
 
-function colorFillLikedIconForLikedBlogs() {
-  var likeAnchors = document.getElementsByClassName('like-blog');
+var RequestOptions_1 = __webpack_require__(/*! ../../../network/RequestOptions */ "./resources/js/network/RequestOptions.js");
 
-  for (var i = 0; i < likeAnchors.length; i++) {
-    var likeAnchor = likeAnchors[i];
+var AboutMeComponents =
+/** @class */
+function () {
+  function AboutMeComponents() {
+    this.aboutMeService = new AboutMeService_1["default"](RequestOptions_1.RequestOptionsValues.get());
+    this.initElements();
+    this.enterInitialState();
+    this.setupListeners();
+  }
 
-    if (isAnchorForLikedBlog(likeAnchor)) {
-      var iconEl = likeAnchor.querySelector('i');
-      colorFillLikeIcon(iconEl);
-    }
+  AboutMeComponents.prototype.enterInitialState = function () {
+    this.state = AboutMeComponentState.INITIAL;
+    this.editButton.show();
+    this.contentElement.makeNotEditable();
+    this.saveAndCancelContainer.hide();
+    this.loadIndicator.hide();
+    this.contentBeforeEdit = this.getContent(); // Should this be here
+  };
+
+  AboutMeComponents.prototype.enterEditingState = function () {
+    this.state = AboutMeComponentState.EDITING;
+    this.editButton.hide();
+    this.contentElement.makeEditable();
+    this.saveAndCancelContainer.show();
+    this.loadIndicator.hide();
+  };
+
+  AboutMeComponents.prototype.enterSavingState = function () {
+    this.state = AboutMeComponentState.SAVING;
+    this.editButton.hide();
+    this.saveAndCancelContainer.hide();
+    this.loadIndicator.show();
+    this.contentElement.makeNotEditable();
+  };
+
+  AboutMeComponents.prototype.setupListeners = function () {
+    var _this = this;
+
+    this.editButton.el.addEventListener('click', function (ev) {
+      ev.preventDefault();
+
+      _this.enterEditingState();
+
+      CallIfPresent_1.callCallbackIfPresent(_this.onEditClicked);
+    });
+    this.saveButton.el.addEventListener('click', function (ev) {
+      ev.preventDefault();
+
+      _this.enterSavingState();
+
+      _this.saveContent();
+
+      CallIfPresent_1.callCallbackIfPresent(_this.onSaveClicked);
+    });
+    this.cancelButton.el.addEventListener('click', function (ev) {
+      ev.preventDefault();
+
+      _this.cancelEdit();
+
+      _this.enterInitialState();
+    });
+    this.contentElement.el.addEventListener('click', function (ev) {
+      if (_this.state === AboutMeComponentState.INITIAL) {
+        ev.preventDefault();
+
+        _this.editButton.el.click();
+      }
+    });
+  };
+
+  AboutMeComponents.prototype.saveContent = function () {
+    var _this = this;
+
+    this.aboutMeService.save(this.getContentToSave()).then(function (response) {
+      if (response.status != 'ok') {
+        ErrorHandling_1["default"]("Unable to save: Error " + response);
+
+        _this.cancelEdit();
+      }
+
+      _this.enterInitialState();
+    })["catch"](function (err) {
+      ErrorHandling_1["default"](err);
+
+      _this.cancelEdit();
+
+      _this.enterInitialState();
+    });
+  };
+
+  ;
+
+  AboutMeComponents.prototype.cancelEdit = function () {
+    this.setContent(this.contentBeforeEdit);
+  };
+
+  return AboutMeComponents;
+}();
+
+exports["default"] = AboutMeComponents;
+var AboutMeComponentState;
+
+(function (AboutMeComponentState) {
+  AboutMeComponentState["INITIAL"] = "initial";
+  AboutMeComponentState["EDITING"] = "editing";
+  AboutMeComponentState["SAVING"] = "loading";
+})(AboutMeComponentState = exports.AboutMeComponentState || (exports.AboutMeComponentState = {}));
+
+/***/ }),
+
+/***/ "./resources/js/utils/CallIfPresent.js":
+/*!*********************************************!*\
+  !*** ./resources/js/utils/CallIfPresent.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function callCallbackIfPresent(callback) {
+  if (callback !== undefined) {
+    callback();
   }
 }
 
-exports.colorFillLikedIconForLikedBlogs = colorFillLikedIconForLikedBlogs;
+exports.callCallbackIfPresent = callCallbackIfPresent;
 
-function isAnchorForLikedBlog(likeAnchor) {
-  var blogId = likeAnchor.dataset.blogId;
-  return localStorage.getItem("blog-liked-" + blogId) != undefined;
+/***/ }),
+
+/***/ "./resources/js/utils/ElementUtils.js":
+/*!********************************************!*\
+  !*** ./resources/js/utils/ElementUtils.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var editor_1 = __webpack_require__(/*! ../write/editor */ "./resources/js/write/editor.js");
+
+var El =
+/** @class */
+function () {
+  function El(el, editableMaker) {
+    if (editableMaker === void 0) {
+      editableMaker = new HtmlContentEditableMaker();
+    }
+
+    this.el = el;
+    this.editableMaker = editableMaker;
+  }
+
+  El.prototype.show = function () {
+    this.el.classList.remove('d-none');
+  };
+
+  El.prototype.hide = function () {
+    this.el.classList.add('d-none');
+  };
+
+  El.prototype.makeEditable = function () {
+    this.editableMaker.makeEditable(this.el);
+  };
+
+  El.prototype.makeNotEditable = function () {
+    this.editableMaker.makeNotEditable(this.el);
+  };
+
+  El.prototype.focusAndHighlightAllText = function () {
+    this.el.focus();
+    document.execCommand('selectAll', false, null);
+  };
+
+  El.prototype.on = function (event, handler) {
+    this.el.addEventListener(event, handler);
+  };
+
+  return El;
+}();
+
+exports.El = El;
+
+var HtmlContentEditableMaker =
+/** @class */
+function () {
+  function HtmlContentEditableMaker() {}
+
+  HtmlContentEditableMaker.prototype.makeEditable = function (element) {
+    element.setAttribute('contenteditable', 'true');
+    document.execCommand("defaultParagraphSeparator", false, "p"); //
+  };
+
+  HtmlContentEditableMaker.prototype.makeNotEditable = function (element) {
+    element.setAttribute('contenteditable', 'false');
+  };
+
+  return HtmlContentEditableMaker;
+}();
+
+var WysiwigEditableMaker =
+/** @class */
+function () {
+  function WysiwigEditableMaker() {}
+
+  WysiwigEditableMaker.prototype.makeEditable = function (element) {
+    var _this = this;
+
+    var content = element.innerHTML;
+    element.innerHTML = "";
+    console.log("makeEditable - wysiwig");
+    editor_1.initCkEditor(element).then(function (editor) {
+      _this.editor = editor;
+      editor.setData(content);
+    })["catch"](console.log);
+  };
+
+  WysiwigEditableMaker.prototype.makeNotEditable = function (element) {
+    var _this = this;
+
+    if (this.editor !== undefined) {
+      console.log('makeNotEditable', this.editor);
+      this.editor.destroy().then(function (res) {
+        _this.editor = undefined;
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    }
+  };
+
+  return WysiwigEditableMaker;
+}();
+
+exports.WysiwigEditableMaker = WysiwigEditableMaker;
+/*
+export async function initCkEditor(targetEl) {
+    let ckEditor;
+    await BalloonBlockEditor.create(targetEl, {
+        placeholder: 'Write the word...',
+        toolbar: ['heading', '|', 'bold', 'italic', 'link', 'blockQuote'],
+        ignoreEmptyParagraph: true
+    }).then(editor => {
+        ckEditor = editor
+    }).catch(error => {
+        throw error
+    });
+    return ckEditor
+}
+*/
+
+/***/ }),
+
+/***/ "./resources/js/utils/ErrorHandling.js":
+/*!*********************************************!*\
+  !*** ./resources/js/utils/ErrorHandling.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+}); // TODO: Add implementation e.g Show modal
+
+function handleFailure(errMessage) {
+  console.log(errMessage);
 }
 
-function colorFillLikeIcon(iconEl) {
-  iconEl.classList.remove('ion-android-favorite-outline');
-  iconEl.classList.add('ion-android-favorite');
+exports["default"] = handleFailure;
+
+/***/ }),
+
+/***/ "./resources/js/write/editor.js":
+/*!**************************************!*\
+  !*** ./resources/js/write/editor.js ***!
+  \**************************************/
+/*! exports provided: initCkEditor */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initCkEditor", function() { return initCkEditor; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _ckeditor_ckeditor5_build_balloon_block__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ckeditor/ckeditor5-build-balloon-block */ "./node_modules/@ckeditor/ckeditor5-build-balloon-block/build/ckeditor.js");
+/* harmony import */ var _ckeditor_ckeditor5_build_balloon_block__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_ckeditor_ckeditor5_build_balloon_block__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+ // import BalloonBlockEditor from './ckeditor';
+
+function initCkEditor(_x) {
+  return _initCkEditor.apply(this, arguments);
+}
+
+function _initCkEditor() {
+  _initCkEditor = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(targetEl) {
+    var ckEditor;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return _ckeditor_ckeditor5_build_balloon_block__WEBPACK_IMPORTED_MODULE_1___default.a.create(targetEl, {
+              placeholder: 'Write the word...',
+              toolbar: ['heading', '|', 'bold', 'italic', 'link', 'blockQuote'],
+              ignoreEmptyParagraph: true
+            }).then(function (editor) {
+              ckEditor = editor;
+            })["catch"](function (error) {
+              throw error;
+            });
+
+          case 2:
+            return _context.abrupt("return", ckEditor);
+
+          case 3:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+  return _initCkEditor.apply(this, arguments);
 }
 
 /***/ })

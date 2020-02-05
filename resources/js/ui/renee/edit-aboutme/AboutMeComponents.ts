@@ -5,6 +5,8 @@ import handleFailure from "../../../utils/ErrorHandling";
 import {RequestOptionsValues} from "../../../network/RequestOptions";
 
 export default abstract class AboutMeComponents {
+    protected state: AboutMeComponentState;
+
     protected editButton: El<HTMLElement>;
     protected contentElement: El<HTMLElement>;
     protected saveAndCancelContainer: El<HTMLDivElement>;
@@ -29,6 +31,8 @@ export default abstract class AboutMeComponents {
     protected abstract initElements()
 
     enterInitialState() {
+        this.state = AboutMeComponentState.INITIAL;
+
         this.editButton.show();
         this.contentElement.makeNotEditable();
         this.saveAndCancelContainer.hide();
@@ -38,6 +42,8 @@ export default abstract class AboutMeComponents {
     }
 
     enterEditingState() {
+        this.state = AboutMeComponentState.EDITING;
+
         this.editButton.hide();
         this.contentElement.makeEditable();
         this.saveAndCancelContainer.show();
@@ -45,6 +51,8 @@ export default abstract class AboutMeComponents {
     }
 
     enterSavingState() {
+        this.state = AboutMeComponentState.SAVING;
+
         this.editButton.hide();
         this.saveAndCancelContainer.hide();
         this.loadIndicator.show();
@@ -73,21 +81,11 @@ export default abstract class AboutMeComponents {
             this.enterInitialState();
         });
 
-        this.contentElement.on('keydown', e => {
-            //@ts-ignore
-            if (e.keyCode === 13) {
-                this.saveButton.el.click();
-                return false;
-            }
-            //@ts-ignore
-            if (e.keyCode === 27) {
-                this.cancelButton.el.click();
-            }
-        });
-
         this.contentElement.el.addEventListener('click', ev => {
-            ev.preventDefault();
-            this.editButton.el.click();
+            if (this.state === AboutMeComponentState.INITIAL) {
+                ev.preventDefault();
+                this.editButton.el.click();
+            }
         })
     }
 
@@ -101,18 +99,25 @@ export default abstract class AboutMeComponents {
         this.aboutMeService.save(this.getContentToSave())
             .then(response => {
                 if (response.status != 'ok') {
-                    handleFailure(`Unable to save ${response}`);
+                    handleFailure(`Unable to save: Error ${response}`);
                     this.cancelEdit();
                 }
                 this.enterInitialState();
             })
             .catch(err => {
-                this.enterInitialState();
                 handleFailure(err);
+                this.cancelEdit();
+                this.enterInitialState();
             })
     };
 
     protected cancelEdit() {
         this.setContent(this.contentBeforeEdit);
     }
+}
+
+export enum AboutMeComponentState {
+    INITIAL = "initial",
+    EDITING = "editing",
+    SAVING = "loading"
 }

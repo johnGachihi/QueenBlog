@@ -23,6 +23,18 @@ export default abstract class AboutMeImageComponent extends AboutMeComponents {
     protected setupListeners() {
         super.setupListeners();
 
+        this.contentElement.on('keydown', e => {
+            //@ts-ignore
+            if (e.keyCode === 13) {
+                this.saveButton.el.click();
+                return false;
+            }
+            //@ts-ignore
+            if (e.keyCode === 27) {
+                this.cancelButton.el.click();
+            }
+        });
+
         this.hiddenImageInput.on('change', ev => {
             if (this.imageSelected()) {
                 this.content = this.hiddenImageInput.el.files[0];

@@ -1,69 +1,5 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[8],{
 
-/***/ "./resources/js/network/AboutMeService.js":
-/*!************************************************!*\
-  !*** ./resources/js/network/AboutMeService.js ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var __extends = this && this.__extends || function () {
-  var _extendStatics = function extendStatics(d, b) {
-    _extendStatics = Object.setPrototypeOf || {
-      __proto__: []
-    } instanceof Array && function (d, b) {
-      d.__proto__ = b;
-    } || function (d, b) {
-      for (var p in b) {
-        if (b.hasOwnProperty(p)) d[p] = b[p];
-      }
-    };
-
-    return _extendStatics(d, b);
-  };
-
-  return function (d, b) {
-    _extendStatics(d, b);
-
-    function __() {
-      this.constructor = d;
-    }
-
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-  };
-}();
-
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var Service_1 = __importDefault(__webpack_require__(/*! ./Service */ "./resources/js/network/Service.js"));
-
-var AboutMeService =
-/** @class */
-function (_super) {
-  __extends(AboutMeService, _super);
-
-  function AboutMeService(requestOptions) {
-    return _super.call(this, requestOptions, '/about_me') || this;
-  }
-
-  return AboutMeService;
-}(Service_1["default"]);
-
-exports["default"] = AboutMeService;
-
-/***/ }),
-
 /***/ "./resources/js/network/HttpMethod.js":
 /*!********************************************!*\
   !*** ./resources/js/network/HttpMethod.js ***!
@@ -121,10 +57,10 @@ exports.RequestOptionsValues = RequestOptionsValues;
 
 /***/ }),
 
-/***/ "./resources/js/network/Service.js":
-/*!*****************************************!*\
-  !*** ./resources/js/network/Service.js ***!
-  \*****************************************/
+/***/ "./resources/js/utils/logout.js":
+/*!**************************************!*\
+  !*** ./resources/js/utils/logout.js ***!
+  \**************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -276,333 +212,47 @@ var __generator = this && this.__generator || function (thisArg, body) {
 
 Object.defineProperty(exports, "__esModule", {
   value: true
-});
+}); //TODO: Refactor network-Service and remove this function
 
-var HttpMethod_1 = __webpack_require__(/*! ./HttpMethod */ "./resources/js/network/HttpMethod.js");
+var RequestOptions_1 = __webpack_require__(/*! ../network/RequestOptions */ "./resources/js/network/RequestOptions.js");
 
-var Service =
-/** @class */
-function () {
-  function Service(requestOptions, relativeUrl) {
-    this.requestOptions = requestOptions;
-    this.relativeUrl = relativeUrl;
-  }
+var HttpMethod_1 = __webpack_require__(/*! ../network/HttpMethod */ "./resources/js/network/HttpMethod.js");
 
-  Service.prototype.save = function (t) {
-    return this._fetch(HttpMethod_1.HttpMethod.POST, t);
-  };
+function logout() {
+  return __awaiter(this, void 0, void 0, function () {
+    var _a, csrfToken, baseUrl, url, response;
 
-  Service.prototype.update = function (t) {
-    return this._fetch(HttpMethod_1.HttpMethod.POST, t, "/" + t.id);
-  };
-
-  Service.prototype._fetch = function (method, data, urlSuffix) {
-    return __awaiter(this, void 0, void 0, function () {
-      var _a, csrfToken, baseUrl, fetchUrl, fetchBody, fetchHeaders, response;
-
-      return __generator(this, function (_b) {
-        switch (_b.label) {
-          case 0:
-            _a = this.requestOptions, csrfToken = _a.csrfToken, baseUrl = _a.baseUrl;
-            fetchUrl = Service.makeUrl(baseUrl, this.relativeUrl, urlSuffix);
-            fetchHeaders = {
-              'Accept': 'application/json',
+    return __generator(this, function (_b) {
+      switch (_b.label) {
+        case 0:
+          _a = RequestOptions_1.RequestOptionsValues.get(), csrfToken = _a.csrfToken, baseUrl = _a.baseUrl;
+          url = baseUrl + "/logout";
+          return [4
+          /*yield*/
+          , fetch(url, {
+            method: HttpMethod_1.HttpMethod.POST,
+            headers: {
               'X-CSRF-TOKEN': csrfToken
-            };
+            },
+            redirect: 'follow'
+          })];
 
-            if (this.isFormData(data)) {
-              fetchBody = data;
-            } else {
-              fetchBody = JSON.stringify(data);
-              fetchHeaders['Content-Type'] = 'application/json';
-            }
+        case 1:
+          response = _b.sent();
 
-            return [4
-            /*yield*/
-            , fetch(fetchUrl, {
-              method: method,
-              headers: fetchHeaders,
-              body: fetchBody
-            })];
+          if (response.redirected) {
+            window.location.href = response.url;
+          }
 
-          case 1:
-            response = _b.sent();
-            return [4
-            /*yield*/
-            , response.json()];
-
-          case 2:
-            return [2
-            /*return*/
-            , _b.sent()];
-        }
-      });
-    });
-  };
-
-  Service.makeUrl = function (baseUrl, relativeUrl, urlSuffix) {
-    if (urlSuffix != undefined) {
-      return baseUrl + relativeUrl + urlSuffix;
-    } else {
-      return baseUrl + relativeUrl;
-    }
-  };
-
-  Service.prototype.isFormData = function (data) {
-    return data.append !== undefined;
-  };
-
-  return Service;
-}();
-
-exports["default"] = Service;
-
-/***/ }),
-
-/***/ "./resources/js/ui/renee/edit-aboutme/AboutMeComponents.js":
-/*!*****************************************************************!*\
-  !*** ./resources/js/ui/renee/edit-aboutme/AboutMeComponents.js ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var AboutMeService_1 = __importDefault(__webpack_require__(/*! ../../../network/AboutMeService */ "./resources/js/network/AboutMeService.js"));
-
-var CallIfPresent_1 = __webpack_require__(/*! ../../../utils/CallIfPresent */ "./resources/js/utils/CallIfPresent.js");
-
-var ErrorHandling_1 = __importDefault(__webpack_require__(/*! ../../../utils/ErrorHandling */ "./resources/js/utils/ErrorHandling.js"));
-
-var RequestOptions_1 = __webpack_require__(/*! ../../../network/RequestOptions */ "./resources/js/network/RequestOptions.js");
-
-var AboutMeComponents =
-/** @class */
-function () {
-  function AboutMeComponents() {
-    this.aboutMeService = new AboutMeService_1["default"](RequestOptions_1.RequestOptionsValues.get());
-    this.initElements();
-    this.enterInitialState();
-    this.setupListeners();
-  }
-
-  AboutMeComponents.prototype.enterInitialState = function () {
-    this.editButton.show();
-    this.contentElement.makeNotEditable();
-    this.saveAndCancelContainer.hide();
-    this.loadIndicator.hide();
-    this.contentBeforeEdit = this.getContent(); // Should this be here
-  };
-
-  AboutMeComponents.prototype.enterEditingState = function () {
-    this.editButton.hide();
-    this.contentElement.makeEditable();
-    this.saveAndCancelContainer.show();
-    this.loadIndicator.hide();
-  };
-
-  AboutMeComponents.prototype.enterSavingState = function () {
-    this.editButton.hide();
-    this.saveAndCancelContainer.hide();
-    this.loadIndicator.show();
-    this.contentElement.makeNotEditable();
-  };
-
-  AboutMeComponents.prototype.setupListeners = function () {
-    var _this = this;
-
-    this.editButton.el.addEventListener('click', function (ev) {
-      ev.preventDefault();
-
-      _this.enterEditingState();
-
-      CallIfPresent_1.callCallbackIfPresent(_this.onEditClicked);
-    });
-    this.saveButton.el.addEventListener('click', function (ev) {
-      ev.preventDefault();
-
-      _this.enterSavingState();
-
-      _this.saveContent();
-
-      CallIfPresent_1.callCallbackIfPresent(_this.onSaveClicked);
-    });
-    this.cancelButton.el.addEventListener('click', function (ev) {
-      ev.preventDefault();
-
-      _this.cancelEdit();
-
-      _this.enterInitialState();
-    });
-    this.contentElement.on('keydown', function (e) {
-      //@ts-ignore
-      if (e.keyCode === 13) {
-        _this.saveButton.el.click();
-
-        return false;
-      } //@ts-ignore
-
-
-      if (e.keyCode === 27) {
-        _this.cancelButton.el.click();
+          return [2
+          /*return*/
+          ];
       }
     });
-    this.contentElement.el.addEventListener('click', function (ev) {
-      ev.preventDefault();
-
-      _this.editButton.el.click();
-    });
-  };
-
-  AboutMeComponents.prototype.saveContent = function () {
-    var _this = this;
-
-    this.aboutMeService.save(this.getContentToSave()).then(function (response) {
-      if (response.status != 'ok') {
-        ErrorHandling_1["default"]("Unable to save " + response);
-
-        _this.cancelEdit();
-      }
-
-      _this.enterInitialState();
-    })["catch"](function (err) {
-      _this.enterInitialState();
-
-      ErrorHandling_1["default"](err);
-    });
-  };
-
-  ;
-
-  AboutMeComponents.prototype.cancelEdit = function () {
-    this.setContent(this.contentBeforeEdit);
-  };
-
-  return AboutMeComponents;
-}();
-
-exports["default"] = AboutMeComponents;
-
-/***/ }),
-
-/***/ "./resources/js/utils/CallIfPresent.js":
-/*!*********************************************!*\
-  !*** ./resources/js/utils/CallIfPresent.js ***!
-  \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-function callCallbackIfPresent(callback) {
-  if (callback !== undefined) {
-    callback();
-  }
+  });
 }
 
-exports.callCallbackIfPresent = callCallbackIfPresent;
-
-/***/ }),
-
-/***/ "./resources/js/utils/ElementUtils.js":
-/*!********************************************!*\
-  !*** ./resources/js/utils/ElementUtils.js ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/*export function show(element: HTMLElement) {
-    element.classList.remove('d-none')
-}
-
-export function hide(element: HTMLElement) {
-    element.classList.add('d-none');
-}*/
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var El =
-/** @class */
-function () {
-  function El(el) {
-    this.el = el;
-  }
-
-  El.prototype.show = function () {
-    this.el.classList.remove('d-none');
-  };
-
-  El.prototype.hide = function () {
-    this.el.classList.add('d-none');
-  };
-
-  El.prototype.makeEditable = function () {
-    this.el.setAttribute('contenteditable', 'true');
-    document.execCommand("defaultParagraphSeparator", false, "p"); //
-    // document.execCommand("defaultParagraphSeparator", false, "br"); //
-    // this.setupEditableContentEl();
-    // document.execCommand('insertBrOnReturn');
-  };
-
-  El.prototype.makeNotEditable = function () {
-    this.el.setAttribute('contenteditable', 'false');
-  };
-
-  El.prototype.focusAndHighlightAllText = function () {
-    this.el.focus();
-    document.execCommand('selectAll', false, null);
-  };
-
-  El.prototype.on = function (event, handler) {
-    this.el.addEventListener(event, handler);
-  };
-
-  return El;
-}();
-
-exports.El = El;
-
-/***/ }),
-
-/***/ "./resources/js/utils/ErrorHandling.js":
-/*!*********************************************!*\
-  !*** ./resources/js/utils/ErrorHandling.js ***!
-  \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-}); // TODO: Add implementation e.g Show modal
-
-function handleFailure(errMessage) {
-  console.log(errMessage);
-}
-
-exports["default"] = handleFailure;
+exports.logout = logout;
 
 /***/ })
 

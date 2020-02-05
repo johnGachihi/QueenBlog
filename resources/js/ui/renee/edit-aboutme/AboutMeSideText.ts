@@ -95,6 +95,22 @@ export abstract class AboutMeTextComponent extends AboutMeComponents {
         this.contentElement.focusAndHighlightAllText();
     }
 
+    protected setupListeners() {
+        super.setupListeners();
+
+        this.contentElement.on('keydown', e => {
+            //@ts-ignore
+            if (e.keyCode === 13) {
+                this.saveButton.el.click();
+                return false;
+            }
+            //@ts-ignore
+            if (e.keyCode === 27) {
+                this.cancelButton.el.click();
+            }
+        });
+    }
+
     protected getContent() {
         return this.contentElement.el.innerText;
     }

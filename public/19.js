@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[13],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[19],{
 
 /***/ "./resources/js/ui/renee/edit-aboutme/AboutMeSideText.js":
 /*!***************************************************************!*\
@@ -139,6 +139,26 @@ function (_super) {
     this.contentElement.focusAndHighlightAllText();
   };
 
+  AboutMeTextComponent.prototype.setupListeners = function () {
+    var _this = this;
+
+    _super.prototype.setupListeners.call(this);
+
+    this.contentElement.on('keydown', function (e) {
+      //@ts-ignore
+      if (e.keyCode === 13) {
+        _this.saveButton.el.click();
+
+        return false;
+      } //@ts-ignore
+
+
+      if (e.keyCode === 27) {
+        _this.cancelButton.el.click();
+      }
+    });
+  };
+
   AboutMeTextComponent.prototype.getContent = function () {
     return this.contentElement.el.innerText;
   };
@@ -154,10 +174,10 @@ exports.AboutMeTextComponent = AboutMeTextComponent;
 
 /***/ }),
 
-/***/ "./resources/js/ui/renee/edit-aboutme/editaboutmeside.js":
-/*!***************************************************************!*\
-  !*** ./resources/js/ui/renee/edit-aboutme/editaboutmeside.js ***!
-  \***************************************************************/
+/***/ "./resources/js/ui/renee/edit-aboutme/editAboutMeTitle.js":
+/*!****************************************************************!*\
+  !*** ./resources/js/ui/renee/edit-aboutme/editAboutMeTitle.js ***!
+  \****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -194,38 +214,38 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var AboutMeSideText_1 = __webpack_require__(/*! ./AboutMeSideText */ "./resources/js/ui/renee/edit-aboutme/AboutMeSideText.js");
-
 var ElementUtils_1 = __webpack_require__(/*! ../../../utils/ElementUtils */ "./resources/js/utils/ElementUtils.js");
 
-var AboutMeSideContent =
+var AboutMeSideText_1 = __webpack_require__(/*! ./AboutMeSideText */ "./resources/js/ui/renee/edit-aboutme/AboutMeSideText.js");
+
+var AboutMeTitle =
 /** @class */
 function (_super) {
-  __extends(AboutMeSideContent, _super);
+  __extends(AboutMeTitle, _super);
 
-  function AboutMeSideContent() {
+  function AboutMeTitle() {
     return _super.call(this) || this;
   }
 
-  AboutMeSideContent.prototype.initElements = function () {
-    this.editButton = new ElementUtils_1.El(document.getElementById('edit-about-me-side'));
-    this.contentElement = new ElementUtils_1.El(document.getElementById('about-me-side'));
-    this.saveAndCancelContainer = new ElementUtils_1.El(document.getElementById('about-me-side-save-cancel-container'));
-    this.saveButton = new ElementUtils_1.El(document.getElementById('save-about-me-side'));
-    this.cancelButton = new ElementUtils_1.El(document.getElementById('cancel-about-me-side'));
-    this.loadIndicator = new ElementUtils_1.El(document.getElementById('loading-about-me-side'));
+  AboutMeTitle.prototype.initElements = function () {
+    this.editButton = new ElementUtils_1.El(document.getElementById('about-me-title-edit'));
+    this.contentElement = new ElementUtils_1.El(document.getElementById('about-me-title'));
+    this.saveAndCancelContainer = new ElementUtils_1.El(document.getElementById('save-and-cancel-about-me-title-buttons'));
+    this.saveButton = new ElementUtils_1.El(document.getElementById('save-about-me-title'));
+    this.cancelButton = new ElementUtils_1.El(document.getElementById('cancel-about-me-title'));
+    this.loadIndicator = new ElementUtils_1.El(document.getElementById('loading-about-me-title'));
   };
 
-  AboutMeSideContent.prototype.getContentToSave = function () {
+  AboutMeTitle.prototype.getContentToSave = function () {
     return {
-      about_me_side: this.getContent()
+      about_me_title: this.getContent()
     };
   };
 
-  return AboutMeSideContent;
+  return AboutMeTitle;
 }(AboutMeSideText_1.AboutMeTextComponent);
 
-var editAboutMeSide = new AboutMeSideContent();
+var aboutMeSideName = new AboutMeTitle();
 
 /***/ })
 

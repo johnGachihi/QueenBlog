@@ -1,29 +1,23 @@
 "use strict";
-/*export function show(element: HTMLElement) {
-    element.classList.remove('d-none')
-}
-
-export function hide(element: HTMLElement) {
-    element.classList.add('d-none');
-}*/
 Object.defineProperty(exports, "__esModule", { value: true });
+var editor_1 = require("../write/editor");
 var El = /** @class */ (function () {
-    function El(el) {
+    function El(el, editableMaker) {
+        if (editableMaker === void 0) { editableMaker = new HtmlContentEditableMaker(); }
         this.el = el;
+        this.editableMaker = editableMaker;
     }
     El.prototype.show = function () {
         this.el.classList.remove('d-none');
     };
-    El.prototype.hide = function () { this.el.classList.add('d-none'); };
+    El.prototype.hide = function () {
+        this.el.classList.add('d-none');
+    };
     El.prototype.makeEditable = function () {
-        this.el.setAttribute('contenteditable', 'true');
-        document.execCommand("defaultParagraphSeparator", false, "p"); //
-        // document.execCommand("defaultParagraphSeparator", false, "br"); //
-        // this.setupEditableContentEl();
-        // document.execCommand('insertBrOnReturn');
+        this.editableMaker.makeEditable(this.el);
     };
     El.prototype.makeNotEditable = function () {
-        this.el.setAttribute('contenteditable', 'false');
+        this.editableMaker.makeNotEditable(this.el);
     };
     El.prototype.focusAndHighlightAllText = function () {
         this.el.focus();
@@ -35,4 +29,62 @@ var El = /** @class */ (function () {
     return El;
 }());
 exports.El = El;
+var HtmlContentEditableMaker = /** @class */ (function () {
+    function HtmlContentEditableMaker() {
+    }
+    HtmlContentEditableMaker.prototype.makeEditable = function (element) {
+        element.setAttribute('contenteditable', 'true');
+        document.execCommand("defaultParagraphSeparator", false, "p"); //
+    };
+    HtmlContentEditableMaker.prototype.makeNotEditable = function (element) {
+        element.setAttribute('contenteditable', 'false');
+    };
+    return HtmlContentEditableMaker;
+}());
+var WysiwigEditableMaker = /** @class */ (function () {
+    function WysiwigEditableMaker() {
+    }
+    WysiwigEditableMaker.prototype.makeEditable = function (element) {
+        var _this = this;
+        var content = element.innerHTML;
+        element.innerHTML = "";
+        console.log("makeEditable - wysiwig");
+        editor_1.initCkEditor(element)
+            .then(function (editor) {
+            _this.editor = editor;
+            editor.setData(content);
+        })
+            .catch(console.log);
+    };
+    WysiwigEditableMaker.prototype.makeNotEditable = function (element) {
+        var _this = this;
+        if (this.editor !== undefined) {
+            console.log('makeNotEditable', this.editor);
+            this.editor.destroy()
+                .then(function (res) {
+                _this.editor = undefined;
+            })
+                .catch(function (err) {
+                console.log(err);
+            });
+        }
+    };
+    return WysiwigEditableMaker;
+}());
+exports.WysiwigEditableMaker = WysiwigEditableMaker;
+/*
+export async function initCkEditor(targetEl) {
+    let ckEditor;
+    await BalloonBlockEditor.create(targetEl, {
+        placeholder: 'Write the word...',
+        toolbar: ['heading', '|', 'bold', 'italic', 'link', 'blockQuote'],
+        ignoreEmptyParagraph: true
+    }).then(editor => {
+        ckEditor = editor
+    }).catch(error => {
+        throw error
+    });
+    return ckEditor
+}
+*/
 //# sourceMappingURL=ElementUtils.js.map

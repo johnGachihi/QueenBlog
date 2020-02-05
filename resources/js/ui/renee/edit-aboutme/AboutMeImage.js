@@ -33,6 +33,17 @@ var AboutMeImageComponent = /** @class */ (function (_super) {
     AboutMeImageComponent.prototype.setupListeners = function () {
         var _this = this;
         _super.prototype.setupListeners.call(this);
+        this.contentElement.on('keydown', function (e) {
+            //@ts-ignore
+            if (e.keyCode === 13) {
+                _this.saveButton.el.click();
+                return false;
+            }
+            //@ts-ignore
+            if (e.keyCode === 27) {
+                _this.cancelButton.el.click();
+            }
+        });
         this.hiddenImageInput.on('change', function (ev) {
             if (_this.imageSelected()) {
                 _this.content = _this.hiddenImageInput.el.files[0];
