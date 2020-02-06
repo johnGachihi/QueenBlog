@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[18],{
 
-/***/ "./resources/js/ui/renee/edit-aboutme/AboutMeSideText.js":
-/*!***************************************************************!*\
-  !*** ./resources/js/ui/renee/edit-aboutme/AboutMeSideText.js ***!
-  \***************************************************************/
+/***/ "./resources/js/ui/renee/edit-aboutme/AboutMeImage.js":
+/*!************************************************************!*\
+  !*** ./resources/js/ui/renee/edit-aboutme/AboutMeImage.js ***!
+  \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -46,100 +46,30 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var CallIfPresent_1 = __webpack_require__(/*! ../../../utils/CallIfPresent */ "./resources/js/utils/CallIfPresent.js");
+var ElementUtils_1 = __webpack_require__(/*! ../../../utils/ElementUtils */ "./resources/js/utils/ElementUtils.js");
 
 var AboutMeComponents_1 = __importDefault(__webpack_require__(/*! ./AboutMeComponents */ "./resources/js/ui/renee/edit-aboutme/AboutMeComponents.js"));
 
-var AboutMeSideText =
-/** @class */
-function () {
-  function AboutMeSideText() {
-    this.initElements();
-    this.setupButtonListeners();
-  }
-
-  AboutMeSideText.prototype.enterInitialState = function () {
-    this.editButton.show();
-    this.contentElement.makeNotEditable();
-    this.saveAndCancelContainer.hide();
-    this.loadIndicator.hide();
-  };
-
-  AboutMeSideText.prototype.enterEditingState = function () {
-    this.editButton.hide();
-    this.contentElement.makeEditable();
-    this.saveAndCancelContainer.show();
-    this.contentElement.focusAndHighlightAllText();
-    this.loadIndicator.hide();
-  };
-
-  AboutMeSideText.prototype.enterSavingState = function () {
-    this.editButton.hide();
-    this.saveAndCancelContainer.hide();
-    this.loadIndicator.show();
-    this.contentElement.makeNotEditable();
-  };
-
-  AboutMeSideText.prototype.setupButtonListeners = function () {
-    var _this = this;
-
-    this.editButton.el.addEventListener('click', function (ev) {
-      ev.preventDefault();
-
-      _this.enterEditingState();
-
-      CallIfPresent_1.callCallbackIfPresent(_this.onEditClicked);
-    });
-    this.saveButton.el.addEventListener('click', function (ev) {
-      ev.preventDefault();
-
-      _this.enterSavingState();
-
-      CallIfPresent_1.callCallbackIfPresent(_this.onSaveClicked);
-    });
-    $(this.contentElement.el).on('keydown', function (e) {
-      if (e.keyCode === 13) {
-        _this.saveButton.el.click();
-
-        return false;
-      }
-    });
-    this.contentElement.el.addEventListener('click', function (ev) {
-      ev.preventDefault();
-
-      _this.editButton.el.click();
-    });
-  };
-
-  AboutMeSideText.prototype.setOnEditClicked = function (onEditClicked) {
-    this.onEditClicked = onEditClicked;
-  };
-
-  AboutMeSideText.prototype.setOnSaveClicked = function (onSaveClicked) {
-    this.onSaveClicked = onSaveClicked;
-  };
-
-  return AboutMeSideText;
-}();
-
-exports.AboutMeSideText = AboutMeSideText;
-
-var AboutMeTextComponent =
+var AboutMeImageComponent =
 /** @class */
 function (_super) {
-  __extends(AboutMeTextComponent, _super);
+  __extends(AboutMeImageComponent, _super);
 
-  function AboutMeTextComponent() {
+  function AboutMeImageComponent() {
     return _super.call(this) || this;
   }
 
-  AboutMeTextComponent.prototype.enterEditingState = function () {
+  AboutMeImageComponent.prototype.enterEditingState = function () {
     _super.prototype.enterEditingState.call(this);
 
-    this.contentElement.focusAndHighlightAllText();
+    this.openFileExplorer();
   };
 
-  AboutMeTextComponent.prototype.setupListeners = function () {
+  AboutMeImageComponent.prototype.openFileExplorer = function () {
+    this.hiddenImageInput.el.click();
+  };
+
+  AboutMeImageComponent.prototype.setupListeners = function () {
     var _this = this;
 
     _super.prototype.setupListeners.call(this);
@@ -157,95 +87,119 @@ function (_super) {
         _this.cancelButton.el.click();
       }
     });
-  };
+    this.hiddenImageInput.on('change', function (ev) {
+      if (_this.imageSelected()) {
+        _this.content = _this.hiddenImageInput.el.files[0];
 
-  AboutMeTextComponent.prototype.getContent = function () {
-    return this.contentElement.el.innerText;
-  };
-
-  AboutMeTextComponent.prototype.setContent = function (content) {
-    this.contentElement.el.innerText = content;
-  };
-
-  return AboutMeTextComponent;
-}(AboutMeComponents_1["default"]);
-
-exports.AboutMeTextComponent = AboutMeTextComponent;
-
-/***/ }),
-
-/***/ "./resources/js/ui/renee/edit-aboutme/editAboutMeSideName.js":
-/*!*******************************************************************!*\
-  !*** ./resources/js/ui/renee/edit-aboutme/editAboutMeSideName.js ***!
-  \*******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var __extends = this && this.__extends || function () {
-  var _extendStatics = function extendStatics(d, b) {
-    _extendStatics = Object.setPrototypeOf || {
-      __proto__: []
-    } instanceof Array && function (d, b) {
-      d.__proto__ = b;
-    } || function (d, b) {
-      for (var p in b) {
-        if (b.hasOwnProperty(p)) d[p] = b[p];
+        _this.previewImage();
       }
+    });
+  };
+
+  AboutMeImageComponent.prototype.imageSelected = function () {
+    return !!(this.hiddenImageInput.el.files && this.hiddenImageInput.el.files[0]);
+  };
+
+  AboutMeImageComponent.prototype.previewImage = function () {
+    var _this = this;
+
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+      return _this.setContent(e.target.result);
     };
 
-    return _extendStatics(d, b);
+    reader.readAsDataURL(this.hiddenImageInput.el.files[0]);
   };
 
-  return function (d, b) {
-    _extendStatics(d, b);
-
-    function __() {
-      this.constructor = d;
-    }
-
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+  AboutMeImageComponent.prototype.getContent = function () {
+    return this.contentElement.el.src;
   };
-}();
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+  AboutMeImageComponent.prototype.setContent = function (content) {
+    this.contentElement.el.src = content;
+  };
 
-var ElementUtils_1 = __webpack_require__(/*! ../../../utils/ElementUtils */ "./resources/js/utils/ElementUtils.js");
+  return AboutMeImageComponent;
+}(AboutMeComponents_1["default"]);
 
-var AboutMeSideText_1 = __webpack_require__(/*! ./AboutMeSideText */ "./resources/js/ui/renee/edit-aboutme/AboutMeSideText.js");
+exports["default"] = AboutMeImageComponent;
 
-var AboutMeSideName =
+var AboutMeSideImage =
 /** @class */
 function (_super) {
-  __extends(AboutMeSideName, _super);
+  __extends(AboutMeSideImage, _super);
 
-  function AboutMeSideName() {
+  function AboutMeSideImage() {
     return _super.call(this) || this;
   }
 
-  AboutMeSideName.prototype.initElements = function () {
-    this.editButton = new ElementUtils_1.El(document.getElementById('about-me-side-name-edit'));
-    this.contentElement = new ElementUtils_1.El(document.getElementById('about-me-side-name'));
-    this.saveAndCancelContainer = new ElementUtils_1.El(document.getElementById('save-and-cancel-about-me-side-name-buttons'));
-    this.saveButton = new ElementUtils_1.El(document.getElementById('save-about-me-side-name'));
-    this.cancelButton = new ElementUtils_1.El(document.getElementById('cancel-about-me-side-name'));
-    this.loadIndicator = new ElementUtils_1.El(document.getElementById('loading-about-me-side-name'));
+  AboutMeSideImage.getInstance = function () {
+    if (this.INSTANCE == undefined) {
+      this.INSTANCE = new AboutMeSideImage();
+    }
+
+    return this.INSTANCE;
   };
 
-  AboutMeSideName.prototype.getContentToSave = function () {
-    return {
-      about_me_side_name: this.getContent()
-    };
+  AboutMeSideImage.prototype.initElements = function () {
+    this.editButton = new ElementUtils_1.El(document.getElementById('about-me-side-image-edit'));
+    this.contentElement = new ElementUtils_1.El(document.getElementById('about-me-side-image'));
+    this.saveAndCancelContainer = new ElementUtils_1.El(document.getElementById('save-and-cancel-about-me-side-image-buttons'));
+    this.saveButton = new ElementUtils_1.El(document.getElementById('save-about-me-side-image'));
+    this.cancelButton = new ElementUtils_1.El(document.getElementById('cancel-about-me-side-image'));
+    this.loadIndicator = new ElementUtils_1.El(document.getElementById('loading-about-me-side-image'));
+    this.hiddenImageInput = new ElementUtils_1.El(document.getElementById('about-me-side-image-hidden-input'));
   };
 
-  return AboutMeSideName;
-}(AboutMeSideText_1.AboutMeTextComponent);
+  AboutMeSideImage.prototype.getContentToSave = function () {
+    var formData = new FormData();
+    formData.append('about_me_side_image_file', this.content, this.content.name);
+    return formData;
+  };
 
-var aboutMeSideName = new AboutMeSideName();
+  return AboutMeSideImage;
+}(AboutMeImageComponent);
+
+var aboutMeSideImage = AboutMeSideImage.getInstance();
+
+var AboutMeImage =
+/** @class */
+function (_super) {
+  __extends(AboutMeImage, _super);
+
+  function AboutMeImage() {
+    return _super.call(this) || this;
+  }
+
+  AboutMeImage.getInstance = function () {
+    if (this.INSTANCE == undefined) {
+      this.INSTANCE = new AboutMeImage();
+    }
+
+    return this.INSTANCE;
+  };
+
+  AboutMeImage.prototype.initElements = function () {
+    this.editButton = new ElementUtils_1.El(document.getElementById('about-me-image-edit'));
+    this.contentElement = new ElementUtils_1.El(document.getElementById('about-me-image'));
+    this.saveAndCancelContainer = new ElementUtils_1.El(document.getElementById('save-and-cancel-about-me-image-buttons'));
+    this.saveButton = new ElementUtils_1.El(document.getElementById('save-about-me-image'));
+    this.cancelButton = new ElementUtils_1.El(document.getElementById('cancel-about-me-image'));
+    this.loadIndicator = new ElementUtils_1.El(document.getElementById('loading-about-me-image'));
+    this.hiddenImageInput = new ElementUtils_1.El(document.getElementById('about-me-image-hidden-input'));
+  };
+
+  AboutMeImage.prototype.getContentToSave = function () {
+    var formData = new FormData();
+    formData.append('about_me_image_file', this.content, this.content.name);
+    return formData;
+  };
+
+  return AboutMeImage;
+}(AboutMeImageComponent);
+
+var aboutMeImage = AboutMeImage.getInstance();
 
 /***/ })
 

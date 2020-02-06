@@ -4,6 +4,8 @@
 .single-post .icons ul.social-icons > li > a > i{ margin-right: 10px; }
 .single-post .icons ul.social-icons > li > i{ margin-right: 10px; }
 
+.sidebar-area img{ max-width: 600px; max-height: 150px; object-fit: cover}
+
 .icon {
     font-size: 22px !important;
 }

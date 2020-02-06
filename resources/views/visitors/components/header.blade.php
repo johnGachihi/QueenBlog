@@ -35,10 +35,10 @@
 
         <ul class="main-menu visible-on-click" id="main-menu">
             <li><a id="home-link" href="{{ url('/') }}" class="@if(Route::is('index')) active @endif">HOME</a></li>
-            <li><a href="#">FEATURED</a></li>
-            <li><a href="{{ url('/aboutme') }}">ABOUT</a></li>   <!-- TODO -->
+{{--            <li><a href="#">FEATURED</a></li>--}}
+            <li><a href="{{ url('/aboutme') }}" class="@if(Route::is('aboutme')) active @endif">ABOUT</a></li>
             <li><a href="{{ url('categories') }}" class="@if(Route::is('categories')) active @endif">CATEGORIES</a></li>
-            <li><a href="04-Contact.html">CONTACT</a></li>  <!-- TODO -->
+            <li><a href="{{ url('contact') }}" class="@if(Route::is('contact')) active @endif">CONTACT</a></li>
             @auth
             <li><a href="#" id="logout">LOGOUT</a></li>
             @endauth

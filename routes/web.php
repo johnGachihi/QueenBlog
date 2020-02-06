@@ -78,7 +78,25 @@ Route::get('/aboutme', function () {
         'blogs' => Blog::where('status', 'published')->orderBy('id', 'desc')->take(10)->get(),
         'about_me' => AboutMe::first()
     ]);
-});
+})->name('aboutme');
+
+Route::get('/contact', function () {
+    $tags = Blog::where('status', 'published')->orderBy('tag')->pluck('tag')->unique();
+    $categories = $tags->map(function ($tag, $key) {
+        $category = [];
+        $category['tag'] = $tag;
+        $category['image'] = Blog::where('tag', $tag)->orderBy('id', 'desc')->pluck('main_image_filename')->first();
+        return $category;
+    });
+
+    return view('visitors.contact', [
+        'categories' => $categories,
+        'blogs' => Blog::where('status', 'published')->orderBy('id', 'desc')->take(10)->get(),
+        'about_me' => AboutMe::first()
+    ]);
+})->name('contact');
+
+Route::post('contact', 'ContactMessageController@arbitrateMessage');
 
 
 // Renee
@@ -93,8 +111,8 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('blogs', function () {
             return view('blogs', [
-                'draftBlogs' => Blog::where('status', 'draft')->get(),
-                'publishedBlogs' => Blog::where('status', 'published')->get()
+                'draftBlogs' => Blog::where('status', 'draft')->orderBy('created_at', 'desc')->get(),
+                'publishedBlogs' => Blog::where('status', 'published')->orderBy('created_at', 'desc')->get()
             ]);
         });
 

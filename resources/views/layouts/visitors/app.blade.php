@@ -30,6 +30,7 @@
 
 </head>
 <body>
+
 @component('visitors.components.header')
 @endcomponent
 
@@ -43,6 +44,7 @@
         <div class="row">
             <div class="col-lg-8 col-md-12">
                 <div class="blog-posts">
+                    {{-- Page Content goes here --}}
                     @yield('page-content')
                 </div>
             </div>
@@ -130,7 +132,7 @@
 
                         <div class="signature-image"><img src="{{ asset('storage/images/signature-image.png') }}"
                                                           alt="Signature Image"></div>
-                        <a class="read-more-link" href="03-About-me.html"><b>READ MORE</b></a>
+                        <a class="read-more-link" href="{{url('aboutme')}}"><b>READ MORE</b></a>
 
                     </div><!-- sidebar-section about-author -->
 
@@ -188,7 +190,7 @@
                             <div class="latest-post" href="#">
                                 <div class="l-post-image">
                                     <img src="{{ asset('storage/blog-main-images/'.$blog['main_image_filename']) }}"
-                                         alt="Category Image">
+                                         alt="Category Image" style="max-height: 60px; object-fit: cover">
                                 </div>
                                 <div class="post-info">
                                     <a class="btn category-btn"
@@ -249,15 +251,16 @@
 
                     </div><!-- sidebar-section latest-post-area -->
 
-                    <div class="sidebar-section advertisement-area">
+                    {{--<div class="sidebar-section advertisement-area">
                         <h4 class="title"><b class="light-color">Advertisement</b></h4>
                         <a class="advertisement-img" href="#">
                             <img src="images/advertise-1-400x500.jpg" alt="Advertisement Image">
                             <h6 class="btn btn-2 discover-btn">DISCOVER</h6>
                         </a>
-                    </div><!-- sidebar-section advertisement-area -->
+                    </div>--}}<!-- sidebar-section advertisement-area -->
 
-                    <div class="sidebar-section instagram-area">
+                    {{--TODO: Add instagram section--}}
+                    {{--<div class="sidebar-section instagram-area">
                         <h4 class="title"><b class="light-color">Instagram</b></h4>
                         <ul class="instagram-img">
                             <li><a href="#"><img src="images/instragram-side-1-150x150.jpg" alt="Instagram Image"></a>
@@ -274,7 +277,7 @@
                             <li><a href="#"><img src="images/instragram-side-6-150x150.jpg" alt="Instagram Image"></a>
                             </li>
                         </ul>
-                    </div><!-- sidebar-section instagram-area -->
+                    </div>--}}<!-- sidebar-section instagram-area -->
 
                     <div class="sidebar-section tags-area">
                         <h4 class="title"><b class="light-color">Tags</b></h4>

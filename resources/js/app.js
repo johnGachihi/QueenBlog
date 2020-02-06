@@ -25,6 +25,8 @@ if (document.getElementById('write-page')) {
     })
 } else if (document.getElementById('categories-page')) {
     import('./ui/visitors/categoriespage/categoriesPage')
+} else if (document.getElementById('contact-page')) {
+    import('./ui/visitors/contactpage/contact')
 }
 
 /*if (document.querySelector('.about-author #about-renee')) {

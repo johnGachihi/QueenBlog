@@ -105,39 +105,40 @@
         </div><!-- row -->
     </div>--}}<!-- circular-pregress -->
 
-    <div class="recomend-area">
-        <h4 class="title"><b class="light-color">My recommendation</b></h4>
-        <div class="row">
-            <div class="col-md-6">
+{{--    TODO: Do recommendations part--}}
+{{--    <div class="recomend-area">--}}
+{{--        <h4 class="title"><b class="light-color">My recommendation</b></h4>--}}
+{{--        <div class="row">--}}
+{{--            <div class="col-md-6">--}}
 
-                <div class="recomend">
-                    <div class="post-image"><img src="{{asset('storage/images/recomended-1-200x200.jpg')}}" alt="Post Image"></div>
+{{--                <div class="recomend">--}}
+{{--                    <div class="post-image"><img src="{{asset('storage/images/recomended-1-200x200.jpg')}}" alt="Post Image"></div>--}}
 
-                    <div class="post-info">
-                        <a class="btn category-btn" href="#">TRAVEL</a>
-                        <h5 class="title"><a href="#"><b class="light-color">One more night in</b></a></h5>
-                        <h6 class="date"><em>Monday, October 13, 2017</em></h6>
-                        <p>Sed ut unde omnis iste natus error sit.</p>
-                    </div><!-- post-info -->
-                </div><!-- recomend -->
+{{--                    <div class="post-info">--}}
+{{--                        <a class="btn category-btn" href="#">TRAVEL</a>--}}
+{{--                        <h5 class="title"><a href="#"><b class="light-color">One more night in</b></a></h5>--}}
+{{--                        <h6 class="date"><em>Monday, October 13, 2017</em></h6>--}}
+{{--                        <p>Sed ut unde omnis iste natus error sit.</p>--}}
+{{--                    </div><!-- post-info -->--}}
+{{--                </div><!-- recomend -->--}}
 
-            </div><!-- col-md-6 -->
+{{--            </div><!-- col-md-6 -->--}}
 
-            <div class="col-md-6">
+{{--            <div class="col-md-6">--}}
 
-                <div class="recomend">
-                    <div class="post-image"><img src="{{ asset('storage/images/recomended-2-200x200.jpg') }}" alt="Post Image"></div>
+{{--                <div class="recomend">--}}
+{{--                    <div class="post-image"><img src="{{ asset('storage/images/recomended-2-200x200.jpg') }}" alt="Post Image"></div>--}}
 
-                    <div class="post-info">
-                        <a class="btn category-btn" href="#">TRAVEL</a>
-                        <h5 class="title"><a href="#"><b class="light-color">One more night in</b></a></h5>
-                        <h6 class="date"><em>Monday, October 13, 2017</em></h6>
-                        <p>Sed ut unde omnis iste natus error sit.</p>
-                    </div><!-- post-info -->
-                </div><!-- recomend -->
+{{--                    <div class="post-info">--}}
+{{--                        <a class="btn category-btn" href="#">TRAVEL</a>--}}
+{{--                        <h5 class="title"><a href="#"><b class="light-color">One more night in</b></a></h5>--}}
+{{--                        <h6 class="date"><em>Monday, October 13, 2017</em></h6>--}}
+{{--                        <p>Sed ut unde omnis iste natus error sit.</p>--}}
+{{--                    </div><!-- post-info -->--}}
+{{--                </div><!-- recomend -->--}}
 
-            </div><!-- col-md-6 -->
+{{--            </div><!-- col-md-6 -->--}}
 
-        </div><!-- row -->
-    </div><!-- recomend-area -->
+{{--        </div><!-- row -->--}}
+{{--    </div><!-- recomend-area -->--}}
 @endsection
