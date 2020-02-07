@@ -90522,6 +90522,10 @@ if (document.getElementById('renee')) {
   }
 }
 
+if (document.getElementById('div')) {
+  __webpack_require__.e(/*! import() */ 19).then(__webpack_require__.t.bind(null, /*! ./ui/renee/AccessBackend */ "./resources/js/ui/renee/AccessBackend.js", 7));
+}
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

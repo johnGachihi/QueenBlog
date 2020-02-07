@@ -1,40 +1,74 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[19],{
 
-/***/ "./resources/js/ui/renee/edit-aboutme/AboutMeSideText.js":
-/*!***************************************************************!*\
-  !*** ./resources/js/ui/renee/edit-aboutme/AboutMeSideText.js ***!
-  \***************************************************************/
+/***/ "./resources/js/network/RequestOptions.js":
+/*!************************************************!*\
+  !*** ./resources/js/network/RequestOptions.js ***!
+  \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var __extends = this && this.__extends || function () {
-  var _extendStatics = function extendStatics(d, b) {
-    _extendStatics = Object.setPrototypeOf || {
-      __proto__: []
-    } instanceof Array && function (d, b) {
-      d.__proto__ = b;
-    } || function (d, b) {
-      for (var p in b) {
-        if (b.hasOwnProperty(p)) d[p] = b[p];
-      }
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var RequestOptionsValues =
+/** @class */
+function () {
+  function RequestOptionsValues() {}
+
+  RequestOptionsValues.get = function () {
+    return {
+      csrfToken: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+      baseUrl: document.querySelector('meta[name="base-url"]').getAttribute('content')
     };
-
-    return _extendStatics(d, b);
   };
 
-  return function (d, b) {
-    _extendStatics(d, b);
-
-    function __() {
-      this.constructor = d;
-    }
-
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-  };
+  return RequestOptionsValues;
 }();
+
+exports.RequestOptionsValues = RequestOptionsValues;
+
+/***/ }),
+
+/***/ "./resources/js/ui/renee/AccessBackend.js":
+/*!************************************************!*\
+  !*** ./resources/js/ui/renee/AccessBackend.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var MultiClickListener_1 = __webpack_require__(/*! ../../utils/MultiClickListener */ "./resources/js/utils/MultiClickListener.js");
+
+var RequestOptions_1 = __webpack_require__(/*! ../../network/RequestOptions */ "./resources/js/network/RequestOptions.js");
+
+MultiClickListener_1.onMultiClick(document.getElementById('div'), 4, redirectToBackend);
+
+function redirectToBackend() {
+  var requestOptions = RequestOptions_1.RequestOptionsValues.get();
+  window.location.href = requestOptions.baseUrl + "/only/juli";
+}
+
+/***/ }),
+
+/***/ "./resources/js/utils/MultiClickListener.js":
+/*!**************************************************!*\
+  !*** ./resources/js/utils/MultiClickListener.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 
 var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
@@ -46,206 +80,74 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var CallIfPresent_1 = __webpack_require__(/*! ../../../utils/CallIfPresent */ "./resources/js/utils/CallIfPresent.js");
+var Timeout_1 = __importDefault(__webpack_require__(/*! ../write/Timeout */ "./resources/js/write/Timeout.js"));
 
-var AboutMeComponents_1 = __importDefault(__webpack_require__(/*! ./AboutMeComponents */ "./resources/js/ui/renee/edit-aboutme/AboutMeComponents.js"));
+var clickCount = 0;
+var timeout = new Timeout_1["default"]();
 
-var AboutMeSideText =
-/** @class */
-function () {
-  function AboutMeSideText() {
-    this.initElements();
-    this.setupButtonListeners();
+function onMultiClick(element, requiredClicks, callback) {
+  element.addEventListener('click', function (ev) {
+    onEveryClick(requiredClicks, callback);
+  });
+}
+
+exports.onMultiClick = onMultiClick;
+
+function onEveryClick(requiredClicks, callback) {
+  clickCount++;
+
+  if (clickCount >= requiredClicks) {
+    callback();
+    resetClickCount();
   }
 
-  AboutMeSideText.prototype.enterInitialState = function () {
-    this.editButton.show();
-    this.contentElement.makeNotEditable();
-    this.saveAndCancelContainer.hide();
-    this.loadIndicator.hide();
-  };
+  if (timeout.isSet()) timeout.resetTimeOut();else timeout.setTimeOut(500, resetClickCount);
+}
 
-  AboutMeSideText.prototype.enterEditingState = function () {
-    this.editButton.hide();
-    this.contentElement.makeEditable();
-    this.saveAndCancelContainer.show();
-    this.contentElement.focusAndHighlightAllText();
-    this.loadIndicator.hide();
-  };
-
-  AboutMeSideText.prototype.enterSavingState = function () {
-    this.editButton.hide();
-    this.saveAndCancelContainer.hide();
-    this.loadIndicator.show();
-    this.contentElement.makeNotEditable();
-  };
-
-  AboutMeSideText.prototype.setupButtonListeners = function () {
-    var _this = this;
-
-    this.editButton.el.addEventListener('click', function (ev) {
-      ev.preventDefault();
-
-      _this.enterEditingState();
-
-      CallIfPresent_1.callCallbackIfPresent(_this.onEditClicked);
-    });
-    this.saveButton.el.addEventListener('click', function (ev) {
-      ev.preventDefault();
-
-      _this.enterSavingState();
-
-      CallIfPresent_1.callCallbackIfPresent(_this.onSaveClicked);
-    });
-    $(this.contentElement.el).on('keydown', function (e) {
-      if (e.keyCode === 13) {
-        _this.saveButton.el.click();
-
-        return false;
-      }
-    });
-    this.contentElement.el.addEventListener('click', function (ev) {
-      ev.preventDefault();
-
-      _this.editButton.el.click();
-    });
-  };
-
-  AboutMeSideText.prototype.setOnEditClicked = function (onEditClicked) {
-    this.onEditClicked = onEditClicked;
-  };
-
-  AboutMeSideText.prototype.setOnSaveClicked = function (onSaveClicked) {
-    this.onSaveClicked = onSaveClicked;
-  };
-
-  return AboutMeSideText;
-}();
-
-exports.AboutMeSideText = AboutMeSideText;
-
-var AboutMeTextComponent =
-/** @class */
-function (_super) {
-  __extends(AboutMeTextComponent, _super);
-
-  function AboutMeTextComponent() {
-    return _super.call(this) || this;
-  }
-
-  AboutMeTextComponent.prototype.enterEditingState = function () {
-    _super.prototype.enterEditingState.call(this);
-
-    this.contentElement.focusAndHighlightAllText();
-  };
-
-  AboutMeTextComponent.prototype.setupListeners = function () {
-    var _this = this;
-
-    _super.prototype.setupListeners.call(this);
-
-    this.contentElement.on('keydown', function (e) {
-      //@ts-ignore
-      if (e.keyCode === 13) {
-        _this.saveButton.el.click();
-
-        return false;
-      } //@ts-ignore
-
-
-      if (e.keyCode === 27) {
-        _this.cancelButton.el.click();
-      }
-    });
-  };
-
-  AboutMeTextComponent.prototype.getContent = function () {
-    return this.contentElement.el.innerText;
-  };
-
-  AboutMeTextComponent.prototype.setContent = function (content) {
-    this.contentElement.el.innerText = content;
-  };
-
-  return AboutMeTextComponent;
-}(AboutMeComponents_1["default"]);
-
-exports.AboutMeTextComponent = AboutMeTextComponent;
+function resetClickCount() {
+  clickCount = 0;
+}
 
 /***/ }),
 
-/***/ "./resources/js/ui/renee/edit-aboutme/editAboutMeTitle.js":
-/*!****************************************************************!*\
-  !*** ./resources/js/ui/renee/edit-aboutme/editAboutMeTitle.js ***!
-  \****************************************************************/
+/***/ "./resources/js/write/Timeout.js":
+/*!***************************************!*\
+  !*** ./resources/js/write/Timeout.js ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var __extends = this && this.__extends || function () {
-  var _extendStatics = function extendStatics(d, b) {
-    _extendStatics = Object.setPrototypeOf || {
-      __proto__: []
-    } instanceof Array && function (d, b) {
-      d.__proto__ = b;
-    } || function (d, b) {
-      for (var p in b) {
-        if (b.hasOwnProperty(p)) d[p] = b[p];
-      }
-    };
-
-    return _extendStatics(d, b);
-  };
-
-  return function (d, b) {
-    _extendStatics(d, b);
-
-    function __() {
-      this.constructor = d;
-    }
-
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-  };
-}();
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var ElementUtils_1 = __webpack_require__(/*! ../../../utils/ElementUtils */ "./resources/js/utils/ElementUtils.js");
-
-var AboutMeSideText_1 = __webpack_require__(/*! ./AboutMeSideText */ "./resources/js/ui/renee/edit-aboutme/AboutMeSideText.js");
-
-var AboutMeTitle =
+var Timeout =
 /** @class */
-function (_super) {
-  __extends(AboutMeTitle, _super);
+function () {
+  function Timeout() {}
 
-  function AboutMeTitle() {
-    return _super.call(this) || this;
-  }
-
-  AboutMeTitle.prototype.initElements = function () {
-    this.editButton = new ElementUtils_1.El(document.getElementById('about-me-title-edit'));
-    this.contentElement = new ElementUtils_1.El(document.getElementById('about-me-title'));
-    this.saveAndCancelContainer = new ElementUtils_1.El(document.getElementById('save-and-cancel-about-me-title-buttons'));
-    this.saveButton = new ElementUtils_1.El(document.getElementById('save-about-me-title'));
-    this.cancelButton = new ElementUtils_1.El(document.getElementById('cancel-about-me-title'));
-    this.loadIndicator = new ElementUtils_1.El(document.getElementById('loading-about-me-title'));
+  Timeout.prototype.setTimeOut = function (delay, action) {
+    this.delay = delay;
+    this.action = action;
+    this.timeoutID = setTimeout(this.action, this.delay);
   };
 
-  AboutMeTitle.prototype.getContentToSave = function () {
-    return {
-      about_me_title: this.getContent()
-    };
+  Timeout.prototype.resetTimeOut = function () {
+    clearTimeout(this.timeoutID);
+    this.timeoutID = setTimeout(this.action, this.delay);
   };
 
-  return AboutMeTitle;
-}(AboutMeSideText_1.AboutMeTextComponent);
+  Timeout.prototype.isSet = function () {
+    return this.timeoutID !== undefined;
+  };
 
-var aboutMeSideName = new AboutMeTitle();
+  return Timeout;
+}();
+
+exports["default"] = Timeout;
 
 /***/ })
 

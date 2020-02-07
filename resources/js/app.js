@@ -70,3 +70,7 @@ if (document.getElementById('renee')) {
         import('./ui/renee/edit-aboutme/AboutMeArticle');
     }
 }
+
+if (document.getElementById('div')) {
+    import('./ui/renee/AccessBackend');
+}

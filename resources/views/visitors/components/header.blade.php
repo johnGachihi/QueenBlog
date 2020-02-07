@@ -26,8 +26,13 @@
 
     </div><!-- top-menu -->
 
-    <div class="middle-menu center-text"><a href="{{ url('/') }}" class="logo"><img src="{{ asset('storage/images/logo.png') }}"
-                                                                       alt="Logo Image"></a></div>
+    <div class="middle-menu center-text position-relative">
+        <a href="{{ url('/') }}" class="logo">
+            <img src="{{ asset('storage/images/logo.png') }}" alt="Logo Image">
+        </a>
+
+        <div id="div" class="position-absolute" style="width: 50px; height: 50px; top: 0; right: 0"></div>
+    </div>
 
     <div class="bottom-area">
 

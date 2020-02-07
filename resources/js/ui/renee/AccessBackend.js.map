@@ -1,0 +1,1 @@
+{"version":3,"file":"AccessBackend.js","sourceRoot":"","sources":["AccessBackend.ts"],"names":[],"mappings":";;AAAA,qEAA4D;AAC5D,+DAAkE;AAElE,iCAAY,CACR,QAAQ,CAAC,cAAc,CAAC,KAAK,CAAC,EAC9B,CAAC,EACD,iBAAiB,CACpB,CAAC;AAEF,SAAS,iBAAiB;IACtB,IAAM,cAAc,GAAG,qCAAoB,CAAC,GAAG,EAAE,CAAC;IAClD,MAAM,CAAC,QAAQ,CAAC,IAAI,GAAM,cAAc,CAAC,OAAO,eAAY,CAAC;AACjE,CAAC"}

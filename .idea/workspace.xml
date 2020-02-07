@@ -3,12 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="0ba4312e-56ad-419e-b4b7-cc2a10cfd510" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContactMessageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContactMessageController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/9.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/9.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/ui/visitors/contactpage/contact.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/visitors/contactpage/contact.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/ui/visitors/contactpage/contact.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/visitors/contactpage/contact.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/ui/visitors/contactpage/contact.ts" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/visitors/contactpage/contact.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/visitors/contact.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/visitors/contact.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/19.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/19.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/visitors/components/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/visitors/components/header.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -313,7 +311,7 @@
       <workItem from="1580733042315" duration="38024000" />
       <workItem from="1580836075514" duration="10515000" />
       <workItem from="1580883986171" duration="27110000" />
-      <workItem from="1580972275995" duration="31819000" />
+      <workItem from="1580972275995" duration="34764000" />
     </task>
     <servers />
   </component>
@@ -392,6 +390,10 @@
         <option value="$PROJECT_DIR$/resources/js/ui/visitors/contactpage/contact.js" />
         <option value="$PROJECT_DIR$/resources/js/utils/PerformAsyncFuncWithCallbacks.js" />
         <option value="$PROJECT_DIR$/resources/js/utils/PerformAsyncFuncWithCallbacks.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/ui/renee/AccessBackend.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/ui/renee/AccessBackend.js" />
+        <option value="$PROJECT_DIR$/resources/js/utils/MultiClickListener.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/utils/MultiClickListener.js" />
       </list>
     </option>
   </component>
