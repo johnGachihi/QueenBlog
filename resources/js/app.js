@@ -1,10 +1,4 @@
-import FirebaseConfig from "./firebase/FirebaseConfig";
-import * as firebase from "firebase";
-import FirebaseRemoteConfigInit from "./firebase/FirebaseRemoteConfigInit";
-
 require('./bootstrap');
-
-firebase.initializeApp(FirebaseConfig.get());
 
 if (document.getElementById('write-page')) {
     import('./write/Write').then(module => {
@@ -29,13 +23,6 @@ if (document.getElementById('write-page')) {
     import('./ui/visitors/contactpage/contact')
 }
 
-/*if (document.querySelector('.about-author #about-renee')) {
-    import('./ui/visitors/sidebar/SideBar')
-        .then(module => {
-            const SideBar = module.default;
-            new SideBar(FirebaseRemoteConfigInit.initAndGet(firebase))
-        })
-}*/
 
 if (document.querySelector('.like-blog')) {
     import('./ui/visitors/like/LikeView').then(module => {

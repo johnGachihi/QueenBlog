@@ -2298,23 +2298,33 @@ __webpack_require__.r(__webpack_exports__);
 
 console.log(Sly); // TODO Where to call this method. Here or in app.js
 
-setupHorizontalSlider();
-
-function setupHorizontalSlider() {
-  var slider = new Sly('#categories-slide', {
-    horizontal: true,
-    itemNav: 'basic',
-    smart: 'true',
-    activateOn: 'click',
-    scrollBy: 40,
-    mouseDragging: true,
-    touchDragging: true,
-    releaseSwing: true,
-    forward: '#forward-scroll',
-    backward: '#backward-scroll',
-    moveBy: 500
-  }).init();
-}
+var slider = new Sly('#categories-slide', {
+  horizontal: true,
+  itemNav: 'centered',
+  smart: 'true',
+  activateOn: 'click',
+  scrollBy: 40,
+  mouseDragging: true,
+  touchDragging: true,
+  releaseSwing: true,
+  forward: '#forward-scroll',
+  backward: '#backward-scroll',
+  moveBy: 500,
+  elasticBounds: true
+}).init();
+$(window).on('resize', function () {
+  slider.reload();
+});
+$('#backward-scroll').on('click', function (ev) {
+  ev.preventDefault();
+  console.log(slider.pos);
+});
+$('#forward-scroll').on('click', function (ev) {
+  ev.preventDefault();
+  console.log(slider.pos);
+});
+slider.on('load', function () {// if (slider.pos)
+});
 
 /***/ })
 

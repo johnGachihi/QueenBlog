@@ -14,6 +14,12 @@ a.active {
     color: #ffad4d;
 }
 
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+    color: #bdbdbd;
+}
+
 .material-icons {
     color: #716f6f;
     font-size: 15px;

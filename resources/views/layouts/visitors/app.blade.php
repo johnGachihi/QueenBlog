@@ -136,7 +136,7 @@
 
                     </div><!-- sidebar-section about-author -->
 
-                    <div class="sidebar-section src-area">
+                    {{--<div class="sidebar-section src-area">
 
                         <form action="post">
                             <input class="src-input" type="text" placeholder="Search">
@@ -151,7 +151,7 @@
                             <input class="email-input" type="text" placeholder="Your email here">
                             <button class="btn btn-2" type="submit">SUBSCRIBE</button>
                         </form>
-                    </div><!-- sidebar-section newsletter-area -->
+                    </div>--}}<!-- sidebar-section newsletter-area -->
 
                     <div class="sidebar-section category-area">
                         <h4 class="title"><b class="light-color">Categories</b></h4>
