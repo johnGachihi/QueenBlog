@@ -292,20 +292,117 @@ var ContactMessageService_1 = __importDefault(__webpack_require__(/*! ../../../n
 
 var RequestOptions_1 = __webpack_require__(/*! ../../../network/RequestOptions */ "./resources/js/network/RequestOptions.js");
 
+var PerformAsyncFuncWithCallbacks_1 = __webpack_require__(/*! ../../../utils/PerformAsyncFuncWithCallbacks */ "./resources/js/utils/PerformAsyncFuncWithCallbacks.js");
+
 $('#contact-form').on('submit', function (e) {
+  PerformAsyncFuncWithCallbacks_1.performAsyncTask(sendContactMessage).onBeforeStart(onBeforeStartFormSubmission).onSuccess(onSuccessfulSubmission).onFailure(onFailureInSubmitting);
   e.preventDefault();
-  var contactForm = document.getElementById('contact-form');
-  var contactFormData = new FormData(contactForm);
-  var contactMessageService = new ContactMessageService_1["default"](RequestOptions_1.RequestOptionsValues.get());
-  contactMessageService.send({
-    name: contactFormData.get('name'),
-    email: contactFormData.get('email'),
-    subject: contactFormData.get('subject'),
-    message: contactFormData.get('message')
-  });
 });
 
-function getMessageFromForm(form) {}
+function sendContactMessage() {
+  return new ContactMessageService_1["default"](RequestOptions_1.RequestOptionsValues.get()).send(getContactMessage());
+}
+
+function getContactMessage() {
+  var contactForm = document.getElementById('contact-form');
+  var formData = new FormData(contactForm);
+  return {
+    name: formData.get('name'),
+    email: formData.get('email'),
+    subject: formData.get('subject'),
+    message: formData.get('message')
+  };
+}
+
+function onBeforeStartFormSubmission() {
+  $('#contact-submit-status').text('Submitting...');
+}
+
+function onSuccessfulSubmission(res) {
+  $('#contact-submit-status').text('Submitted');
+}
+
+function onFailureInSubmitting(err) {
+  $('#contact-submit-status').text('Submission failed.');
+}
+
+/***/ }),
+
+/***/ "./resources/js/utils/PerformAsyncFuncWithCallbacks.js":
+/*!*************************************************************!*\
+  !*** ./resources/js/utils/PerformAsyncFuncWithCallbacks.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function performAsyncTask(task) {
+  return new OnBeforeStart(task);
+}
+
+exports.performAsyncTask = performAsyncTask;
+
+var OnBeforeStart =
+/** @class */
+function () {
+  function OnBeforeStart(task) {
+    this.task = task;
+  }
+
+  OnBeforeStart.prototype.onBeforeStart = function (onBeforeStartCallback) {
+    return new OnSuccess(this.task, onBeforeStartCallback);
+  };
+
+  return OnBeforeStart;
+}();
+
+var OnSuccess =
+/** @class */
+function () {
+  function OnSuccess(task, onBeforeStartCallback) {
+    this.task = task;
+    this.onBeforeStartCallback = onBeforeStartCallback;
+  }
+
+  OnSuccess.prototype.onSuccess = function (onSuccessCallback) {
+    return new OnFailure(this.task, this.onBeforeStartCallback, onSuccessCallback);
+  };
+
+  return OnSuccess;
+}();
+
+var OnFailure =
+/** @class */
+function () {
+  function OnFailure(task, onBeforeStartCallback, onSuccessCallback) {
+    this.task = task;
+    this.onBeforeStartCallback = onBeforeStartCallback;
+    this.onSuccessCallback = onSuccessCallback;
+  }
+
+  OnFailure.prototype.onFailure = function (onFailureCallback) {
+    return new Executor(this.task, this.onBeforeStartCallback, this.onSuccessCallback, onFailureCallback);
+  };
+
+  return OnFailure;
+}();
+
+var Executor =
+/** @class */
+function () {
+  function Executor(task, onBeforeStartCallback, onSuccessCallback, onFailureCallback) {
+    onBeforeStartCallback();
+    return task().then(onSuccessCallback)["catch"](onFailureCallback);
+  }
+
+  return Executor;
+}();
 
 /***/ })
 

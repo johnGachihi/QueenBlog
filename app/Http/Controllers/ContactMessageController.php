@@ -16,5 +16,7 @@ class ContactMessageController extends Controller
         $message->message =$request->message;
 
         Mail::to('johngachihi3@gmail.com')->send(new ContactMessage($message));
+
+        return response()->json(['status' => 'ok']);
     }
 }

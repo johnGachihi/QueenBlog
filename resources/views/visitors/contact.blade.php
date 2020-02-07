@@ -43,6 +43,7 @@
                     </div>
                     <div class="col-sm-12">
                         <button class="btn btn-2" type="submit"><b>SEND</b></button>
+                        <span id="contact-submit-status" class="ml-5 text-secondary"></span>
                     </div>
 
                 </div><!-- row -->
