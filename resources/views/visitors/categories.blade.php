@@ -40,7 +40,7 @@
             <div id="categories-slide" class="flex-grow-1">
                 <div class="slidee">
                     @foreach($tags as $tag)
-                        <li class="mr-3 @if(Request::is("categories/".$tag))active @endif"><a href="{{ url('categories/'.$tag) }}">{{ ucfirst($tag) }}</a></li>
+                        <li class="mr-3 @if($active_tag === $tag)active @endif"><a href="{{ url('categories/'.$tag) }}">{{ ucfirst($tag) }}</a></li>
                     @endforeach
                 </div>
             </div>

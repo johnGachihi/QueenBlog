@@ -2300,7 +2300,7 @@ console.log(Sly); // TODO Where to call this method. Here or in app.js
 
 var slider = new Sly('#categories-slide', {
   horizontal: true,
-  itemNav: 'centered',
+  itemNav: 'forceCentered',
   smart: 'true',
   activateOn: 'click',
   scrollBy: 40,
@@ -2322,8 +2322,6 @@ $('#backward-scroll').on('click', function (ev) {
 $('#forward-scroll').on('click', function (ev) {
   ev.preventDefault();
   console.log(slider.pos);
-});
-slider.on('load', function () {// if (slider.pos)
 });
 
 /***/ })

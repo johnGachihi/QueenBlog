@@ -6,7 +6,7 @@ console.log(Sly);
 
 const slider = new Sly('#categories-slide', {
     horizontal: true,
-    itemNav: 'centered',
+    itemNav: 'forceCentered',
     smart: 'true',
     activateOn: 'click',
     scrollBy: 40,
@@ -35,8 +35,4 @@ $('#backward-scroll').on('click', ev => {
 $('#forward-scroll').on('click', ev => {
     ev.preventDefault();
     console.log((slider.pos))
-})
-
-slider.on('load', () => {
-    // if (slider.pos)
 })

@@ -58,6 +58,7 @@ Route::get('/categories/{tag?}', function ($tag = null) {
         $tag = $tags->get(0);
     }
     return view('visitors.categories', [
+        'active_tag' => $tag,
         'tags' => $tags,
         'blogs' => Blog::where('status', 'published')->where('tag', $tag)->get(),
         'about_me' => AboutMe::first()

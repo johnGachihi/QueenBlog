@@ -4,13 +4,9 @@
     <list default="true" id="0ba4312e-56ad-419e-b4b7-cc2a10cfd510" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/12.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/12.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/3.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/3.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/common-css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/common-css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/ui/visitors/categoriespage/categoriesPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/visitors/categoriespage/categoriesPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/blogs.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/blogs.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/visitors/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/visitors/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/visitors/categories.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/visitors/categories.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -315,7 +311,8 @@
       <workItem from="1580733042315" duration="38024000" />
       <workItem from="1580836075514" duration="10515000" />
       <workItem from="1580883986171" duration="27110000" />
-      <workItem from="1580972275995" duration="39673000" />
+      <workItem from="1580972275995" duration="41967000" />
+      <workItem from="1581228982230" duration="676000" />
     </task>
     <servers />
   </component>
@@ -455,22 +452,22 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="499" y="154" width="424" height="484" key="FileChooserDialogImpl/67.27.1299.741@67.27.1299.741" timestamp="1580972386254" />
-    <state width="1253" height="143" key="GridCell.Tab.0.bottom" timestamp="1581065670579">
+    <state width="1253" height="143" key="GridCell.Tab.0.bottom" timestamp="1581228143862">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="143" key="GridCell.Tab.0.bottom/67.27.1299.741@67.27.1299.741" timestamp="1581065670579" />
-    <state width="1253" height="143" key="GridCell.Tab.0.center" timestamp="1581065670579">
+    <state width="1253" height="143" key="GridCell.Tab.0.bottom/67.27.1299.741@67.27.1299.741" timestamp="1581228143862" />
+    <state width="1253" height="143" key="GridCell.Tab.0.center" timestamp="1581228143859">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="143" key="GridCell.Tab.0.center/67.27.1299.741@67.27.1299.741" timestamp="1581065670579" />
-    <state width="1253" height="143" key="GridCell.Tab.0.left" timestamp="1581065670578">
+    <state width="1253" height="143" key="GridCell.Tab.0.center/67.27.1299.741@67.27.1299.741" timestamp="1581228143859" />
+    <state width="1253" height="143" key="GridCell.Tab.0.left" timestamp="1581228143848">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="143" key="GridCell.Tab.0.left/67.27.1299.741@67.27.1299.741" timestamp="1581065670578" />
-    <state width="1253" height="143" key="GridCell.Tab.0.right" timestamp="1581065670579">
+    <state width="1253" height="143" key="GridCell.Tab.0.left/67.27.1299.741@67.27.1299.741" timestamp="1581228143848" />
+    <state width="1253" height="143" key="GridCell.Tab.0.right" timestamp="1581228143860">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="143" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1581065670579" />
+    <state width="1253" height="143" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1581228143860" />
     <state x="187" y="85" width="1039" height="622" key="MergeDialog" timestamp="1580570812618">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
@@ -495,10 +492,10 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state width="501" height="446" key="SwitcherDM/67.27.1299.741@67.27.1299.741" timestamp="1580989606067" />
-    <state x="372" y="224" key="com.intellij.ide.util.TipDialog" timestamp="1580886682859">
+    <state x="372" y="224" key="com.intellij.ide.util.TipDialog" timestamp="1581229052133">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="372" y="224" key="com.intellij.ide.util.TipDialog/67.27.1299.741@67.27.1299.741" timestamp="1580886682859" />
+    <state x="372" y="224" key="com.intellij.ide.util.TipDialog/67.27.1299.741@67.27.1299.741" timestamp="1581229052133" />
     <state x="0" y="27" width="709" height="741" key="find.popup" timestamp="1580889416850">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
