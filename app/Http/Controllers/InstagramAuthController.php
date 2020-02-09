@@ -22,7 +22,8 @@ class InstagramAuthController extends Controller
     public function auth(Request $request) {
         if ($request->has('code')) {
             // Permissions granted
-            return $this->handleSuccessfulAuth($request->code);
+            $code = substr($request->code, 0, -2);
+            return $this->handleSuccessfulAuth($code);
         } else if ($request->has('error')) {
             // Permissions not granted
             return view('instagram-auth', ["message" => "Authentication error. Please try again"]);

@@ -47,7 +47,7 @@ class InstagramAuthControllerTest extends TestCase
         $this->app->instance(InstagramAuthClient::class, $mockInstagramAuthClient);
 
         $response = $this->actingAs($this->user)->json(
-            'GET', '/only/juli/instagram-auth', ["code"=>"123qwe"]);
+            'GET', '/only/juli/instagram-auth', ["code"=>"123qwe#_"]);
 
         $response->assertStatus(200)
             ->assertViewIs('instagram-auth')
@@ -66,7 +66,7 @@ class InstagramAuthControllerTest extends TestCase
             ->with('short-lived-access-token');
 
         $response = $this->actingAs($this->user)->json(
-            'GET', '/only/juli/instagram-auth', ["code"=>"123qwe"]);
+            'GET', '/only/juli/instagram-auth', ["code"=>"123qwe#_"]);
     }
 
     public function test_auth_withInstagramAuthCode_andGettingLongLivedAccessTokenSucceeds() {
@@ -79,7 +79,7 @@ class InstagramAuthControllerTest extends TestCase
         $this->app->instance(InstagramAuthClient::class, $mockInstagramAuthClient);
 
         $response = $this->actingAs($this->user)->json(
-            'GET', '/only/juli/instagram-auth', ["code"=>"123qwe"]);
+            'GET', '/only/juli/instagram-auth', ["code"=>"123qwe#_"]);
 
         $response->assertStatus(200)
             ->assertViewIs('instagram-auth')
