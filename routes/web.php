@@ -118,6 +118,8 @@ Route::middleware(['auth'])->group(function () {
         });
 
         Route::get('blog/{blog}', 'BlogsController@show');
+
+        Route::get('instagram-auth', 'InstagramAuthController@auth');
     });
 
     Route::post('about_me', 'AboutMeController@update');

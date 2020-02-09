@@ -33,5 +33,10 @@
         <server name="MAIL_DRIVER" value="array"/>
         <server name="QUEUE_CONNECTION" value="sync"/>
         <server name="SESSION_DRIVER" value="array"/>
+
+        <server name="APP_URL" value="https://localhost"/>
+        <server name="INSTAGRAM_AUTH_REDIRECT_RELATIVE_URL" value="only/juli/instagram-auth"/>
+        <server name="INSTAGRAM_APP_ID" value="123456789"/>
+        <server name="INSTAGRAM_APP_SECRET" value="q1w2e3r4t5y6u7i8o9"/>
     </php>
 </phpunit>
