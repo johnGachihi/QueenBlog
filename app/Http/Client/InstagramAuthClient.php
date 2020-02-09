@@ -20,6 +20,8 @@ class InstagramAuthClient
     public function getShortLivedAccessToken(string $code): string
     {
         Log::error("getShortLivedAccessToken: " . $code);      // TODO: remove
+        Log::error("getShortLivedAccessToken: " .
+            env('APP_URL') . '/' . env('INSTAGRAM_AUTH_REDIRECT_RELATIVE_URL'));      // TODO: remove
         $response = $this->client->request('POST', 'https://api.instagram.com/oauth/access_token',
             [
                 'json' => [
