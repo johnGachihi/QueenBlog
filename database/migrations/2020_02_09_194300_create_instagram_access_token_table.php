@@ -15,6 +15,7 @@ class CreateInstagramAccessTokenTable extends Migration
     {
         Schema::create('instagram_access_token', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('long_lived_access_token');
             $table->timestamps();
         });
     }
