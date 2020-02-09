@@ -21,6 +21,8 @@ if (document.getElementById('write-page')) {
     import('./ui/visitors/categoriespage/categoriesPage')
 } else if (document.getElementById('contact-page')) {
     import('./ui/visitors/contactpage/contact')
+} else if (document.getElementById('instagram-auth-page')) {
+    import('./ui/renee/instagram-auth-page/InstagramAuthPage')
 }
 
 

@@ -10,7 +10,7 @@ use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 
-class InstagramAuthClientTest extends TestCase
+class InstagramAuthClientTest extends \Orchestra\Testbench\TestCase
 {
     private $instagramAuthClient;
     private $requestsContainer = [];

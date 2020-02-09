@@ -4,8 +4,6 @@
 namespace App\Http\Client;
 
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Log;
 
 class InstagramAuthClient
@@ -48,7 +46,7 @@ class InstagramAuthClient
 
     public function getLongLivedAccessToken(string $shortLivedAccessToken)
     {
-        Log::error("getShortLivedAccessToken: " . $shortLivedAccessToken);      // TODO: remove
+        Log::error("getLongLivedAccessToken: " . $shortLivedAccessToken);      // TODO: remove
         $response = $this->client->request('GET', 'https://graph.instagram.com/access_token' .
             '?grant_type=ig_exchange_token' .
             '&client_secret=' . env('INSTAGRAM_APP_SECRET') .

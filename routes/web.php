@@ -124,6 +124,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('about_me', 'AboutMeController@update');
 
+    Route::get('instagram-profile', 'InstagramProfileMediaController@profile');
 });
 
 /**

@@ -1,74 +1,40 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[19],{
 
-/***/ "./resources/js/network/RequestOptions.js":
-/*!************************************************!*\
-  !*** ./resources/js/network/RequestOptions.js ***!
-  \************************************************/
+/***/ "./resources/js/ui/renee/edit-aboutme/AboutMeImage.js":
+/*!************************************************************!*\
+  !*** ./resources/js/ui/renee/edit-aboutme/AboutMeImage.js ***!
+  \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var RequestOptionsValues =
-/** @class */
-function () {
-  function RequestOptionsValues() {}
-
-  RequestOptionsValues.get = function () {
-    return {
-      csrfToken: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-      baseUrl: document.querySelector('meta[name="base-url"]').getAttribute('content')
+var __extends = this && this.__extends || function () {
+  var _extendStatics = function extendStatics(d, b) {
+    _extendStatics = Object.setPrototypeOf || {
+      __proto__: []
+    } instanceof Array && function (d, b) {
+      d.__proto__ = b;
+    } || function (d, b) {
+      for (var p in b) {
+        if (b.hasOwnProperty(p)) d[p] = b[p];
+      }
     };
+
+    return _extendStatics(d, b);
   };
 
-  return RequestOptionsValues;
+  return function (d, b) {
+    _extendStatics(d, b);
+
+    function __() {
+      this.constructor = d;
+    }
+
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+  };
 }();
-
-exports.RequestOptionsValues = RequestOptionsValues;
-
-/***/ }),
-
-/***/ "./resources/js/ui/renee/AccessBackend.js":
-/*!************************************************!*\
-  !*** ./resources/js/ui/renee/AccessBackend.js ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var MultiClickListener_1 = __webpack_require__(/*! ../../utils/MultiClickListener */ "./resources/js/utils/MultiClickListener.js");
-
-var RequestOptions_1 = __webpack_require__(/*! ../../network/RequestOptions */ "./resources/js/network/RequestOptions.js");
-
-MultiClickListener_1.onMultiClick(document.getElementById('div'), 4, redirectToBackend);
-
-function redirectToBackend() {
-  var requestOptions = RequestOptions_1.RequestOptionsValues.get();
-  window.location.href = requestOptions.baseUrl + "/only/juli";
-}
-
-/***/ }),
-
-/***/ "./resources/js/utils/MultiClickListener.js":
-/*!**************************************************!*\
-  !*** ./resources/js/utils/MultiClickListener.js ***!
-  \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
 
 var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
@@ -80,74 +46,160 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var Timeout_1 = __importDefault(__webpack_require__(/*! ../write/Timeout */ "./resources/js/write/Timeout.js"));
+var ElementUtils_1 = __webpack_require__(/*! ../../../utils/ElementUtils */ "./resources/js/utils/ElementUtils.js");
 
-var clickCount = 0;
-var timeout = new Timeout_1["default"]();
+var AboutMeComponents_1 = __importDefault(__webpack_require__(/*! ./AboutMeComponents */ "./resources/js/ui/renee/edit-aboutme/AboutMeComponents.js"));
 
-function onMultiClick(element, requiredClicks, callback) {
-  element.addEventListener('click', function (ev) {
-    onEveryClick(requiredClicks, callback);
-  });
-}
+var AboutMeImageComponent =
+/** @class */
+function (_super) {
+  __extends(AboutMeImageComponent, _super);
 
-exports.onMultiClick = onMultiClick;
-
-function onEveryClick(requiredClicks, callback) {
-  clickCount++;
-
-  if (clickCount >= requiredClicks) {
-    callback();
-    resetClickCount();
+  function AboutMeImageComponent() {
+    return _super.call(this) || this;
   }
 
-  if (timeout.isSet()) timeout.resetTimeOut();else timeout.setTimeOut(500, resetClickCount);
-}
+  AboutMeImageComponent.prototype.enterEditingState = function () {
+    _super.prototype.enterEditingState.call(this);
 
-function resetClickCount() {
-  clickCount = 0;
-}
+    this.openFileExplorer();
+  };
 
-/***/ }),
+  AboutMeImageComponent.prototype.openFileExplorer = function () {
+    this.hiddenImageInput.el.click();
+  };
 
-/***/ "./resources/js/write/Timeout.js":
-/*!***************************************!*\
-  !*** ./resources/js/write/Timeout.js ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+  AboutMeImageComponent.prototype.setupListeners = function () {
+    var _this = this;
 
-"use strict";
+    _super.prototype.setupListeners.call(this);
+
+    this.contentElement.on('keydown', function (e) {
+      //@ts-ignore
+      if (e.keyCode === 13) {
+        _this.saveButton.el.click();
+
+        return false;
+      } //@ts-ignore
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+      if (e.keyCode === 27) {
+        _this.cancelButton.el.click();
+      }
+    });
+    this.hiddenImageInput.on('change', function (ev) {
+      if (_this.imageSelected()) {
+        _this.content = _this.hiddenImageInput.el.files[0];
 
-var Timeout =
+        _this.previewImage();
+      }
+    });
+  };
+
+  AboutMeImageComponent.prototype.imageSelected = function () {
+    return !!(this.hiddenImageInput.el.files && this.hiddenImageInput.el.files[0]);
+  };
+
+  AboutMeImageComponent.prototype.previewImage = function () {
+    var _this = this;
+
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+      return _this.setContent(e.target.result);
+    };
+
+    reader.readAsDataURL(this.hiddenImageInput.el.files[0]);
+  };
+
+  AboutMeImageComponent.prototype.getContent = function () {
+    return this.contentElement.el.src;
+  };
+
+  AboutMeImageComponent.prototype.setContent = function (content) {
+    this.contentElement.el.src = content;
+  };
+
+  return AboutMeImageComponent;
+}(AboutMeComponents_1["default"]);
+
+exports["default"] = AboutMeImageComponent;
+
+var AboutMeSideImage =
 /** @class */
-function () {
-  function Timeout() {}
+function (_super) {
+  __extends(AboutMeSideImage, _super);
 
-  Timeout.prototype.setTimeOut = function (delay, action) {
-    this.delay = delay;
-    this.action = action;
-    this.timeoutID = setTimeout(this.action, this.delay);
+  function AboutMeSideImage() {
+    return _super.call(this) || this;
+  }
+
+  AboutMeSideImage.getInstance = function () {
+    if (this.INSTANCE == undefined) {
+      this.INSTANCE = new AboutMeSideImage();
+    }
+
+    return this.INSTANCE;
   };
 
-  Timeout.prototype.resetTimeOut = function () {
-    clearTimeout(this.timeoutID);
-    this.timeoutID = setTimeout(this.action, this.delay);
+  AboutMeSideImage.prototype.initElements = function () {
+    this.editButton = new ElementUtils_1.El(document.getElementById('about-me-side-image-edit'));
+    this.contentElement = new ElementUtils_1.El(document.getElementById('about-me-side-image'));
+    this.saveAndCancelContainer = new ElementUtils_1.El(document.getElementById('save-and-cancel-about-me-side-image-buttons'));
+    this.saveButton = new ElementUtils_1.El(document.getElementById('save-about-me-side-image'));
+    this.cancelButton = new ElementUtils_1.El(document.getElementById('cancel-about-me-side-image'));
+    this.loadIndicator = new ElementUtils_1.El(document.getElementById('loading-about-me-side-image'));
+    this.hiddenImageInput = new ElementUtils_1.El(document.getElementById('about-me-side-image-hidden-input'));
   };
 
-  Timeout.prototype.isSet = function () {
-    return this.timeoutID !== undefined;
+  AboutMeSideImage.prototype.getContentToSave = function () {
+    var formData = new FormData();
+    formData.append('about_me_side_image_file', this.content, this.content.name);
+    return formData;
   };
 
-  return Timeout;
-}();
+  return AboutMeSideImage;
+}(AboutMeImageComponent);
 
-exports["default"] = Timeout;
+var aboutMeSideImage = AboutMeSideImage.getInstance();
+
+var AboutMeImage =
+/** @class */
+function (_super) {
+  __extends(AboutMeImage, _super);
+
+  function AboutMeImage() {
+    return _super.call(this) || this;
+  }
+
+  AboutMeImage.getInstance = function () {
+    if (this.INSTANCE == undefined) {
+      this.INSTANCE = new AboutMeImage();
+    }
+
+    return this.INSTANCE;
+  };
+
+  AboutMeImage.prototype.initElements = function () {
+    this.editButton = new ElementUtils_1.El(document.getElementById('about-me-image-edit'));
+    this.contentElement = new ElementUtils_1.El(document.getElementById('about-me-image'));
+    this.saveAndCancelContainer = new ElementUtils_1.El(document.getElementById('save-and-cancel-about-me-image-buttons'));
+    this.saveButton = new ElementUtils_1.El(document.getElementById('save-about-me-image'));
+    this.cancelButton = new ElementUtils_1.El(document.getElementById('cancel-about-me-image'));
+    this.loadIndicator = new ElementUtils_1.El(document.getElementById('loading-about-me-image'));
+    this.hiddenImageInput = new ElementUtils_1.El(document.getElementById('about-me-image-hidden-input'));
+  };
+
+  AboutMeImage.prototype.getContentToSave = function () {
+    var formData = new FormData();
+    formData.append('about_me_image_file', this.content, this.content.name);
+    return formData;
+  };
+
+  return AboutMeImage;
+}(AboutMeImageComponent);
+
+var aboutMeImage = AboutMeImage.getInstance();
 
 /***/ })
 

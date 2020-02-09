@@ -37204,20 +37204,22 @@ if (document.getElementById('write-page')) {
     }
   });
 } else if (document.getElementById('blogs-page')) {
-  Promise.all(/*! import() */[__webpack_require__.e(3), __webpack_require__.e(6), __webpack_require__.e(2), __webpack_require__.e(16)]).then(__webpack_require__.bind(null, /*! ./blogs/blogs */ "./resources/js/blogs/blogs.js"));
+  Promise.all(/*! import() */[__webpack_require__.e(3), __webpack_require__.e(6), __webpack_require__.e(2), __webpack_require__.e(17)]).then(__webpack_require__.bind(null, /*! ./blogs/blogs */ "./resources/js/blogs/blogs.js"));
 } else if (document.getElementById('index-page')) {
   Promise.all(/*! import() */[__webpack_require__.e(2), __webpack_require__.e(8)]).then(__webpack_require__.t.bind(null, /*! ./ui/visitors/indexpage/IndexPage */ "./resources/js/ui/visitors/indexpage/IndexPage.js", 7)).then(function (module) {
     var IndexPage = module["default"];
     new IndexPage();
   });
 } else if (document.getElementById('categories-page')) {
-  __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! ./ui/visitors/categoriespage/categoriesPage */ "./resources/js/ui/visitors/categoriespage/categoriesPage.js"));
+  __webpack_require__.e(/*! import() */ 13).then(__webpack_require__.bind(null, /*! ./ui/visitors/categoriespage/categoriesPage */ "./resources/js/ui/visitors/categoriespage/categoriesPage.js"));
 } else if (document.getElementById('contact-page')) {
   __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.t.bind(null, /*! ./ui/visitors/contactpage/contact */ "./resources/js/ui/visitors/contactpage/contact.js", 7));
+} else if (document.getElementById('instagram-auth-page')) {
+  __webpack_require__.e(/*! import() */ 20).then(__webpack_require__.t.bind(null, /*! ./ui/renee/instagram-auth-page/InstagramAuthPage */ "./resources/js/ui/renee/instagram-auth-page/InstagramAuthPage.js", 7));
 }
 
 if (document.querySelector('.like-blog')) {
-  Promise.all(/*! import() */[__webpack_require__.e(2), __webpack_require__.e(11)]).then(__webpack_require__.t.bind(null, /*! ./ui/visitors/like/LikeView */ "./resources/js/ui/visitors/like/LikeView.js", 7)).then(function (module) {
+  Promise.all(/*! import() */[__webpack_require__.e(2), __webpack_require__.e(12)]).then(__webpack_require__.t.bind(null, /*! ./ui/visitors/like/LikeView */ "./resources/js/ui/visitors/like/LikeView.js", 7)).then(function (module) {
     module.setupLikeAnchors();
     module.colorFillLikedIconForLikedBlogs();
   });
@@ -37232,7 +37234,7 @@ if (document.querySelector('.share-blog')) {
 }
 
 if (document.getElementById('logout')) {
-  __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.t.bind(null, /*! ./utils/logout */ "./resources/js/utils/logout.js", 7)).then(function (module) {
+  __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.t.bind(null, /*! ./utils/logout */ "./resources/js/utils/logout.js", 7)).then(function (module) {
     document.getElementById('logout').addEventListener('click', function (ev) {
       module.logout();
     });
@@ -37240,18 +37242,18 @@ if (document.getElementById('logout')) {
 }
 
 if (document.getElementById('renee')) {
-  Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(13)]).then(__webpack_require__.t.bind(null, /*! ./ui/renee/edit-aboutme/editAboutMeSideName */ "./resources/js/ui/renee/edit-aboutme/editAboutMeSideName.js", 7));
-  Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(15)]).then(__webpack_require__.t.bind(null, /*! ./ui/renee/edit-aboutme/editaboutmeside */ "./resources/js/ui/renee/edit-aboutme/editaboutmeside.js", 7));
-  Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(14)]).then(__webpack_require__.t.bind(null, /*! ./ui/renee/edit-aboutme/editAboutMeTitle */ "./resources/js/ui/renee/edit-aboutme/editAboutMeTitle.js", 7));
+  Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(14)]).then(__webpack_require__.t.bind(null, /*! ./ui/renee/edit-aboutme/editAboutMeSideName */ "./resources/js/ui/renee/edit-aboutme/editAboutMeSideName.js", 7));
+  Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(16)]).then(__webpack_require__.t.bind(null, /*! ./ui/renee/edit-aboutme/editaboutmeside */ "./resources/js/ui/renee/edit-aboutme/editaboutmeside.js", 7));
+  Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(15)]).then(__webpack_require__.t.bind(null, /*! ./ui/renee/edit-aboutme/editAboutMeTitle */ "./resources/js/ui/renee/edit-aboutme/editAboutMeTitle.js", 7));
 
   if (document.getElementById('about-me-page')) {
-    Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(18)]).then(__webpack_require__.t.bind(null, /*! ./ui/renee/edit-aboutme/AboutMeImage */ "./resources/js/ui/renee/edit-aboutme/AboutMeImage.js", 7));
-    Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(17)]).then(__webpack_require__.t.bind(null, /*! ./ui/renee/edit-aboutme/AboutMeArticle */ "./resources/js/ui/renee/edit-aboutme/AboutMeArticle.js", 7));
+    Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(19)]).then(__webpack_require__.t.bind(null, /*! ./ui/renee/edit-aboutme/AboutMeImage */ "./resources/js/ui/renee/edit-aboutme/AboutMeImage.js", 7));
+    Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(18)]).then(__webpack_require__.t.bind(null, /*! ./ui/renee/edit-aboutme/AboutMeArticle */ "./resources/js/ui/renee/edit-aboutme/AboutMeArticle.js", 7));
   }
 }
 
 if (document.getElementById('div')) {
-  __webpack_require__.e(/*! import() */ 19).then(__webpack_require__.t.bind(null, /*! ./ui/renee/AccessBackend */ "./resources/js/ui/renee/AccessBackend.js", 7));
+  __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.t.bind(null, /*! ./ui/renee/AccessBackend */ "./resources/js/ui/renee/AccessBackend.js", 7));
 }
 
 /***/ }),

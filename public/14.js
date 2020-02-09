@@ -174,10 +174,10 @@ exports.AboutMeTextComponent = AboutMeTextComponent;
 
 /***/ }),
 
-/***/ "./resources/js/ui/renee/edit-aboutme/editAboutMeTitle.js":
-/*!****************************************************************!*\
-  !*** ./resources/js/ui/renee/edit-aboutme/editAboutMeTitle.js ***!
-  \****************************************************************/
+/***/ "./resources/js/ui/renee/edit-aboutme/editAboutMeSideName.js":
+/*!*******************************************************************!*\
+  !*** ./resources/js/ui/renee/edit-aboutme/editAboutMeSideName.js ***!
+  \*******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -218,34 +218,34 @@ var ElementUtils_1 = __webpack_require__(/*! ../../../utils/ElementUtils */ "./r
 
 var AboutMeSideText_1 = __webpack_require__(/*! ./AboutMeSideText */ "./resources/js/ui/renee/edit-aboutme/AboutMeSideText.js");
 
-var AboutMeTitle =
+var AboutMeSideName =
 /** @class */
 function (_super) {
-  __extends(AboutMeTitle, _super);
+  __extends(AboutMeSideName, _super);
 
-  function AboutMeTitle() {
+  function AboutMeSideName() {
     return _super.call(this) || this;
   }
 
-  AboutMeTitle.prototype.initElements = function () {
-    this.editButton = new ElementUtils_1.El(document.getElementById('about-me-title-edit'));
-    this.contentElement = new ElementUtils_1.El(document.getElementById('about-me-title'));
-    this.saveAndCancelContainer = new ElementUtils_1.El(document.getElementById('save-and-cancel-about-me-title-buttons'));
-    this.saveButton = new ElementUtils_1.El(document.getElementById('save-about-me-title'));
-    this.cancelButton = new ElementUtils_1.El(document.getElementById('cancel-about-me-title'));
-    this.loadIndicator = new ElementUtils_1.El(document.getElementById('loading-about-me-title'));
+  AboutMeSideName.prototype.initElements = function () {
+    this.editButton = new ElementUtils_1.El(document.getElementById('about-me-side-name-edit'));
+    this.contentElement = new ElementUtils_1.El(document.getElementById('about-me-side-name'));
+    this.saveAndCancelContainer = new ElementUtils_1.El(document.getElementById('save-and-cancel-about-me-side-name-buttons'));
+    this.saveButton = new ElementUtils_1.El(document.getElementById('save-about-me-side-name'));
+    this.cancelButton = new ElementUtils_1.El(document.getElementById('cancel-about-me-side-name'));
+    this.loadIndicator = new ElementUtils_1.El(document.getElementById('loading-about-me-side-name'));
   };
 
-  AboutMeTitle.prototype.getContentToSave = function () {
+  AboutMeSideName.prototype.getContentToSave = function () {
     return {
-      about_me_title: this.getContent()
+      about_me_side_name: this.getContent()
     };
   };
 
-  return AboutMeTitle;
+  return AboutMeSideName;
 }(AboutMeSideText_1.AboutMeTextComponent);
 
-var aboutMeSideName = new AboutMeTitle();
+var aboutMeSideName = new AboutMeSideName();
 
 /***/ })
 
