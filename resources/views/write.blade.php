@@ -7,8 +7,10 @@
 @section('content')
     <!-- MUST be here to indicate page -> (`write-page`) -->
     <div id="write-page" class="d-none"></div>
+    @component('renee.components.header')
     <div class="top-bar row py-3 justify-content-between sticky-top">
-        <div class="col ">
+        @slot('left_side')
+        <div class="ml-3">
             <span id="draft">
                 @isset($blog)
                     {{ ucfirst($blog->status) }}
@@ -19,23 +21,21 @@
             </span>
             <span id="save-status" class="ml-3"></span>
         </div>
-        <div class="col d-flex justify-content-end">
+        @endslot
+
+        @slot('right_side')
+        <div class="d-flex">
             <button id="publish-btn" class="publish-btn mdc-button mdc-button--raised" disabled>
                 <div class="mdc-button__ripple"></div>
                 <span class="mdc-button__label">Publish</span>
             </button>
 
-            <a href="#" role="button" id="dropdownMenuLink" class="ml-3" data-toggle="dropdown" aria-haspopup="true"
-               aria-expanded="false">
-                <i class="material-icons" style="color: #2b2a2a">more_vert</i>
-            </a>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="{{ url('/only/juli/blogs') }}">Your blogs</a>
-                <a class="dropdown-item active" href="{{ url('/only/juli/write') }}">New Blog</a>
-            </div>
+            @component('renee.components.dropdown-menu')
+            @endcomponent
         </div>
+        @endslot
     </div>
-
+    @endcomponent
     <!-- Writing Area -->
     <div class="row justify-content-center mt-lg-0 mt-4">
         <div class="col-lg-8 col-11">

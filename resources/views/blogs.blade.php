@@ -7,22 +7,19 @@
 @section('content')
     <!-- MUST be here to show the page -> `blogs-page` -->
     <div id="blogs-page"></div>
-    <div class="top-bar row py-3 justify-content-between sticky-top">
+    @component('renee.components.header')
+        @slot('left_side')
         <div>
             <a href="#" id="draft-blogs-tab-header" class="mx-2 tab-header">Draft</a>
             <a href="#" id="published-blogs-tab-header" class="mx-2 tab-header">Published</a>
         </div>
+        @endslot
 
-        <a href="#" role="button" id="dropdownMenuLink" class="ml-3" data-toggle="dropdown" aria-haspopup="true"
-           aria-expanded="false">
-            <i class="material-icons" style="color: #2b2a2a">more_vert</i>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item active" href="{{ url('/only/juli/blogs') }}">Your blogs</a>
-            <a class="dropdown-item" href="{{ url('/only/juli/write') }}">New Blog</a>
-            <a class="dropdown-item" href="#" id="logout">Logout</a>
-        </div>
-    </div>
+        @slot('right_side')
+            @component('renee.components.dropdown-menu')
+            @endcomponent
+        @endslot
+    @endcomponent
 
     <div id="blogs-container" class="mt-3 row"></div>
 
