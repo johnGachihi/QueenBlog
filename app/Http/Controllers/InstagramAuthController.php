@@ -6,6 +6,7 @@ use App\Http\Client\InstagramAuthClient;
 use App\InstagramAccessToken;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class InstagramAuthController extends Controller
 {
@@ -38,6 +39,7 @@ class InstagramAuthController extends Controller
             return view('instagram-auth', ['message' => 'Authentication successful']);
         } catch (\Exception $e) {
             // Failed to get short-lived token
+            Log::error($e->getMessage());
             return view('instagram-auth', ["message" => "Authentication error. Please try again"]);
         }
     }
