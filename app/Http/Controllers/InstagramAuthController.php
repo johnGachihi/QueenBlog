@@ -31,7 +31,6 @@ class InstagramAuthController extends Controller
     }
 
     private function handleSuccessfulAuth(string $code) {
-//        $shortLivedToken = '';
         try {
             $shortLivedToken = $this->instagramAuthClient->getShortLivedAccessToken($code);
             $longLivedToken = $this->instagramAuthClient->getLongLivedAccessToken($shortLivedToken);
@@ -39,7 +38,6 @@ class InstagramAuthController extends Controller
             return view('instagram-auth', ['message' => 'Authentication successful']);
         } catch (\Exception $e) {
             // Failed to get short-lived token
-            echo 'Failed getting access token';
             return view('instagram-auth', ["message" => "Authentication error. Please try again"]);
         }
     }
