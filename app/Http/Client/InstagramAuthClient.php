@@ -19,7 +19,7 @@ class InstagramAuthClient
 
     public function getShortLivedAccessToken(string $code): string
     {
-        Log::error("getShortLivedAccessToken: " . $code);
+        Log::error("getShortLivedAccessToken: " . $code);      // TODO: remove
         $response = $this->client->request('POST', 'https://api.instagram.com/oauth/access_token',
             [
                 'json' => [
@@ -33,6 +33,7 @@ class InstagramAuthClient
 
 //        print_r((array)json_decode($response->getBody()));
         $responseBody = ((array)json_decode($response->getBody()));
+        Log::error(json_encode($responseBody));      // TODO: remove
 
         if (isset($responseBody['access_token'])) { // Request successful
             return ($responseBody['access_token']);
@@ -45,13 +46,14 @@ class InstagramAuthClient
 
     public function getLongLivedAccessToken(string $shortLivedAccessToken)
     {
-        Log::error("getShortLivedAccessToken: " . $shortLivedAccessToken);
+        Log::error("getShortLivedAccessToken: " . $shortLivedAccessToken);      // TODO: remove
         $response = $this->client->request('GET', 'https://graph.instagram.com/access_token' .
             '?grant_type=ig_exchange_token' .
             '&client_secret=' . env('INSTAGRAM_APP_SECRET') .
             '&access_token=' . $shortLivedAccessToken);
 
         $responseBody = ((array)json_decode($response->getBody()));
+        Log::error(json_encode($responseBody));      // TODO: remove
 
         if (isset($responseBody['access_token'])) {
             return $responseBody['access_token'];
