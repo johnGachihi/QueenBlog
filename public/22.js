@@ -28,19 +28,23 @@ var instagramMediaContainerEl = document.getElementById('instagram');
 var instagramService = new InstagramService_1["default"](RequestOptions_1.RequestOptionsValues.get());
 instagramService.getMedia().then(function (res) {
   if (res.data !== undefined) {
-    console.log(res.data.entries());
-
-    for (var _i = 0, _a = res.data.entries(); _i < _a.length; _i++) {
-      var _b = _a[_i],
-          index = _b[0],
-          media = _b[1];
+    console.log(res.data);
+    res.data.forEach(function (media, index) {
       console.log(media);
       var image = document.createElement('img');
       image.src = media.media_url;
       image.alt = 'Instagram image';
       instagramMediaContainerEl.appendChild(image);
-      if (index >= 10) break;
-    }
+      if (index >= 10) throw 'finished';
+    });
+    /*for (let [index, media] of res.data.entries()) {
+        console.log(media);
+        const image = document.createElement('img');
+        image.src = media.media_url;
+        image.alt = 'Instagram image';
+        instagramMediaContainerEl.appendChild(image);
+         if (index >=10) break;
+    }*/
   } else if (res.error !== undefined) {
     instagramMediaContainerEl.classList.add('d-none');
     console.log(res.error);
