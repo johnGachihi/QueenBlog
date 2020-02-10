@@ -8,6 +8,7 @@ instagramService.getMedia().then(res => {
     if (res.data !== undefined) {
         console.log(res.data.entries());
         for (let [index, media] of res.data.entries()) {
+            console.log(media);
             const image = document.createElement('img');
             image.src = media.media_url;
             image.alt = 'Instagram image';
