@@ -50,3 +50,7 @@ a.disabled {
     height: 100%;
     object-fit: cover;
 }
+
+#instagram img {
+    width: 180px;
+}
