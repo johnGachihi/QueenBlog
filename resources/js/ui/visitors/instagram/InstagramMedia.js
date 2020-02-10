@@ -10,6 +10,13 @@ var instagramService = new InstagramService_1.default(RequestOptions_1.RequestOp
 instagramService.getMedia().then(function (res) {
     if (res.data !== undefined) {
         console.log(res.data);
+        for (var _i = 0, _a = res.data; _i < _a.length; _i++) {
+            var media = _a[_i];
+            var image = document.createElement('img');
+            image.src = media.media_url;
+            image.alt = 'Instagram image';
+            instagramMediaContainerEl.appendChild(image);
+        }
     }
     else if (res.error !== undefined) {
         instagramMediaContainerEl.classList.add('d-none');

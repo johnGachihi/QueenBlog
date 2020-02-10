@@ -6,7 +6,13 @@ const instagramService = new InstagramService(RequestOptionsValues.get());
 
 instagramService.getMedia().then(res => {
     if (res.data !== undefined) {
-        console.log(res.data)
+        console.log(res.data);
+        for (let media of res.data) {
+            const image = document.createElement('img');
+            image.src = media.media_url;
+            image.alt = 'Instagram image';
+            instagramMediaContainerEl.appendChild(image);
+        }
     } else if (res.error !== undefined) {
         instagramMediaContainerEl.classList.add('d-none');
         console.log(res.error);
