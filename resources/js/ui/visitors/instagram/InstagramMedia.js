@@ -9,9 +9,10 @@ var instagramMediaContainerEl = document.getElementById('instagram');
 var instagramService = new InstagramService_1.default(RequestOptions_1.RequestOptionsValues.get());
 instagramService.getMedia().then(function (res) {
     if (res.data !== undefined) {
-        console.log(res.data);
+        console.log(res.data.entries());
         for (var _i = 0, _a = res.data.entries(); _i < _a.length; _i++) {
             var _b = _a[_i], index = _b[0], media = _b[1];
+            console.log(media);
             var image = document.createElement('img');
             image.src = media.media_url;
             image.alt = 'Instagram image';
