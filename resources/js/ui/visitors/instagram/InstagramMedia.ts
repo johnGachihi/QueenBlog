@@ -6,7 +6,7 @@ const instagramService = new InstagramService(RequestOptionsValues.get());
 
 instagramService.getMedia().then(res => {
     if (res.data !== undefined) {
-        console.log(res.data);
+        console.log(res.data.entries());
         for (let [index, media] of res.data.entries()) {
             const image = document.createElement('img');
             image.src = media.media_url;
