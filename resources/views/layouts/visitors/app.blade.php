@@ -315,7 +315,7 @@
         </div><!-- row -->
     </div><!-- container -->
 
-    <ul class="instagram"></ul>
+    <ul id="instagram"></ul>
 </section><!-- section -->
 
 <footer>
