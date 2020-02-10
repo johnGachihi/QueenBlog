@@ -51,6 +51,13 @@ a.disabled {
     object-fit: cover;
 }
 
+#instagram {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+}
+
 #instagram img {
     width: 180px;
+    max-height: 180px;
 }

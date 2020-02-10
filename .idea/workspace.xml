@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0ba4312e-56ad-419e-b4b7-cc2a10cfd510" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/ui/visitors/instagram/InstagramMedia.ts" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/visitors/instagram/InstagramMedia.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -313,7 +312,7 @@
       <workItem from="1580836075514" duration="10515000" />
       <workItem from="1580883986171" duration="27110000" />
       <workItem from="1580972275995" duration="41967000" />
-      <workItem from="1581228982230" duration="58807000" />
+      <workItem from="1581228982230" duration="59540000" />
     </task>
     <servers />
   </component>
