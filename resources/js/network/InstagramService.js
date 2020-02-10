@@ -81,6 +81,28 @@ var InstagramService = /** @class */ (function (_super) {
             });
         });
     };
+    InstagramService.prototype.getMedia = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a, csrfToken, baseUrl, response;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = this.requestOptions, csrfToken = _a.csrfToken, baseUrl = _a.baseUrl;
+                        return [4 /*yield*/, fetch(baseUrl + "/instagram-media", {
+                                method: HttpMethod_1.HttpMethod.GET,
+                                headers: {
+                                    'Accept': 'application/json',
+                                    'X-CSRF-TOKEN': csrfToken
+                                }
+                            })];
+                    case 1:
+                        response = _b.sent();
+                        return [4 /*yield*/, response.json()];
+                    case 2: return [2 /*return*/, _b.sent()];
+                }
+            });
+        });
+    };
     return InstagramService;
 }(Service_1.default));
 exports.default = InstagramService;
