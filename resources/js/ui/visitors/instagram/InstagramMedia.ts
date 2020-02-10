@@ -7,7 +7,7 @@ const instagramService = new InstagramService(RequestOptionsValues.get());
 instagramService.getMedia().then(res => {
     if (res.data !== undefined) {
         console.log(res.data);
-        res.data.forEach((media, index) => {
+        /*res.data.forEach((media, index) => {
             console.log(media);
             const image = document.createElement('img');
             image.src = media.media_url;
@@ -15,8 +15,9 @@ instagramService.getMedia().then(res => {
             instagramMediaContainerEl.appendChild(image);
 
             if (index >=10) throw 'finished'
-        });
-        /*for (let [index, media] of res.data.entries()) {
+        });*/
+
+        for (const [index, media] of res.data.entries()) {
             console.log(media);
             const image = document.createElement('img');
             image.src = media.media_url;
@@ -24,7 +25,7 @@ instagramService.getMedia().then(res => {
             instagramMediaContainerEl.appendChild(image);
 
             if (index >=10) break;
-        }*/
+        }
     } else if (res.error !== undefined) {
         instagramMediaContainerEl.classList.add('d-none');
         console.log(res.error);
