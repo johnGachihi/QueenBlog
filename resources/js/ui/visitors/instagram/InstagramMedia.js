@@ -10,12 +10,14 @@ var instagramService = new InstagramService_1.default(RequestOptions_1.RequestOp
 instagramService.getMedia().then(function (res) {
     if (res.data !== undefined) {
         console.log(res.data);
-        for (var _i = 0, _a = res.data; _i < _a.length; _i++) {
-            var media = _a[_i];
+        for (var _i = 0, _a = res.data.entries(); _i < _a.length; _i++) {
+            var _b = _a[_i], index = _b[0], media = _b[1];
             var image = document.createElement('img');
             image.src = media.media_url;
             image.alt = 'Instagram image';
             instagramMediaContainerEl.appendChild(image);
+            if (index >= 10)
+                break;
         }
     }
     else if (res.error !== undefined) {
