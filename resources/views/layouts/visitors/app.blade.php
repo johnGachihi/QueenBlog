@@ -305,7 +305,6 @@
     </div><!-- container -->
 </section><!-- section -->
 
-{{--
 <section class="footer-instagram-area">
 
     <div class="container">
@@ -316,17 +315,8 @@
         </div><!-- row -->
     </div><!-- container -->
 
-    <ul class="instagram">
-        <li><a href="#"><img src="images/instragram-1-300x400.jpg" alt="Instagram Image"></a></li>
-        <li><a href="#"><img src="images/instragram-2-300x400.jpg" alt="Instagram Image"></a></li>
-        <li><a href="#"><img src="images/instragram-3-300x400.jpg" alt="Instagram Image"></a></li>
-        <li><a href="#"><img src="images/instragram-4-300x400.jpg" alt="Instagram Image"></a></li>
-        <li><a href="#"><img src="images/instragram-5-300x400.jpg" alt="Instagram Image"></a></li>
-        <li><a href="#"><img src="images/instragram-6-300x400.jpg" alt="Instagram Image"></a></li>
-        <li><a href="#"><img src="images/instragram-7-300x400.jpg" alt="Instagram Image"></a></li>
-    </ul>
+    <ul class="instagram"></ul>
 </section><!-- section -->
---}}
 
 <footer>
     <div class="container">

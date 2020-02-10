@@ -20,4 +20,18 @@ export default class InstagramService extends Service<any>{
 
         return await response.json();
     }
+
+    async getMedia() {
+        const {csrfToken, baseUrl} = this.requestOptions;
+
+        const response = await fetch(`${baseUrl}/instagram-media`, {
+            method: HttpMethod.GET,
+            headers: {
+                'Accept': 'application/json',   //To tell Laravel this is an ajax call
+                'X-CSRF-TOKEN': csrfToken
+            }
+        });
+
+        return await response.json();
+    }
 }

@@ -77,7 +77,8 @@ class InstagramProfileMediaControllerTest extends TestCase
         $response->assertJson(['username' => 'waithaka859']);
     }
 
-    public function test_profile_whenRequestFails() {
+    public function test_profile_whenRequestFails()
+    {
         $this->mockHandler->append(new Response(400));
 
         // TODO: use a factory instead
@@ -92,7 +93,8 @@ class InstagramProfileMediaControllerTest extends TestCase
             ->assertJson(['error' => 'true']);
     }
 
-    public function test_profile_whenTheresNoToken() {
+    public function test_profile_whenTheresNoToken()
+    {
         $this->mockHandler->append(new Response(400));
 
 
@@ -101,4 +103,78 @@ class InstagramProfileMediaControllerTest extends TestCase
         $response->assertStatus(400)
             ->assertJson(['error' => 'true']);
     }
+
+    public function test_media_request()
+    {
+        $this->mockHandler->append(new Response(200));
+
+        // TODO: use a factory instead
+        $instagram_access_token = new InstagramAccessToken();
+        $instagram_access_token->long_lived_access_token = 'long-lived-access-token';
+        $instagram_access_token->save();
+
+        $this->actingAs($this->user)->json('GET', 'instagram-media');
+
+        $request = $this->requestsContainer[0]['request'];
+
+        $this->assertEquals(
+            'https://graph.instagram.com/me/media?fields=id,media_url&access_token='
+            . $instagram_access_token->long_lived_access_token,
+            $request->getUri()
+        );
+
+        $this->assertEquals('GET', $request->getMethod());
+    }
+
+    public function test_media_whenRequestSuccessful()
+    {
+        $this->mockHandler->append(new Response(200, [], $this->sample_media_response()));
+
+        // TODO: use a factory instead
+        $instagram_access_token = new InstagramAccessToken();
+        $instagram_access_token->long_lived_access_token = 'long-lived-access-token';
+        $instagram_access_token->save();
+
+        $response = $this->actingAs($this->user)->json('GET', 'instagram-media');
+
+        $response->assertStatus(200)
+            ->assertJsonFragment([
+                'data' => [
+                    ['id' => '17871050992593770', 'media_url' => 'abc'],
+                    ['id' => '17888821831468771', 'media_url' => 'abc2']
+                ]
+            ]);
+    }
+
+    private function sample_media_response()
+    {
+        return '{"data": [{"id": "17871050992593770", "media_url": "abc"},{"id": "17888821831468771", "media_url": "abc2"}],"paging": {"cursors": {"before": "abc","after": "abc"}}}';
+    }
+
+    public function test_media_whenRequestFails()
+    {
+        $this->mockHandler->append(new Response(400));
+
+        // TODO: use a factory instead
+        $instagram_access_token = new InstagramAccessToken();
+        $instagram_access_token->long_lived_access_token = 'long-lived-access-token';
+        $instagram_access_token->save();
+
+        $response = $this->actingAs($this->user)->json('GET', 'instagram-media');
+
+        $response->assertStatus(400)
+            ->assertJson(['error' => 'true']);
+    }
+
+    public function test_media_whenTheresNoToken()
+    {
+        $this->mockHandler->append(new Response(400));
+
+
+        $response = $this->actingAs($this->user)->json('GET', 'instagram-media');
+
+        $response->assertStatus(400)
+            ->assertJson(['error' => 'true']);
+    }
+
 }

@@ -99,6 +99,7 @@ Route::get('/contact', function () {
 
 Route::post('contact', 'ContactMessageController@arbitrateMessage');
 
+Route::get('instagram-media', 'InstagramProfileMediaController@media');
 
 // Renee
 Route::middleware(['auth'])->group(function () {

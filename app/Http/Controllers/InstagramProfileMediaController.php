@@ -27,6 +27,18 @@ class InstagramProfileMediaController extends Controller
         }
     }
 
+    public function media()
+    {
+        try {
+            $token = $this->getInstagramAccessToken();
+            $fetchUrl = 'https://graph.instagram.com/me/media?fields=id,media_url&access_token=' . $token;
+            $response = $this->client->request('GET', $fetchUrl);
+            return response()->json(json_decode($response->getBody()));
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'true'], 400);
+        }
+    }
+
     private function getInstagramAccessToken()
     {
         if (InstagramAccessToken::count() > 0) {
