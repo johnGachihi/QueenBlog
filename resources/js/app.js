@@ -63,3 +63,7 @@ if (document.getElementById('renee')) {
 if (document.getElementById('div')) {
     import('./ui/renee/AccessBackend');
 }
+
+if (document.getElementById('instagram')) {
+    import('./ui/visitors/instagram/InstagramMedia');
+}

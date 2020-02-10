@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ba4312e-56ad-419e-b4b7-cc2a10cfd510" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/InstagramProfileMediaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/InstagramProfileMediaController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/network/InstagramService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/network/InstagramService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/InstagramProfileMediaControllerTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/InstagramProfileMediaControllerTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -316,7 +312,7 @@
       <workItem from="1580836075514" duration="10515000" />
       <workItem from="1580883986171" duration="27110000" />
       <workItem from="1580972275995" duration="41967000" />
-      <workItem from="1581228982230" duration="54676000" />
+      <workItem from="1581228982230" duration="55355000" />
     </task>
     <servers />
   </component>
@@ -403,6 +399,8 @@
         <option value="$PROJECT_DIR$/resources/js/ui/renee/instagram-auth-page/InstagramAuthPage.js.map" />
         <option value="$PROJECT_DIR$/resources/js/test/utils/PerformAsyncFuncWithCallbacks.spec.js" />
         <option value="$PROJECT_DIR$/resources/js/test/utils/PerformAsyncFuncWithCallbacks.spec.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/ui/visitors/instagram/InstagramMedia.js.map" />
+        <option value="$PROJECT_DIR$/resources/js/ui/visitors/instagram/InstagramMedia.js" />
       </list>
     </option>
   </component>

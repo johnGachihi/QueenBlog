@@ -37215,7 +37215,7 @@ if (document.getElementById('write-page')) {
 } else if (document.getElementById('contact-page')) {
   __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.t.bind(null, /*! ./ui/visitors/contactpage/contact */ "./resources/js/ui/visitors/contactpage/contact.js", 7));
 } else if (document.getElementById('instagram-auth-page')) {
-  __webpack_require__.e(/*! import() */ 20).then(__webpack_require__.t.bind(null, /*! ./ui/renee/instagram-auth-page/InstagramAuthPage */ "./resources/js/ui/renee/instagram-auth-page/InstagramAuthPage.js", 7));
+  Promise.all(/*! import() */[__webpack_require__.e(20), __webpack_require__.e(21)]).then(__webpack_require__.t.bind(null, /*! ./ui/renee/instagram-auth-page/InstagramAuthPage */ "./resources/js/ui/renee/instagram-auth-page/InstagramAuthPage.js", 7));
 }
 
 if (document.querySelector('.like-blog')) {
@@ -37254,6 +37254,10 @@ if (document.getElementById('renee')) {
 
 if (document.getElementById('div')) {
   __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.t.bind(null, /*! ./ui/renee/AccessBackend */ "./resources/js/ui/renee/AccessBackend.js", 7));
+}
+
+if (document.getElementById('instagram')) {
+  Promise.all(/*! import() */[__webpack_require__.e(20), __webpack_require__.e(22)]).then(__webpack_require__.t.bind(null, /*! ./ui/visitors/instagram/InstagramMedia */ "./resources/js/ui/visitors/instagram/InstagramMedia.js", 7));
 }
 
 /***/ }),
