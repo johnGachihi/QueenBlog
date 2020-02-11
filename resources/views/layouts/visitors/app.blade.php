@@ -315,7 +315,7 @@
         </div><!-- row -->
     </div><!-- container -->
 
-    <ul id="instagram"></ul>
+    <ul id="instagram" data-simplebar></ul>
 </section><!-- section -->
 
 <footer>

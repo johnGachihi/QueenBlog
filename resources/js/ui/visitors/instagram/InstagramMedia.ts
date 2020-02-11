@@ -1,3 +1,5 @@
+import 'simplebar';
+import 'simplebar/dist/simplebar.css';
 import InstagramService from "../../../network/InstagramService";
 import {RequestOptionsValues} from "../../../network/RequestOptions";
 
@@ -18,19 +20,7 @@ instagramService.getMedia().then(res => {
 
                 if (index >=10) throw 'finished'
             });
-        } catch (e) {
-
-        }
-/*
-        for (const [index, media] of res.data.entries()) {
-            console.log(media);
-            const image = document.createElement('img');
-            image.src = media.media_url;
-            image.alt = 'Instagram image';
-            instagramMediaContainerEl.appendChild(image);
-
-            if (index >=10) break;
-        }*/
+        } catch (e) { }
     } else if (res.error !== undefined) {
         instagramMediaContainerEl.classList.add('d-none');
         console.log(res.error);

@@ -1,877 +1,453 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[5],{
 
-/***/ "./resources/js/models/Blog.js":
-/*!*************************************!*\
-  !*** ./resources/js/models/Blog.js ***!
-  \*************************************/
+/***/ "./node_modules/lodash.throttle/index.js":
+/*!***********************************************!*\
+  !*** ./node_modules/lodash.throttle/index.js ***!
+  \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {/**
+ * lodash (Custom Build) <https://lodash.com/>
+ * Build: `lodash modularize exports="npm" -o ./`
+ * Copyright jQuery Foundation and other contributors <https://jquery.org/>
+ * Released under MIT license <https://lodash.com/license>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ */
 
+/** Used as the `TypeError` message for "Functions" methods. */
+var FUNC_ERROR_TEXT = 'Expected a function';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var BlogStatus;
+/** Used as references for various `Number` constants. */
+var NAN = 0 / 0;
 
-(function (BlogStatus) {
-  BlogStatus["DRAFT"] = "draft";
-  BlogStatus["PUBLISHED"] = "published";
-})(BlogStatus = exports.BlogStatus || (exports.BlogStatus = {}));
+/** `Object#toString` result references. */
+var symbolTag = '[object Symbol]';
 
-/***/ }),
+/** Used to match leading and trailing whitespace. */
+var reTrim = /^\s+|\s+$/g;
 
-/***/ "./resources/js/utils/constants.js":
-/*!*****************************************!*\
-  !*** ./resources/js/utils/constants.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/** Used to detect bad signed hexadecimal string values. */
+var reIsBadHex = /^[-+]0x[0-9a-f]+$/i;
 
-"use strict";
+/** Used to detect binary string values. */
+var reIsBinary = /^0b[01]+$/i;
 
+/** Used to detect octal string values. */
+var reIsOctal = /^0o[0-7]+$/i;
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.appUrl = document.querySelector('meta[name="base-url"]').getAttribute('content');
-exports.blogsPageRelativeURL = 'only/juli/blogs';
-exports.blogImagesRelativeUrl = 'storage/blog-main-images';
-exports.blogPostRelativeUrl = 'post';
+/** Built-in method references without a dependency on `root`. */
+var freeParseInt = parseInt;
 
-/***/ }),
+/** Detect free variable `global` from Node.js. */
+var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
 
-/***/ "./resources/js/write/PeriodicBlogContentSaver.js":
-/*!********************************************************!*\
-  !*** ./resources/js/write/PeriodicBlogContentSaver.js ***!
-  \********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/** Detect free variable `self`. */
+var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
 
-"use strict";
+/** Used as a reference to the global object. */
+var root = freeGlobal || freeSelf || Function('return this')();
 
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
 
-var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, generator) {
-  function adopt(value) {
-    return value instanceof P ? value : new P(function (resolve) {
-      resolve(value);
-    });
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var objectToString = objectProto.toString;
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeMax = Math.max,
+    nativeMin = Math.min;
+
+/**
+ * Gets the timestamp of the number of milliseconds that have elapsed since
+ * the Unix epoch (1 January 1970 00:00:00 UTC).
+ *
+ * @static
+ * @memberOf _
+ * @since 2.4.0
+ * @category Date
+ * @returns {number} Returns the timestamp.
+ * @example
+ *
+ * _.defer(function(stamp) {
+ *   console.log(_.now() - stamp);
+ * }, _.now());
+ * // => Logs the number of milliseconds it took for the deferred invocation.
+ */
+var now = function() {
+  return root.Date.now();
+};
+
+/**
+ * Creates a debounced function that delays invoking `func` until after `wait`
+ * milliseconds have elapsed since the last time the debounced function was
+ * invoked. The debounced function comes with a `cancel` method to cancel
+ * delayed `func` invocations and a `flush` method to immediately invoke them.
+ * Provide `options` to indicate whether `func` should be invoked on the
+ * leading and/or trailing edge of the `wait` timeout. The `func` is invoked
+ * with the last arguments provided to the debounced function. Subsequent
+ * calls to the debounced function return the result of the last `func`
+ * invocation.
+ *
+ * **Note:** If `leading` and `trailing` options are `true`, `func` is
+ * invoked on the trailing edge of the timeout only if the debounced function
+ * is invoked more than once during the `wait` timeout.
+ *
+ * If `wait` is `0` and `leading` is `false`, `func` invocation is deferred
+ * until to the next tick, similar to `setTimeout` with a timeout of `0`.
+ *
+ * See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
+ * for details over the differences between `_.debounce` and `_.throttle`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Function
+ * @param {Function} func The function to debounce.
+ * @param {number} [wait=0] The number of milliseconds to delay.
+ * @param {Object} [options={}] The options object.
+ * @param {boolean} [options.leading=false]
+ *  Specify invoking on the leading edge of the timeout.
+ * @param {number} [options.maxWait]
+ *  The maximum time `func` is allowed to be delayed before it's invoked.
+ * @param {boolean} [options.trailing=true]
+ *  Specify invoking on the trailing edge of the timeout.
+ * @returns {Function} Returns the new debounced function.
+ * @example
+ *
+ * // Avoid costly calculations while the window size is in flux.
+ * jQuery(window).on('resize', _.debounce(calculateLayout, 150));
+ *
+ * // Invoke `sendMail` when clicked, debouncing subsequent calls.
+ * jQuery(element).on('click', _.debounce(sendMail, 300, {
+ *   'leading': true,
+ *   'trailing': false
+ * }));
+ *
+ * // Ensure `batchLog` is invoked once after 1 second of debounced calls.
+ * var debounced = _.debounce(batchLog, 250, { 'maxWait': 1000 });
+ * var source = new EventSource('/stream');
+ * jQuery(source).on('message', debounced);
+ *
+ * // Cancel the trailing debounced invocation.
+ * jQuery(window).on('popstate', debounced.cancel);
+ */
+function debounce(func, wait, options) {
+  var lastArgs,
+      lastThis,
+      maxWait,
+      result,
+      timerId,
+      lastCallTime,
+      lastInvokeTime = 0,
+      leading = false,
+      maxing = false,
+      trailing = true;
+
+  if (typeof func != 'function') {
+    throw new TypeError(FUNC_ERROR_TEXT);
+  }
+  wait = toNumber(wait) || 0;
+  if (isObject(options)) {
+    leading = !!options.leading;
+    maxing = 'maxWait' in options;
+    maxWait = maxing ? nativeMax(toNumber(options.maxWait) || 0, wait) : maxWait;
+    trailing = 'trailing' in options ? !!options.trailing : trailing;
   }
 
-  return new (P || (P = Promise))(function (resolve, reject) {
-    function fulfilled(value) {
-      try {
-        step(generator.next(value));
-      } catch (e) {
-        reject(e);
+  function invokeFunc(time) {
+    var args = lastArgs,
+        thisArg = lastThis;
+
+    lastArgs = lastThis = undefined;
+    lastInvokeTime = time;
+    result = func.apply(thisArg, args);
+    return result;
+  }
+
+  function leadingEdge(time) {
+    // Reset any `maxWait` timer.
+    lastInvokeTime = time;
+    // Start the timer for the trailing edge.
+    timerId = setTimeout(timerExpired, wait);
+    // Invoke the leading edge.
+    return leading ? invokeFunc(time) : result;
+  }
+
+  function remainingWait(time) {
+    var timeSinceLastCall = time - lastCallTime,
+        timeSinceLastInvoke = time - lastInvokeTime,
+        result = wait - timeSinceLastCall;
+
+    return maxing ? nativeMin(result, maxWait - timeSinceLastInvoke) : result;
+  }
+
+  function shouldInvoke(time) {
+    var timeSinceLastCall = time - lastCallTime,
+        timeSinceLastInvoke = time - lastInvokeTime;
+
+    // Either this is the first call, activity has stopped and we're at the
+    // trailing edge, the system time has gone backwards and we're treating
+    // it as the trailing edge, or we've hit the `maxWait` limit.
+    return (lastCallTime === undefined || (timeSinceLastCall >= wait) ||
+      (timeSinceLastCall < 0) || (maxing && timeSinceLastInvoke >= maxWait));
+  }
+
+  function timerExpired() {
+    var time = now();
+    if (shouldInvoke(time)) {
+      return trailingEdge(time);
+    }
+    // Restart the timer.
+    timerId = setTimeout(timerExpired, remainingWait(time));
+  }
+
+  function trailingEdge(time) {
+    timerId = undefined;
+
+    // Only invoke if we have `lastArgs` which means `func` has been
+    // debounced at least once.
+    if (trailing && lastArgs) {
+      return invokeFunc(time);
+    }
+    lastArgs = lastThis = undefined;
+    return result;
+  }
+
+  function cancel() {
+    if (timerId !== undefined) {
+      clearTimeout(timerId);
+    }
+    lastInvokeTime = 0;
+    lastArgs = lastCallTime = lastThis = timerId = undefined;
+  }
+
+  function flush() {
+    return timerId === undefined ? result : trailingEdge(now());
+  }
+
+  function debounced() {
+    var time = now(),
+        isInvoking = shouldInvoke(time);
+
+    lastArgs = arguments;
+    lastThis = this;
+    lastCallTime = time;
+
+    if (isInvoking) {
+      if (timerId === undefined) {
+        return leadingEdge(lastCallTime);
+      }
+      if (maxing) {
+        // Handle invocations in a tight loop.
+        timerId = setTimeout(timerExpired, wait);
+        return invokeFunc(lastCallTime);
       }
     }
-
-    function rejected(value) {
-      try {
-        step(generator["throw"](value));
-      } catch (e) {
-        reject(e);
-      }
+    if (timerId === undefined) {
+      timerId = setTimeout(timerExpired, wait);
     }
+    return result;
+  }
+  debounced.cancel = cancel;
+  debounced.flush = flush;
+  return debounced;
+}
 
-    function step(result) {
-      result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
-    }
+/**
+ * Creates a throttled function that only invokes `func` at most once per
+ * every `wait` milliseconds. The throttled function comes with a `cancel`
+ * method to cancel delayed `func` invocations and a `flush` method to
+ * immediately invoke them. Provide `options` to indicate whether `func`
+ * should be invoked on the leading and/or trailing edge of the `wait`
+ * timeout. The `func` is invoked with the last arguments provided to the
+ * throttled function. Subsequent calls to the throttled function return the
+ * result of the last `func` invocation.
+ *
+ * **Note:** If `leading` and `trailing` options are `true`, `func` is
+ * invoked on the trailing edge of the timeout only if the throttled function
+ * is invoked more than once during the `wait` timeout.
+ *
+ * If `wait` is `0` and `leading` is `false`, `func` invocation is deferred
+ * until to the next tick, similar to `setTimeout` with a timeout of `0`.
+ *
+ * See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
+ * for details over the differences between `_.throttle` and `_.debounce`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Function
+ * @param {Function} func The function to throttle.
+ * @param {number} [wait=0] The number of milliseconds to throttle invocations to.
+ * @param {Object} [options={}] The options object.
+ * @param {boolean} [options.leading=true]
+ *  Specify invoking on the leading edge of the timeout.
+ * @param {boolean} [options.trailing=true]
+ *  Specify invoking on the trailing edge of the timeout.
+ * @returns {Function} Returns the new throttled function.
+ * @example
+ *
+ * // Avoid excessively updating the position while scrolling.
+ * jQuery(window).on('scroll', _.throttle(updatePosition, 100));
+ *
+ * // Invoke `renewToken` when the click event is fired, but not more than once every 5 minutes.
+ * var throttled = _.throttle(renewToken, 300000, { 'trailing': false });
+ * jQuery(element).on('click', throttled);
+ *
+ * // Cancel the trailing throttled invocation.
+ * jQuery(window).on('popstate', throttled.cancel);
+ */
+function throttle(func, wait, options) {
+  var leading = true,
+      trailing = true;
 
-    step((generator = generator.apply(thisArg, _arguments || [])).next());
+  if (typeof func != 'function') {
+    throw new TypeError(FUNC_ERROR_TEXT);
+  }
+  if (isObject(options)) {
+    leading = 'leading' in options ? !!options.leading : leading;
+    trailing = 'trailing' in options ? !!options.trailing : trailing;
+  }
+  return debounce(func, wait, {
+    'leading': leading,
+    'maxWait': wait,
+    'trailing': trailing
   });
-};
-
-var __generator = this && this.__generator || function (thisArg, body) {
-  var _ = {
-    label: 0,
-    sent: function sent() {
-      if (t[0] & 1) throw t[1];
-      return t[1];
-    },
-    trys: [],
-    ops: []
-  },
-      f,
-      y,
-      t,
-      g;
-  return g = {
-    next: verb(0),
-    "throw": verb(1),
-    "return": verb(2)
-  }, typeof Symbol === "function" && (g[Symbol.iterator] = function () {
-    return this;
-  }), g;
-
-  function verb(n) {
-    return function (v) {
-      return step([n, v]);
-    };
-  }
-
-  function step(op) {
-    if (f) throw new TypeError("Generator is already executing.");
-
-    while (_) {
-      try {
-        if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-        if (y = 0, t) op = [op[0] & 2, t.value];
-
-        switch (op[0]) {
-          case 0:
-          case 1:
-            t = op;
-            break;
-
-          case 4:
-            _.label++;
-            return {
-              value: op[1],
-              done: false
-            };
-
-          case 5:
-            _.label++;
-            y = op[1];
-            op = [0];
-            continue;
-
-          case 7:
-            op = _.ops.pop();
-
-            _.trys.pop();
-
-            continue;
-
-          default:
-            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
-              _ = 0;
-              continue;
-            }
-
-            if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
-              _.label = op[1];
-              break;
-            }
-
-            if (op[0] === 6 && _.label < t[1]) {
-              _.label = t[1];
-              t = op;
-              break;
-            }
-
-            if (t && _.label < t[2]) {
-              _.label = t[2];
-
-              _.ops.push(op);
-
-              break;
-            }
-
-            if (t[2]) _.ops.pop();
-
-            _.trys.pop();
-
-            continue;
-        }
-
-        op = body.call(thisArg, _);
-      } catch (e) {
-        op = [6, e];
-        y = 0;
-      } finally {
-        f = t = 0;
-      }
-    }
-
-    if (op[0] & 5) throw op[1];
-    return {
-      value: op[0] ? op[1] : void 0,
-      done: true
-    };
-  }
-};
-
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var Timeout_1 = __importDefault(__webpack_require__(/*! ./Timeout */ "./resources/js/write/Timeout.js"));
-
-var PeriodicBlogContentSaver =
-/** @class */
-function () {
-  function PeriodicBlogContentSaver(editor, blogTitleEl, savedStatusIndicator, blogsService, blog) {
-    this.editor = editor;
-    this.blogTitleEl = blogTitleEl;
-    this.savedStatusIndicator = savedStatusIndicator;
-    this.blogService = blogsService;
-    this.blog = blog;
-  }
-
-  PeriodicBlogContentSaver.prototype.activate = function () {
-    this.saveDataOnBlogContentChange();
-  };
-
-  PeriodicBlogContentSaver.prototype.saveDataOnBlogContentChange = function () {
-    var _this = this;
-
-    var timeout = new Timeout_1["default"]();
-    this.editor.model.document.on('change:data', function () {
-      if (!timeout.isSet()) {
-        timeout.setTimeOut(3000, function () {
-          return _this.saveBlogContent();
-        });
-      }
-
-      _this.savedStatusIndicator.clearSavedStatus();
-
-      if (_this.editorChangeHandler) _this.editorChangeHandler();
-      timeout.resetTimeOut();
-    });
-  };
-
-  PeriodicBlogContentSaver.prototype.saveBlogContent = function () {
-    var _this = this;
-
-    this.beforeSave();
-
-    if (!this.blog) {
-      this.saveNew().then(function (blog) {
-        return _this.blog = blog;
-      });
-    } else {
-      this.updateExisting();
-    }
-  };
-
-  PeriodicBlogContentSaver.prototype.beforeSave = function () {
-    this.savedStatusIndicator.indicateSaving();
-    PeriodicBlogContentSaver.callCallbackIfPresent(this.savingHandler);
-  };
-
-  PeriodicBlogContentSaver.prototype.saveNew = function () {
-    return __awaiter(this, void 0, void 0, function () {
-      var blog, response;
-      return __generator(this, function (_a) {
-        switch (_a.label) {
-          case 0:
-            blog = {
-              title: this.blogTitleEl.value,
-              content: this.editor.getData()
-            };
-            return [4
-            /*yield*/
-            , this.blogService.save(blog)];
-
-          case 1:
-            response = _a.sent();
-            blog.id = response.blog_id;
-            this.afterSave(blog);
-            return [2
-            /*return*/
-            , blog];
-        }
-      });
-    });
-  };
-
-  PeriodicBlogContentSaver.prototype.updateExisting = function () {
-    var _this = this;
-
-    this.blog.content = this.editor.getData();
-    this.blog.title = this.blogTitleEl.value;
-    this.blogService.update(this.blog).then(function (response) {
-      _this.afterSave(_this.blog);
-    });
-  };
-
-  PeriodicBlogContentSaver.prototype.afterSave = function (blog) {
-    this.savedStatusIndicator.indicateSaved();
-    if (this.onSavedHandler) this.onSavedHandler(blog);
-  };
-
-  PeriodicBlogContentSaver.prototype.onEditorChange = function (changeHandler) {
-    this.editorChangeHandler = function () {
-      return changeHandler();
-    };
-
-    return this;
-  };
-
-  PeriodicBlogContentSaver.prototype.onSaving = function (savingHandler) {
-    this.savingHandler = function () {
-      return savingHandler();
-    };
-
-    return this;
-  };
-
-  PeriodicBlogContentSaver.prototype.onSaved = function (onSavedHandler) {
-    this.onSavedHandler = onSavedHandler;
-    return this;
-  };
-
-  PeriodicBlogContentSaver.callCallbackIfPresent = function (callback) {
-    if (callback) callback();
-  };
-
-  return PeriodicBlogContentSaver;
-}();
-
-exports["default"] = PeriodicBlogContentSaver;
-
-/***/ }),
-
-/***/ "./resources/js/write/Timeout.js":
-/*!***************************************!*\
-  !*** ./resources/js/write/Timeout.js ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var Timeout =
-/** @class */
-function () {
-  function Timeout() {}
-
-  Timeout.prototype.setTimeOut = function (delay, action) {
-    this.delay = delay;
-    this.action = action;
-    this.timeoutID = setTimeout(this.action, this.delay);
-  };
-
-  Timeout.prototype.resetTimeOut = function () {
-    clearTimeout(this.timeoutID);
-    this.timeoutID = setTimeout(this.action, this.delay);
-  };
-
-  Timeout.prototype.isSet = function () {
-    return this.timeoutID !== undefined;
-  };
-
-  return Timeout;
-}();
-
-exports["default"] = Timeout;
-
-/***/ }),
-
-/***/ "./resources/js/write/Write.js":
-/*!*************************************!*\
-  !*** ./resources/js/write/Write.js ***!
-  \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var component_1 = __webpack_require__(/*! @material/textfield/component */ "./node_modules/@material/textfield/component.js");
-
-var editor_1 = __webpack_require__(/*! ./editor */ "./resources/js/write/editor.js");
-
-var BlogsService_1 = __importDefault(__webpack_require__(/*! ../network/BlogsService */ "./resources/js/network/BlogsService.js"));
-
-var PeriodicBlogContentSaver_1 = __importDefault(__webpack_require__(/*! ./PeriodicBlogContentSaver */ "./resources/js/write/PeriodicBlogContentSaver.js"));
-
-var SavedStatusIndicatorImpl_1 = __importDefault(__webpack_require__(/*! ./savedStatusIndicator/SavedStatusIndicatorImpl */ "./resources/js/write/savedStatusIndicator/SavedStatusIndicatorImpl.js"));
-
-var Blog_1 = __webpack_require__(/*! ../models/Blog */ "./resources/js/models/Blog.js");
-
-var BlogMainImageInput_1 = __importDefault(__webpack_require__(/*! ./blogMainImageInput/BlogMainImageInput */ "./resources/js/write/blogMainImageInput/BlogMainImageInput.js"));
-
-__webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
-
-var constants_1 = __webpack_require__(/*! ../utils/constants */ "./resources/js/utils/constants.js");
-
-var Write =
-/** @class */
-function () {
-  function Write(blog) {
-    this.blog = blog;
-    this.init();
-  }
-
-  Write.prototype.init = function () {
-    this.initializeElements();
-    this.initializeRequestOptions();
-    this.initializeBlogsService();
-    this.setupEditor(this.blog);
-    this.setupBlogTitleEl();
-    this.setupBlogPreviewImageInput();
-    this.setupPublishButton();
-    this.setupBlogTagInputEl();
-    this.setupModalPublishButton();
-    this.setupSaveAsDraftButton();
-  };
-
-  Write.prototype.initializeElements = function () {
-    this.blogTitleInput = document.getElementById('blog-title-input');
-    this.blogTagInput = new component_1.MDCTextField(document.querySelector('#blog-tag-input-container'));
-    this.publishBtn = document.getElementById("publish-btn");
-    this.blogContentTextArea = document.getElementById("blog-content-textarea");
-    this.modalPublishBtn = document.getElementById("modal-publish-btn");
-    this.modalSaveAsDraftBtn = document.getElementById("modal-save-draft-btn");
-    this.publishModalProgessbar = document.getElementById('publish-modal-progressbar');
-  };
-
-  Write.prototype.initializeRequestOptions = function () {
-    this.requestOptions = {
-      csrfToken: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-      baseUrl: document.querySelector('meta[name="base-url"]').getAttribute('content')
-    };
-  };
-
-  Write.prototype.initializeBlogsService = function () {
-    this.blogsService = new BlogsService_1["default"](this.requestOptions);
-  };
-
-  Write.prototype.setupBlogTitleEl = function () {
-    console.log('setupBlogTitleEl');
-
-    if (this.blog != undefined && this.blog.title != undefined) {
-      this.blogTitleInput.value = this.blog.title;
-    }
-  };
-
-  Write.prototype.setupEditor = function (blog) {
-    var _this = this;
-
-    console.log('setupEditor');
-    editor_1.initCkEditor(this.blogContentTextArea).then(function (editor) {
-      if (blog != undefined) {
-        editor.setData(blog.content);
-      }
-
-      _this.enableNavbarPublishButtonOnInputToEditor(editor);
-
-      _this.setupPeriodicBlogContentSaver(editor);
-    });
-  };
-
-  Write.prototype.enableNavbarPublishButtonOnInputToEditor = function (editor) {
-    var _this = this;
-
-    this.handlePublishButtonEnabledState(editor);
-    editor.model.document.on('change:data', function () {
-      _this.handlePublishButtonEnabledState(editor);
-    });
-  };
-
-  Write.prototype.handlePublishButtonEnabledState = function (editor) {
-    if (editor.getData() === '') {
-      this.publishBtn.setAttribute('disabled', 'true');
-    } else {
-      this.publishBtn.removeAttribute('disabled');
-    }
-  };
-
-  Write.prototype.setupPeriodicBlogContentSaver = function (editor) {
-    var _this = this;
-
-    console.log(this.blogsService);
-    var blogStatusIndicatorEl = document.getElementById('save-status');
-    var savedStatusIndicator = new SavedStatusIndicatorImpl_1["default"](blogStatusIndicatorEl);
-    var periodicBlogContentSaver = new PeriodicBlogContentSaver_1["default"](editor, this.blogTitleInput, savedStatusIndicator, this.blogsService, this.blog);
-    periodicBlogContentSaver.onSaved(function (blog) {
-      return _this.handleOnPeriodicSave(blog);
-    });
-    periodicBlogContentSaver.activate();
-  };
-
-  Write.prototype.handleOnPeriodicSave = function (blog) {
-    console.log('saved blog', blog);
-
-    if (this.blog == undefined) {
-      this.blog = blog;
-    } else {
-      this.blog.title = blog.title;
-      this.blog.content = blog.content;
-    }
-  };
-
-  Write.prototype.setupBlogPreviewImageInput = function () {
-    var _this = this;
-
-    var blogPreviewImage = new BlogMainImageInput_1["default"]({
-      imagePreviewElement: document.getElementById('blog-preview-img-thumbnail'),
-      imageInputButton: document.getElementById('preview-img-input-btn'),
-      hiddenImageInputElement: document.getElementById('blog-image-hidden-input'),
-      progressBar: document.getElementById('preview-img-progress-bar')
-    });
-
-    if (this.blog !== undefined && this.blog.main_image_filename !== undefined) {
-      var assetUrl = document.querySelector('meta[name="asset-url"]').getAttribute('content');
-      blogPreviewImage.addImage(assetUrl + "storage/blog-main-images/" + this.blog.main_image_filename, this.blog.main_image_filename);
-      console.log('Uppy', blogPreviewImage.uppy);
-    }
-
-    blogPreviewImage.onImageInputted(function (image, updated) {
-      if (updated && _this.blog != undefined) {
-        _this.blog.main_image = image;
-      }
-
-      console.log(_this.blog);
-    });
-  };
-
-  Write.prototype.setupPublishButton = function () {
-    this.publishBtn.addEventListener('click', function (e) {
-      $('#publish-modal').modal('toggle');
-    });
-  };
-
-  Write.prototype.setupBlogTagInputEl = function () {
-    if (this.blog != undefined && this.blog.tag != undefined) {
-      this.blogTagInput.value = this.blog.tag;
-    }
-  };
-
-  Write.prototype.setupModalPublishButton = function () {
-    var _this = this;
-
-    var modalPublishButton = document.getElementById("modal-publish-btn");
-    modalPublishButton.addEventListener('click', function (e) {
-      _this.saveBlog(Blog_1.BlogStatus.PUBLISHED);
-    });
-  };
-
-  Write.prototype.setupSaveAsDraftButton = function () {
-    var _this = this;
-
-    var modalSaveAsDraftBtn = document.getElementById("modal-save-draft-btn");
-    modalSaveAsDraftBtn.addEventListener('click', function (e) {
-      _this.saveBlog(Blog_1.BlogStatus.DRAFT);
-    });
-  };
-
-  Write.prototype.saveBlog = function (status) {
-    var _this = this;
-
-    this.showPublishModalProgressbar();
-    this.blogsService.updateWithImage(this.getFormFromBlog(this.blog, status)).then(function (blog) {
-      console.log('saved blog (whole)', blog);
-
-      _this.hidePublishModalProgressbar();
-
-      window.location.replace(_this.requestOptions.baseUrl + "/" + constants_1.blogsPageRelativeURL);
-    });
-  };
-
-  Write.prototype.showPublishModalProgressbar = function () {
-    this.publishModalProgessbar.classList.remove('d-none');
-  };
-
-  Write.prototype.hidePublishModalProgressbar = function () {
-    this.publishModalProgessbar.classList.add('d-none');
-  }; // TODO Refactor code and remove this method
-
-
-  Write.prototype.getFormFromBlog = function (blog, blogStatus) {
-    var form = new FormData();
-    form.append('id', blog.id);
-    form.append('title', this.blogTitleInput.value);
-    form.append('content', blog.content);
-
-    if (blog.main_image !== undefined) {
-      form.append('main_image', blog.main_image, blog.main_image.name);
-    }
-
-    form.append('tag', this.blogTagInput.value);
-    form.append('status', blogStatus);
-    return form;
-  };
-
-  return Write;
-}();
-
-exports["default"] = Write;
-
-/***/ }),
-
-/***/ "./resources/js/write/blogMainImageInput/BlogMainImageInput.js":
-/*!*********************************************************************!*\
-  !*** ./resources/js/write/blogMainImageInput/BlogMainImageInput.js ***!
-  \*********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var core_1 = __importDefault(__webpack_require__(/*! @uppy/core */ "./node_modules/@uppy/core/lib/index.js"));
-
-var thumbnail_generator_1 = __importDefault(__webpack_require__(/*! @uppy/thumbnail-generator */ "./node_modules/@uppy/thumbnail-generator/lib/index.js"));
-
-var BlogMainImageInput =
-/** @class */
-function () {
-  function BlogMainImageInput(configOptions) {
-    var _this = this;
-
-    this.updated = false;
-    this.configOptions = configOptions;
-    this.initUppy();
-    this.setupImageInputButton();
-    this.listenForImageInput(function (file) {
-      return _this.handleImageInputted(file);
-    });
-    this.listenForThumbnailGenerated(function (file, preview) {
-      return _this.handleThumbnailGenerated(file, preview);
-    });
-  }
-
-  BlogMainImageInput.prototype.initUppy = function () {
-    this.uppy = core_1["default"]({
-      allowMultipleUploads: false,
-      autoProceed: false,
-      restrictions: {
-        maxNumberOfFiles: 1
-      }
-    }).use(thumbnail_generator_1["default"], {
-      id: 'ThumbnailGenerator',
-      thumbnailWidth: 200,
-      thumbnailHeight: 200
-    });
-  };
-
-  BlogMainImageInput.prototype.setupImageInputButton = function () {
-    var _this = this;
-
-    this.configOptions.imageInputButton.addEventListener('click', function () {
-      return _this.openFileExplorer();
-    });
-  };
-
-  BlogMainImageInput.prototype.openFileExplorer = function () {
-    this.configOptions.hiddenImageInputElement.click();
-  };
-
-  BlogMainImageInput.prototype.listenForImageInput = function (handleImageInputted) {
-    var _this = this;
-
-    this.configOptions.hiddenImageInputElement.addEventListener('change', function () {
-      handleImageInputted(_this.configOptions.hiddenImageInputElement.files[0]);
-    });
-  };
-
-  BlogMainImageInput.prototype.handleImageInputted = function (file) {
-    this.updated = true;
-    if (this.onImageInputtedHandler) this.onImageInputtedHandler(file, this.updated);
-    this.addImageToUppy(file);
-    this.showProgressBar();
-  };
-
-  BlogMainImageInput.prototype.addImageToUppy = function (file) {
-    this.uppy.reset();
-    this.uppy.addFile({
-      name: file.name,
-      type: file.type,
-      data: file
-    });
-  };
-
-  BlogMainImageInput.prototype.showProgressBar = function () {
-    this.configOptions.progressBar.classList.remove('d-none');
-  };
-
-  BlogMainImageInput.prototype.listenForThumbnailGenerated = function (handleThumbnailGenerated) {
-    this.uppy.on('thumbnail:generated', handleThumbnailGenerated);
-  };
-
-  BlogMainImageInput.prototype.handleThumbnailGenerated = function (file, preview) {
-    console.log('handleThumbnailGenerated');
-    this.configOptions.imagePreviewElement.src = preview;
-    this.configOptions.imagePreviewElement.classList.remove('d-none');
-
-    if (this.uppy.getFiles().length > 0) {
-      this.configOptions.imageInputButton.innerText = "Change";
-    }
-
-    this.hideProgressBar();
-    this.changeButtonToOutlined();
-  };
-
-  BlogMainImageInput.prototype.hideProgressBar = function () {
-    this.configOptions.progressBar.classList.add('d-none');
-  };
-
-  BlogMainImageInput.prototype.changeButtonToOutlined = function () {
-    this.configOptions.imageInputButton.classList.add('mdc-button--outlined');
-  };
-
-  BlogMainImageInput.prototype.onImageInputted = function (onImageInputtedHandler) {
-    this.onImageInputtedHandler = onImageInputtedHandler;
-  };
-
-  BlogMainImageInput.prototype.addImage = function (url, filename) {
-    var _this = this;
-
-    this.showProgressBar();
-    fetch(url).then(function (response) {
-      return response.blob();
-    }) // returns a Blob
-    .then(function (blob) {
-      _this.uppy.reset();
-
-      _this.uppy.addFile({
-        name: filename,
-        type: blob.type,
-        data: blob
-      });
-
-      _this.hideProgressBar();
-    })["catch"](function (err) {
-      return console.log(err);
-    });
-  };
-
-  return BlogMainImageInput;
-}();
-
-exports["default"] = BlogMainImageInput;
-
-/***/ }),
-
-/***/ "./resources/js/write/editor.js":
-/*!**************************************!*\
-  !*** ./resources/js/write/editor.js ***!
-  \**************************************/
-/*! exports provided: initCkEditor */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initCkEditor", function() { return initCkEditor; });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _ckeditor_ckeditor5_build_balloon_block__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ckeditor/ckeditor5-build-balloon-block */ "./node_modules/@ckeditor/ckeditor5-build-balloon-block/build/ckeditor.js");
-/* harmony import */ var _ckeditor_ckeditor5_build_balloon_block__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_ckeditor_ckeditor5_build_balloon_block__WEBPACK_IMPORTED_MODULE_1__);
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
- // import BalloonBlockEditor from './ckeditor';
-
-function initCkEditor(_x) {
-  return _initCkEditor.apply(this, arguments);
 }
 
-function _initCkEditor() {
-  _initCkEditor = _asyncToGenerator(
-  /*#__PURE__*/
-  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(targetEl) {
-    var ckEditor;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            _context.next = 2;
-            return _ckeditor_ckeditor5_build_balloon_block__WEBPACK_IMPORTED_MODULE_1___default.a.create(targetEl, {
-              placeholder: 'Write the word...',
-              toolbar: ['heading', '|', 'bold', 'italic', 'link', 'blockQuote'],
-              ignoreEmptyParagraph: true
-            }).then(function (editor) {
-              ckEditor = editor;
-            })["catch"](function (error) {
-              throw error;
-            });
-
-          case 2:
-            return _context.abrupt("return", ckEditor);
-
-          case 3:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee);
-  }));
-  return _initCkEditor.apply(this, arguments);
+/**
+ * Checks if `value` is the
+ * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
+ * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(_.noop);
+ * // => true
+ *
+ * _.isObject(null);
+ * // => false
+ */
+function isObject(value) {
+  var type = typeof value;
+  return !!value && (type == 'object' || type == 'function');
 }
 
-/***/ }),
+/**
+ * Checks if `value` is object-like. A value is object-like if it's not `null`
+ * and has a `typeof` result of "object".
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+ * @example
+ *
+ * _.isObjectLike({});
+ * // => true
+ *
+ * _.isObjectLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isObjectLike(_.noop);
+ * // => false
+ *
+ * _.isObjectLike(null);
+ * // => false
+ */
+function isObjectLike(value) {
+  return !!value && typeof value == 'object';
+}
 
-/***/ "./resources/js/write/savedStatusIndicator/SavedStatusIndicatorImpl.js":
-/*!*****************************************************************************!*\
-  !*** ./resources/js/write/savedStatusIndicator/SavedStatusIndicatorImpl.js ***!
-  \*****************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/**
+ * Checks if `value` is classified as a `Symbol` primitive or object.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a symbol, else `false`.
+ * @example
+ *
+ * _.isSymbol(Symbol.iterator);
+ * // => true
+ *
+ * _.isSymbol('abc');
+ * // => false
+ */
+function isSymbol(value) {
+  return typeof value == 'symbol' ||
+    (isObjectLike(value) && objectToString.call(value) == symbolTag);
+}
 
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var SavedStatusIndicatorImpl =
-/** @class */
-function () {
-  function SavedStatusIndicatorImpl(indicatorElement) {
-    this.indicatorElement = indicatorElement;
+/**
+ * Converts `value` to a number.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to process.
+ * @returns {number} Returns the number.
+ * @example
+ *
+ * _.toNumber(3.2);
+ * // => 3.2
+ *
+ * _.toNumber(Number.MIN_VALUE);
+ * // => 5e-324
+ *
+ * _.toNumber(Infinity);
+ * // => Infinity
+ *
+ * _.toNumber('3.2');
+ * // => 3.2
+ */
+function toNumber(value) {
+  if (typeof value == 'number') {
+    return value;
   }
+  if (isSymbol(value)) {
+    return NAN;
+  }
+  if (isObject(value)) {
+    var other = typeof value.valueOf == 'function' ? value.valueOf() : value;
+    value = isObject(other) ? (other + '') : other;
+  }
+  if (typeof value != 'string') {
+    return value === 0 ? value : +value;
+  }
+  value = value.replace(reTrim, '');
+  var isBinary = reIsBinary.test(value);
+  return (isBinary || reIsOctal.test(value))
+    ? freeParseInt(value.slice(2), isBinary ? 2 : 8)
+    : (reIsBadHex.test(value) ? NAN : +value);
+}
 
-  SavedStatusIndicatorImpl.prototype.clearSavedStatus = function () {
-    if (this.indicatorElement.innerText === "Saved") {
-      this.indicatorElement.innerText = "";
-    }
-  };
+module.exports = throttle;
 
-  SavedStatusIndicatorImpl.prototype.indicateSaved = function () {
-    this.indicatorElement.innerText = "Saved";
-    console.log('saved');
-  };
-
-  SavedStatusIndicatorImpl.prototype.indicateSaving = function () {
-    this.indicatorElement.innerText = "Saving...";
-    console.log('saving');
-  };
-
-  return SavedStatusIndicatorImpl;
-}();
-
-exports["default"] = SavedStatusIndicatorImpl;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ })
 

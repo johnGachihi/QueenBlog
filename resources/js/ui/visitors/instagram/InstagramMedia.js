@@ -3,6 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+require("simplebar");
+require("simplebar/dist/simplebar.css");
 var InstagramService_1 = __importDefault(require("../../../network/InstagramService"));
 var RequestOptions_1 = require("../../../network/RequestOptions");
 var instagramMediaContainerEl = document.getElementById('instagram');
@@ -21,18 +23,7 @@ instagramService.getMedia().then(function (res) {
                     throw 'finished';
             });
         }
-        catch (e) {
-        }
-        /*
-                for (const [index, media] of res.data.entries()) {
-                    console.log(media);
-                    const image = document.createElement('img');
-                    image.src = media.media_url;
-                    image.alt = 'Instagram image';
-                    instagramMediaContainerEl.appendChild(image);
-        
-                    if (index >=10) break;
-                }*/
+        catch (e) { }
     }
     else if (res.error !== undefined) {
         instagramMediaContainerEl.classList.add('d-none');
