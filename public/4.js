@@ -215,7 +215,12 @@ Object.defineProperty(exports, "__esModule", {
 
 var Service_1 = __importDefault(__webpack_require__(/*! ./Service */ "./resources/js/network/Service.js"));
 
-var HttpMethod_1 = __webpack_require__(/*! ./HttpMethod */ "./resources/js/network/HttpMethod.js");
+var HttpMethod_1 = __webpack_require__(/*! ./HttpMethod */ "./resources/js/network/HttpMethod.js"); //@ts-ignore
+
+
+var urls_APP_TARGET_1 = __importDefault(__webpack_require__(/*! ./utils/urlConstants/urls.APP_TARGET */ "./resources/js/network/utils/urlConstants/urls.dev.js"));
+
+console.log(urls_APP_TARGET_1["default"].instagramMediaUrl);
 
 var InstagramService =
 /** @class */
@@ -269,7 +274,7 @@ function (_super) {
             _a = this.requestOptions, csrfToken = _a.csrfToken, baseUrl = _a.baseUrl;
             return [4
             /*yield*/
-            , fetch(baseUrl + "/instagram-media", {
+            , fetch(urls_APP_TARGET_1["default"].instagramMediaUrl, {
               method: HttpMethod_1.HttpMethod.GET,
               headers: {
                 'Accept': 'application/json',
@@ -567,6 +572,25 @@ function () {
 }();
 
 exports["default"] = Service;
+
+/***/ }),
+
+/***/ "./resources/js/network/utils/urlConstants/urls.dev.js":
+/*!*************************************************************!*\
+  !*** ./resources/js/network/utils/urlConstants/urls.dev.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = {
+  instagramMediaUrl: 'https://46e4a3c4-41f2-40b8-83f2-ce3aaa662489.mock.pstmn.io/instagram-media'
+};
 
 /***/ })
 

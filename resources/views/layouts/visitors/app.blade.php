@@ -259,11 +259,11 @@
                         </a>
                     </div>--}}<!-- sidebar-section advertisement-area -->
 
-                    {{--TODO: Add instagram section--}}
-                    {{--<div class="sidebar-section instagram-area">
+
+                    <div class="sidebar-section instagram-area">
                         <h4 class="title"><b class="light-color">Instagram</b></h4>
-                        <ul class="instagram-img">
-                            <li><a href="#"><img src="images/instragram-side-1-150x150.jpg" alt="Instagram Image"></a>
+                        <ul id="instagram-side-bar" class="instagram-img">
+                            {{--<li><a href="#"><img src="images/instragram-side-1-150x150.jpg" alt="Instagram Image"></a>
                             </li>
                             <li><a href="#"><img src="images/instragram-side-2-150x150.jpg" alt="Instagram Image"></a>
                             </li>
@@ -275,9 +275,9 @@
                             <li><a href="#"><img src="images/instragram-side-5-150x150.jpg" alt="Instagram Image"></a>
                             </li>
                             <li><a href="#"><img src="images/instragram-side-6-150x150.jpg" alt="Instagram Image"></a>
-                            </li>
+                            </li>--}}
                         </ul>
-                    </div>--}}<!-- sidebar-section instagram-area -->
+                    </div><!-- sidebar-section instagram-area -->
 
                     <div class="sidebar-section tags-area">
                         <h4 class="title"><b class="light-color">Tags</b></h4>
@@ -315,7 +315,9 @@
         </div><!-- row -->
     </div><!-- container -->
 
-    <ul id="instagram" data-simplebar></ul>
+    <div data-simplebar>
+        <ul id="instagram" data-simplebar></ul>
+    </div>
 </section><!-- section -->
 
 <footer>

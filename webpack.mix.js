@@ -1,6 +1,7 @@
+
+const webpack = require('webpack');
 const mix = require('laravel-mix');
-const CKEditorWebpackPlugin = require( '@ckeditor/ckeditor5-dev-webpack-plugin' );
-const { styles } = require( '@ckeditor/ckeditor5-dev-utils' );
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -16,6 +17,23 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css', {
         includePaths: [path.resolve(__dirname, 'node_modules')]
     });
+
+
+let appTarget = 'prod';
+
+if (process.env.APP_ENV === 'local') {
+    appTarget = 'dev'
+}
+
+mix.webpackConfig({
+    plugins: [
+        new webpack.NormalModuleReplacementPlugin(/(.*)\.APP_TARGET(\.*)/, function (resource) {
+            console.log(resource.request);
+            resource.request = resource.request.replace(/\.APP_TARGET/, `.${appTarget}`);
+            console.log(resource.request);
+        })
+    ]
+});
 
 /*
 mix.webpackConfig({

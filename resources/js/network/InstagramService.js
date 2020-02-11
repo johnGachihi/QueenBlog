@@ -54,6 +54,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Service_1 = __importDefault(require("./Service"));
 var HttpMethod_1 = require("./HttpMethod");
+//@ts-ignore
+var urls_APP_TARGET_1 = __importDefault(require("./utils/urlConstants/urls.APP_TARGET"));
+console.log(urls_APP_TARGET_1.default.instagramMediaUrl);
 var InstagramService = /** @class */ (function (_super) {
     __extends(InstagramService, _super);
     function InstagramService(requestOptions) {
@@ -88,7 +91,7 @@ var InstagramService = /** @class */ (function (_super) {
                 switch (_b.label) {
                     case 0:
                         _a = this.requestOptions, csrfToken = _a.csrfToken, baseUrl = _a.baseUrl;
-                        return [4 /*yield*/, fetch(baseUrl + "/instagram-media", {
+                        return [4 /*yield*/, fetch(urls_APP_TARGET_1.default.instagramMediaUrl, {
                                 method: HttpMethod_1.HttpMethod.GET,
                                 headers: {
                                     'Accept': 'application/json',
