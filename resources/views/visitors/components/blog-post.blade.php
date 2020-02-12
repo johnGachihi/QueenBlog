@@ -20,7 +20,7 @@
     <h3 class="title">
         <a href="{{ url('/post/'.$blog->id) }}"><b class="title-text light-color">{{ $blog->title }}</b></a>
     </h3>
-    <div style="height: 6.8em; overflow: hidden">
+    <div style="display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden">
         <p>{!! $blog->content !!}</p>
     </div>
     <a class="btn read-more-btn" href="{{ url('/post/'.$blog->id) }}"><b>READ MORE</b></a>

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Masterminds\HTML5;
 
 // TODO: Remove unused methods.
 class BlogsController extends Controller
@@ -149,7 +150,19 @@ class BlogsController extends Controller
     }
 
     public function paginated() {
-        return Blog::where('status', 'published')->orderBy('id', 'desc')->take(10)->paginate(10);
+        $paginator = Blog::where('status', 'published')->orderBy('id', 'desc')->take(10)->paginate(10);
+        $paginator->getCollection()->transform(function ($blog) {
+            $blog_content_preview = '';
+            $dom_doc = new HTML5();
+            $blog_content_dom = $dom_doc->loadHTML($blog->content);
+            if ($first_p = $blog_content_dom->getElementsByTagName('p')->item(0)) {
+                $blog_content_preview = $first_p->textContent;
+            }
+            $blog->content = $blog_content_preview;
+            return $blog;
+        });
+
+        return $paginator;
     }
 
     public function like(Blog $blog) {

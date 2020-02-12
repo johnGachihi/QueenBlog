@@ -13,9 +13,11 @@
 
 // TODO: Use controllers
 
-
 use App\AboutMe;
 use App\Blog;
+use Illuminate\Support\Facades\Log;
+use Masterminds\HTML5;
+
 
 // Visitors
 Route::get('/', function () {
@@ -26,8 +28,21 @@ Route::get('/', function () {
         $category['image'] = Blog::where('tag', $tag)->orderBy('id', 'desc')->pluck('main_image_filename')->first();
         return $category;
     });
+
+    $blogs = Blog::where('status', 'published')->orderBy('id', 'desc')->take(10)->get();
+    $blogs->transform(function ($blog, $key) {
+        $blog_content_preview = '';
+        $dom_doc = new HTML5();
+        $blog_content_dom = $dom_doc->loadHTML($blog->content);
+        if ($first_p = $blog_content_dom->getElementsByTagName('p')->item(0)) {
+            $blog_content_preview = $first_p->textContent;
+        }
+        $blog->content = $blog_content_preview;
+        return $blog;
+    });
+
     return view('visitors.index', [
-        'blogs' => Blog::where('status', 'published')->orderBy('id', 'desc')->take(10)->get(),
+        'blogs' => $blogs,
         'categories' => $categories,
         'about_me' => AboutMe::first()
     ]);
@@ -57,10 +72,23 @@ Route::get('/categories/{tag?}', function ($tag = null) {
     if($tag == null) {
         $tag = $tags->get(0);
     }
+
+    $blogs = Blog::where('status', 'published')->where('tag', $tag)->orderBy('id', 'desc')->get();
+    $blogs->transform(function ($blog, $key) {
+        $blog_content_preview = '';
+        $dom_doc = new HTML5();
+        $blog_content_dom = $dom_doc->loadHTML($blog->content);
+        if ($first_p = $blog_content_dom->getElementsByTagName('p')->item(0)) {
+            $blog_content_preview = $first_p->textContent;
+        }
+        $blog->content = $blog_content_preview;
+        return $blog;
+    });
+
     return view('visitors.categories', [
         'active_tag' => $tag,
         'tags' => $tags,
-        'blogs' => Blog::where('status', 'published')->where('tag', $tag)->get(),
+        'blogs' => $blogs,
         'about_me' => AboutMe::first()
     ]);
 })->name('categories');
@@ -143,4 +171,5 @@ Route::get('blog/like/{blog}', 'BlogsController@like');
 
 Auth::routes();
 
+// TODO: Remove this
 Route::get('/home', 'HomeController@index')->name('home');

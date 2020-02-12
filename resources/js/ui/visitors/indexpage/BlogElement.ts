@@ -42,7 +42,7 @@ export default class BlogElement {
                     <h3 class="title">
                         <a href="${appUrl}/${blogPostRelativeUrl}/${this.blog.id}"><b class="title-text light-color">${this.blog.title}</b></a>
                     </h3>
-                    <div style="height: 6.8em; overflow: hidden">
+                    <div style="display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden">
                         <p>${this.blog.content}</p>
                     </div>
                     <!--TODO: Add link href-->
