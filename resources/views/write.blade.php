@@ -131,10 +131,14 @@
 
 @endsection
 
+@section('scripts')
+    <script src="{{ asset('js/lib/ckeditor.js') }}" defer></script>
+@endsection
+
 <script type="application/javascript">
     let blog;
     @isset($blog)
         blog = @json($blog);
-    console.log(blog);
+    // console.log(blog);
     @endisset
 </script>

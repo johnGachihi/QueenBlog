@@ -63,7 +63,45 @@ a.disabled {
 }
 
 #instagram-side-bar img {
-    width: 90px;
-    height: 90px;
+    width: 112px;
+    height: 112px;
     margin: 2px
 }
+
+figure.image {
+    display: table;
+    clear: both;
+    text-align: center;
+    margin: 1em auto;
+}
+
+figure.image.image-style-align-left, figure.image.image-style-align-right {
+    max-width: 50%;
+}
+
+figure.image.image-style-align-left {
+    float: left;
+    margin-right: 20px;
+}
+
+figure.image.image-style-align-right {
+    float: right;
+    margin-left: 20px;
+}
+
+.image > figcaption {
+    display: table-caption;
+    caption-side: bottom;
+    word-break: break-word;
+    color: #4f4f4f;
+    background-color: #fff;
+    outline-offset: -1px;
+    font-family: "Maven Pro", Nunito, serif;
+    font-size: 12px;
+    padding: 10px;
+}
+
+figcaption a {
+    text-decoration: underline;
+}
+.

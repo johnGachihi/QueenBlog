@@ -142,3 +142,7 @@
 {{--        </div><!-- row -->--}}
 {{--    </div><!-- recomend-area -->--}}
 @endsection
+
+@section('scripts')
+    <script src="{{ asset('js/lib/ckeditor.js') }}"></script>
+@endsection

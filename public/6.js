@@ -22,6 +22,39 @@ var BlogStatus;
 
 /***/ }),
 
+/***/ "./resources/js/network/RequestOptions.js":
+/*!************************************************!*\
+  !*** ./resources/js/network/RequestOptions.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var RequestOptionsValues =
+/** @class */
+function () {
+  function RequestOptionsValues() {}
+
+  RequestOptionsValues.get = function () {
+    return {
+      csrfToken: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+      baseUrl: document.querySelector('meta[name="base-url"]').getAttribute('content')
+    };
+  };
+
+  return RequestOptionsValues;
+}();
+
+exports.RequestOptionsValues = RequestOptionsValues;
+
+/***/ }),
+
 /***/ "./resources/js/utils/constants.js":
 /*!*****************************************!*\
   !*** ./resources/js/utils/constants.js ***!
@@ -782,15 +815,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initCkEditor", function() { return initCkEditor; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _ckeditor_ckeditor5_build_balloon_block__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ckeditor/ckeditor5-build-balloon-block */ "./node_modules/@ckeditor/ckeditor5-build-balloon-block/build/ckeditor.js");
-/* harmony import */ var _ckeditor_ckeditor5_build_balloon_block__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_ckeditor_ckeditor5_build_balloon_block__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _network_RequestOptions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../network/RequestOptions */ "./resources/js/network/RequestOptions.js");
+/* harmony import */ var _network_RequestOptions__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_network_RequestOptions__WEBPACK_IMPORTED_MODULE_1__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
- // import BalloonBlockEditor from './ckeditor';
+
+
+var _RequestOptionsValues = _network_RequestOptions__WEBPACK_IMPORTED_MODULE_1__["RequestOptionsValues"].get(),
+    csrfToken = _RequestOptionsValues.csrfToken,
+    baseUrl = _RequestOptionsValues.baseUrl;
 
 function initCkEditor(_x) {
   return _initCkEditor.apply(this, arguments);
@@ -806,10 +843,20 @@ function _initCkEditor() {
         switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return _ckeditor_ckeditor5_build_balloon_block__WEBPACK_IMPORTED_MODULE_1___default.a.create(targetEl, {
+            return BalloonEditor.create(targetEl, {
               placeholder: 'Write the word...',
               toolbar: ['heading', '|', 'bold', 'italic', 'link', 'blockQuote'],
-              ignoreEmptyParagraph: true
+              ignoreEmptyParagraph: true,
+              simpleUpload: {
+                uploadUrl: "".concat(baseUrl, "/blog-image-upload"),
+                headers: {
+                  'X-CSRF-TOKEN': csrfToken
+                }
+              },
+              image: {
+                toolbar: ['imageTextAlternative', '|', 'imageStyle:alignLeft', 'imageStyle:full', 'imageStyle:alignRight'],
+                styles: ['full', 'alignLeft', 'alignRight']
+              }
             }).then(function (editor) {
               ckEditor = editor;
             })["catch"](function (error) {

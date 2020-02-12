@@ -18,7 +18,7 @@
 
         <p class="date"><em>{{ $blog->updated_at }}</em></p>
 
-        <h3 class="title"><a href="#"><b class="light-color">This is post about travel, adventure and fun</b></a></h3>
+        <h3 class="title"><a href="#"><b class="light-color">{{ $blog->title }}</b></a></h3>
 
         <!--Blog content-->
         {!! $blog->content !!}

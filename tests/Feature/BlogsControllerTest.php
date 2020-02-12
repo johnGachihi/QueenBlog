@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Blog;
 use App\Http\Controllers\BlogsController;
+use App\User;
 use Illuminate\Foundation\Testing\Constraints\HasInDatabase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -179,5 +180,41 @@ class BlogsControllerTest extends TestCase
         $response->assertStatus(200)
             ->assertJson(['status' => 'ok']);
         $this->assertDatabaseHas('blogs', ['likes' => $previous_likes + 1]);
+    }
+
+
+    public function  testBlogImageUpload_withoutUpload() {
+        $user = factory(User::class)->create();
+        $response = $this->actingAs($user)->json('POST', 'blog-image-upload');
+
+        $response->assertStatus(422);
+        $response->assertJsonFragment(['upload' => ['The upload field is required.']]);
+    }
+
+    public function testBlogImageUpload_withInvalidUpload() {
+        $user = factory(User::class)->create();
+        $response = $this->actingAs($user)->json('POST', 'blog-image-upload', [
+            'upload' => UploadedFile::fake()->create('file.pdf', 0, 'application/pdf'),
+        ]);
+
+        $response->assertStatus(422);
+        $response->assertJsonFragment(['upload' => ['The upload must be an image.']]);
+    }
+
+    public function testBlogImageUpload_returnsImagePathAndName() {
+        Storage::fake('public');
+        $fakeUpload = UploadedFile::fake()->image('image.png');
+
+        $user = factory(User::class)->create();
+        $response = $this->actingAs($user)->json('POST', 'blog-image-upload', [
+            'upload' => $fakeUpload,
+        ]);
+
+        $response->assertStatus(200);
+        $response->assertJsonFragment(['url' =>
+            asset('storage' . '/' . BlogsController::BLOG_IMAGES_FOLDER . '/' . $fakeUpload->hashName())]);
+
+        Storage::disk('public')->assertExists(
+            BlogsController::BLOG_IMAGES_FOLDER . '/' . $fakeUpload->hashName());
     }
 }

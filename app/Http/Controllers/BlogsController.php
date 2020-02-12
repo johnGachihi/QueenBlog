@@ -12,6 +12,7 @@ use Illuminate\Validation\Rule;
 class BlogsController extends Controller
 {
     const BLOG_MAIN_IMAGES_FOLDER = 'blog-main-images';
+    const BLOG_IMAGES_FOLDER = 'blog-images';
 
     /**
      * Display a listing of the resource.
@@ -156,5 +157,20 @@ class BlogsController extends Controller
         $blog->save();
 
         return response()->json(['status' => 'ok']);
+    }
+
+    public function blogImageUpload(Request $request) {
+        $request->validate([
+            'upload' => 'required|image'
+        ]);
+
+        $path = $request->file('upload')->store(self::BLOG_IMAGES_FOLDER, 'public');
+
+        if ($path) {
+            return response()->json(['url' => asset("storage/$path")]);
+        } else {
+            return response()->json(['error' => ['message' => 'Error while uploading.']]);
+        }
+
     }
 }
