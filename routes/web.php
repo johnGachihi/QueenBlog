@@ -25,7 +25,7 @@ Route::get('/', function () {
     $categories = $tags->map(function ($tag, $key) {
         $category = [];
         $category['tag'] = $tag;
-        $category['image'] = Blog::where('tag', $tag)->orderBy('id', 'desc')->pluck('main_image_filename')->first();
+        $category['image'] = Blog::where('tag', $tag)->orderBy('updated_at', 'desc')->pluck('main_image_filename')->first();
         return $category;
     });
 
@@ -73,7 +73,7 @@ Route::get('/categories/{tag?}', function ($tag = null) {
         $tag = $tags->get(0);
     }
 
-    $blogs = Blog::where('status', 'published')->where('tag', $tag)->orderBy('id', 'desc')->get();
+    $blogs = Blog::where('status', 'published')->where('tag', $tag)->orderBy('updated_at', 'desc')->get();
     $blogs->transform(function ($blog, $key) {
         $blog_content_preview = '';
         $dom_doc = new HTML5();

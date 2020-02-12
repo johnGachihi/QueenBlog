@@ -150,7 +150,7 @@ class BlogsController extends Controller
     }
 
     public function paginated() {
-        $paginator = Blog::where('status', 'published')->orderBy('id', 'desc')->take(10)->paginate(10);
+        $paginator = Blog::where('status', 'published')->orderBy('updated_at', 'desc')->take(10)->paginate(10);
         $paginator->getCollection()->transform(function ($blog) {
             $blog_content_preview = '';
             $dom_doc = new HTML5();
