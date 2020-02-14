@@ -16,7 +16,7 @@
     @component('visitors.components.tag-share-like-views', $tagShareLikeViewOptions)
     @endcomponent
 
-    <h6 class="date"><em>{{ $blog->updated_at }}</em></h6>
+    <h6 class="date"><em>@if($blog->published_on) {{ $blog->published_on }} @else {{ $blog->created_at }} @endif</em></h6>
     <h3 class="title">
         <a href="{{ url('/post/'.$blog->id) }}"><b class="title-text light-color">{{ $blog->title }}</b></a>
     </h3>

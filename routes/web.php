@@ -15,35 +15,14 @@
 
 use App\AboutMe;
 use App\Blog;
-use Illuminate\Support\Facades\Log;
 use Masterminds\HTML5;
 
 
 // Visitors
 Route::get('/', function () {
-    $tags = Blog::where('status', 'published')->orderBy('tag')->pluck('tag')->unique();
-    $categories = $tags->map(function ($tag, $key) {
-        $category = [];
-        $category['tag'] = $tag;
-        $category['image'] = Blog::where('tag', $tag)->orderBy('updated_at', 'desc')->pluck('main_image_filename')->first();
-        return $category;
-    });
-
-    $blogs = Blog::where('status', 'published')->orderBy('id', 'desc')->take(10)->get();
-    $blogs->transform(function ($blog, $key) {
-        $blog_content_preview = '';
-        $dom_doc = new HTML5();
-        $blog_content_dom = $dom_doc->loadHTML($blog->content);
-        if ($first_p = $blog_content_dom->getElementsByTagName('p')->item(0)) {
-            $blog_content_preview = $first_p->textContent;
-        }
-        $blog->content = $blog_content_preview;
-        return $blog;
-    });
-
     return view('visitors.index', [
-        'blogs' => $blogs,
-        'categories' => $categories,
+        'blogs' => getBlogPreviews(),
+        'categories' => getCategories(),
         'about_me' => AboutMe::first()
     ]);
 })->name('index');
@@ -52,29 +31,81 @@ Route::get('/post/{blog}', function (Blog $blog) {
     $blog->views = $blog->views + 1;
     $blog->save();
 
-    $tags = Blog::where('status', 'published')->orderBy('tag')->pluck('tag')->unique();
-    $categories = $tags->map(function ($tag, $key) {
-        $category = [];
-        $category['tag'] = $tag;
-        $category['image'] = Blog::where('tag', $tag)->orderBy('id', 'desc')->pluck('main_image_filename')->first();
-        return $category;
-    });
     return view('visitors.single-post', [
         'blog' => $blog,
-        'categories' => $categories,
-        'blogs' => Blog::where('status', 'published')->orderBy('id', 'desc')->take(10)->get(),
+        'categories' => getCategories(),
+        'blogs' => getBlogPreviews(),
         'about_me' => AboutMe::first()
     ]);
 });
 
 Route::get('/categories/{tag?}', function ($tag = null) {
     $tags = Blog::where('status', 'published')->orderBy('tag')->pluck('tag')->unique();
+
     if($tag == null) {
         $tag = $tags->get(0);
     }
 
-    $blogs = Blog::where('status', 'published')->where('tag', $tag)->orderBy('updated_at', 'desc')->get();
-    $blogs->transform(function ($blog, $key) {
+    return view('visitors.categories', [
+        'active_tag' => $tag,
+        'tags' => $tags,
+        'blogs' => getBlogPreviewsByTag($tag),
+        'about_me' => AboutMe::first()
+    ]);
+})->name('categories');
+
+Route::get('/aboutme', function () {
+    return view('visitors.about-me', [
+        'categories' => getCategories(),
+        'blogs' => getBlogPreviews(),
+        'about_me' => AboutMe::first()
+    ]);
+})->name('aboutme');
+
+Route::get('/contact', function () {
+    return view('visitors.contact', [
+        'categories' => getCategories(),
+        'blogs' => getBlogPreviews(),
+        'about_me' => AboutMe::first()
+    ]);
+})->name('contact');
+
+function getCategories() {
+    $tags = Blog::where('status', 'published')->orderBy('tag')->pluck('tag')->unique();
+    return $tags->map(function ($tag) {
+        $category = [];
+        $category['tag'] = $tag;
+        $category['image'] = Blog::where('tag', $tag)
+            ->orderBy('published_on', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->pluck('main_image_filename')
+            ->first();
+        return $category;
+    });
+}
+
+function getBlogPreviews() {
+    $blogs = Blog::where('status', 'published')
+        ->orderBy('published_on', 'desc')
+        ->orderBy('created_at', 'desc')
+        ->take(10)
+        ->get();
+
+    return shortenBlogContent($blogs);
+}
+
+function getBlogPreviewsByTag($tag) {
+    $blogs = Blog::where('status', 'published')
+        ->where('tag', $tag)
+        ->orderBy('published_on', 'desc')
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+    return shortenBlogContent($blogs);
+}
+
+function shortenBlogContent($blogs) {
+    return $blogs->map(function ($blog) {
         $blog_content_preview = '';
         $dom_doc = new HTML5();
         $blog_content_dom = $dom_doc->loadHTML($blog->content);
@@ -84,46 +115,7 @@ Route::get('/categories/{tag?}', function ($tag = null) {
         $blog->content = $blog_content_preview;
         return $blog;
     });
-
-    return view('visitors.categories', [
-        'active_tag' => $tag,
-        'tags' => $tags,
-        'blogs' => $blogs,
-        'about_me' => AboutMe::first()
-    ]);
-})->name('categories');
-
-Route::get('/aboutme', function () {
-    $tags = Blog::where('status', 'published')->orderBy('tag')->pluck('tag')->unique();
-    $categories = $tags->map(function ($tag, $key) {
-        $category = [];
-        $category['tag'] = $tag;
-        $category['image'] = Blog::where('tag', $tag)->orderBy('id', 'desc')->pluck('main_image_filename')->first();
-        return $category;
-    });
-
-    return view('visitors.about-me', [
-        'categories' => $categories,
-        'blogs' => Blog::where('status', 'published')->orderBy('id', 'desc')->take(10)->get(),
-        'about_me' => AboutMe::first()
-    ]);
-})->name('aboutme');
-
-Route::get('/contact', function () {
-    $tags = Blog::where('status', 'published')->orderBy('tag')->pluck('tag')->unique();
-    $categories = $tags->map(function ($tag, $key) {
-        $category = [];
-        $category['tag'] = $tag;
-        $category['image'] = Blog::where('tag', $tag)->orderBy('id', 'desc')->pluck('main_image_filename')->first();
-        return $category;
-    });
-
-    return view('visitors.contact', [
-        'categories' => $categories,
-        'blogs' => Blog::where('status', 'published')->orderBy('id', 'desc')->take(10)->get(),
-        'about_me' => AboutMe::first()
-    ]);
-})->name('contact');
+}
 
 Route::post('contact', 'ContactMessageController@arbitrateMessage');
 
@@ -142,7 +134,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('blogs', function () {
             return view('blogs', [
                 'draftBlogs' => Blog::where('status', 'draft')->orderBy('created_at', 'desc')->get(),
-                'publishedBlogs' => Blog::where('status', 'published')->orderBy('created_at', 'desc')->get()
+                'publishedBlogs' => Blog::where('status', 'published')
+                    ->orderBy('published_on', 'desc')
+                    ->orderBy('created_at', 'desc')
+                    ->get()
             ]);
         });
 

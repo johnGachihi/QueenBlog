@@ -11,7 +11,8 @@ export default interface Blog extends Model{
     views?: number,
     likes?: number,
     updated_at?: string,
-    created_at?: string
+    created_at?: string,
+    published_on?: string
 }
 
 export enum BlogStatus {

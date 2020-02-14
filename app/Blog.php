@@ -17,4 +17,10 @@ class Blog extends Model
     {
         return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('l, F j, Y');
     }
+
+    public function getPublishedOnAttribute($date)
+    {
+        if ($date)
+            return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('l, F j, Y');
+    }
 }

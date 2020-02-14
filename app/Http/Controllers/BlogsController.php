@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Blog;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -110,6 +111,9 @@ class BlogsController extends Controller
 
         if ($request->has('status')) {
             $blog->status = $request->input('status');
+            if ($request->status === "published") {
+                $blog->published_on = Carbon::now();
+            }
         }
 
         $blog->save();

@@ -197,7 +197,7 @@
                                        href="{{ url('categories/'.$blog->tag) }}">{{ strtoupper($blog['tag']) }}</a>
                                     <h5><a href="{{ url('post/'.$blog->id) }}"><b
                                                 class="light-color">{{ $blog['title'] }}</b></a></h5>
-                                    <h6 class="date"><em>{{ $blog['updated_at'] }}</em></h6>
+                                    <h6 class="date"><em>@if($blog->published_on) {{ $blog->published_on }} @else {{ $blog->created_at }} @endif</em></h6>
                                 </div>
                             </div>
 

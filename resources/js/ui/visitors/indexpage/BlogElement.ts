@@ -38,7 +38,7 @@ export default class BlogElement {
                             <li style="padding-left: 30px"><i class="ion-ios-eye"></i>${this.blog.views}</li>
                         </ul>
                     </div>
-                    <h6 class="date"><em>${this.blog.updated_at}</em></h6>
+                    <h6 class="date"><em>${this.getPublishDate()}</em></h6>
                     <h3 class="title">
                         <a href="${appUrl}/${blogPostRelativeUrl}/${this.blog.id}"><b class="title-text light-color">${this.blog.title}</b></a>
                     </h3>
@@ -68,5 +68,13 @@ export default class BlogElement {
     private getTagToShow(): string {
         const tag = this.blog.tag;
         return tag.charAt(0).toUpperCase() + tag.substring(1);
+    }
+
+    private getPublishDate(): string {
+        if (this.blog.published_on) {
+            return this.blog.published_on;
+        } else {
+            return this.blog.created_at;
+        }
     }
 }
