@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ba4312e-56ad-419e-b4b7-cc2a10cfd510" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/QueenBlog.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/QueenBlog.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BlogsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BlogsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/network/utils/urlConstants/urls.dev.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/network/utils/urlConstants/urls.dev.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/network/utils/urlConstants/urls.dev.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/network/utils/urlConstants/urls.dev.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/ui/visitors/indexpage/BlogElement.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/visitors/indexpage/BlogElement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/ui/visitors/indexpage/BlogElement.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/visitors/indexpage/BlogElement.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/ui/visitors/indexpage/BlogElement.ts" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ui/visitors/indexpage/BlogElement.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/visitors/components/blog-post.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/visitors/components/blog-post.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -442,10 +430,10 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="416" y="201" width="591" height="390" key="#com.intellij.fileTypes.FileTypeChooser/67.27.1299.741@67.27.1299.741" timestamp="1579161602888" />
-    <state x="524" y="115" width="412" height="562" key="#com.intellij.ide.util.MemberChooser" timestamp="1581263054205">
+    <state x="524" y="115" width="412" height="562" key="#com.intellij.ide.util.MemberChooser" timestamp="1581670801657">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="524" y="115" width="412" height="562" key="#com.intellij.ide.util.MemberChooser/67.27.1299.741@67.27.1299.741" timestamp="1581263054205" />
+    <state x="524" y="115" width="412" height="562" key="#com.intellij.ide.util.MemberChooser/67.27.1299.741@67.27.1299.741" timestamp="1581670801657" />
     <state x="399" y="124" width="624" height="544" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1578919415507">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
@@ -526,10 +514,10 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="380" y="175" key="run.anything.popup/67.27.1299.741@67.27.1299.741" timestamp="1581441492742" />
-    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1581535294342">
+    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1581666155598">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup/67.27.1299.741@67.27.1299.741" timestamp="1581535294342" />
+    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup/67.27.1299.741@67.27.1299.741" timestamp="1581666155598" />
     <state x="436" y="310" width="540" height="172" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1580646770658">
       <screen x="67" y="27" width="1299" height="741" />
     </state>

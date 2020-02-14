@@ -19,13 +19,7 @@ use Masterminds\HTML5;
 
 
 // Visitors
-Route::get('/', function () {
-    return view('visitors.index', [
-        'blogs' => getBlogPreviews(),
-        'categories' => getCategories(),
-        'about_me' => AboutMe::first()
-    ]);
-})->name('index');
+Route::get('/', 'VisitorsViewsController@homePage')->name('index');
 
 Route::get('/post/{blog}', function (Blog $blog) {
     $blog->views = $blog->views + 1;
