@@ -2,9 +2,24 @@ header {
     position: inherit;
 }
 
-#categories-slide { width: 100%; padding: 0; }
-#categories-slide .slidee { margin: 0; padding: 0; height: 100%; list-style: none; }
-#categories-slide .slidee li { float: left; margin: 0 5px 0 0; padding: 0; width: 70px; height: 100%; }
+#categories-slide {
+    width: 100%;
+    padding: 0;
+}
+
+#categories-slide .slidee {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    list-style: none;
+}
+
+#categories-slide .slidee li {
+    float: left;
+    margin: 0 5px 0 0;
+    padding: 0;
+    height: 100%;
+}
 
 li.active { color: #FFAD4D}
 
