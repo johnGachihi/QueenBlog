@@ -20,16 +20,17 @@ class InstagramAuthClient
         Log::error("getShortLivedAccessToken: " . $code);      // TODO: remove
         Log::error("getShortLivedAccessToken: " .
             env('APP_URL') . '/' . env('INSTAGRAM_AUTH_REDIRECT_RELATIVE_URL'));      // TODO: remove
-        $response = $this->client->request('POST', 'https://api.instagram.com/oauth/access_token',
-            [
-                'json' => [
-                    'client_id' => env('INSTAGRAM_APP_ID'),
-                    'client_secret' => env('INSTAGRAM_APP_SECRET'),
-                    'grant_type' => 'authorization_code',
-                    'redirect_uri' => env('APP_URL') . '/' . env('INSTAGRAM_AUTH_REDIRECT_RELATIVE_URL'),
-                    'code' => $code
-                ]
-            ]);
+        Log::error('INSTAGRAM_APP_ID: ', env('INSTAGRAM_APP_ID'));
+        Log::error('INSTAGRAM_APP_SECRET: ', env('INSTAGRAM_APP_SECRET'));
+        $response = $this->client->request('POST', 'https://api.instagram.com/oauth/access_token', [
+            'json' => [
+                'client_id' => env('INSTAGRAM_APP_ID'),
+                'client_secret' => env('INSTAGRAM_APP_SECRET'),
+                'grant_type' => 'authorization_code',
+                'redirect_uri' => env('APP_URL') . '/' . env('INSTAGRAM_AUTH_REDIRECT_RELATIVE_URL'),
+                'code' => $code
+            ]
+        ]);
 
 //        print_r((array)json_decode($response->getBody()));
         $responseBody = ((array)json_decode($response->getBody()));
