@@ -30,7 +30,10 @@ function onBeforeStartFormSubmission() {
     $('#contact-submit-status').text('Submitting...');
 }
 function onSuccessfulSubmission(res) {
-    $('#contact-submit-status').text('Submitted');
+    if (res.status == 'ok')
+        $('#contact-submit-status').text('Submitted');
+    else
+        onFailureInSubmitting("");
 }
 function onFailureInSubmitting(err) {
     $('#contact-submit-status').text('Submission failed.');
