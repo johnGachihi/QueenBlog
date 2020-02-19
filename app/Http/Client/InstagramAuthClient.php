@@ -20,8 +20,8 @@ class InstagramAuthClient
         Log::error("getShortLivedAccessToken: " . $code);      // TODO: remove
         Log::error("getShortLivedAccessToken: " .
             env('APP_URL') . '/' . env('INSTAGRAM_AUTH_REDIRECT_RELATIVE_URL'));      // TODO: remove
-        Log::error('INSTAGRAM_APP_ID: ', env('INSTAGRAM_APP_ID'));
-        Log::error('INSTAGRAM_APP_SECRET: ', env('INSTAGRAM_APP_SECRET'));
+        Log::error('INSTAGRAM_APP_ID: ' . env('INSTAGRAM_APP_ID'));
+        Log::error('INSTAGRAM_APP_SECRET: ' . env('INSTAGRAM_APP_SECRET'));
         $response = $this->client->request('POST', 'https://api.instagram.com/oauth/access_token', [
             'json' => [
                 'client_id' => env('INSTAGRAM_APP_ID'),
