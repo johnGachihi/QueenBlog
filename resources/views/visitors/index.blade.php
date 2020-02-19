@@ -11,7 +11,7 @@
     <div class="main-slider">
         <div id="slider">
             @foreach($blogs as $blog)
-                @component('visitors.components.slider-item', ['blog' => $blog])
+                @component('visitors.components.slider-item', ['blog' => $blog, 'index' => $loop->index])
                 @endcomponent
 
                 @if($loop->iteration == 4)
