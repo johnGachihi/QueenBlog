@@ -34,7 +34,7 @@
     <nav class="navbar navbar-light bg-white border-bottom justify-content-center">
         <div></div>
         <a class="navbar-brand" href="{{ url('/') }}">
-            <img src="{{ asset("storage/images/logo.png") }}" height="50" alt="">
+            <img src="{{ asset("storage/images/logo.jpg") }}" height="50" alt="">
             <span class="align-bottom ml-2 text-dark text-on-navbar d-md-inline d-none">@yield('logo-text')</span>
         </a>
     </nav>

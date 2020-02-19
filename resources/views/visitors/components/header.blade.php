@@ -9,7 +9,7 @@
 
         <div class="right-area">
 
-            <div class="src-area">
+            <div class="src-area d-none">
                 <form action="post">
                     <input class="src-input" type="text" placeholder="Search">
                     <button class="src-btn" type="submit"><i class="ion-ios-search-strong"></i></button>
@@ -28,7 +28,7 @@
 
     <div class="middle-menu center-text position-relative">
         <a href="{{ url('/') }}" class="logo">
-            <img src="{{ asset('storage/images/logo.png') }}" alt="Logo Image">
+            <img src="{{ asset('storage/images/logo.jpg') }}" alt="Logo Image">
         </a>
 
         <div id="div" class="position-absolute" style="width: 50px; height: 50px; top: 0; right: 0"></div>
