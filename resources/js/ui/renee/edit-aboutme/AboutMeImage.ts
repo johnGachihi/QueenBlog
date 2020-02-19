@@ -64,6 +64,7 @@ export default abstract class AboutMeImageComponent extends AboutMeComponents {
     }
 }
 
+// TODO: Move this to separate file
 class AboutMeSideImage extends AboutMeImageComponent {
     private static INSTANCE;
 
