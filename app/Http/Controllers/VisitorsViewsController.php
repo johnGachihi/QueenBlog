@@ -16,6 +16,33 @@ class VisitorsViewsController extends Controller
         ]);
     }
 
+    public function singlePost(Blog $blog) {
+        $blog->views = $blog->views + 1;
+        $blog->save();
+
+        return view('visitors.single-post', [
+            'blog' => $blog,
+            'categories' => getCategories(),
+            'blogs' => getBlogPreviews(),
+            'about_me' => AboutMe::first()
+        ]);
+    }
+
+    // TODO: If tag is not present id DB, what should happen
+    public function categories($tag = null) {
+        $tags = Blog::where('status', 'published')->orderBy('tag')->pluck('tag')->unique();
+
+        if($tag == null) {
+            $tag = $tags->get(0);
+        }
+
+        return view('visitors.categories', [
+            'active_tag' => $tag,
+            'tags' => $tags,
+            'blogs' => $this->getBlogPreviewsByTag($tag),
+            'about_me' => AboutMe::first()
+        ]);
+    }
 
 
 

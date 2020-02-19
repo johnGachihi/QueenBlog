@@ -35,8 +35,9 @@ class VisitorsViewsControllerTest extends TestCase
 
     public function testSinglePost() {
         $blog = Blog::first();
+        $blogViews = $blog->views;
 
-        $response = $this->get('/post' . $blog->id);
+        $response = $this->get('/post/' . $blog->id);
 
         $response->assertStatus(200)
             ->assertViewIs('visitors.single-post')
@@ -46,6 +47,38 @@ class VisitorsViewsControllerTest extends TestCase
                 'categories' => $this->getCategories(),
                 'about_me' => AboutMe::first()
             ]);
+
+        $this->assertEquals($blogViews+1, $blog->fresh()->views);
+    }
+
+    public function testCategories_withoutTagParam() {
+        $tags = Blog::where('status', 'published')->orderBy('tag')->pluck('tag')->unique();
+        $tag = $tags->get(0);
+
+        $response = $this->get('/categories');
+
+        $response->assertViewIs('visitors.categories');
+        $response->assertViewHasAll([
+            'active_tag' => $tag,
+            'tags' => $tags,
+            'blogs' => $this->getBlogPreviewsByTag($tag),
+            'about_me' => AboutMe::first()
+        ]);
+    }
+
+    public function testCategories_withTagParam() {
+        $tags = Blog::where('status', 'published')->orderBy('tag')->pluck('tag')->unique();
+        $tag = $tags->get(rand(0, $tags->count()));
+
+        $response = $this->get('/categories/' . $tag);
+
+        $response->assertViewIs('visitors.categories');
+        $response->assertViewHasAll([
+            'active_tag' => $tag,
+            'tags' => $tags,
+            'blogs' => $this->getBlogPreviewsByTag($tag),
+//            'about_me' => AboutMe::first()
+        ]);
     }
 
 
