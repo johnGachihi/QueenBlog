@@ -29,6 +29,13 @@ class InstagramAuthClient
             'redirect_uri' => env('APP_URL') . '/' . env('INSTAGRAM_AUTH_REDIRECT_RELATIVE_URL'),
             'code' => $code
         ]);
+        Log::error('request parameters', [
+            'client_id' => env('INSTAGRAM_APP_ID'),
+            'client_secret' => env('INSTAGRAM_APP_SECRET'),
+            'grant_type' => 'authorization_code',
+            'redirect_uri' => env('APP_URL') . '/' . env('INSTAGRAM_AUTH_REDIRECT_RELATIVE_URL'),
+            'code' => $code
+        ]);
         $response = $this->client->request('POST', 'https://api.instagram.com/oauth/access_token', [
             'json' => [
                 'client_id' => env('INSTAGRAM_APP_ID'),
