@@ -17,8 +17,8 @@
             </div><!-- src-area -->
 
             <ul class="social-icons">
-                <li><a href="#"><i class="ion-social-facebook-outline"></i></a></li>
-                <li><a href="#"><i class="ion-social-instagram-outline"></i></a></li>
+                <li><a href="https://www.facebook.com/Unscripted-111970617056467/"><i class="ion-social-facebook-outline"></i></a></li>
+                <li><a href="https://www.instagram.com/un_scripted_"><i class="ion-social-instagram-outline"></i></a></li>
 
             </ul><!-- right-area -->
 

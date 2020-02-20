@@ -54,31 +54,34 @@
 
                     <div class="sidebar-section about-author center-text">
                         <div class="author-image">
-                            <img id="about-me-side-image" src="{{ asset('storage/about_me_images_folder/'.$about_me->about_me_side_image) }}"
+                            <img id="about-me-side-image"
+                                 src="{{ asset('storage/about_me_images_folder/'.$about_me->about_me_side_image) }}"
                                  width=200 height=200 alt="Author Image"/>
                             @auth
-                            <div>
-                                <a id="about-me-side-image-edit" href="#">
-                                    <i class="material-icons" style="font-size: 15px">edit</i>
-                                </a>
-                                <div id="save-and-cancel-about-me-side-image-buttons" class="d-none m-0">
-                                    <a id="save-about-me-side-image" class="ml-1" href="#">
-                                        <i class="material-icons" style="font-size: 15px">save</i>
+                                <div>
+                                    <a id="about-me-side-image-edit" href="#">
+                                        <i class="material-icons" style="font-size: 15px">edit</i>
                                     </a>
-                                    <a id="cancel-about-me-side-image" href="#">
-                                        <i class="material-icons" style="font-size: 15px">cancel</i>
-                                    </a>
-                                </div>
-                                <i id="loading-about-me-side-image" class="material-icons d-none">hourglass_empty</i>
+                                    <div id="save-and-cancel-about-me-side-image-buttons" class="d-none m-0">
+                                        <a id="save-about-me-side-image" class="ml-1" href="#">
+                                            <i class="material-icons" style="font-size: 15px">save</i>
+                                        </a>
+                                        <a id="cancel-about-me-side-image" href="#">
+                                            <i class="material-icons" style="font-size: 15px">cancel</i>
+                                        </a>
+                                    </div>
+                                    <i id="loading-about-me-side-image"
+                                       class="material-icons d-none">hourglass_empty</i>
 
-                                <input id="about-me-side-image-hidden-input" class="d-none" type="file" accept="image/*"/>
-                            </div>
+                                    <input id="about-me-side-image-hidden-input" class="d-none" type="file"
+                                           accept="image/*"/>
+                                </div>
                             @endauth
                         </div>
 
                         <ul class="social-icons">
-                            <li><a href="#"><i class="ion-social-facebook-outline"></i></a></li>
-                            <li><a href="#"><i class="ion-social-instagram-outline"></i></a></li>
+                            <li><a href="https://www.facebook.com/Unscripted-111970617056467/"><i class="ion-social-facebook-outline"></i></a></li>
+                            <li><a href="https://www.instagram.com/un_scripted_"><i class="ion-social-instagram-outline"></i></a></li>
                         </ul><!-- right-area -->
 
                         <div style="margin-top: 20px">
@@ -87,7 +90,8 @@
                                     <b id="about-me-side-name"
                                        class="light-color">{{ $about_me->about_me_side_name }}</b>
                                 </h4>--}}
-                                <h4 id="about-me-side-name" class="author-name w-75 mx-auto" style="margin: 0; font-weight: 500; color: #444">
+                                <h4 id="about-me-side-name" class="author-name w-75 mx-auto"
+                                    style="margin: 0; font-weight: 500; color: #444">
                                     {!! $about_me->about_me_side_name !!}
                                 </h4>
                                 @auth
@@ -108,24 +112,24 @@
                         </div>
 
                         <div class="d-flex">
-{{--                            <div>--}}
-                                <p id="about-me-side" class="w-75 mx-auto"> {!! $about_me->about_me_side !!}</p>
-{{--                            </div>--}}
+                            {{--                            <div>--}}
+                            <p id="about-me-side" class="w-75 mx-auto"> {!! $about_me->about_me_side !!}</p>
+                            {{--                            </div>--}}
                             @auth
-                            <div>
-                                <a id="edit-about-me-side" href="#">
-                                    <i class="material-icons" style="font-size: 15px">edit</i>
-                                </a>
-                                <div id="about-me-side-save-cancel-container" class="d-none">
-                                    <a id="save-about-me-side" href="#">
-                                        <i class="material-icons" style="font-size: 15px">save</i>
+                                <div>
+                                    <a id="edit-about-me-side" href="#">
+                                        <i class="material-icons" style="font-size: 15px">edit</i>
                                     </a>
-                                    <a id="cancel-about-me-side" href="#">
-                                        <i class="material-icons" style="font-size: 15px">cancel</i>
-                                    </a>
+                                    <div id="about-me-side-save-cancel-container" class="d-none">
+                                        <a id="save-about-me-side" href="#">
+                                            <i class="material-icons" style="font-size: 15px">save</i>
+                                        </a>
+                                        <a id="cancel-about-me-side" href="#">
+                                            <i class="material-icons" style="font-size: 15px">cancel</i>
+                                        </a>
+                                    </div>
+                                    <i id="loading-about-me-side" class="material-icons d-none" style="font-size: 15px">hourglass_empty</i>
                                 </div>
-                                <i id="loading-about-me-side" class="material-icons d-none" style="font-size: 15px">hourglass_empty</i>
-                            </div>
                             @endauth
                         </div>
 
@@ -136,22 +140,22 @@
 
                     </div><!-- sidebar-section about-author -->
 
-                    {{--<div class="sidebar-section src-area">
+                {{--<div class="sidebar-section src-area">
 
-                        <form action="post">
-                            <input class="src-input" type="text" placeholder="Search">
-                            <button class="src-btn" type="submit"><i class="ion-ios-search-strong"></i></button>
-                        </form>
+                    <form action="post">
+                        <input class="src-input" type="text" placeholder="Search">
+                        <button class="src-btn" type="submit"><i class="ion-ios-search-strong"></i></button>
+                    </form>
 
-                    </div><!-- sidebar-section src-area -->
+                </div><!-- sidebar-section src-area -->
 
-                    <div class="sidebar-section newsletter-area">
-                        <h5 class="title"><b>Subscribe to our newsletter</b></h5>
-                        <form action="post">
-                            <input class="email-input" type="text" placeholder="Your email here">
-                            <button class="btn btn-2" type="submit">SUBSCRIBE</button>
-                        </form>
-                    </div>--}}<!-- sidebar-section newsletter-area -->
+                <div class="sidebar-section newsletter-area">
+                    <h5 class="title"><b>Subscribe to our newsletter</b></h5>
+                    <form action="post">
+                        <input class="email-input" type="text" placeholder="Your email here">
+                        <button class="btn btn-2" type="submit">SUBSCRIBE</button>
+                    </form>
+                </div>--}}<!-- sidebar-section newsletter-area -->
 
                     <div class="sidebar-section category-area">
                         <h4 class="title"><b class="light-color">Categories</b></h4>
@@ -197,7 +201,9 @@
                                        href="{{ url('categories/'.$blog->tag) }}">{{ strtoupper($blog['tag']) }}</a>
                                     <h5><a href="{{ url('post/'.$blog->id) }}"><b
                                                 class="light-color">{{ $blog['title'] }}</b></a></h5>
-                                    <h6 class="date"><em>@if($blog->published_on) {{ $blog->published_on }} @else {{ $blog->created_at }} @endif</em></h6>
+                                    <h6 class="date">
+                                        <em>@if($blog->published_on) {{ $blog->published_on }} @else {{ $blog->created_at }} @endif</em>
+                                    </h6>
                                 </div>
                             </div>
 
@@ -251,13 +257,13 @@
 
                     </div><!-- sidebar-section latest-post-area -->
 
-                    {{--<div class="sidebar-section advertisement-area">
-                        <h4 class="title"><b class="light-color">Advertisement</b></h4>
-                        <a class="advertisement-img" href="#">
-                            <img src="images/advertise-1-400x500.jpg" alt="Advertisement Image">
-                            <h6 class="btn btn-2 discover-btn">DISCOVER</h6>
-                        </a>
-                    </div>--}}<!-- sidebar-section advertisement-area -->
+                {{--<div class="sidebar-section advertisement-area">
+                    <h4 class="title"><b class="light-color">Advertisement</b></h4>
+                    <a class="advertisement-img" href="#">
+                        <img src="images/advertise-1-400x500.jpg" alt="Advertisement Image">
+                        <h6 class="btn btn-2 discover-btn">DISCOVER</h6>
+                    </a>
+                </div>--}}<!-- sidebar-section advertisement-area -->
 
 
                     <div class="sidebar-section instagram-area">
@@ -322,28 +328,13 @@
 
 <footer>
     <div class="container">
-        <div class="row">
-
-            <div class="col-sm-6">
-                <div class="footer-section">
-                    <p class="copyright">Juli &copy; 2018. All rights reserved | Made with <i class="ion-heart"
-                                                                                              aria-hidden="true"></i> by
-                        <a href="https://colorlib.com" target="_blank">Colorlib</a> &amp; distributed by <a
-                            href="https://themewagon.com" target="_blank">ThemeWagon</a></p>
-                </div><!-- footer-section -->
-            </div><!-- col-lg-4 col-md-6 -->
-
-            <div class="col-sm-6">
-                <div class="footer-section">
-                    <ul class="social-icons">
-                        <li><a href="#"><i class="ion-social-facebook-outline"></i></a></li>
-                        <li><a href="#"><i class="ion-social-twitter-outline"></i></a></li>
-                        <li><a href="#"><i class="ion-social-instagram-outline"></i></a></li>
-                        <li><a href="#"><i class="ion-social-vimeo-outline"></i></a></li>
-                        <li><a href="#"><i class="ion-social-pinterest-outline"></i></a></li>
-                    </ul>
-                </div><!-- footer-section -->
-            </div><!-- col-lg-4 col-md-6 -->
+        <div class="row justify-content-center">
+            <div class="footer-section">
+                <ul class="social-icons">
+                    <li><a href="https://www.facebook.com/Unscripted-111970617056467/"><i class="ion-social-facebook-outline"></i></a></li>
+                    <li><a href="https://www.instagram.com/un_scripted_"><i class="ion-social-instagram-outline"></i></a></li>
+                </ul>
+            </div><!-- footer-section -->
 
         </div><!-- row -->
     </div><!-- container -->
