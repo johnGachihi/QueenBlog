@@ -2,7 +2,17 @@
 
 @section('content')
     <div id="instagram-auth-page" class="d-none"></div>
-    <span id="instagram-profile-indicator" class="mt-5">Loading profile...</span>
+    @component('renee.components.header')
+        @slot('left_side')
+            <span id="instagram-profile-indicator">Loading profile...</span>
+        @endslot
+
+        @slot('right_side')
+            @component('renee.components.dropdown-menu')
+            @endcomponent
+        @endslot
+    @endcomponent
+
     <span class="d-block text-center">Work in progress</span>
     <div style="height: calc(100vh - 77px)" class="d-flex flex-column align-items-center justify-content-center">
         @isset($message)

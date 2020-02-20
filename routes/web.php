@@ -121,11 +121,11 @@ Route::middleware(['auth'])->group(function () {
                     ->orderBy('created_at', 'desc')
                     ->get()
             ]);
-        });
+        })->name('blogs');
 
-        Route::get('blog/{blog}', 'BlogsController@show');
+        Route::get('blog/{blog}', 'BlogsController@show')->name('blog-edit');
 
-        Route::get('instagram-auth', 'InstagramAuthController@auth');
+        Route::get('instagram-auth', 'InstagramAuthController@auth')->name('instagram-auth');
     });
 
     Route::post('about_me', 'AboutMeController@update');
