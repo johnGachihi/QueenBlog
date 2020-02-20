@@ -30,8 +30,13 @@ class InstagramAuthClient
             'code' => $code
         ]);
 
-        $response = $this->client->request('POST', 'https://api.instagram.com/oauth/access_token', [
-            'form_data' => [
+        $curl = curl_init();
+        curl_setopt_array($curl, [
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_URL => 'https://api.instagram.com/oauth/access_token',
+            CURLOPT_USERAGENT => 'Codular Sample cURL Request',
+            CURLOPT_POST => 1,
+            CURLOPT_POSTFIELDS => [
                 'client_id' => env('INSTAGRAM_APP_ID'),
                 'client_secret' => env('INSTAGRAM_APP_SECRET'),
                 'grant_type' => 'authorization_code',
@@ -40,9 +45,26 @@ class InstagramAuthClient
             ]
         ]);
 
+        $response = curl_exec($curl);
+        curl_close($curl);
+        Log::error("curl response: $response");
+
+        /*$response = $this->client->request('POST', 'https://api.instagram.com/oauth/access_token', [
+            'headers' => [
+                'Content-Type' => 'application/json'
+            ],
+            'json' => [
+                'client_id' => env('INSTAGRAM_APP_ID'),
+                'client_secret' => env('INSTAGRAM_APP_SECRET'),
+                'grant_type' => 'authorization_code',
+                'redirect_uri' => env('APP_URL') . '/' . env('INSTAGRAM_AUTH_REDIRECT_RELATIVE_URL'),
+                'code' => $code
+            ]
+        ]);*/
+
 //        print_r((array)json_decode($response->getBody()));
-        $responseBody = ((array)json_decode($response->getBody()));
-        Log::error(json_encode($responseBody));      // TODO: remove
+        $responseBody = ((array)json_decode($response));
+//        Log::error('responseBody as array:' . $responseBody['error_message']);      // TODO: remove
 
         if (isset($responseBody['access_token'])) { // Request successful
             return ($responseBody['access_token']);
