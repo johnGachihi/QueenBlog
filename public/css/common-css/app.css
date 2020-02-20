@@ -104,4 +104,7 @@ figure.image.image-style-align-right {
 figcaption a {
     text-decoration: underline;
 }
-.
+
+.social-icons i {
+    font-size: 25px;
+}
