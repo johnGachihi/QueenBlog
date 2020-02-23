@@ -183,6 +183,10 @@ export default class Write {
         this.publishBtn.addEventListener('click', e => {
             $('#publish-modal').modal('toggle');
         });
+
+        if (this.blog != undefined && this.blog.status == 'published') {
+            this.publishBtn.innerText = 'Edit'
+        }
     }
 
     private setupBlogTagInputEl() {
@@ -196,6 +200,9 @@ export default class Write {
         modalPublishButton.addEventListener('click', e => {
             this.saveBlog(BlogStatus.PUBLISHED);
         });
+        if (this.blog != undefined && this.blog.status == 'published') {
+            modalPublishButton.innerText = 'Edit Published Blog'
+        }
     }
 
     private setupSaveAsDraftButton() {

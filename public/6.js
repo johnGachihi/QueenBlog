@@ -616,6 +616,10 @@ function () {
     this.publishBtn.addEventListener('click', function (e) {
       $('#publish-modal').modal('toggle');
     });
+
+    if (this.blog != undefined && this.blog.status == 'published') {
+      this.publishBtn.innerText = 'Edit';
+    }
   };
 
   Write.prototype.setupBlogTagInputEl = function () {
@@ -631,6 +635,10 @@ function () {
     modalPublishButton.addEventListener('click', function (e) {
       _this.saveBlog(Blog_1.BlogStatus.PUBLISHED);
     });
+
+    if (this.blog != undefined && this.blog.status == 'published') {
+      modalPublishButton.innerText = 'Edit Published Blog';
+    }
   };
 
   Write.prototype.setupSaveAsDraftButton = function () {
