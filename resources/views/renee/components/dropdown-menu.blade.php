@@ -15,5 +15,9 @@
        href="{{ url('/only/juli/instagram-auth') }}">
         Instagram Login
     </a>
+    <a class="dropdown-item @if(Route::is('fold-images')) active @endif"
+       href="{{ route('fold-images') }}">
+        Home Page Images
+    </a>
     <a class="dropdown-item" href="#" id="logout">Logout</a>
 </div>

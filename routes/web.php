@@ -131,7 +131,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('instagram-auth', 'InstagramAuthController@auth')->name('instagram-auth');
 
-        Route::get('fold-images', 'FoldImagesEditController@view');
+        Route::get('fold-images', 'FoldImagesEditController@view')->name('fold-images');
     });
 
     Route::post('about_me', 'AboutMeController@update');
