@@ -14961,7 +14961,7 @@ svg.mdc-button__icon {
   padding: 10px;
 }
 
-.fold-image > img {
+.fold-image {
   -o-object-fit: cover;
      object-fit: cover;
 }
