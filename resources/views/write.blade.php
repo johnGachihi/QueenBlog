@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('stylesheet')
+    <link rel="stylesheet" href="node_modules/@tarekraafat/autocomplete.js/dist/css/autoComplete.css"/>
+@endsection
+
 @section('logo-text')
     Spread the word
 @endsection
@@ -94,12 +98,15 @@
                     </div>
                     <div class="row justify-content-center mt-3 modal-input-labels">Add blog tag</div>
                     <div class="row justify-content-center mb-3">
-                        <div id="blog-tag-input-container" class="mdc-text-field">
-                            <input type="text" class="mdc-text-field__input" id="blog-tag-input">
-                            <div class="mdc-line-ripple"></div>
-                            <label for="blog-tag-input" class="mdc-floating-label">Blog tag</label>
+                        <div class="position-relative">
+                            <div id="blog-tag-input-container" class="mdc-text-field">
+                                <input type="text" class="mdc-text-field__input" id="blog-tag-input">
+                                <div class="mdc-line-ripple"></div>
+                                <label for="blog-tag-input" class="mdc-floating-label">Blog tag</label>
+                            </div>
                         </div>
                     </div>
+                    <div id="autoComplete-results"></div>
                     <div class="row justify-content-center my-5">
                         <button id="modal-save-draft-btn" class="publish-btn mdc-button mdc-button--outlined mx-2">
                             <div class="mdc-button__ripple"></div>
@@ -141,4 +148,5 @@
         blog = @json($blog);
     // console.log(blog);
     @endisset
+    let tags = @json($tags);
 </script>

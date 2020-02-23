@@ -110,7 +110,11 @@ Route::middleware(['auth'])->group(function () {
         Route::redirect('/', 'juli/blogs');  //TODO: check the redirect url
 
         Route::get('write', function () {
-            return view('write');
+            return view('write', [
+                'tags' => Blog::select('tag')->distinct()->get()->transform(function ($tag) {
+                    return $tag['tag'];
+                })
+            ]);
         })->name('write');
 
         Route::get('blogs', function () {
@@ -126,6 +130,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('blog/{blog}', 'BlogsController@show')->name('blog-edit');
 
         Route::get('instagram-auth', 'InstagramAuthController@auth')->name('instagram-auth');
+
+        Route::post('fold-images-edit', 'FoldImagesEditController@edit');
     });
 
     Route::post('about_me', 'AboutMeController@update');

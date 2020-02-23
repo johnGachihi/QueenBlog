@@ -16,7 +16,7 @@ export async function initCkEditor(targetEl) {
         },
         image: {
             toolbar: [ 'imageTextAlternative', '|', 'imageStyle:alignLeft', 'imageStyle:full', 'imageStyle:alignRight' ],
-            styles: ['full', 'alignLeft', 'alignRight']
+            styles: ['full', 'alignLeft', 'alignRight'],
         }
     }).then(editor => {
         ckEditor = editor

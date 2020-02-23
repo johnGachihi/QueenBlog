@@ -28,6 +28,8 @@ initCkEditor(blogContentTextArea)
         }
         enableNavbarPublishButtonOnInputToEditor(editor);
         activatePeriodicBlogContentSaver(editor);
+
+
     });
 
 function enableNavbarPublishButtonOnInputToEditor(editor) {

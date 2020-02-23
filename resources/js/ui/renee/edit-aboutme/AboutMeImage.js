@@ -69,6 +69,7 @@ var AboutMeImageComponent = /** @class */ (function (_super) {
     return AboutMeImageComponent;
 }(AboutMeComponents_1.default));
 exports.default = AboutMeImageComponent;
+// TODO: Move this to separate file
 var AboutMeSideImage = /** @class */ (function (_super) {
     __extends(AboutMeSideImage, _super);
     function AboutMeSideImage() {

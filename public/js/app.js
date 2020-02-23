@@ -37195,12 +37195,12 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 if (document.getElementById('write-page')) {
   Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(3), __webpack_require__.e(5), __webpack_require__.e(2), __webpack_require__.e(6)]).then(__webpack_require__.t.bind(null, /*! ./write/Write */ "./resources/js/write/Write.js", 7)).then(function (module) {
-    var Write = module["default"]; // const write = new Write();
+    var Write = module["default"];
 
     if (blog === undefined) {
-      new Write();
+      new Write(tags);
     } else {
-      new Write(blog);
+      new Write(tags, blog);
     }
   });
 } else if (document.getElementById('blogs-page')) {

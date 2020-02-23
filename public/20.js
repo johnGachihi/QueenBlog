@@ -123,7 +123,7 @@ function (_super) {
   return AboutMeImageComponent;
 }(AboutMeComponents_1["default"]);
 
-exports["default"] = AboutMeImageComponent;
+exports["default"] = AboutMeImageComponent; // TODO: Move this to separate file
 
 var AboutMeSideImage =
 /** @class */

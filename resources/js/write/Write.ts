@@ -9,9 +9,11 @@ import Blog, {BlogStatus} from "../models/Blog";
 import BlogMainImageInput from "./blogMainImageInput/BlogMainImageInput";
 import 'bootstrap'
 import {blogsPageRelativeURL} from "../utils/constants";
+import autoComplete from '@tarekraafat/autocomplete.js/dist/js/autoComplete'
 
 export default class Write {
     private blog: Blog | undefined;
+    private tags: Array<string>;
 
     private blogTitleInput: HTMLInputElement;
     private blogTagInput: MDCTextField;
@@ -23,7 +25,8 @@ export default class Write {
     private blogsService: BlogsService;
     private publishModalProgessbar: HTMLDivElement;
 
-    constructor(blog?: Blog) {
+    constructor(tags: Array<string>, blog?: Blog) {
+        this.tags = tags;
         this.blog = blog;
         this.init()
     }
@@ -46,6 +49,7 @@ export default class Write {
             (document.getElementById('blog-title-input') as HTMLInputElement);
         this.blogTagInput =
             new MDCTextField(document.querySelector('#blog-tag-input-container'));
+        this.initBlogTagInputAutoComplete();
         this.publishBtn =
             document.getElementById("publish-btn") as HTMLButtonElement;
         this.blogContentTextArea =
@@ -56,6 +60,32 @@ export default class Write {
             (document.getElementById("modal-save-draft-btn") as HTMLButtonElement);
         this.publishModalProgessbar =
             document.getElementById('publish-modal-progressbar') as HTMLDivElement;
+    }
+
+    private initBlogTagInputAutoComplete() {
+        new autoComplete({
+            data: {
+                src: this.tags
+            },
+            selector: '#blog-tag-input',
+            resultsList: {
+                render: true,
+                container: source => {
+                    source.setAttribute("id", "tag-list");
+                    source.classList.add('list-group');
+                },
+                destination: document.getElementById('blog-tag-input-container')
+            },
+            resultItem: {
+                content: (data, source) => {
+                    source.innerHTML = data.match;
+                    source.classList.add('list-group-item', 'list-group-item-action');
+                }
+            },
+            onSelection: feedback => {             // Action script onSelection event | (Optional)
+                this.blogTagInput.value = feedback.selection.value;
+            }
+        })
     }
 
     private initializeRequestOptions() {
@@ -85,6 +115,10 @@ export default class Write {
                 }
                 this.enableNavbarPublishButtonOnInputToEditor(editor);
                 this.setupPeriodicBlogContentSaver(editor);
+
+                editor.editing.view.on( 'click', ( evt, data ) => {
+                    data.target; // -> engine.view.Element
+                });
             });
     }
 
@@ -125,6 +159,7 @@ export default class Write {
     }
 
     private setupBlogPreviewImageInput() {
+        // TODO: Work on this
         const blogPreviewImage = new BlogMainImageInput({
             imagePreviewElement: document.getElementById('blog-preview-img-thumbnail') as HTMLImageElement,
             imageInputButton: document.getElementById('preview-img-input-btn') as HTMLButtonElement,

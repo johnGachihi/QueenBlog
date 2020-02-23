@@ -1,13 +1,13 @@
 require('./bootstrap');
 
+
 if (document.getElementById('write-page')) {
     import('./write/Write').then(module => {
         const Write = module.default;
-        // const write = new Write();
         if (blog === undefined) {
-            new Write()
+            new Write(tags)
         } else {
-            new Write(blog)
+            new Write(tags, blog)
         }
     })
 } else if (document.getElementById('blogs-page')) {

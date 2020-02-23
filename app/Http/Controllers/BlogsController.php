@@ -105,15 +105,16 @@ class BlogsController extends Controller
             $request->file('main_image')->store(self::BLOG_MAIN_IMAGES_FOLDER, 'public');
         }
 
-        if ($request->has('tag')) {
+        if ($request->has('tag') && $request->tag) {
             $blog->tag = $request->input('tag');
         }
 
+
         if ($request->has('status')) {
-            $blog->status = $request->input('status');
-            if ($request->status === "published") {
+            if ($request->status === "published" && $blog->status !== 'published') {
                 $blog->published_on = Carbon::now();
             }
+            $blog->status = $request->input('status');
         }
 
         $blog->save();
@@ -128,7 +129,12 @@ class BlogsController extends Controller
      */
     public function show(Blog $blog)
     {
-        return view('write', ['blog' => $blog]);
+        return view('write', [
+            'blog' => $blog,
+            'tags' => Blog::select('tag')->distinct()->get()->transform(function ($tag) {
+                return $tag['tag'];
+            })
+        ]);
     }
 
     /**

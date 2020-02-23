@@ -29,11 +29,13 @@
         "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-build-balloon-block": "latest",
         "@material/button": "^4.0.0",
         "@material/dialog": "^4.0.0",
         "@material/elevation": "^4.0.0",
         "@material/linear-progress": "^4.0.0",
         "@material/textfield": "^4.0.0",
+        "@tarekraafat/autocomplete.js": "^7.2.0",
         "@types/jest": "^25.1.1",
         "@types/jquery": "^3.3.31",
         "@types/sinon": "^7.5.1",
@@ -50,7 +52,6 @@
         "sinon": "^8.1.1",
         "style-loader": "^1.1.3",
         "webpack": "^4.41.5",
-        "webpack-cli": "^3.3.10",
-        "@ckeditor/ckeditor5-build-balloon-block": "latest"
+        "webpack-cli": "^3.3.10"
     }
 }

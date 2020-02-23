@@ -12,8 +12,10 @@ var Blog_1 = require("../models/Blog");
 var BlogMainImageInput_1 = __importDefault(require("./blogMainImageInput/BlogMainImageInput"));
 require("bootstrap");
 var constants_1 = require("../utils/constants");
+var autoComplete_1 = __importDefault(require("@tarekraafat/autocomplete.js/dist/js/autoComplete"));
 var Write = /** @class */ (function () {
-    function Write(blog) {
+    function Write(tags, blog) {
+        this.tags = tags;
         this.blog = blog;
         this.init();
     }
@@ -34,6 +36,7 @@ var Write = /** @class */ (function () {
             document.getElementById('blog-title-input');
         this.blogTagInput =
             new component_1.MDCTextField(document.querySelector('#blog-tag-input-container'));
+        this.initBlogTagInputAutoComplete();
         this.publishBtn =
             document.getElementById("publish-btn");
         this.blogContentTextArea =
@@ -44,6 +47,32 @@ var Write = /** @class */ (function () {
             document.getElementById("modal-save-draft-btn");
         this.publishModalProgessbar =
             document.getElementById('publish-modal-progressbar');
+    };
+    Write.prototype.initBlogTagInputAutoComplete = function () {
+        var _this = this;
+        new autoComplete_1.default({
+            data: {
+                src: this.tags
+            },
+            selector: '#blog-tag-input',
+            resultsList: {
+                render: true,
+                container: function (source) {
+                    source.setAttribute("id", "tag-list");
+                    source.classList.add('list-group');
+                },
+                destination: document.getElementById('blog-tag-input-container')
+            },
+            resultItem: {
+                content: function (data, source) {
+                    source.innerHTML = data.match;
+                    source.classList.add('list-group-item', 'list-group-item-action');
+                }
+            },
+            onSelection: function (feedback) {
+                _this.blogTagInput.value = feedback.selection.value;
+            }
+        });
     };
     Write.prototype.initializeRequestOptions = function () {
         this.requestOptions = {
@@ -70,6 +99,9 @@ var Write = /** @class */ (function () {
             }
             _this.enableNavbarPublishButtonOnInputToEditor(editor);
             _this.setupPeriodicBlogContentSaver(editor);
+            editor.editing.view.on('click', function (evt, data) {
+                data.target; // -> engine.view.Element
+            });
         });
     };
     Write.prototype.enableNavbarPublishButtonOnInputToEditor = function (editor) {
@@ -108,6 +140,7 @@ var Write = /** @class */ (function () {
     };
     Write.prototype.setupBlogPreviewImageInput = function () {
         var _this = this;
+        // TODO: Work on this
         var blogPreviewImage = new BlogMainImageInput_1.default({
             imagePreviewElement: document.getElementById('blog-preview-img-thumbnail'),
             imageInputButton: document.getElementById('preview-img-input-btn'),

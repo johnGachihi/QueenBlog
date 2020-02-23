@@ -15,7 +15,7 @@ class AlterBlogsTableGiveTagColumnDefaultValue extends Migration
     public function up()
     {
         Schema::table('blogs', function (Blueprint $table) {
-            DB::statement('ALTER TABLE blogs ALTER tag SET DEFAULT "Miscellaneous"');
+            DB::statement('ALTER TABLE blogs ALTER tag SET DEFAULT "Unscripted"');
         });
     }
 

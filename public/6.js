@@ -444,10 +444,13 @@ __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap
 
 var constants_1 = __webpack_require__(/*! ../utils/constants */ "./resources/js/utils/constants.js");
 
+var autoComplete_1 = __importDefault(__webpack_require__(/*! @tarekraafat/autocomplete.js/dist/js/autoComplete */ "./node_modules/@tarekraafat/autocomplete.js/dist/js/autoComplete.js"));
+
 var Write =
 /** @class */
 function () {
-  function Write(blog) {
+  function Write(tags, blog) {
+    this.tags = tags;
     this.blog = blog;
     this.init();
   }
@@ -468,11 +471,40 @@ function () {
   Write.prototype.initializeElements = function () {
     this.blogTitleInput = document.getElementById('blog-title-input');
     this.blogTagInput = new component_1.MDCTextField(document.querySelector('#blog-tag-input-container'));
+    this.initBlogTagInputAutoComplete();
     this.publishBtn = document.getElementById("publish-btn");
     this.blogContentTextArea = document.getElementById("blog-content-textarea");
     this.modalPublishBtn = document.getElementById("modal-publish-btn");
     this.modalSaveAsDraftBtn = document.getElementById("modal-save-draft-btn");
     this.publishModalProgessbar = document.getElementById('publish-modal-progressbar');
+  };
+
+  Write.prototype.initBlogTagInputAutoComplete = function () {
+    var _this = this;
+
+    new autoComplete_1["default"]({
+      data: {
+        src: this.tags
+      },
+      selector: '#blog-tag-input',
+      resultsList: {
+        render: true,
+        container: function container(source) {
+          source.setAttribute("id", "tag-list");
+          source.classList.add('list-group');
+        },
+        destination: document.getElementById('blog-tag-input-container')
+      },
+      resultItem: {
+        content: function content(data, source) {
+          source.innerHTML = data.match;
+          source.classList.add('list-group-item', 'list-group-item-action');
+        }
+      },
+      onSelection: function onSelection(feedback) {
+        _this.blogTagInput.value = feedback.selection.value;
+      }
+    });
   };
 
   Write.prototype.initializeRequestOptions = function () {
@@ -506,6 +538,10 @@ function () {
       _this.enableNavbarPublishButtonOnInputToEditor(editor);
 
       _this.setupPeriodicBlogContentSaver(editor);
+
+      editor.editing.view.on('click', function (evt, data) {
+        data.target; // -> engine.view.Element
+      });
     });
   };
 
@@ -551,7 +587,8 @@ function () {
   };
 
   Write.prototype.setupBlogPreviewImageInput = function () {
-    var _this = this;
+    var _this = this; // TODO: Work on this
+
 
     var blogPreviewImage = new BlogMainImageInput_1["default"]({
       imagePreviewElement: document.getElementById('blog-preview-img-thumbnail'),
