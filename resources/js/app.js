@@ -23,6 +23,8 @@ if (document.getElementById('write-page')) {
     import('./ui/visitors/contactpage/contact')
 } else if (document.getElementById('instagram-auth-page')) {
     import('./ui/renee/instagram-auth-page/InstagramAuthPage')
+} else if (document.getElementById('fold-images-edit-page')) {
+    import('./ui/renee/fold-image-edit/foldImageEdit')
 }
 
 
@@ -53,9 +55,10 @@ if (document.getElementById('renee')) {
     import('./ui/renee/edit-aboutme/editAboutMeSideName');
     import('./ui/renee/edit-aboutme/editaboutmeside');
     import('./ui/renee/edit-aboutme/editAboutMeTitle');
-    import('./ui/renee/edit-aboutme/AboutMeImage');
+    import('./ui/renee/edit-aboutme/AboutMeSideImage');
 
     if (document.getElementById('about-me-page')) {
+        import('./ui/renee/edit-aboutme/AboutMeImage');
         import('./ui/renee/edit-aboutme/AboutMeArticle');
     }
 }

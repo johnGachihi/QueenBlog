@@ -14961,6 +14961,23 @@ svg.mdc-button__icon {
   padding: 10px;
 }
 
+.fold-image > img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.fold-image-container[min-width~="100px"] {
+  height: 350px;
+}
+
+.fold-image-container[min-width~="770px"] {
+  height: 550px;
+}
+
+.fold-image-container {
+  border: 1px solid #ababab;
+}
+
 body {
   font-family: "Maven Pro", "Nunito", sans-serif;
 }

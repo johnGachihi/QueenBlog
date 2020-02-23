@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[26],{
 
-/***/ "./resources/js/ui/renee/edit-aboutme/AboutMeArticle.js":
-/*!**************************************************************!*\
-  !*** ./resources/js/ui/renee/edit-aboutme/AboutMeArticle.js ***!
-  \**************************************************************/
+/***/ "./resources/js/ui/renee/edit-aboutme/editAboutMeSideName.js":
+/*!*******************************************************************!*\
+  !*** ./resources/js/ui/renee/edit-aboutme/editAboutMeSideName.js ***!
+  \*******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -36,67 +36,42 @@ var __extends = this && this.__extends || function () {
   };
 }();
 
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var AboutMeComponents_1 = __importDefault(__webpack_require__(/*! ./AboutMeComponents */ "./resources/js/ui/renee/edit-aboutme/AboutMeComponents.js"));
-
 var ElementUtils_1 = __webpack_require__(/*! ../../../utils/ElementUtils */ "./resources/js/utils/ElementUtils.js");
 
-var AboutMeArticle =
+var AboutMeSideText_1 = __webpack_require__(/*! ./AboutMeSideText */ "./resources/js/ui/renee/edit-aboutme/AboutMeSideText.js");
+
+var AboutMeSideName =
 /** @class */
 function (_super) {
-  __extends(AboutMeArticle, _super);
+  __extends(AboutMeSideName, _super);
 
-  function AboutMeArticle() {
+  function AboutMeSideName() {
     return _super.call(this) || this;
   }
 
-  AboutMeArticle.getInstance = function () {
-    if (this.INSTANCE == undefined) this.INSTANCE = new AboutMeArticle();
-    return this.INSTANCE;
+  AboutMeSideName.prototype.initElements = function () {
+    this.editButton = new ElementUtils_1.El(document.getElementById('about-me-side-name-edit'));
+    this.contentElement = new ElementUtils_1.El(document.getElementById('about-me-side-name'));
+    this.saveAndCancelContainer = new ElementUtils_1.El(document.getElementById('save-and-cancel-about-me-side-name-buttons'));
+    this.saveButton = new ElementUtils_1.El(document.getElementById('save-about-me-side-name'));
+    this.cancelButton = new ElementUtils_1.El(document.getElementById('cancel-about-me-side-name'));
+    this.loadIndicator = new ElementUtils_1.El(document.getElementById('loading-about-me-side-name'));
   };
 
-  AboutMeArticle.prototype.initElements = function () {
-    this.editButton = new ElementUtils_1.El(document.getElementById('about-me-edit'));
-    this.contentElement = new ElementUtils_1.El(document.getElementById('about-me'), new ElementUtils_1.WysiwigEditableMaker());
-    this.saveAndCancelContainer = new ElementUtils_1.El(document.getElementById('save-and-cancel-about-me-buttons'));
-    this.saveButton = new ElementUtils_1.El(document.getElementById('save-about-me'));
-    this.cancelButton = new ElementUtils_1.El(document.getElementById('cancel-about-me'));
-    this.loadIndicator = new ElementUtils_1.El(document.getElementById('loading-about-me'));
-  };
-
-  AboutMeArticle.prototype.enterEditingState = function () {
-    _super.prototype.enterEditingState.call(this);
-
-    this.contentElement.el.focus();
-  };
-
-  AboutMeArticle.prototype.getContent = function () {
-    return this.contentElement.el.innerHTML;
-  };
-
-  AboutMeArticle.prototype.setContent = function (content) {
-    this.contentElement.el.innerHTML = content;
-  };
-
-  AboutMeArticle.prototype.getContentToSave = function () {
+  AboutMeSideName.prototype.getContentToSave = function () {
     return {
-      about_me: this.getContent()
+      about_me_side_name: this.getContent()
     };
   };
 
-  return AboutMeArticle;
-}(AboutMeComponents_1["default"]);
+  return AboutMeSideName;
+}(AboutMeSideText_1.AboutMeTextComponent);
 
-AboutMeArticle.getInstance();
+var aboutMeSideName = new AboutMeSideName();
 
 /***/ })
 

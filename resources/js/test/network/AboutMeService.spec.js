@@ -11,7 +11,7 @@ var requestOptions = {
     csrfToken: 'abc',
     baseUrl: 'http://localhost'
 };
-describe('test Service', function () {
+describe('test AboutMeService', function () {
     var service;
     beforeEach(function () {
         service = new AboutMeService_1.default(requestOptions);

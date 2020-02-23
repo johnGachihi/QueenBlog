@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[23],{
 
-/***/ "./resources/js/network/BlogsService.js":
-/*!**********************************************!*\
-  !*** ./resources/js/network/BlogsService.js ***!
-  \**********************************************/
+/***/ "./resources/js/network/AboutMeService.js":
+/*!************************************************!*\
+  !*** ./resources/js/network/AboutMeService.js ***!
+  \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -36,149 +36,6 @@ var __extends = this && this.__extends || function () {
   };
 }();
 
-var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, generator) {
-  function adopt(value) {
-    return value instanceof P ? value : new P(function (resolve) {
-      resolve(value);
-    });
-  }
-
-  return new (P || (P = Promise))(function (resolve, reject) {
-    function fulfilled(value) {
-      try {
-        step(generator.next(value));
-      } catch (e) {
-        reject(e);
-      }
-    }
-
-    function rejected(value) {
-      try {
-        step(generator["throw"](value));
-      } catch (e) {
-        reject(e);
-      }
-    }
-
-    function step(result) {
-      result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
-    }
-
-    step((generator = generator.apply(thisArg, _arguments || [])).next());
-  });
-};
-
-var __generator = this && this.__generator || function (thisArg, body) {
-  var _ = {
-    label: 0,
-    sent: function sent() {
-      if (t[0] & 1) throw t[1];
-      return t[1];
-    },
-    trys: [],
-    ops: []
-  },
-      f,
-      y,
-      t,
-      g;
-  return g = {
-    next: verb(0),
-    "throw": verb(1),
-    "return": verb(2)
-  }, typeof Symbol === "function" && (g[Symbol.iterator] = function () {
-    return this;
-  }), g;
-
-  function verb(n) {
-    return function (v) {
-      return step([n, v]);
-    };
-  }
-
-  function step(op) {
-    if (f) throw new TypeError("Generator is already executing.");
-
-    while (_) {
-      try {
-        if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-        if (y = 0, t) op = [op[0] & 2, t.value];
-
-        switch (op[0]) {
-          case 0:
-          case 1:
-            t = op;
-            break;
-
-          case 4:
-            _.label++;
-            return {
-              value: op[1],
-              done: false
-            };
-
-          case 5:
-            _.label++;
-            y = op[1];
-            op = [0];
-            continue;
-
-          case 7:
-            op = _.ops.pop();
-
-            _.trys.pop();
-
-            continue;
-
-          default:
-            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
-              _ = 0;
-              continue;
-            }
-
-            if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
-              _.label = op[1];
-              break;
-            }
-
-            if (op[0] === 6 && _.label < t[1]) {
-              _.label = t[1];
-              t = op;
-              break;
-            }
-
-            if (t && _.label < t[2]) {
-              _.label = t[2];
-
-              _.ops.push(op);
-
-              break;
-            }
-
-            if (t[2]) _.ops.pop();
-
-            _.trys.pop();
-
-            continue;
-        }
-
-        op = body.call(thisArg, _);
-      } catch (e) {
-        op = [6, e];
-        y = 0;
-      } finally {
-        f = t = 0;
-      }
-    }
-
-    if (op[0] & 5) throw op[1];
-    return {
-      value: op[0] ? op[1] : void 0,
-      done: true
-    };
-  }
-};
-
 var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
@@ -191,425 +48,421 @@ Object.defineProperty(exports, "__esModule", {
 
 var Service_1 = __importDefault(__webpack_require__(/*! ./Service */ "./resources/js/network/Service.js"));
 
-var HttpMethod_1 = __webpack_require__(/*! ./HttpMethod */ "./resources/js/network/HttpMethod.js");
-
-var BlogsService =
+var AboutMeService =
 /** @class */
 function (_super) {
-  __extends(BlogsService, _super);
+  __extends(AboutMeService, _super);
 
-  function BlogsService(requestOptions) {
-    return _super.call(this, requestOptions, BlogsService.relativeURL) || this;
-  } //TODO Refactor [Service] and remove this method
+  function AboutMeService(requestOptions) {
+    return _super.call(this, requestOptions, '/about_me') || this;
+  }
 
-
-  BlogsService.prototype.updateWithImage = function (blog) {
-    return __awaiter(this, void 0, void 0, function () {
-      var _a, csrfToken, baseUrl, fetchUrl, response;
-
-      return __generator(this, function (_b) {
-        switch (_b.label) {
-          case 0:
-            _a = this.requestOptions, csrfToken = _a.csrfToken, baseUrl = _a.baseUrl;
-            fetchUrl = Service_1["default"].makeUrl(baseUrl, this.relativeUrl, "/" + blog.get('id'));
-            return [4
-            /*yield*/
-            , fetch(fetchUrl, {
-              method: HttpMethod_1.HttpMethod.POST,
-              headers: {
-                'Accept': 'application/json',
-                'X-CSRF-TOKEN': csrfToken
-              },
-              body: blog
-            })];
-
-          case 1:
-            response = _b.sent();
-            return [4
-            /*yield*/
-            , response.json()];
-
-          case 2:
-            return [2
-            /*return*/
-            , _b.sent()];
-        }
-      });
-    });
-  }; //TODO Refactor [Service] and remove this method
-
-
-  BlogsService.prototype["delete"] = function (blogId) {
-    return __awaiter(this, void 0, void 0, function () {
-      var _a, csrfToken, baseUrl, fetchUrl, response;
-
-      return __generator(this, function (_b) {
-        switch (_b.label) {
-          case 0:
-            _a = this.requestOptions, csrfToken = _a.csrfToken, baseUrl = _a.baseUrl;
-            fetchUrl = Service_1["default"].makeUrl(baseUrl, this.relativeUrl, "/" + blogId);
-            return [4
-            /*yield*/
-            , fetch(fetchUrl, {
-              method: HttpMethod_1.HttpMethod.DELETE,
-              headers: {
-                'Accept': 'application/json',
-                'X-CSRF-TOKEN': csrfToken
-              }
-            })];
-
-          case 1:
-            response = _b.sent();
-            return [4
-            /*yield*/
-            , response.json()];
-
-          case 2:
-            return [2
-            /*return*/
-            , _b.sent()];
-        }
-      });
-    });
-  }; //TODO Refactor [Service] and remove this method
-
-
-  BlogsService.prototype.fetchPaginatedBlogs = function (page) {
-    return __awaiter(this, void 0, void 0, function () {
-      var _a, csrfToken, baseUrl, fetchUrl, response;
-
-      return __generator(this, function (_b) {
-        switch (_b.label) {
-          case 0:
-            _a = this.requestOptions, csrfToken = _a.csrfToken, baseUrl = _a.baseUrl;
-            fetchUrl = Service_1["default"].makeUrl(baseUrl, this.relativeUrl, "/paginated?page=" + page);
-            return [4
-            /*yield*/
-            , fetch(fetchUrl, {
-              method: HttpMethod_1.HttpMethod.GET,
-              headers: {
-                'Accept': 'application/json',
-                'X-CSRF-TOKEN': csrfToken
-              }
-            })];
-
-          case 1:
-            response = _b.sent();
-            return [4
-            /*yield*/
-            , response.json()];
-
-          case 2:
-            return [2
-            /*return*/
-            , _b.sent()];
-        }
-      });
-    });
-  }; //TODO Refactor [Service] and remove this method
-
-
-  BlogsService.prototype.like = function (blogId) {
-    return __awaiter(this, void 0, void 0, function () {
-      var _a, csrfToken, baseUrl, fetchUrl, response;
-
-      return __generator(this, function (_b) {
-        switch (_b.label) {
-          case 0:
-            _a = this.requestOptions, csrfToken = _a.csrfToken, baseUrl = _a.baseUrl;
-            fetchUrl = Service_1["default"].makeUrl(baseUrl, this.relativeUrl, "/like/" + blogId);
-            return [4
-            /*yield*/
-            , fetch(fetchUrl, {
-              method: HttpMethod_1.HttpMethod.GET,
-              headers: {
-                'Accept': 'application/json',
-                'X-CSRF-TOKEN': csrfToken
-              }
-            })];
-
-          case 1:
-            response = _b.sent();
-            return [4
-            /*yield*/
-            , response.json()];
-
-          case 2:
-            return [2
-            /*return*/
-            , _b.sent()];
-        }
-      });
-    });
-  };
-
-  BlogsService.relativeURL = '/blog';
-  return BlogsService;
+  return AboutMeService;
 }(Service_1["default"]);
 
-exports["default"] = BlogsService;
+exports["default"] = AboutMeService;
 
 /***/ }),
 
-/***/ "./resources/js/network/HttpMethod.js":
-/*!********************************************!*\
-  !*** ./resources/js/network/HttpMethod.js ***!
-  \********************************************/
+/***/ "./resources/js/ui/renee/edit-aboutme/AboutMeImageComponent.js":
+/*!*********************************************************************!*\
+  !*** ./resources/js/ui/renee/edit-aboutme/AboutMeImageComponent.js ***!
+  \*********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var HttpMethod;
-
-(function (HttpMethod) {
-  HttpMethod["GET"] = "GET";
-  HttpMethod["POST"] = "POST";
-  HttpMethod["PUT"] = "PUT";
-  HttpMethod["DELETE"] = "DELETE";
-})(HttpMethod = exports.HttpMethod || (exports.HttpMethod = {}));
-
-/***/ }),
-
-/***/ "./resources/js/network/Service.js":
-/*!*****************************************!*\
-  !*** ./resources/js/network/Service.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, generator) {
-  function adopt(value) {
-    return value instanceof P ? value : new P(function (resolve) {
-      resolve(value);
-    });
-  }
-
-  return new (P || (P = Promise))(function (resolve, reject) {
-    function fulfilled(value) {
-      try {
-        step(generator.next(value));
-      } catch (e) {
-        reject(e);
+var __extends = this && this.__extends || function () {
+  var _extendStatics = function extendStatics(d, b) {
+    _extendStatics = Object.setPrototypeOf || {
+      __proto__: []
+    } instanceof Array && function (d, b) {
+      d.__proto__ = b;
+    } || function (d, b) {
+      for (var p in b) {
+        if (b.hasOwnProperty(p)) d[p] = b[p];
       }
-    }
-
-    function rejected(value) {
-      try {
-        step(generator["throw"](value));
-      } catch (e) {
-        reject(e);
-      }
-    }
-
-    function step(result) {
-      result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
-    }
-
-    step((generator = generator.apply(thisArg, _arguments || [])).next());
-  });
-};
-
-var __generator = this && this.__generator || function (thisArg, body) {
-  var _ = {
-    label: 0,
-    sent: function sent() {
-      if (t[0] & 1) throw t[1];
-      return t[1];
-    },
-    trys: [],
-    ops: []
-  },
-      f,
-      y,
-      t,
-      g;
-  return g = {
-    next: verb(0),
-    "throw": verb(1),
-    "return": verb(2)
-  }, typeof Symbol === "function" && (g[Symbol.iterator] = function () {
-    return this;
-  }), g;
-
-  function verb(n) {
-    return function (v) {
-      return step([n, v]);
     };
-  }
 
-  function step(op) {
-    if (f) throw new TypeError("Generator is already executing.");
+    return _extendStatics(d, b);
+  };
 
-    while (_) {
-      try {
-        if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-        if (y = 0, t) op = [op[0] & 2, t.value];
+  return function (d, b) {
+    _extendStatics(d, b);
 
-        switch (op[0]) {
-          case 0:
-          case 1:
-            t = op;
-            break;
-
-          case 4:
-            _.label++;
-            return {
-              value: op[1],
-              done: false
-            };
-
-          case 5:
-            _.label++;
-            y = op[1];
-            op = [0];
-            continue;
-
-          case 7:
-            op = _.ops.pop();
-
-            _.trys.pop();
-
-            continue;
-
-          default:
-            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
-              _ = 0;
-              continue;
-            }
-
-            if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
-              _.label = op[1];
-              break;
-            }
-
-            if (op[0] === 6 && _.label < t[1]) {
-              _.label = t[1];
-              t = op;
-              break;
-            }
-
-            if (t && _.label < t[2]) {
-              _.label = t[2];
-
-              _.ops.push(op);
-
-              break;
-            }
-
-            if (t[2]) _.ops.pop();
-
-            _.trys.pop();
-
-            continue;
-        }
-
-        op = body.call(thisArg, _);
-      } catch (e) {
-        op = [6, e];
-        y = 0;
-      } finally {
-        f = t = 0;
-      }
+    function __() {
+      this.constructor = d;
     }
 
-    if (op[0] & 5) throw op[1];
-    return {
-      value: op[0] ? op[1] : void 0,
-      done: true
-    };
-  }
-};
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var HttpMethod_1 = __webpack_require__(/*! ./HttpMethod */ "./resources/js/network/HttpMethod.js");
-
-var Service =
-/** @class */
-function () {
-  function Service(requestOptions, relativeUrl) {
-    this.requestOptions = requestOptions;
-    this.relativeUrl = relativeUrl;
-  }
-
-  Service.prototype.save = function (t) {
-    return this._fetch(HttpMethod_1.HttpMethod.POST, t);
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
   };
-
-  Service.prototype.update = function (t) {
-    return this._fetch(HttpMethod_1.HttpMethod.POST, t, "/" + t.id);
-  };
-
-  Service.prototype._fetch = function (method, data, urlSuffix) {
-    return __awaiter(this, void 0, void 0, function () {
-      var _a, csrfToken, baseUrl, fetchUrl, fetchBody, fetchHeaders, response;
-
-      return __generator(this, function (_b) {
-        switch (_b.label) {
-          case 0:
-            _a = this.requestOptions, csrfToken = _a.csrfToken, baseUrl = _a.baseUrl;
-            fetchUrl = Service.makeUrl(baseUrl, this.relativeUrl, urlSuffix);
-            fetchHeaders = {
-              'Accept': 'application/json',
-              'X-CSRF-TOKEN': csrfToken
-            };
-
-            if (this.isFormData(data)) {
-              fetchBody = data;
-            } else {
-              fetchBody = JSON.stringify(data);
-              fetchHeaders['Content-Type'] = 'application/json';
-            }
-
-            return [4
-            /*yield*/
-            , fetch(fetchUrl, {
-              method: method,
-              headers: fetchHeaders,
-              body: fetchBody
-            })];
-
-          case 1:
-            response = _b.sent();
-            return [4
-            /*yield*/
-            , response.json()];
-
-          case 2:
-            return [2
-            /*return*/
-            , _b.sent()];
-        }
-      });
-    });
-  };
-
-  Service.makeUrl = function (baseUrl, relativeUrl, urlSuffix) {
-    if (urlSuffix != undefined) {
-      return baseUrl + relativeUrl + urlSuffix;
-    } else {
-      return baseUrl + relativeUrl;
-    }
-  };
-
-  Service.prototype.isFormData = function (data) {
-    return data.append !== undefined;
-  };
-
-  return Service;
 }();
 
-exports["default"] = Service;
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var EditableImageComponent_1 = __importDefault(__webpack_require__(/*! ../editables/EditableImageComponent */ "./resources/js/ui/renee/editables/EditableImageComponent.js"));
+
+var ErrorHandling_1 = __importDefault(__webpack_require__(/*! ../../../utils/ErrorHandling */ "./resources/js/utils/ErrorHandling.js"));
+
+var AboutMeService_1 = __importDefault(__webpack_require__(/*! ../../../network/AboutMeService */ "./resources/js/network/AboutMeService.js"));
+
+var RequestOptions_1 = __webpack_require__(/*! ../../../network/RequestOptions */ "./resources/js/network/RequestOptions.js");
+/*
+export default abstract class AboutMeImageComponent extends AboutMeComponents {
+    protected hiddenImageInput: El<HTMLInputElement>;
+    protected content: File;
+
+    constructor() {
+        super();
+    }
+
+    protected abstract initElements()
+
+    enterEditingState() {
+        super.enterEditingState();
+        this.openFileExplorer();
+    }
+
+    openFileExplorer() {
+        this.hiddenImageInput.el.click();
+    }
+
+    protected setupListeners() {
+        super.setupListeners();
+
+        this.contentElement.on('keydown', e => {
+            //@ts-ignore
+            if (e.keyCode === 13) {
+                this.saveButton.el.click();
+                return false;
+            }
+            //@ts-ignore
+            if (e.keyCode === 27) {
+                this.cancelButton.el.click();
+            }
+        });
+
+        this.hiddenImageInput.on('change', ev => {
+            if (this.imageSelected()) {
+                this.content = this.hiddenImageInput.el.files[0];
+                this.previewImage();
+            }
+        });
+    }
+
+    private imageSelected(): boolean {
+        return !!(this.hiddenImageInput.el.files && this.hiddenImageInput.el.files[0]);
+    }
+
+    private previewImage() {
+        const reader = new FileReader();
+        reader.onload = e => this.setContent(e.target.result as string);
+        reader.readAsDataURL(this.hiddenImageInput.el.files[0]);
+    }
+
+    protected getContent() {
+        return (this.contentElement.el as HTMLImageElement).src;
+    }
+
+    protected abstract getContentToSave();
+
+    protected setContent(content: string) {
+        (this.contentElement.el as HTMLImageElement).src = content;
+    }
+}
+*/
+
+
+var AboutMeImageComponent =
+/** @class */
+function (_super) {
+  __extends(AboutMeImageComponent, _super);
+
+  function AboutMeImageComponent() {
+    var _this = _super !== null && _super.apply(this, arguments) || this;
+
+    _this.aboutMeService = new AboutMeService_1["default"](RequestOptions_1.RequestOptionsValues.get());
+    return _this;
+  }
+
+  AboutMeImageComponent.prototype.saveContent = function () {
+    var _this = this;
+
+    this.aboutMeService.save(this.getContentToSave()).then(function (response) {
+      if (response.status != 'ok') {
+        ErrorHandling_1["default"]("Unable to save: Error " + response);
+
+        _this.cancelEdit();
+      }
+
+      _this.enterInitialState();
+    })["catch"](function (err) {
+      ErrorHandling_1["default"](err);
+
+      _this.cancelEdit();
+
+      _this.enterInitialState();
+    });
+  };
+
+  return AboutMeImageComponent;
+}(EditableImageComponent_1["default"]);
+
+exports["default"] = AboutMeImageComponent;
+
+/***/ }),
+
+/***/ "./resources/js/ui/renee/edit-aboutme/AboutMeSideImage.js":
+/*!****************************************************************!*\
+  !*** ./resources/js/ui/renee/edit-aboutme/AboutMeSideImage.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __extends = this && this.__extends || function () {
+  var _extendStatics = function extendStatics(d, b) {
+    _extendStatics = Object.setPrototypeOf || {
+      __proto__: []
+    } instanceof Array && function (d, b) {
+      d.__proto__ = b;
+    } || function (d, b) {
+      for (var p in b) {
+        if (b.hasOwnProperty(p)) d[p] = b[p];
+      }
+    };
+
+    return _extendStatics(d, b);
+  };
+
+  return function (d, b) {
+    _extendStatics(d, b);
+
+    function __() {
+      this.constructor = d;
+    }
+
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+  };
+}();
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+}); // TODO: Move this to separate file
+
+var ElementUtils_1 = __webpack_require__(/*! ../../../utils/ElementUtils */ "./resources/js/utils/ElementUtils.js");
+
+var AboutMeImageComponent_1 = __importDefault(__webpack_require__(/*! ./AboutMeImageComponent */ "./resources/js/ui/renee/edit-aboutme/AboutMeImageComponent.js"));
+
+var AboutMeService_1 = __importDefault(__webpack_require__(/*! ../../../network/AboutMeService */ "./resources/js/network/AboutMeService.js"));
+
+var RequestOptions_1 = __webpack_require__(/*! ../../../network/RequestOptions */ "./resources/js/network/RequestOptions.js");
+
+var AboutMeSideImage =
+/** @class */
+function (_super) {
+  __extends(AboutMeSideImage, _super);
+
+  function AboutMeSideImage() {
+    return _super.call(this, new AboutMeService_1["default"](RequestOptions_1.RequestOptionsValues.get())) || this;
+  }
+
+  AboutMeSideImage.getInstance = function () {
+    if (this.INSTANCE == undefined) {
+      this.INSTANCE = new AboutMeSideImage();
+    }
+
+    return this.INSTANCE;
+  };
+
+  AboutMeSideImage.prototype.initElements = function () {
+    this.editButton = new ElementUtils_1.El(document.getElementById('about-me-side-image-edit'));
+    this.contentElement = new ElementUtils_1.El(document.getElementById('about-me-side-image'));
+    this.saveAndCancelContainer = new ElementUtils_1.El(document.getElementById('save-and-cancel-about-me-side-image-buttons'));
+    this.saveButton = new ElementUtils_1.El(document.getElementById('save-about-me-side-image'));
+    this.cancelButton = new ElementUtils_1.El(document.getElementById('cancel-about-me-side-image'));
+    this.loadIndicator = new ElementUtils_1.El(document.getElementById('loading-about-me-side-image'));
+    this.hiddenImageInput = new ElementUtils_1.El(document.getElementById('about-me-side-image-hidden-input'));
+  };
+
+  AboutMeSideImage.prototype.getContentToSave = function () {
+    var formData = new FormData();
+    formData.append('about_me_side_image_file', this.content, this.content.name);
+    return formData;
+  };
+
+  return AboutMeSideImage;
+}(AboutMeImageComponent_1["default"]);
+
+var aboutMeSideImage = AboutMeSideImage.getInstance();
+
+/***/ }),
+
+/***/ "./resources/js/ui/renee/editables/EditableImageComponent.js":
+/*!*******************************************************************!*\
+  !*** ./resources/js/ui/renee/editables/EditableImageComponent.js ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __extends = this && this.__extends || function () {
+  var _extendStatics = function extendStatics(d, b) {
+    _extendStatics = Object.setPrototypeOf || {
+      __proto__: []
+    } instanceof Array && function (d, b) {
+      d.__proto__ = b;
+    } || function (d, b) {
+      for (var p in b) {
+        if (b.hasOwnProperty(p)) d[p] = b[p];
+      }
+    };
+
+    return _extendStatics(d, b);
+  };
+
+  return function (d, b) {
+    _extendStatics(d, b);
+
+    function __() {
+      this.constructor = d;
+    }
+
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+  };
+}();
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var EditableComponent_1 = __importDefault(__webpack_require__(/*! ./EditableComponent */ "./resources/js/ui/renee/editables/EditableComponent.js"));
+
+var ErrorHandling_1 = __importDefault(__webpack_require__(/*! ../../../utils/ErrorHandling */ "./resources/js/utils/ErrorHandling.js"));
+
+var EditableImageComponent =
+/** @class */
+function (_super) {
+  __extends(EditableImageComponent, _super);
+
+  function EditableImageComponent(service) {
+    var _this = _super.call(this) || this;
+
+    _this.service = service;
+    return _this;
+  }
+
+  EditableImageComponent.prototype.enterEditingState = function () {
+    _super.prototype.enterEditingState.call(this);
+
+    this.openFileExplorer();
+  };
+
+  EditableImageComponent.prototype.openFileExplorer = function () {
+    this.hiddenImageInput.el.click();
+  };
+
+  EditableImageComponent.prototype.setupListeners = function () {
+    var _this = this;
+
+    _super.prototype.setupListeners.call(this);
+
+    this.contentElement.on('keydown', function (e) {
+      //@ts-ignore
+      if (e.keyCode === 13) {
+        _this.saveButton.el.click();
+
+        return false;
+      } //@ts-ignore
+
+
+      if (e.keyCode === 27) {
+        _this.cancelButton.el.click();
+      }
+    });
+    this.hiddenImageInput.on('change', function (ev) {
+      if (_this.imageSelected()) {
+        _this.content = _this.hiddenImageInput.el.files[0];
+
+        _this.previewImage();
+      }
+    });
+  };
+
+  EditableImageComponent.prototype.imageSelected = function () {
+    return !!(this.hiddenImageInput.el.files && this.hiddenImageInput.el.files[0]);
+  };
+
+  EditableImageComponent.prototype.previewImage = function () {
+    var _this = this;
+
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+      return _this.setContent(e.target.result);
+    };
+
+    reader.readAsDataURL(this.hiddenImageInput.el.files[0]);
+  };
+
+  EditableImageComponent.prototype.getContent = function () {
+    return this.contentElement.el.src;
+  };
+
+  EditableImageComponent.prototype.saveContent = function () {
+    var _this = this;
+
+    this.service.save(this.getContentToSave()).then(function (response) {
+      if (response.status != 'ok') {
+        ErrorHandling_1["default"]("Unable to save: Error " + response);
+
+        _this.cancelEdit();
+      }
+
+      _this.enterInitialState();
+    })["catch"](function (err) {
+      ErrorHandling_1["default"](err);
+
+      _this.cancelEdit();
+
+      _this.enterInitialState();
+    });
+  };
+
+  EditableImageComponent.prototype.setContent = function (content) {
+    this.contentElement.el.src = content;
+  };
+
+  return EditableImageComponent;
+}(EditableComponent_1["default"]);
+
+exports["default"] = EditableImageComponent;
 
 /***/ })
 

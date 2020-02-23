@@ -10,7 +10,7 @@ const requestOptions: RequestOptions = {
     baseUrl: 'http://localhost'
 };
 
-describe('test Service', () => {
+describe('test AboutMeService', () => {
     let service: AboutMeService;
 
     beforeEach(() => {

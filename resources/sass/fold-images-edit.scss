@@ -1,0 +1,15 @@
+.fold-image > img {
+    object-fit: cover;
+}
+
+.fold-image-container[min-width~="100px"] {
+    height: 350px;
+}
+
+.fold-image-container[min-width~="770px"] {
+    height: 550px
+}
+
+.fold-image-container {
+    border: 1px solid #ababab;
+}

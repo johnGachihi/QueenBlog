@@ -18,6 +18,7 @@ $mdc-theme-primary: #FFAD4D;
 //Styling for write.blade.php
 @import "write";
 @import "blogs";
+@import "fold-images-edit";
 
 body {
     font-family: 'Maven Pro', "Nunito", sans-serif;

@@ -37216,6 +37216,8 @@ if (document.getElementById('write-page')) {
   __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.t.bind(null, /*! ./ui/visitors/contactpage/contact */ "./resources/js/ui/visitors/contactpage/contact.js", 7));
 } else if (document.getElementById('instagram-auth-page')) {
   Promise.all(/*! import() */[__webpack_require__.e(4), __webpack_require__.e(21)]).then(__webpack_require__.t.bind(null, /*! ./ui/renee/instagram-auth-page/InstagramAuthPage */ "./resources/js/ui/renee/instagram-auth-page/InstagramAuthPage.js", 7));
+} else if (document.getElementById('fold-images-edit-page')) {
+  Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(25), __webpack_require__.e(24)]).then(__webpack_require__.t.bind(null, /*! ./ui/renee/fold-image-edit/foldImageEdit */ "./resources/js/ui/renee/fold-image-edit/foldImageEdit.js", 7));
 }
 
 if (document.querySelector('.like-blog')) {
@@ -37242,13 +37244,14 @@ if (document.getElementById('logout')) {
 }
 
 if (document.getElementById('renee')) {
-  Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(15)]).then(__webpack_require__.t.bind(null, /*! ./ui/renee/edit-aboutme/editAboutMeSideName */ "./resources/js/ui/renee/edit-aboutme/editAboutMeSideName.js", 7));
-  Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(17)]).then(__webpack_require__.t.bind(null, /*! ./ui/renee/edit-aboutme/editaboutmeside */ "./resources/js/ui/renee/edit-aboutme/editaboutmeside.js", 7));
-  Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(16)]).then(__webpack_require__.t.bind(null, /*! ./ui/renee/edit-aboutme/editAboutMeTitle */ "./resources/js/ui/renee/edit-aboutme/editAboutMeTitle.js", 7));
-  Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(20)]).then(__webpack_require__.t.bind(null, /*! ./ui/renee/edit-aboutme/AboutMeImage */ "./resources/js/ui/renee/edit-aboutme/AboutMeImage.js", 7));
+  Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(25), __webpack_require__.e(15), __webpack_require__.e(26)]).then(__webpack_require__.t.bind(null, /*! ./ui/renee/edit-aboutme/editAboutMeSideName */ "./resources/js/ui/renee/edit-aboutme/editAboutMeSideName.js", 7));
+  Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(25), __webpack_require__.e(15), __webpack_require__.e(28)]).then(__webpack_require__.t.bind(null, /*! ./ui/renee/edit-aboutme/editaboutmeside */ "./resources/js/ui/renee/edit-aboutme/editaboutmeside.js", 7));
+  Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(25), __webpack_require__.e(15), __webpack_require__.e(27)]).then(__webpack_require__.t.bind(null, /*! ./ui/renee/edit-aboutme/editAboutMeTitle */ "./resources/js/ui/renee/edit-aboutme/editAboutMeTitle.js", 7));
+  Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(25), __webpack_require__.e(23)]).then(__webpack_require__.t.bind(null, /*! ./ui/renee/edit-aboutme/AboutMeSideImage */ "./resources/js/ui/renee/edit-aboutme/AboutMeSideImage.js", 7));
 
   if (document.getElementById('about-me-page')) {
-    Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(19)]).then(__webpack_require__.t.bind(null, /*! ./ui/renee/edit-aboutme/AboutMeArticle */ "./resources/js/ui/renee/edit-aboutme/AboutMeArticle.js", 7));
+    Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(25), __webpack_require__.e(20)]).then(__webpack_require__.t.bind(null, /*! ./ui/renee/edit-aboutme/AboutMeImage */ "./resources/js/ui/renee/edit-aboutme/AboutMeImage.js", 7));
+    Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(25), __webpack_require__.e(19)]).then(__webpack_require__.t.bind(null, /*! ./ui/renee/edit-aboutme/AboutMeArticle */ "./resources/js/ui/renee/edit-aboutme/AboutMeArticle.js", 7));
   }
 }
 

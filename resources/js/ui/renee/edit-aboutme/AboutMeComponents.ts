@@ -3,8 +3,9 @@ import AboutMeService from "../../../network/AboutMeService";
 import {callCallbackIfPresent} from "../../../utils/CallIfPresent";
 import handleFailure from "../../../utils/ErrorHandling";
 import {RequestOptionsValues} from "../../../network/RequestOptions";
+import EditableComponent from "../editables/EditableComponent";
 
-export default abstract class AboutMeComponents {
+/*export default abstract class AboutMeComponents {
     protected state: AboutMeComponentState;
 
     protected editButton: El<HTMLElement>;
@@ -22,7 +23,7 @@ export default abstract class AboutMeComponents {
 
     private aboutMeService = new AboutMeService(RequestOptionsValues.get());
 
-    protected constructor() {
+    public constructor() {
         this.initElements();
         this.enterInitialState();
         this.setupListeners()
@@ -113,6 +114,26 @@ export default abstract class AboutMeComponents {
 
     protected cancelEdit() {
         this.setContent(this.contentBeforeEdit);
+    }
+}*/
+
+export default abstract class AboutMeComponents extends EditableComponent{
+    private aboutMeService = new AboutMeService(RequestOptionsValues.get());
+
+    protected saveContent() {
+        this.aboutMeService.save(this.getContentToSave())
+            .then(response => {
+                if (response.status != 'ok') {
+                    handleFailure(`Unable to save: Error ${response}`);
+                    this.cancelEdit();
+                }
+                this.enterInitialState();
+            })
+            .catch(err => {
+                handleFailure(err);
+                this.cancelEdit();
+                this.enterInitialState();
+            })
     }
 }
 

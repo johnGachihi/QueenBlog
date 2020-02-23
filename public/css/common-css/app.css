@@ -108,3 +108,7 @@ figcaption a {
 .social-icons i {
     font-size: 25px;
 }
+
+.fold-image[min-width~="10px"] {
+    height: 347px;
+}
