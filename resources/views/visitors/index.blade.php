@@ -11,7 +11,7 @@
     <div class="main-slider">
         <div id="slider">
             @foreach($blogs as $blog)
-                @component('visitors.components.slider-item', ['blog' => $blog, 'index' => $loop->index])
+                @component('visitors.components.slider-item', ['blog' => $blog, 'index' => $loop->index, 'fold_image' => $fold_images[$loop->index % $fold_images->count()]])
                 @endcomponent
 
                 @if($loop->iteration == 4)

@@ -276,7 +276,7 @@ function (_super) {
   function FoldImageElement(foldImage) {
     var _this = this;
 
-    foldImage.id = 2;
+    console.log(foldImage);
     _this = _super.call(this, new FoldImageService_1["default"](RequestOptions_1.RequestOptionsValues.get())) || this;
     _this.foldImage = foldImage;
 
@@ -340,12 +340,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var FoldImageElement_1 = __importDefault(__webpack_require__(/*! ./FoldImageElement */ "./resources/js/ui/renee/fold-image-edit/FoldImageElement.js")); //@ts-ignore
+var FoldImageElement_1 = __importDefault(__webpack_require__(/*! ./FoldImageElement */ "./resources/js/ui/renee/fold-image-edit/FoldImageElement.js"));
 
-
-for (var _i = 0, foldImages_1 = foldImages; _i < foldImages_1.length; _i++) {
-  var foldImage = foldImages_1[_i];
-  new FoldImageElement_1["default"](foldImage);
+for (var i = 0; i < 4; i++) {
+  //@ts-ignore
+  if (foldImages[i] !== undefined) //@ts-ignore
+    new FoldImageElement_1["default"](foldImages[i]);else new FoldImageElement_1["default"]({
+    id: i + 1,
+    filename: 'blog-image-placeholder.png'
+  });
 }
 
 /***/ })

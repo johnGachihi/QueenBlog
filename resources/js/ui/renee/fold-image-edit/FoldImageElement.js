@@ -24,7 +24,7 @@ var FoldImageElement = /** @class */ (function (_super) {
     __extends(FoldImageElement, _super);
     function FoldImageElement(foldImage) {
         var _this = this;
-        foldImage.id = 2;
+        console.log(foldImage);
         _this = _super.call(this, new FoldImageService_1.default(RequestOptions_1.RequestOptionsValues.get())) || this;
         _this.foldImage = foldImage;
         _this.setContent(RequestOptions_1.RequestOptionsValues.get().baseUrl + "/storage/" + foldImage.filename);

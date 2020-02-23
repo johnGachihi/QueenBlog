@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\AboutMe;
 use App\Blog;
+use App\FoldImage;
 use Illuminate\Http\Request;
 
 class VisitorsViewsController extends Controller
@@ -12,7 +13,8 @@ class VisitorsViewsController extends Controller
         return view('visitors.index', [
             'blogs' => $this->getBlogPreviews(),
             'categories' => $this->getCategories(),
-            'about_me' => AboutMe::first()
+            'about_me' => AboutMe::first(),
+            'fold_images' => FoldImage::all()
         ]);
     }
 

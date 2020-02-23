@@ -10,7 +10,7 @@ export default class FoldImageElement extends EditableImageComponent{
 
 
     constructor(foldImage: FoldImage) {
-        foldImage.id = 2;
+        console.log(foldImage);
         super(new FoldImageService(RequestOptionsValues.get()));
         this.foldImage = foldImage;
 
